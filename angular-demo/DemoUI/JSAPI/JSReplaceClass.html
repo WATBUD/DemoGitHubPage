@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="../jquery-3.4.1.min.js"></script>
+<style>
+.Test1{
+background-color: red;
+width: 300px;
+height: 300px;
+}
+.Test2{
+background-color: blue;
+width: 500px;
+height: 500px;
+color: white;
+font-size: 14px;
+
+}
+.someClassName{
+background-color: blue;
+width: 500px;
+height: 500px;
+color: white;
+}
+
+</style>
+<body>
+   
+    <div class="Test1" id="show"> javaScript Class新增、刪除、切換、替換</div>
+    <button onclick="Test2()">Add Test2</button>
+
+
+</body>
+<script>
+
+//document.getElementById("show").setAttribute("Test1","Test2");
+function relpace(){
+    var classVal = document.getElementById("show").getAttribute("class");
+classVal = classVal.replace("Test1","Test2");
+document.getElementById("show").setAttribute("class",classVal );
+}
+
+function Test2(){
+var classVal=document.getElementById('show').getAttribute("class");
+classVal = classVal.concat(" Test2");
+document.getElementById("show").setAttribute("class",classVal );
+}
+
+// classVal = classVal.replace(" someClassName","");
+// document.getElementById("show").setAttribute("class",classVal );
+
+
+
+//$("#show").switchClass("Test1", "Test2"); 
+// $('#show').removeClass("Test2");
+// $('#show').addClass("Test1");
+
+
+
+</script>
+
+</html>
+

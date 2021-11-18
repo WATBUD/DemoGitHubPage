@@ -1,0 +1,158 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body{
+margin: 0;
+padding: 0;
+-webkit-user-select:none;
+-moz-user-select:none;
+-o-user-select:none;
+user-select:none;
+}
+/* #target:hover{
+cursor: move;
+border: dashed 2px red;
+border-style:dashed;
+} */
+.fileDiv {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+    pointer-events: none;
+      margin: 24px;
+      background-color: #0082CC;
+    }
+</style>
+
+</head>
+
+<body>
+<!-- <div id="move_div" onmousedown="down()" onmouseup="up()" onmousemove="move()"></div> -->
+<div id="ScrollArea" style="position: absolute;
+top: 50px;
+left:50px;
+width: 65%;
+height: 65%;
+background-color: gray;
+overflow: auto;">
+
+ 
+    <div id="ScrollContentArea"  style="position: absolute; width: 100vw;height: 100vh;
+    transform: scale(1);
+    transform-origin: left top;
+     background-color: red;">
+        <div id="KeyBoardUI" style="   position: absolute;
+        top: 200px;
+        left: 150px;
+        width: 300px;
+        height: 200px;
+        background-color: rgb(172, 255, 104);">
+            <div data-status="false" class="fileDiv"></div>
+            <div data-status="false" class="fileDiv"></div>
+        </div>
+        <div id="KeyBoardUI2" style="    position: absolute;
+        top: 200px;
+        left: 700px;
+        width: 300px;
+        height: 200px;
+        background-color: rgb(36, 63, 15);">
+            <div data-status="false" class="fileDiv"></div>
+            <div data-status="false" class="fileDiv"></div>
+        </div>
+
+    </div>
+</div>
+
+<input id="SwitchMouseMove" type="button" value="MoveMouseEvent true" onmousedown="switchMouseEvent('SMM')">
+<input id="SwitchMouseBoxSelection" type="button" value="MouseBoxSelection true" onmousedown="switchMouseEvent('MSB');
+" style="
+    left: 67px;
+">
+
+<div id="txtShow" style="position: absolute; background-color: black;margin-left: 75%;overflow-y: scroll;
+color:yellow;word-wrap: break-word;
+width:500px;height: 500px;">選澤想要查的資料</div>
+</body>
+
+<script src="./MouseMoveObject.js"></script>
+<script src="./MouseBoxSelection.js"></script>
+<script>
+    var a=Array(61).fill(false);
+    a[0]=true;
+    console.log(a);
+    var MouseMoveObjectFn=new MouseMoveObjectManager();
+    MouseMoveObjectFn.addMoveObject('KeyBoardUI');
+    MouseMoveObjectFn.addMoveObject('KeyBoardUI2');
+   
+    var MouseBoxSelectionFn=new MouseBoxSelection();
+    MouseBoxSelectionFn.compareObjectArr.push('KeyBoardUI');
+    MouseBoxSelectionFn.compareObjectArr.push('KeyBoardUI2');
+    
+
+
+    function switchMouseEvent(text){
+        if(text=='SMM'){
+            //console.log('Enter_SMM',MouseMoveObjectFn.MouseMoveObjectArr[0].fnEanble);
+
+        MouseMoveObjectFn.setAllMoveObjectfnEanble(!MouseMoveObjectFn.MouseMoveObjectArr[0].fnEanble);
+        MouseBoxSelectionFn.fnEanble=false;    
+        }
+        if(text=='MSB'){
+            //console.log('Enter_MSB',this.MouseBoxSelectionFn.fnEanble);
+
+        MouseBoxSelectionFn.fnEanble=!MouseBoxSelectionFn.fnEanble; 
+        MouseMoveObjectFn.setAllMoveObjectfnEanble(false);
+        }
+        MouseMoveObjectFn.setAllMoveObject(); 
+
+        MouseBoxSelectionFn.switchMouseEvent('ScrollArea');
+
+
+        MouseMoveObjectFn.switchShowBtn(document.getElementById('SwitchMouseMove'))
+        MouseBoxSelectionFn.switchShowBtn(document.getElementById('SwitchMouseBoxSelection'))
+        //document.getElementById('SwitchMouseMove').value = MouseMoveObjectFn.MouseMoveObjectArr[0].fnEanble;
+
+    }
+
+    this.addScaleEvent('ScrollContentArea');
+    //var ScaleEventFn=new ScaleEventManager();
+    var scaleConfig = {
+        scaleMultipleConfig: [0.25, 0.5, 1, 2, 4],
+        scaleMultiple: 1,
+    }
+    function addScaleEvent(targetName) {
+        document.addEventListener('keydown', (e) => {
+            if (e.code == "NumpadAdd") {
+                this.scaleConfig.scaleMultiple += 0.1;
+                document.getElementById(targetName).style.transform = "scale(" + this.scaleConfig.scaleMultiple + ")"
+                this.calculatorScroll();
+
+            }
+            if (e.code == "NumpadSubtract") {
+                this.scaleConfig.scaleMultiple -= 0.1;
+
+                document.getElementById(targetName).style.transform = "scale(" + this.scaleConfig.scaleMultiple + ")"
+                this.calculatorScroll();
+            }
+        }) 
+
+    }
+    function calculatorScroll() {
+
+        var ScrollArea = document.getElementById("ScrollArea");
+        ScrollArea.scrollTop = (getMatchedCSS("ScrollContentArea", "height") *  this.scaleConfig.scaleMultiple - getMatchedCSS("ScrollArea", "height")) / 2;
+        ScrollArea.scrollLeft = (getMatchedCSS("ScrollContentArea", "width") *  this.scaleConfig.scaleMultiple - getMatchedCSS("ScrollArea", "width")) / 2;;
+    }
+    //ScaleEventFn.addScaleEvent('ScrollContentArea');
+    MouseMoveObjectFn.setScaleConfig(this.scaleConfig);
+
+    MouseBoxSelectionFn.setScaleConfig(this.scaleConfig);
+
+
+
+
+</script>
+
+</html>

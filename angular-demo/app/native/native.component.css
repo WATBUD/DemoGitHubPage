@@ -1,0 +1,29 @@
+:host{
+    width: 100%;
+}
+
+
+li{
+    color: blue;
+    margin: 10px 0;
+}
+
+li:hover {
+    color: red;
+    background-color: yellow; 
+} 
+li:active {
+    color: yellow;
+}
+/* 
+li:visited {
+    color: yellow;
+}
+
+
+li:link {
+    color: green;
+}
+li:focus {
+    color: plum;
+} */

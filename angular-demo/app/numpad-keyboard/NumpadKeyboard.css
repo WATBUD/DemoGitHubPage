@@ -1,0 +1,44 @@
+
+
+:host{
+    width: 100%;
+}
+
+.Keyboard-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100%);
+    background: #f7d0d04f;
+}
+.Keyboard-content .Content1{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.triangleStyle{
+    border-color: #0000 #0000 #313131 #0000;
+    border-style: solid;
+    pointer-events: none;
+    border-width: 31px 20px 31px 20px;
+    z-index: 9999;
+    }
+    
+    
+    .rectángulo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        color: #fff;
+        background-color: #313131;
+        line-height: 16px;
+        letter-spacing: 0px;
+    }
+    
+
+

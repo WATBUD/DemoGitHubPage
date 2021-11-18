@@ -1,0 +1,255 @@
+<!-- <script src="three.min.js"></script> -->
+<link rel="stylesheet" href="./RainBackgroundEffect.css">
+<link rel="stylesheet" href="./Loading_Anmation.css">
+<meta charset="utf-8">
+
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+</head>
+
+<body>
+  <!-- <body class="back-row-toggle splat-toggle">   -->
+  <div style="position: absolute;right: 5vw;top: 5vh;" class="loader">
+    <div class="outer"></div>
+    <div class="middle"></div>
+    <div class="inner"></div>
+  </div>
+  <div style="width: 90%;
+  color: #efefef;
+  margin: 0.5%;
+  font-weight: bold;">try pressing some keys.
+    <button type="button" onclick="copyEvent('log')" class="ButtonStyle">Copy</button>
+    <button type="button" onclick="copy_RemoveDoubleQuotes()" class="ButtonStyle">Copy_RemoveDoubleQuotes</button>
+
+    <input name="ClearMessage" type="button" id="ClearMessage" value="ClearMessage" class="ButtonStyle">
+    <!-- <input name="customKeyBtn" type="button" id="customKeyBtn" value="customKeyBtn"class="ButtonStyle"> -->
+    <input type="button" id="AddSpace" onclick="totalKeydownArr.push('');show_LogUIText();" onkeydown=""
+      value="AddSpace" class="ButtonStyle">
+    <input type="button" id="AddCustom_Fnkey" onclick="totalKeydownArr.push('Custom_Fnkey');show_LogUIText();"
+      onkeydown="" value="AddCustom_Fnkey" class="ButtonStyle">
+    <input type="button" id="recovery" onclick="recoveryPrevious();" onkeydown="" value="Recovery" class="ButtonStyle">
+    <!-- <input type="button" id="Undo" onclick="Undo();" onkeydown="" value="Undo" class="ButtonStyle"> -->
+    <input type="button" id="Btn_keyCode" onclick="switchTotalKeydownArrType('keyCode')" onkeydown="" value="keyCode"
+      class="ButtonStyle">
+    <input type="button" id="Btn_value" onclick="switchTotalKeydownArrType('value')" onkeydown="" value="UIString"
+      class="ButtonStyle">
+    <input type="button" id="Btn_hid" onclick="switchTotalKeydownArrType('hid')" onkeydown="" value="hid"
+      class="ButtonStyle">
+    <input type="button" id="Btn_code" onclick="switchTotalKeydownArrType('code')" onkeydown="" value="code"
+      class="ButtonStyle">  
+
+
+    <!-- <input type="button" id="Btn_functionType" onclick="switchTotalKeydownArrType('functionType')" onkeydown="" value="functionType"class="ButtonStyle"> -->
+    <!-- <input type="button" id="Btn3" onkeydown="switchShowType='hid'" value="hid"> -->
+  </div>
+  <div id="arrayNumber"style="width: 100%;height: 23px;color: red;">  </div>
+
+
+
+  
+  <!-- <div id="block"
+  style="position: absolute; width: 20%;height:20%;right: 20vw; background: #f32121;"> -->
+  </div>
+  <div id="CenterArea" style="display: flex;flex-direction:row;width:90%;height:90%;margin-top: 1.5%;">
+    <div id="ListButton"
+      style="width: 20%;height: 100%;background: #2196f357;display: flex;flex-direction: column;overflow: overlay;">
+    </div>
+    <div id="log" style="
+    width: 50%;
+    height: auto;
+    display: flex;
+    word-break: break-word;
+    margin-left: 5%;line-height: 24px;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    "></div>
+  </div>
+  <!-- <div style="pointer-events: none;z-index: 9999;" class="rain front-row"></div>
+  <div style="pointer-events: none;z-index: 9999;" class="rain back-row"></div> -->
+  <!-- <div style="pointer-events: none;" class="rain front-row"></div>
+
+  <div style="pointer-events: none;" class="rain back-row"></div> -->
+  <!-- <div class="toggles">
+    <div class="splat-toggle toggle active">SPLAT</div>
+    <div class="back-row-toggle toggle active">BACK<br>ROW</div>
+    <div class="single-toggle toggle">SINGLE</div>
+  </div> -->
+
+</body>
+<style>
+  .ListButtonItem {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    background: #bea9de63;
+  }
+
+  .ButtonStyle {
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8vw;
+    font-weight: bold;
+    text-shadow: 2px 1px 1px #386379;
+    border: 1px solid #3180a7;
+    background: linear-gradient(to bottom, #6dbfe8 0%, #28a1de 50%, #28a1de 50%, #1f8cc2 51%, #1f8cc2 51%, #33a0d6 100%);
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  }
+</style>
+
+<script type="text/javascript" src="AllFunctionMapping.js"></script>
+
+<script>
+  //document.addEventListener('keydown', logKey(e));
+  // window.addEventListener("contextmenu", function(e) { e.preventDefault(); })
+  //document.addEventListener('mousedown');
+  // document.getElementById('customKeyBtn').addEventListener('mousedown', customKeyBtn);
+  document.getElementById('ClearMessage').addEventListener('click', (event) => {
+    console.log('ClearMessage', event);
+    log.innerText = '';
+    totalKeydownArr = [];
+  });
+  totalKeydownArr = [];
+  var _this = this;
+  switchShowType = 'keyCode';
+  function copyEvent(id) {
+    var str = document.getElementById(id);
+    window.getSelection().selectAllChildren(str);
+    document.execCommand("Copy");
+  }
+  //AllFunctionMapping[0].hid=0x4;
+  //console.log('AllFunctionMapping', AllFunctionMapping[0]);
+
+//   var number = 255;
+// var padded = "0" + number;
+var hexString = (175).toString(16);
+//console.log(padded.slice(-2));
+
+  console.log('AFM2' ,'0x'+hexString);
+
+  // for (let index = 0; index < AFM2.length; index++) {
+  //   //const element = AllFunctionMapping[index];
+  //   var targetValue = AllFunctionMapping.find((x) =>x.keyCode == String(AFM2[index].keyCode));
+  //   console.log('AFM2[index]', AFM2[index]);
+  //   if(targetValue!=undefined){
+  //     targetValue.hid=AFM2[index].hid;
+  //   }
+  // }
+  // console.log('AllFunctionMapping', JSON.stringify(AllFunctionMapping));
+  // console.log('AllFunctionMapping', AllFunctionMapping);
+
+  
+  document.addEventListener('keydown', function logKey(e) {
+    //event.preventDefault();
+    if (e.code != "F12") {
+      event.preventDefault();
+      //event.stopPropagation();
+    }
+    //console.log(e);
+    //targetValue.code=e.code;
+    //totalKeydownArr.push(String(e.code));
+    //console.log('keydown', JSON.stringify(AllFunctionMapping));
+
+    console.log('keydown', e.keyCode,e.code);
+    // for (let index = 0; index < AllFunctionMapping.length; index++) {
+    //   var element = AllFunctionMapping[index];
+    //   if(element.functionType!='Singlekey'){
+    //     element.code=element.keyCode;
+    //   }
+    // }
+
+  });
+  // document.addEventListener('keypress', function logKey222(e) {
+  //   console.log('keypress', e);
+
+
+  // });
+    document.addEventListener('mouseup', function logKey222(e) {
+    console.log('mouseup', e);
+
+
+  });
+    document.addEventListener('keyup', function logKey222(e) {
+      var targetValue = AllFunctionMapping.find((x) => x.code == String(e.code));
+    totalKeydownArr.push(String(targetValue[switchShowType]));
+    show_LogUIText();
+    console.log('keyup', e);
+
+
+  });
+
+  function removeQuotes(a) {
+    var fIndex = a.indexOf('""');
+    var lIndex = a.lastIndexOf('""');
+    if(fIndex >= 0 && lIndex >= 0){
+      a = a.substring(fIndex+1, lIndex+1);
+    }
+    return a;
+  }
+  function copy_RemoveDoubleQuotes() {
+    log.innerText=(log.innerText).replace(/"/g, '');
+    console.log('copy_RemoveDoubleQuotes', strWithOutQuotes);
+    window.getSelection().selectAllChildren(log);
+    document.execCommand("Copy");
+  }
+  function recoveryPrevious() {
+    //totalKeydownArr.splice(totalKeydownArr.length);
+    totalKeydownArr.pop();
+    show_LogUIText();
+  }
+  for (let index = 0; index < AllFunctionMapping.length; index++) {
+    const element = AllFunctionMapping[index];
+    if (element.functionType != 'Singlekey') {
+      var createBtn = document.createElement('input');
+      //createBtn.style.cssText = 'display: flex;';
+      createBtn.dataset.status = element.functionType;
+      createBtn.className = "ListButtonItem";
+      createBtn.value = element.value;
+      //createBtn.style.marginLeft = Time_Axis.style.left;
+      createBtn.setAttribute("type", "button");
+      //createBtn.setAttribute("onkeydown",logAddinnerText(element[switchShowType]));
+      createBtn.addEventListener("click", function () {
+        console.log('switchShowType', _this.switchShowType);
+        totalKeydownArr.push(String(element[_this.switchShowType]));
+        show_LogUIText();
+      });
+      // createBtn.onkeydown = function () {
+      //   totalKeydownArr.push(String(element[switchShowType]));
+      //   log.innerText = JSON.stringify(totalKeydownArr);
+      // };
+      document.getElementById('ListButton').appendChild(createBtn);
+    }
+  }
+
+  function show_LogUIText() {
+    log.innerText = JSON.stringify(totalKeydownArr);
+    //log.innerHTML = JSON.stringify(totalKeydownArr);  }
+    document.getElementById('arrayNumber').innerHTML="目前陣列數量:"+totalKeydownArr.length
+  }
+
+
+  function switchTotalKeydownArrType(Type) {
+    var originalType = switchShowType;
+    switchShowType = Type;
+    for (let index = 0; index < totalKeydownArr.length; index++) {
+      var targetValue = AllFunctionMapping.find((x) => x[originalType] == totalKeydownArr[index]);
+      if (targetValue != undefined) {
+        totalKeydownArr[index] = String(targetValue[switchShowType]);
+      }
+      else {
+        totalKeydownArr[index] = '';
+      }
+    }
+    show_LogUIText();
+  }
+
+
+
+
+</script>
+<!-- <script src="./RainBackgroundEffect.js"></script> -->

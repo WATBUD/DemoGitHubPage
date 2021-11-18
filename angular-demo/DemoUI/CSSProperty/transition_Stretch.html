@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: -webkit-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
+    }
+
+    .Content-Zoom {
+        display: block;
+        /* flex-direction: column; */
+        position: absolute;
+        width: 400px;
+        height: 100%;
+        top: -30px;
+        background-color: #e0dfd6;
+        right: 0px;
+        transition: 0.5s;
+    }
+</style>
+
+
+
+
+<head>
+    <title>Example</title>
+</head>
+
+<body>
+    <div class="Content-Zoom" id="Content-Zoom">
+
+
+
+    </div>
+</body>
+<script>
+
+    document.onmousedown = function (e) {
+        var CZ = document.getElementById('Content-Zoom');
+        if (parseInt(CZ.style.width) > 100) {
+            CZ.style.width = 100 + "px";
+        }
+        else {
+            CZ.style.width = 500 + "px";
+        }
+    }
+</script>
+
+</html>

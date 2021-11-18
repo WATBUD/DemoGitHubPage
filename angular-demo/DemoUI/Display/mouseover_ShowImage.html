@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+
+
+<meta charset="utf-8" />
+<title>mouseover_ShowImage</title>
+</head>
+<body style="margin: 0;" >
+    <div id="target_bee" style=" width: 100px;height: 100px;background: rgba(255, 0, 0, 0.315);color: blue;display: flex;align-items: center;justify-content: center;">
+        蜜蜂
+    </div>
+    <div id="target_snake" style=" width: 100px;height: 100px;background: rgba(255, 0, 0, 0.315);color: blue;display: flex;align-items: center;justify-content: center;">
+        蛇
+    </div>
+    <img id="bee_image" src="./bee_image.jpg" style="position: absolute; width: 50px;height:50px;display:none;" />
+    <img id="snake_image" src="./snake_image.jpg" style="position: absolute; width: 50px;height:50px;display:none;" />
+
+</body> 
+<script type="text/javascript">	
+var target_bee=document.getElementById("target_bee");
+var target_snake=document.getElementById("target_snake");
+
+var bee_image=document.getElementById("bee_image");
+var snake_image=document.getElementById("snake_image");
+
+console.log('%c target_bee','color:rgb(255,75,255,1)',target_bee);
+bee_image.style.pointerEvents='none';
+snake_image.style.pointerEvents='none';
+
+target_bee.addEventListener("mousemove", function (element) {
+console.log('%c mousemove','color:rgb(255,0,0)',element);
+bee_image.style.left=element.clientX+'px';
+bee_image.style.top=element.clientY+'px';
+bee_image.style.display='block';
+});
+target_bee.addEventListener("mouseleave", function (element) {
+    console.log('%c mouseleave','color:rgb(0,0,255)');
+bee_image.style.display='none';
+});
+
+target_snake.addEventListener("mousemove", function (element) {
+console.log('%c mousemove','color:rgb(255,0,0)');
+snake_image.style.left=element.clientX+'px';
+snake_image.style.top=element.clientY+'px';
+snake_image.style.display='block';
+});
+target_snake.addEventListener("mouseleave", function (element) {
+    console.log('%c mouseleave','color:rgb(0,0,255)');
+snake_image.style.display='none';
+});
+
+
+// console.dir(target_bee);
+// console.dir(bee_image);
+
+// bee_image.style.marginLeft=target.offsetLeft+target.clientHeight+'px';
+// bee_image.style.marginTop=target.offsetTop+target.clientHeight+'px';
+
+</script>

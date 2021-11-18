@@ -1,0 +1,39 @@
+<div id="custom-M_NumpadSelect" (click)="showCommonSelecListUI=!showCommonSelecListUI;"
+class="{{componentId}}" data-identity="SelecListUI"
+style="    
+position: relative;
+display: flex;
+width: 100%;
+height: 100%;
+color: black;
+align-items: center;
+/* background: yellow; */
+" >
+    <div id="Down_Arrow"
+        style="position: absolute;
+        right: 15px;
+        transform: rotate(-92deg);
+        border-top: 5px solid #903d3d00;
+        border-right: 5px solid black;
+        border-bottom: 5px solid #8f7c6500;
+        pointer-events: none;
+        ">
+    </div>
+    <div id="checkedText" class="checkedText">
+        {{getSelectNowData()}}
+    </div>
+
+</div>
+<!-- [style.height]="this.inputoption.length>2?'80px': 'auto'">
+(blur)="showCommonSelecListUI=false" -->
+
+<div id="commonSelecListUI" class="SelectTemplate" [style.display]="showCommonSelecListUI?'block': 'none'">
+    <div *ngFor="let item of inputoption ;let i = index" class="itemStyle" data-identity="SelecListUI"
+        (click)="setNowSelectedDataIndex(item.value)" (mouseover)="setNowMouseoverDataIndex(i)"
+        [style.background-color]="(nowMouseoverDataIndex==i)?'rgba(0, 0, 0, 0.1)':'transparent'">
+        <div class="checkedText">
+            {{getSelectedDataName(i)}}
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,137 @@
+<!-- <script src="three.min.js"></script> -->
+<link rel="stylesheet" href="./RainBackgroundEffect.css">
+<link rel="stylesheet" href="./Loading_Anmation.css">
+<meta charset="utf-8">
+
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+</head>
+
+<body>
+  <!-- <body class="back-row-toggle splat-toggle">   -->
+  <div style="position: absolute;right: 5vw;top: 5vh;" class="loader">
+    <div class="outer"></div>
+    <div class="middle"></div>
+    <div class="inner"></div>
+  </div>
+  <div style="width: 90%;
+  color: #efefef;
+  margin: 0.5%;
+  font-weight: bold;">Enter the number of arrays you want to generate.
+    <input id="ArrayMaxNumber" class="ButtonStyle" type="number" max="100000" min="1" value="10"
+      onkeyup="value=value.replace(/[^\d]/g,'');if(value<1){value=1};if(value<1){value=1};"
+      oninput="ArrayMaxNumberChange()">
+
+    <button type="button" onclick="copyEvent('log')" class="ButtonStyle">Copy</button>
+    <!-- <button type="button" onclick="copy_RemoveDoubleQuotes()" class="ButtonStyle">Copy_RemoveDoubleQuotes</button> -->
+    <input type="button" id="GeneratorArrayText" value="GeneratorArrayText" class="ButtonStyle">
+    <input name="ClearMessage" type="button" id="ClearMessage" value="ClearMessage" class="ButtonStyle">
+  </div>
+
+
+
+
+  <div id="arrayNumber" style="width: 100%;height: 23px;color: red;"> </div>
+
+  </div>
+  <div id="CenterArea" style="display: flex;flex-direction:row;width:90%;height:90%;margin-top: 1.5%;">
+    <!-- <div id="ListButton"
+      style="width: 20%;height: 100%;background: #2196f357;display: flex;flex-direction: column;overflow: overlay;">
+    </div> -->
+    <div id="log" style="
+    width: 50%;
+    height: auto;
+    display: flex;
+    word-break: break-word;
+    margin-left: 5%;line-height: 24px;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    "></div>
+  </div>
+
+
+</body>
+<style>
+  .ButtonStyle {
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8vw;
+    font-weight: bold;
+    text-shadow: 2px 1px 1px #386379;
+    border: 1px solid #3180a7;
+    background: linear-gradient(to bottom, #6dbfe8 0%, #28a1de 50%, #28a1de 50%, #1f8cc2 51%, #1f8cc2 51%, #33a0d6 100%);
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  }
+</style>
+
+<script type="text/javascript" src="AllFunctionMapping.js"></script>
+
+<script>
+  var totalArr = [];
+  document.getElementById('ClearMessage').addEventListener('click', (event) => {
+    console.log('ClearMessage', event);
+    log.innerText = '';
+    totalArr = [];
+  });
+  //input.addEventListener('input', updateValue);
+
+  document.getElementById('GeneratorArrayText').addEventListener('click', (event) => {
+    ArrayMaxNumberChange();
+  });
+
+  function ArrayMaxNumberChange() {
+    var AMN = document.getElementById('ArrayMaxNumber');
+    if (AMN != null) {
+      console.log('%c GeneratorArrayText', 'background: black; color: blue', AMN.value);
+      console.dir(AMN);
+      totalArr = []
+      while (totalArr.length < AMN.value) {
+        totalArr.push("");
+      }
+      this.show_LogUIText();
+    }
+  }
+
+
+
+  function show_LogUIText() {
+    log.innerText = JSON.stringify(totalArr);
+    document.getElementById('arrayNumber').innerHTML = "目前陣列數量:" + totalArr.length
+  }
+
+
+
+  function copyEvent(id) {
+    var str = document.getElementById(id);
+    window.getSelection().selectAllChildren(str);
+    document.execCommand("Copy");
+  }
+  var hexString = (175).toString(16);
+
+  console.log('AFM2', '0x' + hexString);
+
+
+  function removeQuotes(a) {
+    var fIndex = a.indexOf('""');
+    var lIndex = a.lastIndexOf('""');
+    if (fIndex >= 0 && lIndex >= 0) {
+      a = a.substring(fIndex + 1, lIndex + 1);
+    }
+    return a;
+  }
+
+
+
+
+
+
+
+
+
+</script>

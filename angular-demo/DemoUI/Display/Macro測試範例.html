@@ -1,0 +1,187 @@
+<p>檢查時間間隔</p>
+<div id="log"></div>
+
+
+
+
+<script>
+  var customEventCode = [
+    { "event_code": "ControlLeft", "event_keycode": 17 },
+    { "event_code": "MetaRight", "event_keycode": 92 },
+    { "event_code": "AltLeft", "event_keycode": 18 },
+    { "event_code": "Space", "event_keycode": 32 },
+    { "event_code": "AltRight", "event_keycode": 18 },
+    { "event_code": "ContextMenu", "event_keycode": 93 },
+    { "event_code": "ControlRight", "event_keycode": 17 },
+    { "event_code": "ArrowLeft", "event_keycode": 37 },
+    { "event_code": "ArrowDown", "event_keycode": 40 },
+    { "event_code": "ArrowRight", "event_keycode": 39 },
+    { "event_code": "Numpad0", "event_keycode": 96 },
+    { "event_code": "NumpadDecimal", "event_keycode": 110 },
+    { "event_code": "NumpadEnter", "event_keycode": 13 },
+    { "event_code": "ShiftLeft", "event_keycode": 16 },
+    { "event_code": "KeyZ", "event_keycode": 90 },
+    { "event_code": "KeyX", "event_keycode": 88 },
+    { "event_code": "KeyC", "event_keycode": 67 },
+    { "event_code": "KeyV", "event_keycode": 86 },
+    { "event_code": "KeyB", "event_keycode": 66 },
+    { "event_code": "KeyN", "event_keycode": 78 },
+    { "event_code": "KeyM", "event_keycode": 77 },
+    { "event_code": "Comma", "event_keycode": 188 },
+    { "event_code": "Period", "event_keycode": 190 },
+    { "event_code": "Slash", "event_keycode": 191 },
+    { "event_code": "ShiftRight", "event_keycode": 16 },
+    { "event_code": "ArrowUp", "event_keycode": 38 },
+    { "event_code": "Numpad1", "event_keycode": 97 },
+    { "event_code": "Numpad2", "event_keycode": 98 },
+    { "event_code": "Numpad3", "event_keycode": 99 },
+    { "event_code": "Numpad4", "event_keycode": 100 },
+    { "event_code": "Numpad5", "event_keycode": 101 },
+    { "event_code": "Numpad6", "event_keycode": 102 },
+    { "event_code": "Numpad7", "event_keycode": 103 },
+    { "event_code": "Numpad8", "event_keycode": 104 },
+    { "event_code": "Numpad9", "event_keycode": 105 },
+    { "event_code": "NumLock", "event_keycode": 144 },
+    { "event_code": "NumpadDivide", "event_keycode": 111 },
+    { "event_code": "NumpadMultiply", "event_keycode": 106 },
+    { "event_code": "NumpadSubtract", "event_keycode": 109 },
+    { "event_code": "NumpadAdd", "event_keycode": 107 },
+    { "event_code": "AudioVolumeMute", "event_keycode": 173 },
+    { "event_code": "AudioVolumeDown", "event_keycode": 174 },
+    { "event_code": "AudioVolumeUp", "event_keycode": 175 },
+    { "event_code": "ScrollLock", "event_keycode": 145 },
+    { "event_code": "Pause", "event_keycode": 19 },
+    { "event_code": "Insert", "event_keycode": 45 },
+    { "event_code": "Home", "event_keycode": 36 },
+    { "event_code": "PageUp", "event_keycode": 33 },
+    { "event_code": "Delete", "event_keycode": 46 },
+    { "event_code": "End", "event_keycode": 35 },
+    { "event_code": "PageDown", "event_keycode": 34 },
+    { "event_code": "CapsLock", "event_keycode": 20 },
+    { "event_code": "KeyA", "event_keycode": 65 },
+    { "event_code": "KeyS", "event_keycode": 83 },
+    { "event_code": "KeyD", "event_keycode": 68 },
+    { "event_code": "KeyF", "event_keycode": 70 },
+    { "event_code": "KeyG", "event_keycode": 71 },
+    { "event_code": "KeyH", "event_keycode": 72 },
+    { "event_code": "KeyJ", "event_keycode": 74 },
+    { "event_code": "KeyK", "event_keycode": 75 },
+    { "event_code": "KeyL", "event_keycode": 76 },
+    { "event_code": "Semicolon", "event_keycode": 186 },
+    { "event_code": "Quote", "event_keycode": 222 },
+    { "event_code": "Enter", "event_keycode": 13 },
+    { "event_code": "Tab", "event_keycode": 9 },
+    { "event_code": "KeyQ", "event_keycode": 81 },
+    { "event_code": "KeyW", "event_keycode": 87 },
+    { "event_code": "KeyE", "event_keycode": 69 },
+    { "event_code": "KeyR", "event_keycode": 82 },
+    { "event_code": "KeyT", "event_keycode": 84 },
+    { "event_code": "KeyY", "event_keycode": 89 },
+    { "event_code": "KeyU", "event_keycode": 85 },
+    { "event_code": "KeyI", "event_keycode": 73 },
+    { "event_code": "KeyO", "event_keycode": 79 },
+    { "event_code": "KeyP", "event_keycode": 80 },
+    { "event_code": "BracketLeft", "event_keycode": 219 },
+    { "event_code": "BracketRight", "event_keycode": 221 },
+    { "event_code": "Backslash", "event_keycode": 220 },
+    { "event_code": "Backquote", "event_keycode": 192 },
+    { "event_code": "Digit1", "event_keycode": 49 },
+    { "event_code": "Digit2", "event_keycode": 50 },
+    { "event_code": "Digit3", "event_keycode": 51 },
+    { "event_code": "Digit4", "event_keycode": 52 },
+    { "event_code": "Digit5", "event_keycode": 53 },
+    { "event_code": "Digit6", "event_keycode": 54 },
+    { "event_code": "Digit7", "event_keycode": 55 },
+    { "event_code": "Digit8", "event_keycode": 56 },
+    { "event_code": "Digit9", "event_keycode": 57 },
+    { "event_code": "數字0", "event_keycode": 48 },
+    { "event_code": "Minus", "event_keycode": 189 },
+    { "event_code": "Equal", "event_keycode": 187 },
+    { "event_code": "Backspace", "event_keycode": 8 },
+    { "event_code": "Escape", "event_keycode": 27 },
+    { "event_code": "F1", "event_keycode": 112 },
+    { "event_code": "F2", "event_keycode": 113 },
+    { "event_code": "F3", "event_keycode": 114 },
+    { "event_code": "F4", "event_keycode": 115 },
+    { "event_code": "F5", "event_keycode": 116 },
+    { "event_code": "F6", "event_keycode": 117 },
+    { "event_code": "F7", "event_keycode": 118 },
+    { "event_code": "F8", "event_keycode": 119 },
+    { "event_code": "F9", "event_keycode": 120 },
+    { "event_code": "F10", "event_keycode": 121 },
+    { "event_code": "F11", "event_keycode": 122 },
+    { "event_code": "F12", "event_keycode": 123 }]
+  //log.innerHTML = "Direct";
+  var iskeydown = false;
+  var eventRecordkey = "";
+  var recodeArr = [];
+  var startTime, endTime;
+  document.addEventListener('keypress', (event) => {
+    //event.preventDefault();
+    //alert("ASDSD");
+    console.log('eventkeypress', event.key);
+  });
+  document.addEventListener('keydown', (event) => {
+    console.log('event', event.key);
+    // if (event.key != "F12") {
+    //   recodeArr.push({ event_code: event.code, event_keycode: event.keyCode });
+    //   var keyCodes = event.keyCode; 
+    //   event.preventDefault();
+    // }
+
+    console.log('push', JSON.stringify(recodeArr));
+    //|| (event.key != eventRecordkey
+    if (event.key != eventRecordkey) {
+      //log.innerHTML += "TTTTTTTTTTTT:" + event.key + "<BR>";
+      if (!iskeydown) {
+        iskeydown = true;
+        eventRecordkey = event.key;
+        // customEventCode.forEach(element => {
+        //   if (element.event_keycode == event.keyCode) {
+        //     log.innerHTML += element.event_code + "<BR>";
+        //   }
+        // });
+        log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>"+event.key+"放開<BR>";
+        startTime = new Date().getTime();
+      }
+      else{
+        eventRecordkey=event.key;
+        log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>"+event.key+"放開<BR>";
+        startTime = new Date().getTime();
+      }
+      //console.log('event.key', event.key,eventRecordkey,iskeydown,startTime);
+    }
+    
+
+  });//一次後消失, {once: true}
+  document.addEventListener('keyup', (event) => {
+    //event.preventDefault();
+
+  });
+
+ 
+
+  //function GetDateDiff(startDate, endDate) {
+  // var endTime = new Date(Date.parse(endDate.replace(/-/g, "/"))).getTime();
+  // var dates = Math.abs((startTime - endTime))/(1000*60*60*24);
+  // log.innerHTML += dates+"<BR>";
+  // console.log(dates);
+  //return dates;
+  //}
+  //回傳由 1970-01-01 00:00:00 UTC 開始 到代表時間經過的毫秒數 Date.prototype.getTime()
+
+
+  document.addEventListener('keyup', (e) => {
+    iskeydown = false;
+    //log.innerHTML += startTime + "<BR>";
+    //log.innerHTML += startTime.getMilliseconds() + "<BR>";
+    //console.log('startTime-endtTime',startTime,endtTime);
+    log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>"+e.key+"放開<BR>";
+    startTime = new Date().getTime();
+
+  });
+
+
+
+
+</script>

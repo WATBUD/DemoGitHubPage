@@ -1,0 +1,1381 @@
+<div style="user-select: auto;" class="Keyboard">
+    <div class="Keyboard-left">
+        <div class="Keyboard-topbar">
+
+            <div class="topbar-group-item">
+                <div id="Openlighting" class="block">
+                    <div class="topbar-item" [ngStyle]="{
+                                    'border-color': this.lightingflag === true ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'
+                                }" (click)="changeKeyboardTopbar(1)">
+                        {{i18nManager.getTarget('Lighting')}}
+                    </div>
+                    <div class="line"
+                        [ngStyle]="{ 'background-color': this.lightingflag === true ? 'rgb(253, 186, 59)' : '' }">
+                    </div>
+                </div>
+                <div id="Openkeybinding" class="block">
+                    <div class="topbar-item" [ngStyle]="{
+                    'border-color': this.keybindingflag === true ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'}" (click)="changeKeyboardTopbar(2)">
+                        {{i18nManager.getTarget('Keybinding')}}
+                    </div>
+                    <div class="line"
+                        [ngStyle]="{ 'background-color': this.keybindingflag === true ? 'rgb(253, 186, 59)' : '' }">
+                    </div>
+                </div>
+                <div id="OpenPerformance" class="block">
+                    <div class="topbar-item" [ngStyle]="{
+                    'border-color': this.performanceflag === true ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'
+                }" (click)="changeKeyboardTopbar(3)">
+                        {{i18nManager.getTarget('Performance')}}
+                    </div>
+                    <div class="line"
+                        [ngStyle]="{ 'background-color': this.performanceflag === true ? 'rgb(253, 186, 59)' : '' }">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="EventCanBoxSelectRange" class="Keyboard-content">
+            <div id="GMMK_0x320F0x5044" class="Content1">
+                <div id="canvasArea" style="width: auto;height: 372px;display: flex;">
+                    <div id="GMMK_img_section" style="
+                                        WIDTH: auto;
+                                        HEIGHT: 100%;z-index: 6668;
+                        pointer-events: none;">
+                    <img id="GMMK_img" src="image/G_Project/Side Light.png" />
+                    <img id="GMMK_img" style="    margin-left: 20px;
+                    margin-right: 20px;" src="image/G_Project/GMMK NUMPAD.png"  />
+                    <img id="GMMK_img" src="image/G_Project/Side Light.png"/>
+                    </div>
+                    <div id="keyAssignPromptline" style="background-color: rgb(255,255,255);
+                                                        position: absolute;
+                                                        width: 20px;
+                                                        height: 1px;
+                                                        z-index: 7000;
+                                                        margin-left: -200px;"
+                                                        [style.display]="keybindingflag && !this.KeyBoardManager.notClickedYet ? 'flex' : 'none'">
+                        <div id="keyAssignPrompt" style="position: absolute;
+                                                                    z-index: 20;
+                                                                    margin-left: -22px;
+                                                                    margin-top: -19px;
+                                                                      ">
+                            <div class="rectángulo" id="rectángulo" style="    top: -58px;
+                                                    left: -190px;
+                                                    width: 170px;
+                                                    height: 115px;
+                                                    position: absolute;;">
+                                <div id="KeyDefaultValue" style="color:white;width: 80%;text-overflow: ellipsis;
+                                overflow: hidden;white-space: nowrap;text-align: center;margin-top:-60px;">
+                                    {{ getDeviceDefaultKey()}}
+                                </div>
+                                <div id="SingleKeyClass" style="position: absolute;color: white;">
+                                    {{ this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey().recordBindCodeType }}
+                                </div>
+                                <div id="SingleKeyAssignValue" style="position: absolute;
+                                color: rgb(255, 255, 255);
+                                margin-top: 60px;
+                                width: 80%;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                text-align: center;">
+                                    {{ switchChangAllkey() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="PRESETS_UI_section" style="position: absolute;
+                    display: flex;
+                    WIDTH: auto;
+                    HEIGHT: 100%;z-index: 6665;">
+                        <div 
+                            *ngFor="let item of KeyBoardStyle.getTarget().keyMapping; let i = index" class="RGBColorBlockStyle"
+                            [ngStyle]="{'background':this.M_Light_PRESETS.getIndexRGBCss(i)}"
+                            [attr.data-index]="i"></div>
+                    </div>
+                    <div id="PERKEY_UI_section" style="position: absolute;
+                        display: flex;
+                        WIDTH: auto;
+                        HEIGHT: 100%;z-index: 6666;">
+                        <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping; let i = index"
+                            class="PERKEYBlockStyle"
+                            [ngStyle]="{'background':this.M_Light_PERKEY.getIndexRGBPerkeyCss(i)}"
+                            [attr.data-index]="i"></div>
+                    </div>
+                    <div id="SoundVolume_UI_section" style="position: absolute;
+                        display: flex;
+                        WIDTH: auto;
+                        HEIGHT: 100%;z-index: 6667;" [ngStyle]="
+                        {
+                        'display': keybindingflag ? 'flex' : 'none',
+                        'pointer-events': keybindingflag ? 'auto' : 'none'
+                        }
+                        ">
+                        <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping; let i = index"
+                            class="SoundVolumeBlockStyle"
+                            [ngStyle]="{'background':this.M_Light_Keybinding.getIndexRGBPerkeyCss(i)}"
+                            [attr.data-index]="i"></div>
+                    </div>
+                    <div id="KeyAssignBlock_section" style="position: absolute;
+                        display: flex;
+                        WIDTH: auto;
+                        HEIGHT: 100%;
+                        z-index: 6669;">
+                        <div id="KeyAssignBlock" [ngStyle]="{display: keybindingflag ? 'flex' : 'none'}"
+                            *ngFor="let item of KeyBoardStyle.getTarget().keyMapping; let i = index"
+                            (mouseover)="this.KeyBoardManager.getTarget().keyHoverIndex = i"
+                            [style.background-color]="setkeyUIColor(i)" class="KeyAssignUIStyle">
+                            <div [ngClass]="{KeyAssignHasValue:this.KeyBoardManager.getTarget().getNowModeKeyMatrix()[i].changed}"
+                                [attr.id]="'KeyAssignHasValue'+i" class="KeyAssignHasValue">{{getAssignKeyTipStyle(i)}}
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="LayersIconUI" (click)="changeProfileLayer()" style="align-self: center; text-align: center;margin-left: 50px;"
+                        *ngIf="this.keybindingflag || this.lightingflag">
+                        <img src="image/G_Project/LayersIcon{{this.KeyBoardManager.getProfileLayerIndex()}}.png">
+
+                        <div style="margin-top: 10px; color: rgb(68, 68, 67)">
+                            Layers
+                        </div>
+                </div>
+            </div>
+            <div id="PerKeyBottomBTN" class="KeyboardUIFooter-item" *ngIf="lightingflag && lightingPage == 'PERKEY'">
+                <div class="selection">
+                    <div id="PerKey_NUMBERS" class="selection-item" >
+                        <div
+                            class="selection-item-dsc"
+                            (click)="PerKeyAreaCick('PerKey_NUMBERS')"
+                            [ngStyle]="{
+                                'border-color': this.PerKeyArea =='PerKey_NUMBERS' ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'
+                            }"
+                        >
+                            {{i18nManager.getTarget('NUMBERS')}} 
+                        </div>
+                        <div 
+                            class="selection-item-line"
+                            [ngStyle]="{
+                                'background-color': this.PerKeyArea =='PerKey_NUMBERS' ? 'rgb(253, 186, 59)' : 'rgb(234, 233, 227)'
+                            }"
+                        ></div>
+                    </div>
+                    <div id="PerKey_MODIFIERS" class="selection-item" >
+                        <div
+                            class="selection-item-dsc"
+                            (click)="PerKeyAreaCick('PerKey_MODIFIERS')"
+                            [ngStyle]="{
+                                'border-color': this.PerKeyArea =='PerKey_MODIFIERS' ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'
+                            }"
+                        >
+                            {{i18nManager.getTarget('MODIFIERS')}} 
+                        </div>
+                        <div
+                            class="selection-item-line"
+                            [ngStyle]="{
+                                'background-color': this.PerKeyArea =='PerKey_MODIFIERS' ? 'rgb(253, 186, 59)' : 'rgb(234, 233, 227)'
+                            }"
+                        ></div>
+                    </div>
+                    <div id="PerKey_SIDELIGHT" class="selection-item" >
+                        <div
+                            class="selection-item-dsc"
+                            (click)="PerKeyAreaCick('PerKey_SIDELIGHT')"
+                            [ngStyle]="{
+                                'border-color': this.PerKeyArea =='PerKey_SIDELIGHT' ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'
+                            }"
+                        >
+                            {{i18nManager.getTarget('SIDE LIGHT')}} 
+                        </div>
+                        <div
+                            class="selection-item-line"
+                            [ngStyle]="{
+                                'background-color': this.PerKeyArea =='PerKey_SIDELIGHT' ? 'rgb(253, 186, 59)' : 'rgb(234, 233, 227)'
+                            }"
+                        ></div>
+                    </div>
+                </div>
+                <div class="selection-dsc">
+                    {{i18nManager.getTarget('QUICKKEYSELECTION')}} 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [style.width]="this.lightingflag||this.keybindingflag||this.performanceflag?'400px':'0px'" class="Keyboard-right"
+        id="Keyboard-right">
+        <img id="Keyboard-right-titile" src="image/Lighting-title.png" draggable="false" />
+        <img id="Keyboard-Close-RightContent" class="close" src="image/dialog/CloseIcon.png" draggable="false"
+            (click)="closeRightContent()">
+        <!----------------------------------------------------------------lighting----------------------------------------------------------------------------->
+        <div class="right-content" *ngIf="this.lightingflag">
+            <div id="PageTitleButton" class="sub-list" style="
+                                font-size: 14px;
+                                justify-content: space-between;
+                                display: flex;
+                                width: 80%;
+                                margin-left: 10%;
+                                margin-top: 6%;
+                                cursor: pointer;
+                            ">
+                <div class="sub-list-item" [style.borderBottom]="lightingPage == 'PRESETS' ? '1px #313131 solid' : ''"
+                    style="height: 2.3vh;
+                                margin-left: 60px;" (click)="SetLightingGroup('PRESETS')">
+                    PRESETS
+                </div>
+                <div class="sub-list-item" [style.borderBottom]="lightingPage == 'PERKEY' ? '1px #313131 solid' : ''"
+                    style="height: 2.3vh;margin-right: 60px;" (click)="SetLightingGroup('PERKEY')">
+                    PERKEY
+                </div>
+            </div>
+            <div id="PRESETSAreaUI" *ngIf="lightingPage == 'PRESETS'">
+                <div data-code="Syncacrosskeyboard" class="list">
+                    <div class="sub-list" >
+                        Indicate Num Lock on with blinking side lights
+                        <label>
+                            <input type="checkbox" [(ngModel)]="this.KeyBoardManager.getTarget().lockSidelightsFlag"
+                                (ngModelChange)="this.KeyBoardManager.setALLGlobalValueAssignField('lockSidelightsFlag',this.KeyBoardManager.getTarget().lockSidelightsFlag)" />
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="sub-list" style="white-space: nowrap;">
+                        Battery level indicator
+                        <label>
+                            <input type="checkbox" [(ngModel)]="this.KeyBoardManager.getTarget().batteryLevelIndicator"
+                            (ngModelChange)="this.KeyBoardManager.setALLGlobalValueAssignField('batteryLevelIndicator',this.KeyBoardManager.getTarget().batteryLevelIndicator)" />
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div style="margin-top: 40px;" data-code="lightSelected_UI" class="list">
+                    EFFECT
+                    <div style="margin-top: 0;" class="sub-list">
+                        <app-M_NumpadSelect class="app-lightingeffectselect" [componentId]="'app-lightingeffectselect'"
+                            [inputoption]="this.Built_ineffect.ListData" [i18nManager]="this.i18nManager"
+                            [(ngModel)]="this.Built_ineffect.Built_inSelected" (ngModelChange)="Built_inSelectedChange()">
+                        </app-M_NumpadSelect>
+                        <!-- <div (mouseover)="QuestionMarkStatus='PRESETSAreaTip'" (mouseleave)="QuestionMarkStatus=''"
+                                        *ngIf="this.getAppService.getAppSetting().tooltip" class="QuestionMark">?
+                                        <div class="triangleStyle" *ngIf="QuestionMarkStatus=='PRESETSAreaTip' || QuestionMarkStatus=='ALL'"
+                                            id="PRESETSAreaTip" style="margin-top: 17px;position: absolute;">
+                                            <div class="rectángulo" id="rectángulo" style="top: 31px;
+                                                                left: -225px;
+                                                                width: 362px;
+                                                                height: 67px;
+                                                                position: absolute;
+                                                                font-size: 12px;
+                                                                line-height: 16px;">
+                                                <div style="width: 92%;">
+                                                    Select a preset lighting effect to apply to the entire keyboard.<br> Preset effects apply underneath
+                                                    any
+                                                    Per Key settings.</div>
+                                            </div>
+                                
+                                        </div>
+                                    </div> -->
+    
+                    </div>
+    
+                    <div *ngIf="this.Built_ineffect.Built_inSelected.Multicolor_Enable" class="sub-list">
+                        RGB(Fixed)
+                        <label>
+                            <input type="checkbox" [(ngModel)]="this.Built_ineffect.Built_inSelected.Multicolor"
+                                (ngModelChange)="multicolor_Change()" />
+                            <span></span>
+                        </label>
+                    </div>
+    
+                </div>
+    
+                <div [style.display]="this.Built_ineffect.Built_inSelected.rate_Enable? 'flex' : 'none'" id="RateContent"
+                    class="list">
+                    <div class="sub-list">
+                        <img src="image/lighting/RateIcon.png" />
+                        Rate
+                    </div>
+                    <div class="sub-list">
+                        <input id="PRESETS_RateSlider" type="range" min="0" max="100" class="slider" step="5"
+                            [(ngModel)]="this.Built_ineffect.Built_inSelected.speed" (mouseup)="sliderChange()"
+                            [ngStyle]="{'background': lightSliderMove('PRESETS_RateSlider')}"
+                            onkeydown="event.preventDefault()" />
+                        <div>{{ this.Built_ineffect.Built_inSelected.speed }}%</div>
+                    </div>
+                </div>
+                <div [style.display]="this.Built_ineffect.Built_inSelected.brightness_Enable? 'flex' : 'none'"
+                    id="BrightnessContent">
+                    <div class="list">
+                        <div class="sub-list">
+                            <!-- <img src="image/lighting/BrightnessIcon.png" draggable="false" /> -->
+                            Separate Wired / Wireless Brightness
+                            <label>
+                                <input type="checkbox" [(ngModel)]="BrightnessFlag"
+                                    (ngModelChange)="SyncCrossKeyboardCheckChange()" />
+                                <span></span>
+                            </label>
+                        </div>
+                        <div class="sub-list" *ngIf="BrightnessFlag">
+                            Wired
+                        </div>
+                        <div class="sub-list" >
+                            <input id="PRESETS_BrightnessSliderWired" type="range" min="0" max="100" class="slider" step="5"
+                                [(ngModel)]="this.Built_ineffect.Built_inSelected.brightness" (mouseup)="sliderChange()"
+                                [ngStyle]="{'background': lightSliderMove('PRESETS_BrightnessSliderWired')}"
+                                onkeydown="event.preventDefault()" />
+                            <div>{{ this.Built_ineffect.Built_inSelected.brightness }}%</div>
+                        </div>
+                        <div class="sub-list" *ngIf="BrightnessFlag">
+                            Wireless
+                        </div>
+                        <div class="sub-list" *ngIf="BrightnessFlag">
+                            
+                            <input id="PRESETS_BrightnessSliderWireless" type="range" min="0" max="100" class="slider" step="5"
+                                [(ngModel)]="this.Built_ineffect.Built_inSelected.wirelessBrightness" (mouseup)="sliderChange()"
+                                [ngStyle]="{'background': lightSliderMove('PRESETS_BrightnessSliderWireless')}"
+                                onkeydown="event.preventDefault()" />
+                            <div>{{ this.Built_ineffect.Built_inSelected.wirelessBrightness }}%</div>
+                        </div>
+                    </div>
+    
+                </div>
+                <!-- [style.display]="this.Built_ineffect.Built_inSelected.color_Enable? 'flex' : 'none'" -->
+                <div *ngIf="this.Built_ineffect.Built_inSelected.color_Enable" id="ColorContent" class="list"
+                    style="font-family: MM, serif">
+                    color
+                    <div class="sub-list">
+                        <ng-color-box class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
+                            (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor"></ng-color-box>
+                        <div class="color-content">
+                            <div class="color-detail">
+                                <div class="color-title">
+                                    Red
+                                </div>
+                                <input maxlength="3" [(ngModel)]="this.Built_ineffect.Built_inSelected.colorPickerValue[0]"
+                                    min="0" max="255" (change)="setRGBcolor()"
+                                    onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                            </div>
+                            <div class="color-detail" style="margin-top: 20px">
+                                <div class="color-title">
+                                    Green
+                                </div>
+                                <input maxlength="3" [(ngModel)]="this.Built_ineffect.Built_inSelected.colorPickerValue[1]"
+                                    min="0" max="255" (change)="setRGBcolor()"
+                                    onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                            </div>
+                            <div class="color-detail" style="margin-top: 20px">
+                                <div class="color-title">
+                                    Blue
+                                </div>
+                                <input maxlength="3" [(ngModel)]="this.Built_ineffect.Built_inSelected.colorPickerValue[2]"
+                                    min="0" max="255" (change)="setRGBcolor()"
+                                    onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="PERKEYAreaUI" *ngIf="lightingPage == 'PERKEY'">
+                <!-- <div (mouseover)="QuestionMarkStatus='PERKEYAreaTip'" (mouseleave)="QuestionMarkStatus=''"
+                    class="QuestionMark" *ngIf="this.getAppService.getAppSetting().tooltip"
+                    style="right: 145px;position: absolute;top: 154px;">?</div> -->
+                <div class="triangleStyle" *ngIf="QuestionMarkStatus=='PERKEYAreaTip' || QuestionMarkStatus=='ALL'"
+                    id="PERKEYAreaTip" style="
+                                top: 148px;
+                                right: 132px;
+                                position: absolute;">
+                    <div class="rectángulo" id="rectángulo" style="top: 28px;
+                            left: -220px;
+                            width: 350px;
+                            height: 101px;
+                            position: absolute;">
+                        <div style="width: 94%;">
+                            The pencil allows you to apply lighting to individual keys by clicking them or groups of keys
+                            using Quick Key Selection. The eraser allows you to remove lighting from keys in the same
+                            way.<br> Per key lighting applies over Preset effects.</div>
+                    </div>
+                </div>
+                <div id="Text_key" class="list">
+                    <div class="sub-list">
+                        KEY
+                        <div style="font-size: 14px;
+                                    width: auto;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    height: 20px;
+                                    border: 1px solid #313131;
+                                    border-radius: 6px;
+                                    border-color: #fdba3b;
+                                    padding: 9px;
+                                    margin-left: 7px;
+                                    letter-spacing: 2px;">{{this.M_Light_PERKEY.settingPerkeyName}}
+                        </div>
+                        <img (click)="switchSelectionStatus(true)" style="right: 80px; position: absolute"
+                            [style.border]="selectionStatus?'#fdba3b 2px solid':''" src="image/lighting/Edit Icon.png" />
+                        <img (click)="switchSelectionStatus(false)" style="right: 47px; position: absolute"
+                            [style.border]="!selectionStatus?'#fdba3b 2px solid':''" src="image/lighting/Erase Icon.png" />
+                    </div>
+                </div>
+                <div id="lightDropList" class="list">
+                    EFFECT
+                    <app-M_NumpadSelect style="height: 40px;
+                                width: 200px;
+                                margin-left: -10px;
+                                font-family: MM, serif;
+                                letter-spacing: 0px;
+                                font-size: 13px;
+                                z-index: 30;" class="PERKEYA_EffectSelect" [componentId]="'PERKEYA_EffectSelect'"
+                        [i18nManager]="this.i18nManager" [inputoption]="lighting_PERKEY_Effect"
+                        [(ngModel)]="lighting_PERKEY_SelectEffect" (ngModelChange)="PERKEY_SelectChange()">
+                    </app-M_NumpadSelect>
+                </div>
+    
+                <div id='html_LayoutSelect' class="list">
+                    LAYOUT
+                    <app-M_NumpadSelect class="app-LayoutSelectUI" [componentId]="'app-LayoutSelectUI'"
+                        [i18nManager]="this.i18nManager" [inputoption]="this.LayoutManager.layoutSelectData"
+                        [(ngModel)]="this.LayoutManager.nowlayoutSelect" (ngModelChange)="this.onLayoutSelectChange()"
+                        style="width: 200px;
+                                    font-family: MM, serif;
+                                    font-size: 13px;
+                                    letter-spacing: 0px;
+                                    height: 32px;
+                                    margin-left: -8px;
+                                    z-index: 30;
+                                    ">
+                    </app-M_NumpadSelect>
+                </div>
+                <div id='html_LayoutName' class="list">
+                    NAMEYOURLAYOUT
+                    <input class="nowMacroName" id="setMacroName" [(ngModel)]='this.LayoutManager.nowEditName'
+                        (blur)="this.LayoutManager.NameInputBlur()" min="0" max="255" placeholder="Macro Name Here" />
+                </div>
+    
+                <div id="PERKEY_BREATHING" class="list" style="flex-direction: row;">
+                    <div class="sub-list"
+                        style="font-family: MB, serif; font-size: 15px; margin-top: 0px; letter-spacing: 2px;">
+                        BREATHING
+                    </div>
+                    <label>
+                        <input type="checkbox" [(ngModel)]='this.PERKEY_lightData.breathing'
+                            (ngModelChange)="PerKeyBreathingChange()">
+                        <span></span>
+                    </label>
+                </div>
+    
+                <div id="PERKEY_Brightness">
+                    <div class="list">
+                        <div class="sub-list">
+                            <img src="image/lighting/BrightnessIcon.png" />
+                            Brightness
+                        </div>
+                        <div class="sub-list">
+                            <input id="PERKEY_BrightnessSlider" type="range" min="0" max="100" class="slider" step="5"
+                                [(ngModel)]="this.PERKEY_lightData.brightness" (mouseup)="sliderChange()"
+                                [ngStyle]="{'background': PERKEY_BrightnessSlider_Background()}"
+                                (ngModelChange)="lightSliderMove('PERKEY_BrightnessSlider')"
+                                onkeydown="event.preventDefault()" />
+                            <div>{{ this.PERKEY_lightData.brightness }}%</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ColorContent" class="list" style="font-family: MM, serif">
+                    color
+                    <div class="sub-list">
+                        <ng-color-box class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
+                            (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor"></ng-color-box>
+                        <div class="color-content">
+                            <div class="color-detail">
+                                <div class="color-title">
+                                    Red
+                                </div>
+                                <input maxlength="3" [(ngModel)]="this.PERKEY_lightData.colorPickerValue[0]" min="0"
+                                    max="255" (change)="setRGBcolor()"
+                                    onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                            </div>
+                            <div class="color-detail" style="margin-top: 20px">
+                                <div class="color-title">
+                                    Green
+                                </div>
+                                <input maxlength="3" [(ngModel)]="this.PERKEY_lightData.colorPickerValue[1]" min="0"
+                                    max="255" (change)="setRGBcolor()"
+                                    onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                            </div>
+                            <div class="color-detail" style="margin-top: 20px">
+                                <div class="color-title">
+                                    Blue
+                                </div>
+                                <input maxlength="3" [(ngModel)]="this.PERKEY_lightData.colorPickerValue[2]" min="0"
+                                    max="255" (change)="setRGBcolor()"
+                                    onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!----------------------------------------------------------------Keybinding----------------------------------------------------------------------------->
+    
+        <div class="right-content" *ngIf="this.keybindingflag">
+            <ng-container *ngIf="!getNowKeyBindClassUI('slider') && !getNowKeyBindClassUI('ROTARY ENCODER')">
+                <div class="list" style="margin-top: 20px">
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                            KeyAssignManager.recordBindCodeType == 'SingleKey' ? '1px #313131 solid' : ''
+                        " (click)="SetGroupFunction('SingleKey','KeyA')">
+                            {{i18nManager.getTarget('SINGLE KEY / COMBINATION KEY')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="list" style="width: 100%;margin-left: 0%;">
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                            KeyAssignManager.recordBindCodeType == 'KEYBOARD' ? '1px #313131 solid' : ''
+                        " (click)="SetGroupFunction('KEYBOARD','KEYBOARD_Fun_10')">
+                            KEYBOARD FUNCTION
+                        </div>
+                        <div class="sub-list-item"
+                            [style.borderBottom]="KeyAssignManager.recordBindCodeType == 'MOUSE' ? '1px #313131 solid' : ''"
+                            (click)="SetGroupFunction('MOUSE','MOUSE_Fun_14')">
+                            MOUSE FUNCTION
+                        </div>
+                    </div>
+                </div>
+                <div class="list" style=" width: 85%; margin-left: 7.5%">
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                            KeyAssignManager.recordBindCodeType == 'MacroFunction' ? '1px #313131 solid' : ''
+                        " (click)="SetGroupFunction('MacroFunction','MacroFunction')">
+                            MACRO
+                        </div>
+                        <div class="sub-list-item" [style.borderBottom]="
+                            KeyAssignManager.recordBindCodeType == 'Multimedia' ? '1px #313131 solid' : ''
+                        " (click)="SetGroupFunction('Multimedia','Multimedia_Fun_0')">
+                            MULTIMEDIA
+                        </div>
+                        <div class="sub-list-item" [style.borderBottom]="KeyAssignManager.recordBindCodeType == 'Shortcuts' 
+                        || KeyAssignManager.recordBindCodeType == 'LaunchWebsite'
+                        || KeyAssignManager.recordBindCodeType == 'LaunchProgram'  ? '1px #313131 solid' : ''
+                        " (click)="SetGroupFunction('LaunchProgram','LaunchProgram')">
+                            SHORTCUTS
+                        </div>
+                    </div>
+                </div>
+                <div class="list" >
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                                        KeyAssignManager.recordBindCodeType == 'SOUND CONTROL' ? '1px #313131 solid' : ''
+                                    " (click)="SetGroupFunction('SOUND CONTROL','SOUND CONTROL')">
+                            SOUND CONTROL
+                        </div>
+                        <div class="sub-list-item" [style.borderBottom]="
+                                            KeyAssignManager.recordBindCodeType == 'Disable' ? '1px #313131 solid' : ''
+                                        " (click)="SetGroupFunction('Disable','Disable')">
+                            DISABLE
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="getNowKeyBindClassUI('slider')">
+                <div class="list" style="margin-top: 20px;">
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                            KeyAssignManager.recordBindCodeType == 'SOUND CONTROL' ? '1px #313131 solid' : ''" (click)="SetGroupFunction('SOUND CONTROL','SOUND CONTROL')">
+                            SOUND CONTROL
+                        </div>
+                        <div class="sub-list-item" [style.borderBottom]="
+                                                KeyAssignManager.recordBindCodeType == 'Disable' ? '1px #313131 solid' : ''
+                                            " (click)="SetGroupFunction('Disable','Disable')">
+                            DISABLE
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="getNowKeyBindClassUI('ROTARY ENCODER')">
+                <div class="list" >
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                                KeyAssignManager.recordBindCodeType == 'SingleKey' ? '1px #313131 solid' : ''
+                            " (click)="SetGroupFunction('SingleKey','KeyA')">
+                            {{i18nManager.getTarget('SINGLE KEY / COMBINATION KEY')}}
+                        </div>
+                    </div>
+                </div>
+                <div class="list" style="width: 100%;margin-left: 0%;">
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                                KeyAssignManager.recordBindCodeType == 'KEYBOARD' ? '1px #313131 solid' : ''
+                            " (click)="SetGroupFunction('KEYBOARD','KEYBOARD_Fun_10')">
+                            KEYBOARD FUNCTION
+                        </div>
+                        <div class="sub-list-item"
+                            [style.borderBottom]="KeyAssignManager.recordBindCodeType == 'MOUSE' ? '1px #313131 solid' : ''"
+                            (click)="SetGroupFunction('MOUSE','MOUSE_Fun_14')">
+                            MOUSE FUNCTION
+                        </div>
+                    </div>
+                </div>
+                <div class="list" style="width: 85%; margin-left: 7.5%">
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                                KeyAssignManager.recordBindCodeType == 'MacroFunction' ? '1px #313131 solid' : ''
+                            " (click)="SetGroupFunction('MacroFunction','MacroFunction')"
+                            [ngStyle]="{
+                                'pointer-events': 'auto'
+                            }">
+                            MACRO 
+                        </div>
+                        <div class="sub-list-item" [style.borderBottom]="
+                                KeyAssignManager.recordBindCodeType == 'Multimedia' ? '1px #313131 solid' : ''
+                            " (click)="SetGroupFunction('Multimedia','Multimedia_Fun_0')">
+                            MULTIMEDIA
+                        </div>
+                        <div class="sub-list-item" [style.borderBottom]="KeyAssignManager.recordBindCodeType == 'Shortcuts' 
+                            || KeyAssignManager.recordBindCodeType == 'LaunchWebsite'
+                            || KeyAssignManager.recordBindCodeType == 'LaunchProgram'  ? '1px #313131 solid' : ''
+                            " (click)="SetGroupFunction('LaunchProgram','LaunchProgram')">
+                            SHORTCUTS
+                        </div>
+                    </div>
+                </div>
+                <div class="list" >
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                                            KeyAssignManager.recordBindCodeType == 'SENSITIVITY' ? '1px #313131 solid' : ''
+                                        " (click)="SetGroupFunction('SENSITIVITY','SENSITIVITY')">
+                            SENSITIVITY
+                        </div>
+                        <div class="sub-list-item" [style.borderBottom]="
+                                                KeyAssignManager.recordBindCodeType == 'SOUND CONTROL' ? '1px #313131 solid' : ''
+                                            " (click)="SetGroupFunction('SOUND CONTROL','SOUND CONTROL')">
+                            SOUND CONTROL
+                        </div>
+                    </div>
+                </div>
+                <div class="list" >
+                    <div class="KeybindingClassArea_item">
+                        <div class="sub-list-item" [style.borderBottom]="
+                                                KeyAssignManager.recordBindCodeType == 'Disable' ? '1px #313131 solid' : ''
+                                            " (click)="SetGroupFunction('Disable','Disable')">
+                            DISABLE
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <!-----------------------------------------------Single/Combination key ----------------------------------------------------------->
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'SingleKey'"
+                style="width: 90%; height: 70%; margin-left: 5%; margin-top: 20px">
+                <div class="list" style="
+                                                margin-top: 15px;
+                                                margin-left: 0%;
+                                                width: 95%;
+                                                background-color: rgb(234, 233, 227);
+                                                padding: 10px;
+                                            ">
+                    SELECTKEY
+                    <div class="SingleKey">
+                        <div class="sub-list" style="margin-top: 5px; margin-left: -12px" *ngFor="let item of KeyboardKeyData">
+                            <label style="margin-right: 5px">
+                                <input type="radio" name="SingleKey" [attr.data-keyCode]="item.code"
+                                    [checked]="KeyAssignManager.recordBindCodeName == item.code"
+                                    (click)="KeyAssignManager.setNowCodeName(item.code, 'SingleKey')" />
+                                <span></span>
+                            </label>
+                            {{ item.value }}
+                        </div>
+                    </div>
+                </div>
+                <div id="ChooseModifierList" class="list" style="
+                                                margin-top: 15px;
+                                                margin-left: 0%;
+                                                width: 95%;
+                                                background-color: rgb(234, 233, 227);
+                                                padding: 10px;
+                                            ">
+                    <div class="sub-list" style="margin-top: 5px; font-family: MB, serif">
+                        {{i18nManager.getTarget('CHOOSEMODIFIER')}}
+                        <label style="margin-right: 5px">
+                            <input type="checkbox" [(ngModel)]="KeyAssignManager.combinationkeyEnable"
+                                (ngModelChange)="KeyAssignManager.setCombinationKeyEnable()" />
+                            <span></span>
+                        </label>
+                    </div>
+                    <div [ngStyle]="{
+                                                    'pointer-events': KeyAssignManager.combinationkeyEnable == true ? 'auto' : 'none'
+                                                }">
+                        <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                            <label style="margin-right: 5px">
+                                <input type="checkbox" [(ngModel)]="KeyAssignManager.Shift" />
+                                <span></span>
+                            </label>
+                            Shift
+                        </div>
+                        <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                            <label style="margin-right: 5px">
+                                <input type="checkbox" [(ngModel)]="KeyAssignManager.Ctrl" />
+                                <span></span>
+                            </label>
+                            Ctrl
+                        </div>
+                        <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                            <label style="margin-right: 5px">
+                                <input type="checkbox" [(ngModel)]="KeyAssignManager.Alt" />
+                                <span></span>
+                            </label>
+                            Alt
+                        </div>
+                        <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                            <label style="margin-right: 5px">
+                                <input type="checkbox" [(ngModel)]="KeyAssignManager.Windows" />
+                                <span></span>
+                            </label>
+                            Windows
+                        </div>
+                        <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                            <label style="margin-right: 5px">
+                                <input type="checkbox" [(ngModel)]="KeyAssignManager.hasFNStatus" />
+                                <span></span>
+                            </label>
+                            FN
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-----------------------------------------------Macro----------------------------------------------------------->
+            <!-- <div data-Area='MacroGroupArea' *ngIf="KeyAssignManager.recordBindCodeType == 'MacroFunction'">
+                <div id='html_SELECTMACRO' class="list">
+                    {{i18nManager.getTarget('SELECTMACRO')}}
+                    <app-M_NumpadSelect class="app-macroSelectUI" [componentId]="'app-macroSelectUI'"
+                        [inputoption]="this.macroService.macroSelectData" [i18nManager]="this.i18nManager"
+                        [(ngModel)]="this.macroService.nowMacroSelect"
+                        (ngModelChange)="this.macroService.setMacroSelectChange()" style="width: 200px;
+                                                            font-family: MM, serif;
+                                                            font-size: 13px;
+                                                            letter-spacing: 0px;
+                                                            height: 32px;
+                                                            margin-left: -8px;
+                                                            z-index: 30;
+                                                            ">
+                    </app-M_NumpadSelect>
+                </div>
+                <div id='html_NAMEYOURMACRO' class="list">
+                    {{i18nManager.getTarget('NAMEYOURMACRO')}}
+                    <input class="nowMacroName" id="setMacroName" [(ngModel)]='this.macroService.nowMacroName'
+                        (blur)="this.macroService.macroNameInputBlur()" min="0" max="255" placeholder="Macro Name Here" />
+                </div>
+                <div id='html_SELECTTYPEOFMACRO' class="list" data-Code='app-macrotypeselect'>
+                    {{i18nManager.getTarget('SELECTTYPEOFMACRO')}}
+                    <app-M_NumpadSelect class="app-macrotypeselect" [componentId]="'app-macrotypeselect'"
+                        [inputoption]="this.macroService.macroTypeSelectData" [i18nManager]="this.i18nManager"
+                        [(ngModel)]="this.macroService.macrotypeSelect"
+                        (ngModelChange)="this.macroService.macrotypeSelectChange()" style="width: 190px;
+                                                            margin-left: -10px;
+                                                            margin-top: 5px;
+                                                            font-family: MM, serif;
+                                                            font-size: 13px;
+                                                            letter-spacing: 0px;
+                                                            ">
+                    </app-M_NumpadSelect>
+                </div>
+                <div id='html_RecordMacro' class="list">
+                    <div class="sub-list" style="
+                                                                height: 40px;
+                                                                border: 1px solid;
+                                                                border-radius: 5px;
+                                                                justify-content: center;
+                                                                letter-spacing: 2px;
+                                                                font-size: 15px;
+                                                                cursor: pointer;
+                                                            " (click)="RecordMacro()">
+                        <div class="mouse-macro-record"></div>
+                        <div style="width: 90%; display: flex; justify-content: center; margin-left: -20px">
+                            {{i18nManager.getTarget('Record')}}
+                        </div>
+                    </div>
+                </div>
+                <div id='html_IMPORTMACRO' class="list" style="flex-direction: row; font-size: 14px">
+                    <img src="image/keybinding/ImportMacro.png"
+                        style="width: 20px; height: 20px; margin-right: 20px; cursor: pointer"
+                        (click)="macroService.importMacro()" draggable="false" />
+                    <div (click)="macroService.importMacro()" style="cursor: pointer;">
+                        {{i18nManager.getTarget('IMPORTMACRO')}}
+                    </div>
+                </div>
+                <div id='html_EXPORTMACRO' class="list" style="flex-direction: row; font-size: 14px; margin-top: 15px">
+                    <img src="image/keybinding/ExportMacro.png"
+                        style="width: 20px; height: 20px; margin-right: 20px; cursor: pointer"
+                        (click)="macroService.exportMacro()" draggable="false" />
+                    <div (click)="macroService.exportMacro()" style="cursor: pointer;">
+                        {{i18nManager.getTarget('EXPORTMACRO')}}
+                    </div>
+                </div>
+                <div id='html_DELETEMACRO' class="list" style="flex-direction: row; font-size: 14px; margin-top: 15px">
+                    <img src="image/keybinding/DeleteMacro.png"
+                        style="width: 16px; height: 20px; margin-right: 24px; cursor: pointer" (click)="KB_deleteMacro()"
+                        draggable="false" />
+                    <div (click)="KB_deleteMacro()" style="cursor: pointer;">{{i18nManager.getTarget('DELETEMACRO')}} </div>
+                </div>
+            </div> -->
+            <!-----------------------------------------------Keyboard Function----------------------------------------------------------->
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'KEYBOARD'" style="
+                                                        width: 90%;
+                                                        height: 170px;
+                                                        margin-left: 5%;
+                                                        margin-top: 20px;
+                                                        background-color: rgb(234, 233, 227);
+                                                    ">
+                <div class="list" style="margin-top: 15px; margin-left: 5%">
+                    {{i18nManager.getTarget('SELECTFUNCTION')}}
+                    <div class="sub-list" style="margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="KEYBOARD"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'KEYBOARD_Fun_10'"
+                                (click)="KeyAssignManager.setNowCodeName('KEYBOARD_Fun_10', 'KEYBOARD')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Profilecycleup')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="KEYBOARD"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'KEYBOARD_Fun_11'"
+                                (click)="KeyAssignManager.setNowCodeName('KEYBOARD_Fun_11', 'KEYBOARD')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Profilecycledown')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="KEYBOARD"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'KEYBOARD_Fun_12'"
+                                (click)="KeyAssignManager.setNowCodeName('KEYBOARD_Fun_12', 'KEYBOARD')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Layercycleup')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="KEYBOARD"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'KEYBOARD_Fun_13'"
+                                (click)="KeyAssignManager.setNowCodeName('KEYBOARD_Fun_13', 'KEYBOARD')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Layercycledown')}}
+                    </div>
+                </div>
+            </div>
+            <!-----------------------------------------------Mouse Function----------------------------------------------------------->
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'MOUSE'" style="
+                                                        width: 90%;
+                                                        height: 235px;
+                                                        margin-left: 5%;
+                                                        margin-top: 20px;
+                                                        background-color: rgb(234, 233, 227);
+                                                    ">
+                <div class="list" style="margin-top: 15px; margin-left: 5%">
+                    {{i18nManager.getTarget('SELECTFUNCTION')}}
+                    <div class="sub-list" style="margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="MOUSE" [checked]="KeyAssignManager.recordBindCodeName == 'MOUSE_Fun_14'"
+                                (click)="KeyAssignManager.setNowCodeName('MOUSE_Fun_14', 'MOUSE')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Leftbutton')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="MOUSE" [checked]="KeyAssignManager.recordBindCodeName == 'MOUSE_Fun_15'"
+                                (click)="KeyAssignManager.setNowCodeName('MOUSE_Fun_15', 'MOUSE')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Rightbutton')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="MOUSE" [checked]="KeyAssignManager.recordBindCodeName == 'MOUSE_Fun_16'"
+                                (click)="KeyAssignManager.setNowCodeName('MOUSE_Fun_16', 'MOUSE')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Middlebutton')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="MOUSE" [checked]="KeyAssignManager.recordBindCodeName == 'MOUSE_Fun_17'"
+                                (click)="KeyAssignManager.setNowCodeName('MOUSE_Fun_17', 'MOUSE')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Forward')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="MOUSE" [checked]="KeyAssignManager.recordBindCodeName == 'MOUSE_Fun_18'"
+                                (click)="KeyAssignManager.setNowCodeName('MOUSE_Fun_18', 'MOUSE')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Back')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="MOUSE" [checked]="KeyAssignManager.recordBindCodeName == 'MOUSE_Fun_19'"
+                                (click)="KeyAssignManager.setNowCodeName('MOUSE_Fun_19', 'MOUSE')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Scrollup')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="MOUSE" [checked]="KeyAssignManager.recordBindCodeName == 'MOUSE_Fun_20'"
+                                (click)="KeyAssignManager.setNowCodeName('MOUSE_Fun_20', 'MOUSE')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Scrolldown')}}
+                    </div>
+        
+                </div>
+            </div>
+            <!-----------------------------------------------Multimedia----------------------------------------------------------->
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'Multimedia'" style="
+                                                        width: 90%;
+                                                        height: 315px;
+                                                        margin-left: 5%;
+                                                        margin-top: 20px;
+                                                        background-color: rgb(234, 233, 227);
+                                                    ">
+                <div class="list" style="margin-top: 15px; margin-left: 5%">
+                    {{i18nManager.getTarget('SELECTFUNCTION')}}
+                    <div class="sub-list" style="margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_0'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_0', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Mediaplayer')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_1'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_1', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Playpause')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_2'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_2', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Next')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_3'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_3', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Previous')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_4'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_4', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Stop')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_5'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_5', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Mute')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_6'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_6', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Volumeup')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_7'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_7', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Volumedown')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_8'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_8', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('NextSong')}}
+                    </div>
+                    <div class="sub-list" style="margin-top: 5px; margin-left: -12px">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="Multimedia"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'Multimedia_Fun_9'"
+                                (click)="KeyAssignManager.setNowCodeName('Multimedia_Fun_9', 'Multimedia')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('PreviousSong')}}
+                    </div>
+                </div>
+            </div>
+            <!-----------------------------------------------Shortcut----------------------------------------------------------->
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'Shortcuts' 
+                                                || KeyAssignManager.recordBindCodeType == 'LaunchWebsite'
+                                                || KeyAssignManager.recordBindCodeType == 'LaunchProgram'" style="height: 77%">
+                <div class="list" style="margin-top: 20px; margin-left: 15%; font-size: 13px">
+                    {{i18nManager.getTarget('SELECTSHORTCUTTYPE')}}
+                </div>
+                <div class="list" style="
+                                                            margin-top: 20px;
+                                                            margin-left: 15%;
+                                                            font-size: 13px;
+                                                            background-color: rgb(234, 233, 227);
+                                                            width: 73%;
+                                                            height: 100px;
+                                                        ">
+                    <div class="sub-list">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="shortcut"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'LaunchProgram'"
+                                (click)="KeyAssignManager.setNowCodeName('LaunchProgram', 'LaunchProgram')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Launchprogram')}}
+                    </div>
+                    <div class="sub-list" [ngStyle]="{
+                                                                'pointer-events': KeyAssignManager.recordBindCodeName == 'LaunchProgram' ? 'auto' : 'none'
+                                                            }">
+                        <input class="Launch" [(ngModel)]="KeyAssignManager.ApplicationPath" type="string"
+                            placeholder="Enter URL" style="
+                                                                    background-color: rgb(224, 223, 214);
+                                                                    width: 150px;
+                                                                    height: 20px;
+                                                                    border: none;
+                                                                    padding-left: 10px;
+                                                                    margin-left: 35px;
+                                                                    margin-top: -10px;
+                                                                " />
+                        <div class="Browse" (click)="Browser()">{{i18nManager.getTarget('BROWSE')}} </div>
+                    </div>
+                </div>
+                <div class="list" style="
+                                                            margin-top: 20px;
+                                                            margin-left: 15%;
+                                                            font-size: 13px;
+                                                            background-color: rgb(234, 233, 227);
+                                                            width: 73%;
+                                                            height: 100px;
+                                                        ">
+                    <div class="sub-list">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="shortcut"
+                                [checked]="KeyAssignManager.recordBindCodeName == 'LaunchWebsite'"
+                                (click)="KeyAssignManager.setNowCodeName('LaunchWebsite', 'LaunchWebsite')" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('LaunchWebsite')}}
+                    </div>
+                    <div class="sub-list" [ngStyle]="{
+                                                                'pointer-events': KeyAssignManager.recordBindCodeName == 'LaunchWebsite' ? 'auto' : 'none'
+                                                            }">
+                        <input class="Launch" [(ngModel)]="KeyAssignManager.WebsitePath" type="string" placeholder="Enter URL"
+                            style="
+                                                                    background-color: rgb(224, 223, 214);
+                                                                    width: 225px;
+                                                                    height: 20px;
+                                                                    border: none;
+                                                                    padding-left: 10px;
+                                                                    margin-left: 35px;
+                                                                    margin-top: -10px;
+                                                                " />
+                    </div>
+                </div>
+                <div class="list" style="
+                                                            margin-top: 20px;
+                                                            margin-left: 15%;
+                                                            font-size: 13px;
+                                                            background-color: rgb(234, 233, 227);
+                                                            width: 73%;
+                                                            height: 220px;
+                                                        ">
+                    <div id="shortcutsWindowsEnable" class="sub-list">
+                        <label style="margin-right: 5px">
+                            <input type="radio" name="shortcut" [checked]="KeyAssignManager.shortcutsWindowsEnable == true"
+                                (click)="KeyAssignManager.shortcutsWindowsEnable =true" />
+                            <span></span>
+                        </label>
+                        {{i18nManager.getTarget('Windows')}}
+                    </div>
+                    <div class="sub-list" style="
+                                                                background-color: black;
+                                                                height: 2px;
+                                                                width: 90%;
+                                                                margin-left: 5%;
+                                                                margin-top: 10px;
+                                                                margin-bottom: 10px;
+                                                            "></div>
+                    <div class="windows">
+                        <div class="sub-list" *ngFor="let item of Shortcuts_WindowsMapping" style="margin-top: 5px" [ngStyle]="{
+                                                                    'pointer-events':
+                                                                    KeyAssignManager.shortcutsWindowsEnable? 'auto' : 'none'
+                                                                }">
+                            <label style="margin-right: 5px">
+                                <input type="radio" name="Windows"
+                                    [checked]="KeyAssignManager.recordBindCodeName == item.code && KeyAssignManager.shortcutsWindowsEnable"
+                                    (click)="KeyAssignManager.setNowCodeName(item.code, 'Shortcuts')" />
+                                <span></span>
+                            </label>
+                            {{i18nManager.getTarget(item.translate)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-----------------------------------------------Disable----------------------------------------------------------->
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'Disable'">
+                <div class="list" style="width: 90%; height: 80px; margin-left: 5%; background-color: rgb(234, 233, 227)">
+                    <div class="sub-list" style="margin-left: 6%; margin-right: 6%">
+                        This button has been disabled. Select one of the other options above to bind an action to it.
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'SOUND CONTROL'">
+                <div class="list" style="margin-top: 20px;width: fit-content;">
+                    <div style="border: 1px solid rgb(253, 186, 59);
+                                    width: auto;
+                                    height: 27px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    padding-left: 5px;
+                                    padding-right: 5px;
+                                    border-radius: 3px;
+                                " class="">Application Volume</div>
+                    <div style="border: 1px solid rgb(253, 186, 59);margin-top: 6px;"></div>
+                </div>
+                <div id='html_SourceSelect' style="margin-top: 20px;flex-direction: row;" class="list">
+                    AUDIO SOURCE: 
+                    <div *ngIf="M_SoundVolume.showListflag"  style="background: rgb(49,49,49);
+                                position: absolute;
+                                width: 160px;
+                                height: 182px;
+                                margin-top: 30px;
+                                border-radius: 8px;
+                                color: white;
+                                ">
+                        <div  class="SelectTemplate" 
+                        style="width: 92%;
+                        height: 87%;
+                        margin-top: 14px;
+                        border-radius: 8px;
+                        display: grid;">
+                            <div *ngFor="let item of M_SoundVolume.audioSouceList let i = index"
+                             class="audioSouceItem"
+                             (click)="M_SoundVolume.bindTarget=item;M_SoundVolume.showListflag=!M_SoundVolume.showListflag;
+                             KeyAssignManager.setNowCodeName(M_SoundVolume.bindTarget.filename,'SOUND CONTROL');">
+                             {{item.filename}}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="
+                    display: flex;
+                    color: black;
+                    align-items: center;
+                    /* background: yellow; */
+                    " (click)="M_SoundVolume.showListflag=!M_SoundVolume.showListflag">
+                    <div  class="checkedText" id="checkedText">{{M_SoundVolume.getTargetFileName()}}</div>
+                    <div id="Down_Arrow" style="
+                            transform: rotate(-92deg);
+                            border-top: 5px solid #903d3d00;
+                            border-right: 5px solid black;
+                            border-bottom: 5px solid #8f7c6500;
+                            pointer-events: none;
+                            margin-left: 10px;
+                            ">
+                    </div>
+                </div>
+                    
+                    <!-- <app-M_NumpadSelect class="app-LayoutSelectUI" [componentId]="'app-LayoutSelectUI'"
+                        [i18nManager]="this.i18nManager" [inputoption]="this.LayoutManager.layoutSelectData"
+                        [(ngModel)]="this.LayoutManager.nowlayoutSelect" (ngModelChange)="this.onLayoutSelectChange()" style="width: 200px;
+                                        font-family: MM, serif;
+                                        font-size: 13px;
+                                        letter-spacing: 0px;
+                                        height: 32px;
+                                        margin-left: -8px;
+                                        z-index: 30;
+                                        ">
+                    </app-M_NumpadSelect> -->
+                </div>
+                <div id="SoundVolume_lightData">         
+                    <div class="list">
+                        Source Volume
+                        <div class="sub-list" style="margin-top: 10px;">     
+                            <input id="PERKEY_BrightnessSlider" type="range" min="0" max="100" class="slider" step="5"
+                                [(ngModel)]="this.M_SoundVolume.bindTarget.percent" (mouseup)="M_SoundVolume.lightData_Background()"
+                                [ngStyle]="{'background': M_SoundVolume.lightData_Background()}"
+                                onkeydown="event.preventDefault()" />
+                            <div>{{ this.M_SoundVolume.bindTarget.percent }}%</div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div [ngStyle]="{ visibility:(!getNowKeyBindClassUI('slider') && !getNowKeyBindClassUI('ROTARY ENCODER')) ? 'visible': 'hidden'}" id="Keybinding_BREATHING" class="list" style="margin-top: 40px;flex-direction: row;">
+                        <div class="sub-list" style="font-family: MB, serif; font-size: 15px; margin-top: 0px; letter-spacing: 2px;">
+                            GLOW WHEN ACTIVE
+                        </div>
+                        <label>
+                            <input type="checkbox" [(ngModel)]='this.M_SoundVolume.lightData.clearStatus'
+                                (ngModelChange)="soundVolume_BreathingChange()">
+                            <span></span>
+                        </label>
+                    </div>
+                    <div *ngIf="this.M_SoundVolume.lightData.clearStatus" class="list" style="width: fit-content;">
+                        EFFECT
+                    </div>
+                    <div *ngIf="this.M_SoundVolume.lightData.clearStatus" class="list" style="width: fit-content;flex-direction: row;">
+                        <div (click)="this.M_SoundVolume.lightData.breathing=true;" style="width: fit-content;margin-right: 15px;"
+                            class="">
+                            <div [ngStyle]="{ 'border-color': this.M_SoundVolume.lightData.breathing==true ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'}"
+                                style="border: 1px solid;
+                                                                                        width: auto;
+                                                                                        height: 27px;
+                                                                                        display: flex;
+                                                                                        justify-content: center;
+                                                                                        align-items: center;
+                                                                                        padding-left: 5px;
+                                                                                        padding-right: 5px;
+                                                                                        border-radius: 3px;
+                                                                                    " class="">Breathing</div>
+                            <div style="border: 1px solid rgb(253, 186, 59);margin-top: 6px;"
+                                [ngStyle]="{ 'border': this.M_SoundVolume.lightData.breathing==true ? '1px solid rgb(253, 186, 59)' :'0px solid rgb(49, 49, 49)'}">
+                            </div>
+                        </div>
+                        <div (click)="this.M_SoundVolume.lightData.breathing=false;" style="width: fit-content;">
+                            <div [ngStyle]="{ 'border-color': this.M_SoundVolume.lightData.breathing==false ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'}"
+                                style="border: 1px solid;
+                                        width: auto;
+                                        height: 27px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        padding-left: 5px;
+                                        padding-right: 5px;
+                                        border-radius: 3px;" class="">Solid Color</div>
+                            <div style="border: 1px solid rgb(253, 186, 59);margin-top: 6px;"
+                                [ngStyle]="{ 'border': this.M_SoundVolume.lightData.breathing==false ? '1px solid rgb(253, 186, 59)' :'0px solid rgb(49, 49, 49)'}">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div [ngStyle]="{display: this.M_SoundVolume.lightData.clearStatus ? 'block' : 'none'}" id="ColorContent"
+                        class="list" style="font-family: MM, serif">
+                        color
+                        <div class="sub-list">
+                            <ng-color-box class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
+                                (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor"></ng-color-box>
+                            <div class="color-content">
+                                <div class="color-detail">
+                                    <div class="color-title">
+                                        Red
+                                    </div>
+                                    <input maxlength="3" [(ngModel)]="this.M_SoundVolume.lightData.colorPickerValue[0]" min="0"
+                                        max="255" (change)="setRGBcolor()"
+                                        onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                                </div>
+                                <div class="color-detail" style="margin-top: 20px">
+                                    <div class="color-title">
+                                        Green
+                                    </div>
+                                    <input maxlength="3" [(ngModel)]="this.M_SoundVolume.lightData.colorPickerValue[1]" min="0"
+                                        max="255" (change)="setRGBcolor()"
+                                        onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                                </div>
+                                <div class="color-detail" style="margin-top: 20px">
+                                    <div class="color-title">
+                                        Blue
+                                    </div>
+                                    <input maxlength="3" [(ngModel)]="this.M_SoundVolume.lightData.colorPickerValue[2]" min="0"
+                                        max="255" (change)="setRGBcolor()"
+                                        onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+      
+            </div>
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'SENSITIVITY'">
+
+                <div id="SoundVolume_lightData">         
+                    <div style="font-size: 10px;"  class="list">
+                        SENSITIVITY
+                        <div class="sub-list" style="margin-top: 10px;">     
+                            <input id="PERKEY_BrightnessSlider" type="range" min="0" max="100" class="slider" step="5"
+                                [(ngModel)]="this.KeyAssignManager.sensitivity" (mouseup)="sensitivity_Background()"
+                                [ngStyle]="{'background': sensitivity_Background()}"
+                                onkeydown="event.preventDefault()" />
+                            <div>{{ this.KeyAssignManager.sensitivity }}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!----------------------------------------------------------------Performace----------------------------------------------------------------------------->
+        <div class="right-content" *ngIf="this.performanceflag">
+            <div class="list">
+                <div class="sub-list">
+                    {{i18nManager.getTarget('PollingRate')}}
+                    <app-M_NumpadSelect style="z-index: 9997;" class="app-pollingrateselect"
+                        [componentId]="'app-pollingrateselect'" [inputoption]="PollingRateData"
+                        [i18nManager]="this.i18nManager" [(ngModel)]="pollingrateSelect"
+                        (ngModelChange)="PollingRateSelect()">
+                    </app-M_NumpadSelect>
+                    <!-- <div (mouseover)="QuestionMarkStatus='performanceflagTip'" (mouseleave)="QuestionMarkStatus=''"
+                        class="QuestionMark" style="right: 12%;">?</div> -->
+                    <div class="triangleStyle" *ngIf="QuestionMarkStatus=='performanceflagTip' || QuestionMarkStatus=='ALL'"
+                        id="performanceflagTip" style="
+                                            top: 111px;
+                                            right: 146px;
+                                            position: absolute;">
+                        <div class="rectángulo" id="rectángulo" style="top: 28px;
+                                    left: -198px;
+                                    width: 354px;
+                                    height: 93px;
+                                    position: absolute;">
+                            <div style="width: 91%;">
+                                Polling Rate is how often your OS checks for input. This is a factor in determining the
+                                maximum
+                                input latency of key presses. A high polling rate takes up more CPU resources than lower
+                                polling
+                                rates.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-footer">
+            <div class="button" (click)="ClickResetToDefault()"
+                style="font-size: 14px; background-color: transparent; text-decoration: underline; letter-spacing: 0px">
+                {{i18nManager.getTarget('ResettoDefault')}}
+            </div>
+            <div class="button" (click)="keyBindSave()">
+                {{i18nManager.getTarget('SAVE')}}
+            </div>
+        </div>
+    </div>
+</div>

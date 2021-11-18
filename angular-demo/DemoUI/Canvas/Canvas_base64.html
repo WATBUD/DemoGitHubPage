@@ -1,0 +1,84 @@
+
+<meta charset="utf-8" />
+<title>Canvas_to_div_&lt;img&gt;base 64></title>
+</head>
+<body >
+    <img id="TTTTTTTimg" style="background: radial-gradient(black, transparent);" width="250" height="250" src="" alt="">
+    <div id="TTTTTTTDiv" style="background-size:100% 100%;background: radial-gradient(black, transparent);width: 250px;height: 250px;"></div>
+        <canvas id="canvas" style="margin-left: 500px;" width="500" height="500" />
+        <!-- <div style="background: red;width: 500px;height: 500px;">
+        
+        
+        </div> -->
+        </canvas>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+    //context.fillStyle = "red";
+    context.font = "30px Arial";
+    //context.fillText("Hello World", 10, 50);
+    context.fillStyle = "blue";
+    context.fillRect(0, 0, 500, 500);
+    context.fillStyle = "red";
+    context.textAlign = "center";
+    context.fillText("Hello World", canvas.width/2, canvas.height/2);
+    // context.fillStyle = "yellow";
+    // // context.strokeStyle = "blue";
+    // // context.lineWidth = 150;
+    // context.fillRect(50, 50, 500, 500);
+    // context.strokeRect(50, 50, 500, 500);	
+
+
+// function toDataURL(url, callback) {
+//   var xhr = new XMLHttpRequest();
+//   xhr.onload = function() {
+//     var reader = new FileReader();
+//     reader.onloadend = function() {
+//       callback(reader.result);
+//     }
+//     reader.readAsDataURL(xhr.response);
+//   };
+//   xhr.open('GET', url);
+//   xhr.responseType = 'blob';
+//   xhr.send();
+// }
+
+
+// const toDataURL = url => fetch(url)
+//   .then(response => response.blob())
+//   .then(blob => new Promise((resolve, reject) => {
+//     const reader = new FileReader()
+//     reader.onloadend = () => resolve(reader.result)
+//     reader.onerror = reject
+//     reader.readAsDataURL(blob)
+//   }))
+
+
+// toDataURL('https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0')
+//   .then(dataUrl => {
+//     console.log('RESULT:', dataUrl)
+//   })
+// document.getElementById("TTTTTTTimg").src='FunctionIcon.png'
+// console.log('%c dataURL', 'background: black; color: yellow',document.getElementById("TTTTTTTimg").src);  
+
+toDataURL();
+
+function toDataURL() {
+    var canvas = document.getElementById("canvas");
+var dataURL = canvas.toDataURL();
+document.getElementById("TTTTTTTimg").src=dataURL;
+
+
+//-----------------------2-in-1--------------------------------//
+document.getElementById("TTTTTTTDiv").style.background="url("+dataURL+")";
+document.getElementById("TTTTTTTDiv").style.backgroundSize="100% 100%";
+//-------------------------------------------------------//
+//document.getElementById("TTTTTTTDiv").style.background="url('./FunctionIcon.png')";
+//document.getElementById("TTTTTTTDiv").style.background = "#f3f3f3 url('img_tree.png') no-repeat right top";
+//console.log(dataURL);
+console.log('%c dataURL', 'background: black; color: yellow',dataURL);  
+
+}
+
+</script>

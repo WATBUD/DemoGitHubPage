@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<style>
+    /* body {
+        margin: 0;
+        padding: 0;
+        background: -webkit-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
+    } */
+    .dropsdownBox{
+    width:100%;
+    height:auto;
+    /* background-color:rgb(57, 57, 57);  */
+    padding-left:5px;
+    background-image: url('../img/skin/MenuBg.png');
+}
+
+    .dropsdownBox a{
+    display:block;
+    /* padding:5px; */
+    padding-left:1px;
+    }
+    .dropsdownBox a.hoveritem:hover{
+    /* background-color: rgb(255,0,0); */
+    background-image: url('../img/skin/MenuBg_over.png');
+    background-position: center;
+    overflow: hidden;
+    }
+    .buttonText{
+    font-size: 14px;text-transform: uppercase;color:red;
+    }
+
+
+</style>
+<body>
+        <div style="z-index:8;pointer-events: none;">
+                <p
+                    style="pointer-events:none;background-repeat: no-repeat; padding-left:10px; font-size: 11px; color:blue">
+                    {{textCollection.TextAreaDown.Mode}}
+            </p>
+        </div>
+        <div  class="dropsdownBox"
+                style="
+                width:148px;height:80px; max-height: 80px;
+                ">
+            <a class='buttonText cursor hoveritem'>{{item}}</a>
+            <a class='buttonText cursor hoveritem'>{{item}}</a>
+            <a class='buttonText cursor hoveritem'>{{item}}</a>
+            <a class='buttonText cursor hoveritem'>{{item}}</a>
+
+        </div>
+
+
+</body>
+
+</html>

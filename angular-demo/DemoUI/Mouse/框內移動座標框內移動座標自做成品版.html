@@ -1,0 +1,170 @@
+框內移動座標框內移動座標自做成品版1
+<meta charset="UTF-8">
+<body>
+    x: <span id="x">
+    </span>, y: <span id="y"></span>
+
+
+    <div id="layerRange" class="layerRange">
+        <div id="RGBcircle" class="circle">
+        </div>
+    </div>
+</body>
+
+<style type="text/css">
+    body {
+
+        display: block;
+        margin: 0px;
+        -webkit-user-select:none;
+-moz-user-select:none;
+-o-user-select:none;
+user-select:none;
+    }
+
+    .layerRange {
+        position: absolute;
+        /* background-image: linear-gradient(to right, red, yellow); */
+        /* border: 5px solid #666; */
+        background-color: red;
+        width: 200px;
+        height: 200px;
+        left: 200px;
+        /* border-radius: 50%; */
+    }
+
+    .circle {
+        /* position: absolute;
+        z-index: 9999; */
+        /* position: absolute; */
+        /* border: 2px solid blue; */
+        background-color: yellow;
+        width: 10%;
+        height: 10%;
+        pointer-events: none;
+        /* border-radius: 50%; */
+    }
+</style>
+
+
+<script>
+    var RGBcircleEventArr = [];
+    var mouseOn = false;
+    var layerRange = document.getElementById("layerRange");
+    var targetDisX=0,targetDisY=0;;
+    //var circle = document.getElementById("circle");
+    RGBcircleEventArr[0] = (e) => {
+        if (e.buttons !== 1 || e.which !== 1) return;
+        mouseOn = true;
+        console.log("mousedown", mouseOn, e);
+        
+        // RGBcircle.style.left = e.layerX + "px";
+        // RGBcircle.style.top = e.layerY + "px";
+        var RGBcircle = document.getElementById("RGBcircle");
+        console.dir(RGBcircle);
+
+        targetDisX=e.layerX;
+        targetDisY=e.layerY;
+
+        RGBcircle.style.display = "block"
+        RGBcircle.style.marginLeft = targetDisX + "px";
+        RGBcircle.style.marginTop = targetDisY + "px";
+
+    }
+    RGBcircleEventArr[1] = (e) => {
+        if (!mouseOn) return;
+        console.log("mousemove", mouseOn, e);
+        //clearEventBubble(e);
+        // var resultleft = e.clientX - this.disX;
+        // var resultTop = e.clientY - this.disY;
+        // if (resultleft < 0) {
+        //     resultleft = 0;
+        // } else if (resultleft > parentDiv.offsetWidth - /*parseInt(getStyle(circleDiv,'width'))*/circleDiv.offsetWidth) {
+        //     resultleft = parentDiv.offsetWidth - circleDiv.offsetWidth;
+        // }
+        // if (resultTop < 0) {
+        //     resultTop = 0;
+        // } else if (resultTop > parentDiv.offsetHeight - circleDiv.offsetHeight) {
+        //     resultTop = parentDiv.offsetHeight - circleDiv.offsetHeight;
+        // }
+        var RGBcircle = document.getElementById("RGBcircle");
+        parentDiv=RGBcircle.parentElement;
+        console.dir(parentDiv);
+        // var a= e.clientX>=parentDiv.offsetLeft?true:false;
+        // var b= e.clientX<=parentDiv.offsetLeft+parentDiv.offsetWidth?true:false;
+        // var c= e.clientY>=parentDiv.offsetTop?true:false;
+        // var d= e.clientY<=parentDiv.offsetTop+parentDiv.offsetHeight?true:false;
+        // if(a&&b&&c&&d){
+
+        // RGBcircle.style.marginTop = e.clientY-parentDiv.offsetTop + "px";
+        // RGBcircle.style.marginLeft = e.clientX-parentDiv.offsetLeft+ "px";
+        // // if(e.clientX-parentDiv.offsetLeft>0){
+        // }
+
+        // }
+        
+
+
+
+        if(e.clientX<parentDiv.offsetLeft){
+        RGBcircle.style.marginLeft = 0 + "px";
+        
+        //RGBcircle.style.marginTop = e.clientY + "px";
+        }
+        else if(e.clientX>parentDiv.offsetLeft+parentDiv.offsetWidth){
+        RGBcircle.style.marginLeft = parentDiv.offsetWidth-RGBcircle.offsetWidth + "px";
+        //RGBcircle.style.marginTop = e.clientY + "px";
+        }
+        else{
+            RGBcircle.style.marginLeft=e.clientX-parentDiv.offsetLeft;
+
+        }
+
+        if(e.clientY<parentDiv.offsetTop){
+        RGBcircle.style.marginTop = 0 + "px";
+        }
+        else if(e.clientY>parentDiv.offsetTop+parentDiv.offsetHeight){
+        RGBcircle.style.marginTop = parentDiv.offsetHeight-RGBcircle.offsetHeight + "px";
+        }
+        else{
+            RGBcircle.style.marginTop=e.clientY-parentDiv.offsetTop;
+        }
+    }
+    RGBcircleEventArr[2] = (e) => {
+        if (!mouseOn) return;
+        //clearEventBubble(e);
+        //layerRange.removeEventListener("mousemove", RGBcircleEventArr[1]);
+        mouseOn = false;
+        console.log("mouseup", mouseOn);
+    }
+    layerRange.addEventListener("mousedown", RGBcircleEventArr[0]);
+    document.addEventListener("mousemove", RGBcircleEventArr[1]);
+    document.addEventListener("mouseup", RGBcircleEventArr[2]);
+
+
+    // document.addEventListener("mousemove", (e) => {
+    //     console.log("mousemove", mouseOn, e);
+    //     if (!mouseOn) return;
+    //     //clearEventBubble(e);
+    //     RGBcircle.style.marginLeft = e.clientY + "px";
+    //     RGBcircle.style.marginTop = e.clientX + "px";
+
+    //     // if(e.layerX+RGBcircle.clientWidth<=layerRange.clientWidth+2&& e.layerY+RGBcircle.clientHeight<=layerRange.clientHeight+2){
+    //     // RGBcircle.style.marginLeft= e.layerX+ "px";
+    //     // RGBcircle.style.marginTop= e.layerY+ "px";
+    //     // }
+
+
+
+
+    // });
+
+    // document.addEventListener("mouseup", (e) => {
+    //     console.log("mouseleave", e);
+    //     mouseOn = false;
+    // });
+
+
+
+
+</script>

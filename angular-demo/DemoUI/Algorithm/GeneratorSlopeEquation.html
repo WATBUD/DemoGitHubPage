@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<script src="../jquery-3.6.0.js"></script>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+    <title>GeneratorSlopeEquation</title>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    x1-axis: <input id="x1-axis" type="number" min="0" onkeyup="value=value.replace(/\D/g,'')" value=1>
+
+    y1-axis:<input id="y1-axis" type="number" min="0" value=2>
+
+    x2-axis:<input id="x2-axis" type="number" min="0" value=100>
+    y2-axis:<input id="y2-axis" type="number" min="0" value=80>
+    <br>
+
+
+
+    <label id="jsonObject"> </label>
+</body>
+<script type="text/javascript">
+
+
+    // var coordinatezzz = [[0, 0]];
+    // var ttt=coordinatezzz[0];
+    // ttt=[1234, 1111];
+    // console.log('%c coordinatezzz', 'color: red',coordinatezzz, ttt);
+
+
+
+    var temp_a = 0;
+    var temp_b = 0;
+
+    var coordinate1 = [0, 0];
+    var coordinate2 = [100, 80];
+    $("#x1-axis").on("input", function () {
+        try {
+            //$(this).val("0")
+            var checkValue=parseInt($(this).val());
+            if(isNaN(checkValue)||checkValue<0){
+                $(this).val(0);
+                coordinate1[0]=0;
+            }
+            else{
+                coordinate1[0] = checkValue;
+            }
+            showSlopeEquationInHtml();
+        }
+        catch (error) {
+            console.log('%c axis_error', 'color: red', error,slopeArr, coordinate1, coordinate2);
+        }
+
+    });
+    $("#y1-axis").on("input", function () {
+        try {
+            //$(this).val("0")
+            var checkValue=parseInt($(this).val());
+            if(isNaN(checkValue)||checkValue<0){
+                $(this).val(0);
+                coordinate1[1]=0;
+            }
+            else{
+                coordinate1[1] = checkValue;
+            }
+            showSlopeEquationInHtml();
+        }
+        catch (error) {
+            console.log('%c axis_error', 'color: red', error,slopeArr, coordinate1, coordinate2);
+        }
+
+    });
+    $("#x2-axis").on("input", function () {
+        try {
+            //$(this).val("0")
+            var checkValue=parseInt($(this).val());
+            if(isNaN(checkValue)||checkValue<0){
+                $(this).val(0);
+                coordinate2[0]=0;
+            }
+            else{
+                coordinate2[0] = checkValue;
+            }
+            showSlopeEquationInHtml();
+        }
+        catch (error) {
+            console.log('%c axis_error', 'color: red', error,slopeArr, coordinate2, coordinate2);
+        }
+
+    });
+
+    $("#y2-axis").on("input", function () {
+        try {
+            //$(this).val("0")
+            var checkValue=parseInt($(this).val());
+            if(isNaN(checkValue)||checkValue<0){
+                $(this).val(0);
+                coordinate2[1]=0;
+            }
+            else{
+                coordinate2[1] = checkValue;
+            }
+            showSlopeEquationInHtml();
+        }
+        catch (error) {
+            console.log('%c axis_error', 'color: red', error,slopeArr, coordinate1, coordinate2);
+        }
+
+    });
+
+
+
+
+    //     $( "#x1-axis" ).keydown(function(eventData) {
+    //   //alert( "Handler for .keydown() called." );
+    //   console.log('%c axis','background: blue; color: red',eventData);
+    // });
+    //this.showSlopeEquationInHtml();
+
+
+
+
+    function showSlopeEquationInHtml() {
+        var slopeArr = slopeEquation(coordinate1, coordinate2);
+        var ag1=JSON.stringify(slopeArr);
+        var arrangement=JSON.stringify(ag1,null,"\t");
+        var arrangement2=JSON.stringify(ag1,null,5);
+
+        var formattedString = ag1.split("]").join("]\n")
+        //var reg=/[,,]/g;
+        document.getElementById("jsonObject").innerText = formattedString;
+        console.log('%c axis', 'background: blue; color: red', slopeArr, coordinate1, coordinate2);
+    }
+
+    function slopeEquation(point1 = [40, 80], point2 = [60, 40]) {
+        //斜率y2-y1/x2-x1;
+        var Slope = (point2[1] - point1[1]) / (point2[0] - point1[0]);//x*1 y*1*Slope
+        var LinearList = [];
+        var temp_x = [point1[0], point1[1]];
+        while (temp_x[0] < point2[0]) {
+            temp_x[0] += 1;
+            temp_x[1] += 1 * Slope;
+            //console.log('temp_x=',temp_x);
+            LinearList.push([temp_x[0], temp_x[1]]);
+        }
+
+        return LinearList;
+    }
+    
+    
+
+
+
+
+    //$( "#myDiv" ).css( "border", "3px solid red" );
+
+    function LinearEquation(point1 = [0, 0], point2 = [400, 400]) {
+        //直線方程式 y=ax+b; (a=Slope);
+        //a= point1[1]-point2[1]/point2[0]+point1[0];斜率
+
+        // point1[1]=point1[0]*a+b;
+        // point2[1]=point2[0]*a+b;
+
+        // b=point1[1]-point1[0]*a;
+        // b=point2[1]-point2[0]*a;
+        // (point1[1]-point1[0]*a)=(point2[1]-point2[0]*a)
+
+        //point1[1]-point2[1]=point2[0]*a+point1[0]*a
+
+        //(point2[0]+point1[0])*a
+        var temp_a = 0;
+        var temp_b = 0;
+        temp_a = point1[1] - point2[1] / (-point2[0] + point1[0]);
+        temp_b = point1[1] - point1[1] * temp_a;
+        //y=temp_a*x+temp_b;
+        console.log('LinearEquation=', 'y=' + temp_a + 'x+' + temp_b);
+
+    }
+
+</script>
+
+<body>
+</body>
+
+</html>

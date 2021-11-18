@@ -1,0 +1,48 @@
+<script>
+
+// var Button = function(content) { 
+//   this.content = content;
+// };
+
+// Button.prototype.click = function() {
+//   console.log(this.content + ' clicked');
+// };
+
+// var myButton = new Button('OK');
+// myButton.click();
+
+// var looseClick = myButton.click;
+// looseClick(); // not bound, 'this' is not myButton - it is the global object
+
+// var boundClick = myButton.click.bind(myButton);
+// boundClick(); // bound, 'this' is myButton
+
+
+var sum = function(a, b) {
+    console.log("a:"+a);
+    console.log("b:"+b);
+  return a + b;
+};
+//ar add1 = sum.bind(Fnt1(), 50);//綁額外FUNCTION
+
+
+var add2 = sum.bind(Fnt1(),1111,2222);//綁額外FUNCTION 並且指定數值 之後傳入數值則鎖住無效
+
+console.log(add2(888,9));//invaild override 122 4
+
+
+
+var add0 = sum.bind(Fnt1());//綁額外FUNCTION
+console.log(add0(122,4));
+
+function Fnt1(){
+    console.log("BindFunctionLog");
+
+
+}
+
+
+
+</script>
+
+

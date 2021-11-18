@@ -1,0 +1,8 @@
+{  
+  "/upload":{      
+    "target": "https://www.adata.com",  
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }  
+}

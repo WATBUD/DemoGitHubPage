@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: -webkit-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
+    }
+</style>
+
+<head>
+    <title>Example</title>
+    <div id="ShowMessage">
+
+    </div>
+    <input type="number" id="inputText1"  max="2000" min="1" step="1"
+        onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))">atan2(0)</input>
+
+
+    <input type="number" id="inputText2" max="2000" min="1" step="1"
+        onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))">atan2(1)</input>
+
+    <!-- <input type="checkbox" id="all">顯示全部燈效</input>
+    <input type="checkbox" id="draw">停止繪圖、維持計算、然後你可以測CPU rate</input> -->
+
+</head>
+
+<body>
+</body>
+<script>
+    document.addEventListener('mousedown', function (event) {
+        //console.log(event);
+    });
+    document.addEventListener('keydown', function (event) {
+        //console.log(event,event.type);
+    });
+    document.getElementById('inputText2').onchange = function (e) {
+        document.getElementById('ShowMessage').innerHTML="";
+        var atan20 = parseFloat(document.getElementById('inputText1').value);
+        var atan21 = parseFloat(document.getElementById('inputText2').value);
+        console.log('atan2Value',typeof atan20,typeof atan21);
+        if(isNaN(atan20) ||isNaN(atan21)) return;
+        for (let index = 0; index < 20; index++) {
+            var atan2Value = Math.atan2(atan20, atan21+index);
+            document.getElementById('ShowMessage').innerHTML += "atan2("+(atan20)+","+(atan21+index)+")="+"<BR>"+atan2Value+"<BR>"
+                +'3.14159265358979323846';
+        }
+
+    };
+    document.getElementById('inputText1').onchange = function (e) {
+        document.getElementById('ShowMessage').innerHTML="";
+        var atan20 = parseFloat(document.getElementById('inputText1').value);
+        var atan21 = parseFloat(document.getElementById('inputText2').value);
+        console.log('atan2Value',typeof atan20,typeof atan21);
+        if(isNaN(atan20) ||isNaN(atan21)) return;
+        for (let index = 0; index < 20; index++) {
+            var atan2Value = Math.atan2(atan20+index, atan21);
+            document.getElementById('ShowMessage').innerHTML += "atan2("+(atan20+index)+","+(atan21)+")="+"<BR>"+atan2Value+"<BR>"
+                +'3.14159265358979323846';
+;
+        }
+    };
+    class accc {
+        constructor(b) {
+            b[0] = 10000;
+            console.log(aaaa);
+
+        }
+        s(b) {
+            b[0] = 10000;
+            console.log(aaaa);
+        }
+    }
+    var aaaa = [5, 3, 2, 1];
+    var z = new accc(aaaa);
+    //document.getElementById('ShowMessage').innerHTML="TextMassage";
+
+</script>
+
+</html>

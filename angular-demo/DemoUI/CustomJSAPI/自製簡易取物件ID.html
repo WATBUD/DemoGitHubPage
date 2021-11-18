@@ -1,0 +1,33 @@
+
+
+
+
+<body>
+    <input id="bar" type="range" min="-6" max="6" step="1" value="0">
+    <div id="txt"></div>
+    <input id="G" class="TTTT" type="text" value="555"></input>
+    <!-- <input id="bar"  type="range" min="0" max="6"  step="1" value="0"></input> -->
+</body>
+<script>
+    // var show= document.getElementById(id);
+    // show.innerText=""
+    var $ = function(id){
+   
+        var result=id.substring(1);
+        //console.log(id,result);
+        if(id.includes("#")){
+            return document.getElementById(result);
+           }
+           else if(id.includes(".")){
+            return document.getElementsByClassName(result);
+           }
+       }
+       
+
+    //document.getElementById('G').style.background='red';
+    //document.getElementById('txt').innerText='5656';
+    //document.getElementById('bar').value='-4';
+    $('#txt').innerText='6666';
+    $('.TTTT')[0].value='6667';
+</script>
+        

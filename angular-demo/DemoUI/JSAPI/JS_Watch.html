@@ -1,0 +1,181 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        /* #target:hover{
+cursor: move;
+border: dashed 2px red;
+border-style:dashed;
+} */
+        .fileDiv {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            margin: 24px;
+            background-color: #0082CC;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div id="move_div" onmousedown="down()" onmouseup="up()" onmousemove="move()"></div> -->
+    <div id="ScrollArea" style="position: absolute;
+top: 50px;
+left:50px;
+width: 65%;
+height: 65%;
+background-color: gray;
+overflow: auto;">
+
+
+        <div id="ScrollContentArea" style="position: absolute; width: 100vw;height: 100vh;
+    transform: scale(1);
+    transform-origin: left top;
+     background-color: red;">
+            <div id="KeyBoardUI" style="   position: absolute;
+        top: 200px;
+        left: 150px;
+        width: 300px;
+        height: 200px;
+        background-color: rgb(172, 255, 104);">
+                <div data-status="false" class="fileDiv"></div>
+                <div data-status="false" class="fileDiv"></div>
+            </div>
+            <div id="KeyBoardUI2" style="    position: absolute;
+        top: 200px;
+        left: 700px;
+        width: 300px;
+        height: 200px;
+        background-color: rgb(36, 63, 15);">
+                <div data-status="false" class="fileDiv"></div>
+                <div data-status="false" class="fileDiv"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <input id="SwitchMouseMove" type="button" value="MoveMouseEvent true" onmousedown="switchMouseEvent('SMM')">
+    <input id="SwitchMouseBoxSelection" type="button" value="MouseBoxSelection true" onmousedown="switchMouseEvent('MSB');
+" style="
+    left: 67px;
+">
+
+    <div id="txtShow" style="position: absolute; background-color: black;margin-left: 75%;overflow-y: scroll;
+color:yellow;word-wrap: break-word;
+width:500px;height: 500px;">選澤想要查的資料</div>
+</body>
+<!-- <script src="./MouseMoveObject.js"></script>
+<script src="./MouseBoxSelection.js"></script> -->
+<script>
+//    var obj1 = {
+//         a:5
+
+//     };
+//     var obj2 = {
+//         a:10,
+//         b:5
+//     };
+//     var obj3 = {
+//         a:9999
+//     };
+//     obj1=obj3;
+//     console.log(obj1);
+
+
+
+//     var obj1 = { a: 10, b: 20, c: 30 };
+// var obj2 = obj1;
+// obj2.b = 100;
+
+// console.log(obj1); // { a: 10, b: 100, c: 30 } <-- b 被改到了
+// console.log(obj2); // { a: 10, b: 100, c: 30 }
+    class ccc {
+        ccc_att = [{
+            sadadada: 4,
+        }
+            , {
+            sadadada: 4,
+        }
+            , {
+            sadadada: 4,
+        }
+        ];
+    }
+class a {
+    att=[new ccc(),new ccc(),new ccc()];
+    test1={
+        sadadada:4,
+    }
+}
+
+
+
+var obj3= {
+    att:[new ccc(),new ccc(),new ccc()],
+    test1:{
+        sadadada:4,
+    },
+}
+var obj1=JSON.parse(JSON.stringify(obj3));
+
+obj3.att[0].ccc_att[0].sadadada=666;
+
+//var obj3=aaa;
+// obj3.att[0]=999
+// obj3.test1.sadadada=999
+
+
+
+
+
+
+
+
+
+// var obj1 = {
+//     obj2: {
+    //         a: 5,
+    //         b:[2]
+    //     },
+    // };
+    // var obj3 = {
+    //     obj2: {
+    //         a: 55,
+    //         b:[4]        
+    //     },
+    // };
+
+
+//JSON.stringify(obj3);
+
+
+
+obj1=obj3;
+console.log(obj1); // { a: 10, b: 100, c: 30 } <-- b 被改到了
+
+console.log(typeof obj1); // { a: 10, b: 100, c: 30 } <-- b 被改到了
+
+
+    var ttttt = {"ss":{"profileName":"PROFILE1","profileid":1,"DPIMin":100,"DPIMax":19000,"templighting":[{"Effect":0,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]},{"Effect":1,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":2,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":246,"B":10,"flag":true},{"R":10,"G":255,"B":125,"flag":true},{"R":255,"G":96,"B":10,"flag":true},{"R":10,"G":255,"B":229,"flag":true},{"R":255,"G":10,"B":212,"flag":true},{"R":0,"G":0,"B":0,"flag":true},{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":3,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":4,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":5,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]},{"Effect":6,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true},{"R":255,"G":255,"B":0,"flag":true}]},{"Effect":7,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]},{"Effect":8,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]}],"lighting":{"Effect":1,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},"keybinding":[{"value":0,"group":3,"function":4,"name":"","param":"","param2":""},{"value":1,"group":3,"function":3,"name":"","param":"","param2":""},{"value":2,"group":3,"function":2,"name":"","param":"","param2":""},{"value":3,"group":3,"function":4,"name":"","param":"","param2":""},{"value":4,"group":3,"function":5,"name":"","param":"","param2":""},{"value":5,"group":4,"function":3,"name":"","param":"","param2":""},{"value":6,"group":3,"function":6,"name":"","param":"","param2":""},{"value":7,"group":3,"function":7,"name":"","param":"","param2":""}],"performance":{"pollingrate":1000,"LodValue":1,"DebounceValue":10,"DpiNum":6,"dpiSelectIndex":2,"DpiStage":[{"value":400,"color":"FFFF00"},{"value":800,"color":"0000FF"},{"value":1600,"color":"FF0000"},{"value":3200,"color":"00FF00"}]}}}
+
+    var TTss={"ss":{"profileName":"PROFILE1","profileid":1,"DPIMin":100,"DPIMax":19000,"templighting":[{"Effect":0,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]},{"Effect":1,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":2,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":246,"B":10,"flag":true},{"R":10,"G":255,"B":125,"flag":true},{"R":255,"G":96,"B":10,"flag":true},{"R":10,"G":255,"B":229,"flag":true},{"R":255,"G":10,"B":212,"flag":true},{"R":0,"G":0,"B":0,"flag":true},{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":3,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":4,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},{"Effect":5,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]},{"Effect":6,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true},{"R":255,"G":255,"B":0,"flag":true}]},{"Effect":7,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]},{"Effect":8,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[]}],"lighting":{"Effect":1,"RateValue":60,"OpacityValue":60,"WiredBrightnessValue":60,"WirelessBrightnessValue":60,"SepatateCheckValue":false,"Color":[{"R":255,"G":0,"B":0,"flag":true}]},"keybinding":[{"value":5,"group":9,"function":1,"name":"","param":"","param2":""},{"value":1,"group":3,"function":3,"name":"","param":"","param2":""},{"value":2,"group":3,"function":2,"name":"","param":"","param2":""},{"value":3,"group":3,"function":4,"name":"","param":"","param2":""},{"value":4,"group":3,"function":5,"name":"","param":"","param2":""},{"value":5,"group":4,"function":3,"name":"","param":"","param2":""},{"value":6,"group":3,"function":6,"name":"","param":"","param2":""},{"value":7,"group":3,"function":7,"name":"","param":"","param2":""}],"performance":{"pollingrate":1000,"LodValue":1,"DebounceValue":10,"DpiNum":8,"dpiSelectIndex":2,"DpiStage":[{"value":400,"color":"FFFF00"},{"value":800,"color":"0000FF"},{"value":1600,"color":"FF0000"},{"value":3200,"color":"00FF00"}]}}}
+
+    ttttt=TTss
+    console.log(ttttt); // { a: 10, b: 100, c: 30 } <-- b 被改到了
+
+</script>
+
+</html>

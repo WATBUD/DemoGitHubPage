@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>js判斷滑鼠左、中、右鍵哪個被點選-柯樂義</title>
+</head>
+
+<body onmousedown="MouseClickNode(event)"">
+  
+    <div id="txtShow" style="background-color: black;margin-left: 5%;overflow-y: scroll;
+    color:yellow;
+    width:auto;height: 300px;">
+    <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+    </label>
+    </div>
+
+
+    <div id="Note" style="background-color: blue;margin-left: 5%;overflow-y: scroll;
+    color:yellow;
+    width:auto;height: 100px;">詳細請看LOG
+
+    </div>
+</body>
+<script>
+    MouseClickNode();
+    function MouseClickNode() {
+
+        var txtShow = document.getElementById('txtShow');
+        var obj = {
+            'childNodes': txtShow.childNodes,
+            'parentNode': txtShow.parentNode,
+            'nextSibling': txtShow.nextSibling,
+            'previousSibling': txtShow.previousSibling,
+            'firstChild': txtShow.firstChild,
+            'lastChild': txtShow.lastChild,
+
+        }
+        console.log("MouseClickNode", obj);
+        // txtShow.innerHTML = JSON.stringify(obj);
+        txtShow.innerText = "childNodes" + JSON.stringify(txtShow.childNodes[0]);
+
+
+    }
+</script>
+
+</html>

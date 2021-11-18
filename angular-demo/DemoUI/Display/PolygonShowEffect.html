@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Author:水靈(Louis)</title>
+	<script src="../jquery.js"></script>
+	<style>
+		body {
+			display: block;
+			margin: 0px;
+		}
+
+		div.container {
+			height: 820px;
+			border: 4px solid red;
+			display: table;
+			vertical-align: middle;
+		}
+
+		div.left {
+			width: 100%;
+			/* display: inline-block; */
+
+			height: 100%;
+			background-color: #36f;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		.sliderFrame {
+			width: 700px;
+			/* display: inline-block; */
+			height: 500px;
+			background-color: #36f;
+			top: 20%;
+			left: 30%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 0;
+		}
+
+		.MaskFrameL {
+			position: absolute;
+			top: 20%;
+			left: 0%;
+			width: 580px;
+			height: 500px;
+			background-color: white;
+			margin: 0;
+			z-index: 3;
+		}
+
+		.clip {
+			position: absolute;
+			/* background-color: blue; */
+			clip-path: polygon(100% 15%, 100% 15%, 78% 5%, 22% 5%, 0 18%, 0 18%, 22% 0, 78% 0);
+			width: 580px;
+			height: 500px;
+		}
+	</style>
+</head>
+<script>
+	var conutdown = setTimeout(
+		function () {
+			self.location.reload();
+		}, 1000);
+</script>
+
+<body>
+	<input id="Close" type="button" value="Close" onclick="clearTimeout(conutdown);">
+	<!-- <input id="Auto" type="button" value="AutoRefresh" onclick="conutdownFn();"> -->
+	<div class="clip sliderFrame" style="position:absolute">
+	</div>
+	<div class="MaskFrameL">
+	</div>
+	<div class="MaskFrameR">
+	</div>
+	<div class="container">
+	</div>
+	<button id="toggle">toggle</button>
+	<script>
+		// var text="-webkit-linear-gradient(right,"+
+		// 		t[0]+','+t[1]+','+t[2]+','+t[3]+','+t[4]+','+t[5]+','+t[6]+")";
+		// 		console.log(text);
+		// 		obj.style.background=text;
+		$(document).ready(function () {
+			var obj = document.getElementsByClassName("sliderFrame")[0];
+			setInterval(function () {
+				let colorarray = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', '#0000'];
+				let t = randArr(colorarray);
+				console.log('t', t);
+				var text = "-webkit-linear-gradient(right"
+				for (let index = 0; index < colorarray.length; index++) {
+					text += ',' + t[index];
+				}
+				text += ")";
+				console.log(text);
+				obj.style.background = text;
+			}, 100);
+			function randArr(arr) {
+				for (var i = 0; i < arr.length; i++) {
+					var iRand = parseInt(arr.length * Math.random());
+					var temp = arr[i];
+					arr[i] = arr[iRand];
+					arr[iRand] = temp;
+				}
+				console.log('randArr', arr);
+				return arr;
+			}
+			// obj.style.background="-webkit-linear-gradient(right, red, orange)";
+			//obj.style.backgroundImage='-webkit-linear-gradient(30deg,blue,red)';
+			//obj.style.background='-webkit-linear-gradient(30deg,blue,red)';
+			// obj.style.background='-webkit-linear-gradient(right, red, orange, yellow, green, blue, indigo, violet)';
+		});
+	</script>
+</body>
+
+</html>

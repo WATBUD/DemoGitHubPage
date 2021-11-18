@@ -1,0 +1,135 @@
+<html>
+<title> Convert Excel File To JSON </title>
+<meta charset="utf-8">
+<head>
+    <script src="../../jquery-3.4.1.min.js"></script>
+    <script src="xlsx.core.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script> -->
+
+    <script>
+var z={
+
+}
+var FindkeyCode="5";
+// console.log("z ",z,JSON.stringify(z));
+//z.TTTTZ=TTTTZ;
+// 'axd': ["AUDIO BRILLIANT", "AUDIO BRILLIANT", "明亮音讯"],
+// 'aaazzz': ["AUDIO BRILLIANT", "AUDIO BRILLIANT", "明亮音讯"]
+//z.prototype.__proto__ ='Number'
+var sss='qweqttu';
+
+var string = "0,1";
+var sssyyy="[\"PWM\",\"QUIET\",\"HIGH SPEED\",\"FULL-SPEED\",\"MANUAL\"]";
+
+
+// console.log('JSON.stringify(sssyyy)',JSON.stringify(sssyyy));
+
+console.log(JSON.parse(sssyyy));
+
+// var array = JSON.parse("[" + sssyyy + "]");
+// console.log(array);
+
+//console.log(JSON.parse(sssyyy));
+
+//z[sss.toString()]=7213131;
+//z['TTZ']=7;
+var p = {
+    a: function () {
+        console.log('aaa');
+    }
+};
+class sclass{
+         ttt={
+
+         };
+}
+//z.prototype.__proto__ = p;;
+var dgdgdf=new sclass(); 
+dgdgdf.ttt[sss.toString()]={
+    
+            targetIndex:0,
+            data:[{
+                "startTime":this.timeout_percent,       
+                "marginleft":this.timeout_percent+'px',          
+                "endTime":this.timeout_percent,     
+                "width":5,  
+                "isDown": true,
+                "tipStart":FindkeyCode+'_tipStart'+'0',
+                "tipEnd":FindkeyCode+'_tipEnd'+'0',
+                "tipInterval":FindkeyCode+'_tipInterval'+'0',  
+                
+            }]
+};
+
+console.log("XL_row_object=",dgdgdf);
+
+
+
+        $(document).ready(function () {
+            $("#fileUploader").change(function (evt) {
+                var selectedFile = evt.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    var data = event.target.result;
+                    var workbook = XLSX.read(data, {
+                        type: 'binary'
+                    });
+                    workbook.SheetNames.forEach(function (sheetName) {
+                        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                        console.log("XL_row_object=", XL_row_object);
+
+                        if (XL_row_object.length > 0) {
+                            let processArr = {};
+                            for (let index = 0; index < XL_row_object.length; index++) {
+                                const element = XL_row_object[index];
+                                //processArr.push(element['參數名稱']);
+                                // var T = [];
+                                // T.push(element.EN);
+                                // T.push(element.DE);
+                                // T.push(element.CN);
+
+                                var T = {
+                                    EN:element.EN,
+                                    DE:element.DE,
+                                    CN:element.CN,
+                                };
+                                
+                                //delete T.參數名稱;
+                               
+
+                                processArr[element['參數名稱']] = T;
+                                //console.log("processArr=>processArr[element['參數名稱']] ", JSON.stringify(processArr[element['參數名稱']]));
+                             
+                                //element['參數名稱']=
+                            }
+   
+                            //let processArrPackage = new Array();
+
+                            //processArrPackage.push(processArr);
+                            console.log("processArr=>", processArr);
+                            console.log("processArr=>", JSON.stringify(processArr));
+                            //document.getElementById("jsonObject").innerHTML = JSON.stringify(XL_row_object);
+                            
+                            document.getElementById("jsonObject").innerHTML = JSON.stringify(processArr);
+
+                        }
+                    })
+                };
+                reader.onerror = function (event) {
+                    console.error("File could not be read! Code " + event.target.error.code);
+                };
+                // 讀取上傳文件為二進制
+                reader.readAsBinaryString(selectedFile);
+            });
+        });
+    
+
+    </script>
+</head>
+
+<body>
+    <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx" />
+    </br></br>
+    JSON : <label id="jsonObject"> </label>
+</body>

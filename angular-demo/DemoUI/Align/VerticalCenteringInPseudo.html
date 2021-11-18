@@ -1,0 +1,35 @@
+<style>
+h2{
+  text-align: center;
+}
+.box{
+  width: 500px;
+  height: 250px;
+  border: 1px solid #f00;
+  margin: auto;
+	text-align: center;
+}
+.box::before{
+  content:'';
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  vertical-align: middle;
+}
+.box .content{
+	width: 400px;
+  background: #ccc;
+  display: inline-block;
+  vertical-align: middle;
+}
+</style>
+
+<body>
+    <h2>3.:before + inline-block</h2>
+    <div class="box">
+      <div class="content">
+          VerticalCenteringByLouis
+        
+      </div>
+    </div>
+</body>

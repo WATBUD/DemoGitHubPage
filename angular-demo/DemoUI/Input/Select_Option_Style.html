@@ -1,0 +1,140 @@
+<html>
+
+<head>
+  <style>
+    option {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background: gray;
+      text-align:center;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      line-height:30px;
+
+height:30px;
+
+margin:5px auto;
+    }
+
+    option:hover {
+      /* background-color:yellow; */
+      filter: brightness(90%);
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    option:focus {
+      /* outline: none !important;
+        box-shadow: 0 0 3pt 2pt #42b10e; */
+      background-color: red;
+      background: red;
+    }
+
+    option:checked {
+      /* box-shadow: 0 0 0 2px lime; */
+      color: red;
+      text-align: center;
+      text-align-last: center;
+      /* background: red;
+      background-color: red; */
+      padding-left: 50%;
+      background-color: rgba(0, 0, 0, 0.1);
+
+    }
+
+    select:valid {
+      color: black;
+    }
+
+    /* select>option:checked {
+      background: red;
+    } */
+    select:checked {
+      /* outline: none !important;
+        box-shadow: 0 0 3pt 2pt #42b10e; */
+    }
+
+    select {
+      width: auto;
+      padding: 0 2%;
+      margin: 0;
+      font-size: 20px;
+      /* box-shadow: 0 0 0 2px lime; */
+      background: none;
+      outline: none !important;
+      border: none;
+      border: 2px solid black;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      /* text-align: center; */
+    text-align-last: center;
+    text-align: justify; /* For Edge */
+  text-align-last: justify;
+    }
+
+    select:focus {
+      border: none;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      /* height: 140px; */
+      /* box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px; */
+      box-shadow: 3px 3px 10px rgb(22, 22, 22);
+      /* margin-top: 50px; */
+      /* padding-top: 50px; */
+    }
+
+    select::-webkit-scrollbar {
+      width: 5px;
+      border-radius: 20px;
+      border: none;
+    }
+
+    select::-webkit-scrollbar-track {
+      /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+      border-radius: 20px;
+      border: none;
+    }
+
+    select::-webkit-scrollbar-thumb {
+      background: rgb(253, 186, 59);
+      /* outline: 1px solid slategrey; */
+      border-radius: 20px;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="
+position: relative;
+width: 100%;
+height: 100%;
+background-color: transparent;
+color: black;
+border-radius: 5px;
+left: 20%;
+" class="custom-commonselectapp-macroSelectUI">
+<!-- <select style="width: 200px;" onfocus='this.size=10;' onblur='this.size=0;' onchange='this.size=1; this.blur();'> -->
+
+    <select style="">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+      <!-- <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option> -->
+    </select>
+
+  </div>
+</body>
+
+</html>

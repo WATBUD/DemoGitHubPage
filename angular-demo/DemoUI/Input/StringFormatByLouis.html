@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div>
+        <!-- <input name=key onkeyup="changed()"> -->
+        <BR>
+        <input id="ForbidPunctuationCustom" type="text">J自寫只能輸入數字<BR>
+
+
+</body>
+<script>
+    var anyString = "C:\\Users\\Louis\\Desktop\\5555.Macro";
+    var Usersindex=anyString.lastIndexOf("Louis\\");
+    console.log("anyString" + anyString);
+    console.log("Usersindex" + Usersindex);
+    var index=anyString.lastIndexOf("\\");
+    var dot=anyString.lastIndexOf(".");
+    var ProcessanyString = anyString.substring(index+1,dot);
+    console.log("anyString=" + index,dot,"結果=",ProcessanyString);// Displays 8
+    console.log("原字串" +anyString);// Displays 8
+    
+    var validator = new RegExp('^[A-Za-z0-9\u4e00-\u9fa5]+$');
+    var txt = new RegExp(/[\"\'\[\]\=\-\<>%;*!@#$^)(&+/s.,\\]/);
+    var ForbidPunctuationCustom = document.getElementById('ForbidPunctuationCustom');
+    ForbidPunctuationCustom.addEventListener("keypress", (event) => {    
+        console.log("value" + event);
+        //var value = event.target.value;
+        var regex = /^[0-9\s]*$/;
+        var validator = new RegExp(/^[0-9\s]*$/);
+     //var runner = txt.test(event.key);//檢查是否有符號
+        var error = validator.test(event.key);
+        console.log("error=" + error,"_event.key=",event.key,validator);
+        if (!error) {
+            event.preventDefault();//禁止的輸入則不給打
+        }
+        else {
+            //event.preventDefault();
+        }
+    })
+    ForbidPunctuationCustom.addEventListener("keyup", (event) => {
+        var value = event.target.value;
+        console.log("ForbidPunctuationCustomvalue=" + value);
+        //event.target.value = "";
+        if (event.code == "Enter"){
+            //event.target.value = value.replace(/[^\a-\z\A-\Z^0-9\u4E00-\u9FA5]/g, '');
+            event.target.value = value.replace(/[^\d]/g,'')
+            //value=value.replace(/[^\d]/g,'') "
+        console.log("Enter" + JSON.stringify(event));
+        }
+      
+    })
+
+    
+     
+
+
+</script>
+
+</html>

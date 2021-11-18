@@ -1,0 +1,63 @@
+<p>try pressing some keys.
+
+  <input name="ClearMessage" type="button" id="ClearMessage" value="ClearMessage" >
+  
+  <button type="button" onclick="copyEvent('log')" class="ButtonStyle">Copy</button>
+
+</p>
+<div id="log"></div>
+<script>
+//document.addEventListener('keydown', logKey(e));
+
+window.addEventListener("contextmenu", function(e) { e.preventDefault(); })
+document.addEventListener('mousedown', logMouseDown);
+var totalKeydownArr=[];
+document.getElementById('ClearMessage').addEventListener('click', (event) => {
+    console.log('ClearMessage', event);
+    log.innerText = '';
+    totalKeydownArr = [];
+  });
+
+//log.innerHTML ="Direct";
+document.addEventListener('keydown',function logKey(e) {
+  if(e.code!="F5" && e.code!="F12"){
+    event.preventDefault();
+    //event.stopPropagation();
+  }
+  //log.textContent += ` ${e.code}`+"\n";
+  //console.dir(e);
+  //log.innerHTML += JSON.stringify(e);
+  //JSON.parse(JSON.stringify(e));
+  var t={"keyCode":"Multimedia_Fun_1","functionType":"Singlekey","value":"Play/Pause","hid":1,"translate":"Play/Pause","code":"Multimedia_Fun_1"};
+  t.keyCode=String(e.keyCode);
+  t.code=e.code;
+  t.translate=e.code;
+  t.value=e.code;
+  totalKeydownArr.push(t);
+  show_LogUIText();
+  // log.innerHTML += ` ${"e.code:"+e.code}`+"/e.keyCode:"+e.keyCode+"/e.key:"+e.key+"/e.which:"+e.which+"/e.location:"+e.location+"<BR>";
+  //   console.log(e);
+  //event.stopPropagation();
+
+});
+
+function show_LogUIText() {
+    log.innerText = JSON.stringify(totalKeydownArr);
+    //log.innerHTML = JSON.stringify(totalKeydownArr);  }
+}
+function copyEvent(id) {
+    var str = document.getElementById(id);
+    window.getSelection().selectAllChildren(str);
+    document.execCommand("Copy");
+  }
+
+
+function logMouseDown(e) {
+  // event.preventDefault();
+  // event.stopPropagation();
+  // console.log(e);
+  // log.innerHTML += ` ${"e.buttons:"+e.buttons}`+"/e.button:"+e.button+"/e.ctrlKey:"+e.ctrlKey+"/e.which:"+e.which+"/e.detail:"+e.detail+"<BR>";
+}
+
+
+</script>

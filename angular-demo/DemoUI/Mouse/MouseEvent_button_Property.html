@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div onmousedown="WhichButton(event)">Click this text with one of your mouse buttons to return a number.
+  <p>
+  0 = The left mouse button<br>
+  1 = The middle mouse button<br>
+  2 = The right mouse button
+  </p>
+
+  <p><strong>Note:</strong> Internet Explorer 8, and earlier, returns another result:</p>
+
+  <p>
+  1 = The left mouse button<br>
+  4 = The middle mouse button<br>
+  2 = The right mouse button
+  </p>
+</div>
+<div id="mouse button">
+
+
+</div>
+
+<script>
+document.addEventListener('mousedown',(event)=>{
+    console.log("You pressed button: " + event.button);
+  document.getElementById('mouse button').innerHTML="mouse button"+event.button;
+
+});
+function WhichButton(event) {
+//   console.log("You pressed button: " + event.button);
+//   document.getElementById('mouse button').innerHTML="mouse button"+event.button;
+}
+</script>
+
+</body>
+</html>

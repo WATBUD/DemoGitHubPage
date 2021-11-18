@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Reading Binary Data with the File API and JavaScript</title>
+</head>
+<body>                            
+    <input id="browseOpen" type="file"/>
+ 
+    <script type="text/javascript">
+        var fileInput = document.getElementById("browseOpen");
+        fileInput.onchange = function () {            
+            var fr = new FileReader();
+            fr.onloadend = function () {
+                var result = this.result;
+                var hex = "";
+                for (var i = 0; i < this.result.length; i++) {
+                    var byteStr = result.charCodeAt(i).toString(16);
+                    if (byteStr.length < 2) {
+                        byteStr = "0" + byteStr;
+                    }
+                    hex += " " + byteStr;
+                }
+                alert(hex);
+            };
+            fr.readAsBinaryString(this.files[0]);
+        };
+    </script>
+</body>
+</html>

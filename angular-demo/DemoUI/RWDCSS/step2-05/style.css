@@ -1,0 +1,126 @@
+#demo-table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+#demo-table td,
+#demo-table th {
+    padding: 5px;
+}
+
+#demo-table td {
+    color: #666666;
+    border: blue 1px solid;
+    color: black;
+
+    /* background-color: cyan;*/
+}
+
+
+.s1 {
+    color: #666666;
+    border: blue 1px solid;
+    color: cyan;
+    background-color: cyan;
+}
+
+.s2 {
+    color: #666666;
+    border: blue 1px solid;
+    color: cyan;
+    background-color: cyan;
+}
+
+
+#demo-table th {
+    background-color: cadetblue;
+    color: black;
+    border: blue 1px solid;
+    text-align: center;
+}
+
+
+.displayhide {
+    display: none;
+}
+
+.setWidth {
+    /*width: 100%;*/
+}
+
+
+@media only screen and (max-width: 576px) {
+    /*.displayhide {
+    display: block;
+}*/
+    .s1 {
+        color: #666666;
+        border:0;
+        color: white;
+        background-color: white;
+    }
+    .s2 {
+        color: #666666;
+        border:0;
+        color: cyan;
+        background-color: cyan;
+    }
+    .TOFontbold {
+        font-weight: bold;
+    }
+    .break-table {
+        background-color: transparent !important;
+    }
+    .break-table,
+    .break-table thead,
+    .break-table tbody,
+    .break-table th,
+    .break-table td,
+    .break-table tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    .break-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .break-table tr {
+        /*border: 1px solid #ccc;*/
+        /*margin-bottom: 10px;*/
+        color: black;
+    }
+    .break-table tr tw {
+        /*border: 1px solid #ccc;*/
+        /*margin-bottom: 10px;*/
+        /*background-color: cyan;*/
+    }
+
+    .break-table td {
+        border: none !important;
+        border-bottom: 1px solid #eee !important;
+        position: relative;
+        padding-left: 35% !important;
+        white-space: normal;
+        text-align: left;
+    }
+
+    .break-table td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 30%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        /* font-weight: bold;*/
+        color: black;
+    }
+    .break-table td:before {
+        content: attr(data-title);
+    }
+    /* font-weight: bold;*/
+}

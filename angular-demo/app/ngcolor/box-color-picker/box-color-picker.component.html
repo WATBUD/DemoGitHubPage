@@ -1,0 +1,2 @@
+<app-hsl [hue]="hue" [(ngModel)]="saturationLightness" (ngModelChange)="calculateColor(0)" class="middle"></app-hsl>
+<app-hue [(ngModel)]="hue" (ngModelChange)="calculateColor(0)" [resultHue]="resultHue"></app-hue>

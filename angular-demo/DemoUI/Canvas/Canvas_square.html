@@ -1,0 +1,27 @@
+
+<meta charset="utf-8" />
+<title>HTML_Canvas正方形</title>
+</head>
+<body >
+   <canvas id="canvas" width="1200" height="560"/>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+    // //context.fillStyle = "red";
+    // context.fillStyle = "yellow";
+    // context.fillStyle = "rgb(255,0,0)";
+    // context.fillRect(0, 0, 800, 800);
+    // context.strokeStyle = "blue";
+    //context.lineWidth = 150;
+    //context.strokeRect(0, 0, 500, 500);	
+    //1°=π/180 rad
+    //1rad = 180°/π
+    //完整圓弧度2π，所以2π rad = 360°
+    //角度(rad)*(π)Math.PI/180
+    //context.arc(x1, y1, radius , 起始弧度(radians), 結束弧度(radians));
+    context.arc(200, 200, 50, 0, 180/180*Math.PI);
+    context.strokeStyle = "blue";
+    context.stroke(); //畫出你定義的圖形，若忘了這行，圈圈就不會出現
+    //console.log()
+</script>

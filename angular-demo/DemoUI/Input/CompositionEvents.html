@@ -1,0 +1,32 @@
+<head>
+    <meta charset="UTF-8">
+    <title> Input box to detect pinyin status</title>
+    <style>
+    </style>
+</head>
+Input box to detect pinyin status
+
+<input id="test1" type="text" name="test1"></input>
+<!-- <input id="test4" type="tel" name="test4" style="ime-mode:auto"></input>
+    <input id="test4" type="number" name="test4" style="ime-mode:auto"></input> -->
+<style>
+    /* input {ime-mode: auto; } */
+</style>
+<script>
+    const inputElement = document.querySelector('input[type="text"]');
+    inputElement.addEventListener('compositionstart', (event) => {
+        console.log(`generated characters were: ${event.data}`);
+        //inputElement.innerHTML=55555;
+        //inputElement.value="拼音啟動";
+    });
+    inputElement.addEventListener('compositionupdate', (event) => {
+        //inputElement.innerHTML=55555;
+        inputElement.value = "正在輸入拼音";
+    });
+    inputElement.addEventListener('compositionend', (event) => {
+        //inputElement.innerHTML=55555;
+        setTimeout(() => {
+            inputElement.value = "拼音輸入完畢";
+        }, 100);
+    });
+</script>

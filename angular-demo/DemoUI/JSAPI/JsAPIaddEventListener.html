@@ -1,0 +1,30 @@
+<!-- addEventListener 有三個引數：第一個參數列示事件名稱（不含 on，如 "click"）；第二個參數列示要接收事件處理的函式；第三個引數為 useCapture，本文就講解它。 -->
+
+<div id="outDiv" style="background:goldenrod;">
+  <div id="middleDiv" style="background: rebeccapurple;">
+    <div id="inDiv" style="color: red;">請在此點選滑鼠。</div>
+  </div>
+</div>
+<div id="info"></div>
+<!-- 上述是我們測試的程式碼，根據 info 的顯示來確定觸發的順序，
+有三個 addEventListener，useCapture可選值為 true 和 false，
+所以 2*2*2，可以得出 8 段不同的程式。
+•全為 false 時，觸發順序為：inDiv、middleDiv、outDiv；
+•全為 true 時，觸發順序為：outDiv、middleDiv、inDiv；
+•outDiv 為 true，其他為 false 時，觸發順序為：outDiv、inDiv、middleDiv；
+•middleDiv 為 true，其他為 false 時，觸發順序為：middleDiv、inDiv、outDiv；
+最終得出如下結論：
+•true 的觸發順序總是在 false 之前；
+•如果多個均為 true，則外層的觸發先於內層；
+•如果多個均為 false，則內層的觸發先於外層。 -->
+<script>
+
+
+var outDiv = document.getElementById("outDiv");
+var middleDiv = document.getElementById("middleDiv");
+var inDiv = document.getElementById("inDiv");
+var info = document.getElementById("info");
+outDiv.addEventListener("click", function () { info.innerHTML = "outDivzzzzzzzzzzzzzzzzzz"+"<br>"; }, true);
+middleDiv.addEventListener("click", function () { info.innerHTML = "middleDivzzzzzzzzzzzzzzzzzz"+"<br>"; }, true);
+inDiv.addEventListener("click", function () { info.innerHTML = "inDivzzzzzzzzzzzzzzzzzz"+"<br>"; }, true);
+</script>

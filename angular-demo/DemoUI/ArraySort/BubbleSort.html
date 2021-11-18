@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="show">BubbleSort(泡沫-冒泡排序法)</div>
+    <div id="show2"></div>
+
+</body>
+<script>
+
+var arr = [40, 20, 4000, 50,1,20000,100,10000,4444];
+function bubbleSort (arr) {
+
+        for (let i1 = arr.length-1; i1 > 1; i1--) {
+            for (let i = 0; i < i1; i++) {
+                // 如果前面的元素比後面的元素要大，則交換元素位置
+                document.getElementById("show2").innerHTML +=arr[i];
+                document.getElementById("show2").innerHTML +=arr[i + 1];
+                if (arr[i] > arr[i + 1]) {
+                    let tempValue = arr[i]
+                    arr[i] = arr[i + 1]
+                    arr[i + 1] = tempValue;
+                }
+            }
+        }
+  return arr
+}
+
+
+// zz = arr.sort(function (a, b) {
+// return b - a
+// });
+// console.log(zz); 
+
+
+document.getElementById("show").innerHTML +="執行前"+ arr;
+
+    document.getElementById("show").innerHTML +="<BR>執行後結果"+bubbleSort(arr);
+</script>
+
+</html>

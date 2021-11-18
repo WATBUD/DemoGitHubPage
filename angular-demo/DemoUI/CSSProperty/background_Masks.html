@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .cf {
+        background-image: url('../../img/BlendMode/Water droplets.jpg'); 
+        background-color: red; 
+        background-size: cover; 
+        width: 64px; height: 64px; 
+        display: inline-block; 
+        background-blend-mode: lighten;
+    }
+    .Water_droplets_Alpha{
+        background-image: url('../../img/BlendMode/Water droplets_Alpha.png'); 
+        background-color: red; 
+        background-size: cover; 
+        width: 64px; height: 64px; 
+        display: inline-block; 
+        background-blend-mode: lighten;
+    }
+    .Water_droplets_Alpha2{
+        background-image: url('../../img/BlendMode/Water_droplets_Alpha2.png'); 
+        background-color: red; 
+        background-size: cover; 
+        width: 64px; height: 64px; 
+        display: inline-block; 
+        background-blend-mode: lighten;
+    }
+    .mask {
+    -webkit-mask: url("../../img/BlendMode/Water_droplets_Alpha2.png") no-repeat center center;
+    mask: url("../../img/BlendMode/Water_droplets_Alpha2.png") no-repeat center center;
+    
+    }
+
+
+
+</style>
+
+<head>
+    <title>Example</title>
+</head>
+
+<body>
+    <!-- <img class="cf" src="../../img/BlendMode/Water droplets.jpg" /> -->
+    <div class="cf">
+    </div>
+    <div class="Water_droplets_Alpha2">
+    </div>
+    <div style="width: 600px;
+    height: 600px;
+    background: red;
+    width: 10vh;
+    height: 10vh;
+    background: red;
+    cursor: url(../../img/BlendMode/Water_droplets_Alpha2.png) 4 12, auto;
+    " class="mask">
+    </div>
+
+
+</body>
+
+</html>

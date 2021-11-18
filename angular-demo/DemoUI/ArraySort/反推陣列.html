@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="show">客制化10進制</div>
+</body>
+<script>    
+LoopArrDisplacement(Arr) {
+    //console.log("Runway_LoopArrDisplacement", this.loopCount);
+    // if(this.loopCount==Arr.length){
+    //     this.loopCount=0;
+    //     this.directionSwitch=!this.directionSwitch;
+    // }
+    // else if(this.loopCount < Arr.length){
+    //     this.loopCount+=1;
+    // }
+    
+    if (this.directionSwitch == false) {//正向陣列
+        //console.log("Runway_正",Arr)
+        var start = Arr[Arr.length - 1];//24
+        for (let index = Arr.length - 1; index >= 0; index--) {
+            console.log("Runway_index",index)
+            if (index > 0) {
+                var Temp = Arr[index - 1];//23
+                Arr[index] = Temp;//24
+            }
+            else {
+                console.log("Runway_正最後",Arr[0] ,start)
+                Arr[0] = start;
+            }
+        }
+    }
+    else if (this.directionSwitch == true) {//反向陣列
+        //console.log("Runway_final",Arr);
+        var Oringin = Arr[0];
+        for (let index = 0; index < Arr.length; index++) {
+            if (index < Arr.length - 1) {
+                var Temp = Arr[index + 1];
+                Arr[index] = Temp;
+            }
+            else {
+                Arr[index] = Oringin;
+            }
+        }
+        //var Arr=$.extend(true, {}, Arr);
+
+
+    }
+    return Arr;
+}
+
+</script>
+
+</html>
+
+

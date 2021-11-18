@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+    <title>兩點之間畫折線</title>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+    //  var point1=[25,0]
+    //  var a=point1;
+    //  a[0]=25555;
+    //  console.log('point1=',point1);
+    SlopeEquation([0,3],[235,456]);
+    //SlopeEquation();
+
+    LinearEquation([0,0],[400,400])
+    LinearEquation([0,1],[400,400])
+    LinearEquation([1,1],[400,400])
+    LinearEquation([0,2],[400,400])
+
+    var dot = new Array();
+    document.onmousedown = function (a) {
+    }
+    var temp_a=0;
+    var temp_b=0;
+    function LinearEquation(point1=[0,0],point2=[400,400]){
+        //直線方程式 y=ax+b; (a=Slope);
+        //a= point1[1]-point2[1]/point2[0]+point1[0];斜率
+
+
+        // point1[1]=point1[0]*a+b;
+        // point2[1]=point2[0]*a+b;
+
+
+        // b=point1[1]-point1[0]*a;
+        // b=point2[1]-point2[0]*a;
+        // (point1[1]-point1[0]*a)=(point2[1]-point2[0]*a)
+
+        //point1[1]-point2[1]=point2[0]*a+point1[0]*a
+
+
+        //(point2[0]+point1[0])*a
+
+
+        var temp_a=0;
+        var temp_b=0;
+        temp_a=point1[1]-point2[1]/(-point2[0]+point1[0]);
+        temp_b=point1[1]-point1[1]*temp_a;
+        //y=temp_a*x+temp_b;
+        console.log('LinearEquation=','y='+temp_a+'x+'+temp_b);
+
+    }
+
+    function SlopeEquation(point1=[25,0],point2=[320,400]){
+        //斜率y2-y1/x2-x1;
+        var Slope =(point2[1]-point1[1])/(point2[0]-point1[0]);//x*1 y*1*Slope
+        var LinearList=[];
+        var temp_x=[point1[0],point1[1]];
+        while (temp_x[0]<point2[0]&&temp_x[1]<point2[1]) {
+            temp_x[0]+=1;
+            temp_x[1]+=1*Slope;
+            console.log('temp_x=',temp_x);
+            LinearList.push([temp_x[0],temp_x[1]]);
+            var A='left:'+temp_x[0]+'px;'
+            var B='top:'+temp_x[1]+'px;'
+            var createBtn = document.createElement('div');
+            createBtn.style.cssText = 'position: absolute;width: 0.2px;height: 0.2px;background: red;'+A+B;
+            document.body.appendChild(createBtn);
+        }
+        console.log('Slope=',Slope);
+        console.log('LinearList=',LinearList);
+        //createBtn.dataset.status = 2;
+        //createBtn.className = "ListButtonItem";
+        //createBtn.value = element.value;
+        //createBtn.style.marginLeft = Time_Axis.style.left;
+        //createBtn.setAttribute("type", "button");
+        //createBtn.setAttribute("onkeydown",logAddinnerText(element[switchShowType]));
+        // createBtn.addEventListener("click", function () {
+        //     console.log('switchShowType', _this.switchShowType);
+        //     totalKeydownArr.push(String(element[_this.switchShowType]));
+        //     show_LogUIText();
+        // });
+        //document.getElementById('ListButton').appendChild(createBtn);
+        //document.body.appendChild(createBtn);
+
+        // point1[0]=point1[1]*a+b;
+        // point2[0]=point2[1]*a+b;
+        // // b=point1[0]-point1[1]*a;
+        // // b=point2[0]-point2[1]*a;
+        // // (point1[0]-point1[1]*a)=(point2[0]-point2[1]*a)
+        // var temp_a=0;
+        // var temp_b=0;
+        // temp_a=point1[0]-point2[0]/(-point2[1]+point1[1]);
+        // temp_b=point1[0]-point1[1]*temp_a;
+        // y=temp_a*x+temp_b;
+    }
+
+
+
+</script>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<html>
+
+<body>
+
+    <p>紅色</p>
+    <p id="id">褐色</p>
+</body>
+<style>
+    /* :root {
+        --bg-color: rgb(12, 238, 68);
+        /* --bg-color: #929FC7; 如果取消全局顏色設定，背景將會變成黑色的 */
+    } */
+
+    p {
+        --bg-color: rgb(140, 40, 255);
+    }
+
+    #id {
+        --bg-color: #E17100;
+    }
+
+    * {
+        background: var(--bg-color, rgb(25, 149, 98));
+    }
+</style>
+
+</html>

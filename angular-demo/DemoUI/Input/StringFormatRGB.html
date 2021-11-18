@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<style>
+	body {
+		margin: 0;
+		padding: 0;
+		/* background: -webkit-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%); */
+	}
+</style>
+
+<head>
+	<title>自製RGB測試頁面</title>
+	<div id="show"></div>
+	<input id="C_R" type="number" max="255" onkeyup="value=value.replace(/[^\d]/g,'');
+		if(value>255){value=255}if(value<1){value=0}" onchange=" Calculation()">輸入R<BR>
+	<input id="C_G" type="number" max="255" onkeyup="value=value.replace(/[^\d]/g,'');
+		if(value>255){value=255}if(value<1){value=0}" onchange="Calculation()">輸入G<BR>
+	<input id="C_B" type="number" max="255" onkeyup="value=value.replace(/[^\d]/g,'');
+		if(value>255){value=255}if(value<1){value=0}" onchange="Calculation()">輸入B<BR>
+	<input id="C_Alpha" type="number" max="1" onkeyup="value=value.replace(/[^\d]/g,'');
+		if(value>1){value=1}if(value<0){value=0}" onchange="Calculation()">輸入Alpha<BR>
+
+	<div id="HEXField">                               
+
+	</div>
+
+
+
+    <!-- <input id="禁止輸入中文 只有英數" type="tel" max="100" min="0" onkeyup="value=value.replace(/[^\d]/g,'');
+                if(value>77){value=77}if(value<1){value=0}">禁止輸入中文 只有英數 -->
+</head>
+
+<body>
+</body>
+<script>
+	var num = 0x1fe;
+	console.log("0xff+0xff",(0xff));
+
+	// console.log("0xff+typeof",typeof(num) );
+
+	// console.log("0xff+0xff",(0xff+0xff).toString(16),0xff.typeof );
+
+	// console.log("0xff+0xff",(0xff+0xff).toString(16));
+
+	colorMixing("#FF0000","#0000FF");
+	// console.log((num/2).toString(16));
+	// console.log(Number(510).toString(16));
+	// console.log(hexToRgb("#FFFFFF"));
+	// console.log(Number(40).toString(16));
+	//console.log(("#684422".slice(1)));
+	// console.log(("#684422".slice(1)));
+
+	    //    for (let index = 0; index < 4; index++) {
+		// 	   console.log(16 << index);
+
+		//    }
+		function componentToHex(c) {
+			var hex = c.toString(16);
+			console.log("componentToHex",hex);
+			return hex.length == 1 ? "0" + hex : hex;
+		}
+
+		// function rgbToHex(r, g, b) {
+			
+		// 	return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+		// }
+
+
+	function colorMixing(hex1,hex2) {
+		var result1 = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex1);
+		var result2 = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex2);
+		var T="#";
+
+		for (let index = 1; index < 4; index++) {
+			var DEC=Number("0x"+result1[index])+Number("0x"+result2[index]);
+			var hex=Math.round((DEC/2)).toString(16);
+			console.log('colorMixingfor',DEC,hex,hex.length);
+			hex=hex.length == 1 ? "0" + hex : hex;
+			T+=hex;
+		}
+		//+(result1[2]+result2[2]).toString(16)+(result1[3]+result2[3]).toString(16);
+		console.log('colorMixing',T);
+
+		//parseInt("0xF", 16);
+		return T;	  
+
+	}
+	function Calculation() {
+		
+		var colors = [];
+		colors[0] = Number(document.getElementById("C_R").value);
+		colors[1] = Number(document.getElementById("C_G").value);
+		colors[2] = Number(document.getElementById("C_B").value);
+		colors[3] =  Number(document.getElementById("C_Alpha").value);
+
+		//colors[3]>1?1:colors[3]; 
+		var T_color = stringFormat("rgb({0},{1},{2},{3})", colors[0], colors[1], colors[2], colors[3]);
+		document.getElementById("show").innerText = "結果顏色" + "=" + T_color;
+		document.body.style.background = T_color;
+		console.log(rgbToHex(colors[0], colors[1], colors[2]));
+		document.getElementById("HEXField").innerText=rgbToHex(colors[0], colors[1], colors[2]);
+
+	}
+	
+	//\d	比對任一個數字，等效於 [0-9]
+	//{4} 重覆4個
+	// /a?/	 零或一個 a（若要比對? 字元，請使用 \?）
+	//^	比對輸入列的啟始位置
+	//$	比對輸入列的結束位置
+	function hexToRgb(InputData) {
+            //console.log("hexToRgbInputData",InputData);
+            try {
+				var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(InputData);
+				console.log("hexToRgbResult", result);
+                //console.log("hexToRgbResult", [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16) ]);
+                return result ?              
+                // {
+                //     r: parseInt(result[1], 16),
+                //     g: parseInt(result[2], 16),
+                //     b: parseInt(result[3], 16)
+                // } 
+                [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16) ]
+                : null;
+            }
+            catch{
+                return 1;
+            }
+		}
+	function rgbToHex(r, g, b) {
+			//return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+			return "#" + ((r << 16) + (g << 8) + b).toString(16);
+	}
+	function stringFormat() {
+
+		console.log("stringFormat_arguments",arguments);
+
+		if (arguments.length == 0)
+			return null;
+		var str = arguments[0];
+		for (var i = 1; i < arguments.length; i++) {
+			var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+			str = str.replace(re, arguments[i]);
+		}
+		return str;
+	}
+		//HSVRange.style.backgroundColor = stringFormat("rgb({0},{1},{2})",t[0],t[1],t[2]);
+
+</script>
+
+</html>

@@ -1,0 +1,84 @@
+
+input.KeyAssignUIStyle:focus {
+    outline: none !important;
+    //border:2px solid #0000ffa8;
+    border: 2px solid rgb(29,29,29);
+    border-radius: 10px;
+    //box-shadow: 0 0 10px yellow;
+}
+
+
+
+.RGBKeyBoardUITransparent{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 7777;
+    pointer-events: none;
+    background-image: url(./image/Share/MK68M.png);
+    background-repeat: no-repeat;
+    transform:translateZ(0);
+
+}
+.Built_inBlock{
+    position: absolute;
+    z-index: 5555;
+    width: 5.5%;
+    height: 15%;
+    background-color: #000000eb;
+    box-sizing: border-box;
+    border-radius: 16%;
+    transform:translateZ(0);
+
+}
+.KeyAssignUIStyle{
+    position: absolute;
+    z-index: 9997;
+    width: 5.5%;
+    height: 15%;
+    background-color: #000000eb;
+    border-style: solid;
+    border-color: rgb(253,183,59);
+    box-sizing: border-box;
+    border-radius: 16%;
+    transform:translateZ(0);
+}
+.RGBColorBlockStyle{
+    position: absolute;
+    z-index: 5555;
+    width: 5.5%;
+    height: 15%;
+    background-color: #000000eb;
+    box-sizing: border-box;
+    border-radius: 16%;
+    transform:translateZ(0);
+}
+.CustomRGBBlock{
+    position: absolute;
+    z-index: 5555;
+    width: 5.5%;
+    height: 15%;
+    background-color: #000000eb;
+    box-sizing: border-box;
+    border-radius: 16%;
+    transform:translateZ(0);
+}
+
+.KBUICommon{
+    position: absolute;
+    left: 3.6%;
+    top: 11%;
+    height: 287px;
+    width: 775px;
+    box-sizing: border-box;
+    transform: scale(1);
+}
+
+#EventCanBoxSelectRange{
+    position: absolute;
+    left: 28%;
+    top: 21%;
+    height: 320px;
+    width: 825px;
+    background: rgba(255, 255, 255, 0);
+}

@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+.sector {
+  display: inline-block;
+  margin: 20px;
+  background: red;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  clip-path: polygon(50% 50%, 0% 0%, 0% 0%);
+  /* clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%); */
+
+  /* animation: sector 4s linear both infinite; */
+  transform: rotate(45deg);
+}
+
+@keyframes sector{
+  from {
+    clip-path: polygon(50% 50%, 0% 0%, 0% 0%);
+  }
+  /* 25% {
+    clip-path: polygon(50% 50%, 0% 0%, 100% 0%);
+  } */
+  /* 25.000001% {
+    clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 0%);
+  }
+  50%{
+    clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 100%);
+  } */
+  /* 50.000001%{
+    clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 100%, 100% 100%);
+  }
+  75%{
+    clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  } */
+  75.000001%{
+    clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%);
+  }
+  to{
+    clip-path: polygon(50% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%);
+  }
+}
+    </style>
+</head>
+
+<body>
+    <div class="sector"></div>
+    <div class="sector" style="border-radius: 0;"></div>
+</body>
+<script>
+
+</script>
+
+
+
+</html>

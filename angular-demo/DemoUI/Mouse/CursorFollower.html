@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Cursor Follower</title>
+<style>
+body {
+  margin: auto;
+  cursor: none;
+}
+
+#mouseOnMe {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: yellow;
+}
+
+#ball {
+  position: absolute;
+  transform: translate(-20px, -20px);
+  width: 40px;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#coords {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+
+
+</style>
+
+
+
+
+<body>
+<div id="mouseOnMe">
+  <div id="ball"></div>
+</div>
+<p id="coords"></p>
+
+
+</body>
+
+
+<script>
+    /* Presetting some values to make my life easier */
+
+var coords = document.getElementById("coords");
+var ball = document.getElementById("ball");
+var moveOnMe = document.getElementById("mouseOnMe");
+
+/* Setting the coordinates of the ball to the cursor position */
+
+moveOnMe.onmousemove = ballCoords;
+
+function ballCoords(mouseEvent) {
+  var xpos;
+  var ypos;
+  
+  if (mouseEvent) {
+    
+    //FireFox
+    xpos = mouseEvent.pageX + "px";
+    ypos = mouseEvent.pageY + "px";
+    
+  } else {
+    
+    //IE
+    xpos = window.event.x + document.body.scrollLeft - 2;
+    ypos = window.event.y + document.body.scrollTop - 2;
+    
+  }
+  
+  coords.innerHTML = xpos + ", " + ypos;
+  ball.style.top = ypos;
+  ball.style.left = xpos;
+}
+
+/* Centering the ball */
+
+var translateX = ball.style.width;
+var translateY = ball.style.height;
+
+ball.style.transform = "translate(" + translateX + ", " + translateY + ")";
+    </script>

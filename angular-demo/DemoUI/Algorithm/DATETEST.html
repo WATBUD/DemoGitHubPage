@@ -1,0 +1,55 @@
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+<p id="demo"></p>
+
+<p id="demo2"></p>
+<script type="text/javascript">
+    Search(-1);
+   function Search(x) {
+       var A = [0, 2, 4, 6, 8, 10, 12, 14];
+
+       var high = 7;
+       var low = 0;
+
+       while (high > low) {
+           var mid = (high + low) / 2;
+           console.log("mid="+mid);
+           console.log(A[mid]);
+           if (A[mid] <= x) {
+               low = mid + 1;
+               console.log("進入1");
+           }
+           else {
+               high = mid;
+               console.log("進入SSSSSSSSSS")
+           }
+       }
+       A.forEach(function (element) {
+           console.log(element);
+       });
+
+       document.getElementById("demo").innerHTML = high;
+       document.getElementById("demo2").innerHTML = A[high];
+       console.log(high);
+       console.log(low);
+       console.log(A[high]);
+       // alert(JSON.parse(A[high]));
+       //alert(A[high]);
+       return A[high];
+ 
+   }
+   
+
+
+
+
+</script>
+<input type="button" onclick="Search(1)" value="顯示今年月日">
+
+
+<!-- <p id="Test"></p>
+<script type="text/javascript">
+    var day2 = new Date();
+    document.getElementById("Test").innerHTML = "今年月日是" + day2.getFullYear() + "年" + (day2.getMonth() + 1) + "月" + day2.getDate() + "日";
+
+</script> -->

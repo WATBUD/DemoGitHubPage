@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HEXConversionJavascript</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="file" id="fileUploader" name="fileUploader" accept=".hex" />
+    <BR>
+</body>
+<script>
+    //var file = new Blob(['hello world']); // your file
+    findSingleValue([2,2,3,3,4,4,5,5,6,6,88,88,99])
+        
+        function findSingleValue(array) {
+            var result = array[0];
+            for (var i = 1; i < array.length; i++) {
+                result = result ^array[i];
+                console.log('%c result', 'color:rgb(255,75,255,1)', result);
+            }
+            console.log('%c findSingleValue', 'color:rgb(255,75,255,1)', result);
+        }
+
+    const reader = new FileReader();
+
+    var fileUploader = document.getElementById("fileUploader");
+    fileUploader.addEventListener("change", function (evt) {
+        var selectedFile = evt.target.files[0]
+        //console.log('%c fileUploader', 'color:rgb(255,75,255,1)', selectedFile);
+
+        
+        // reader.addEventListener("load", () => {
+        //     // this will then display a text file
+        //     //content.innerText = reader.result;
+        //     console.log('%c reader.result', 'color:rgb(255,75,255,1)', reader.result);
+
+        // }, false);
+        // reader.readAsText(selectedFile);
+
+        var fr = new FileReader();
+        fr.addEventListener('load', function () {
+            console.log('%c FileReader', 'color:rgb(255,75,255,1)', fr);
+            var uint16Arraydata = new Int16Array(this.result),
+                zzzzzzzzzzzzzzzz = new Array(uint16Arraydata.length),
+                maxi = uint16Arraydata.length;
+                //console.log('%c uint16Arraydata', 'color:rgb(255,75,255,1)', uint16Arraydata);
+                console.log('%c maxi', 'color:rgb(255,75,255,1)', maxi);
+
+            while (maxi--) // map to hex
+
+            zzzzzzzzzzzzzzzz[maxi] = (uint16Arraydata[maxi] < 16 ? '0' : '') + uint16Arraydata[maxi].toString(16);
+            uint16Arraydata = null; // free memory
+            console.log(zzzzzzzzzzzzzzzz); // work with this
+        });
+        fr.readAsArrayBuffer(selectedFile);
+        // if (file) {
+        //     reader.readAsText(file);
+        // }
+    });
+    function chk8xor(byteArray) {
+            let checksum = 0x00;
+            for (let i = 0; i < byteArray.length - 1; i++)
+                checksum ^= byteArray[i]
+            return checksum;
+    }
+
+
+</script>
+
+</html>

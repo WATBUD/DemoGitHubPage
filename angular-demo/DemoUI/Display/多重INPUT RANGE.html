@@ -1,0 +1,140 @@
+Click_CreateNewColorButton
+<body>
+    <div id="layerRange" class="layerRange">
+        <div id="RGBcircle" style="background: green;" class="circle">
+        </div>
+        <div id="RGBcircle2" style="background: red;" class="circle">
+        </div>
+        <div id="RGBcircle3" style="background: blue;" class="circle">
+        </div>
+    </div>
+</body>
+<meta charset="UTF-8">
+<style type="text/css">
+    body {
+
+        display: block;
+        margin: 0px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+    .layerRange {
+        position: absolute;
+        background-color: rgb(3, 2, 2);
+        width: 670px;
+        height: 20px;
+        left: 20%;
+    }
+
+    .circle {
+        position: absolute;
+        background-color: yellow;
+        width: 5%;
+        height: 100%;
+    }
+</style>
+
+
+<script>
+    var RGBcircleEventArr = [];
+    var mouseOn = false;
+    var layerRange = document.getElementById("layerRange");
+    var targetDisX = 0, targetDisY = 0;;
+    var target;
+    circlecs = document.getElementsByClassName("circle");
+    //var circle = document.getElementById("circle");
+    RGBcircleEventArr[0] = (e) => {
+
+        if (e.buttons !== 1 || e.which !== 1) return;
+        mouseOn = true;
+        console.log("mousedown", mouseOn, e);
+        for (var i = 0; i < circlecs.length; i++) {
+            circlecs[i].style.zIndex = "0";
+        }
+        if(target){
+        target.style.zIndex = "9998";
+        }
+        target = e.target;
+        target.style.zIndex = "9999";
+
+    }
+
+    RGBcircleEventArr[1] = (e) => {
+        if (!mouseOn) return;
+        console.log("mousemove","mousemove_target",e);
+        console.dir(target);
+        var parentDiv = layerRange;
+        if (e.clientX  < parentDiv.offsetLeft) {
+            target.style.marginLeft = 0  + "px";
+            console.log("mousemove_小於左");        }
+        else if (e.clientX +target.offsetWidth>(parentDiv.offsetLeft + parentDiv.offsetWidth)) {
+            target.style.marginLeft = parentDiv.offsetWidth - target.offsetWidth + "px";
+            console.log("mousemove_小於右");
+        }
+        else {
+            target.style.marginLeft = e.clientX - parentDiv.offsetLeft;
+            console.log("mousemove_裡面");
+
+        }
+        var overHeight=parentDiv.offsetTop+parentDiv.offsetHeight;
+
+        if(e.clientY>overHeight){
+            target.style.marginTop=e.clientY-parentDiv.offsetTop+ "px"
+            console.log("overHeight大於",overHeight);
+
+        }
+        else{
+            console.log("overHeight小於",overHeight);
+
+            target.style.marginTop=0+"px"
+        }
+    }
+
+
+
+    RGBcircleEventArr[2] = (e) => {
+        if (!mouseOn) return;
+        //clearEventBubble(e);
+        //layerRange.removeEventListener("mousemove", RGBcircleEventArr[1]);
+        mouseOn = false;
+        console.log("mouseup", mouseOn,target.style.marginTop);
+        if(parseInt(target.style.marginTop)>0){
+            //target.style.marginTop=e.clientY+ "px"
+            target.remove();
+        }
+    }
+
+    for (var i = 0; i < circlecs.length; i++) {
+        circlecs[i].addEventListener("mousedown", RGBcircleEventArr[0]);
+    }
+    layerRange.addEventListener("mousedown", (e) => {
+        console.log("mousedown", e);
+        if(e.target.className=="layerRange"){
+        var createDiv = document.createElement('div');
+        createDiv.classList.add("circle");
+        // createDiv.style.cssText = 'position: absolute;\
+        // background-color: yellow;\ssss
+        // width: 5%;\
+        // height: 100%;';
+        createDiv.id = 'RGBcircle' + circlecs.length;
+        if(e.clientX + (layerRange.offsetWidth*5/100)<layerRange.offsetLeft+layerRange.offsetWidth){
+            console.log("範圍內",parseInt(createDiv.style.width));
+
+        createDiv.style.marginLeft = e.clientX - layerRange.offsetLeft;
+        }
+        else{
+            console.log("範圍外",parseInt(createDiv.style.width));
+
+          createDiv.style.marginLeft = layerRange.offsetWidth-(layerRange.offsetWidth*5/100);
+        }
+
+        e.target.appendChild(createDiv);
+        createDiv.addEventListener("mousedown", RGBcircleEventArr[0]);
+        }
+    });
+    document.addEventListener("mousemove", RGBcircleEventArr[1]);
+    document.addEventListener("mouseup", RGBcircleEventArr[2]);
+</script>

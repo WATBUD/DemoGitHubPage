@@ -1,0 +1,244 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="../jquery.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .TestBG {
+            display: inline-block;
+            border: red;
+            border-width: 50px;
+            padding-left: 20px;
+
+            width: 200px;
+            height: 200px;
+            background: blue;
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+     var myVar;
+
+//alert("start Timeout");
+myVar = setTimeout(function () {
+
+    self.location.reload();
+
+}, 1000);
+
+    
+    </script>
+</head>
+
+<body>
+    <input type="button" value="關閉自動更新" onclick="clearTimeout(myVar);"></inpu>
+    <p>鼠标坐标： <span></span>.</p>
+    <p>點擊時滑鼠左標位于： <span></span>.</p>
+    <div id="ZXD" class="TestBG" style="color: red;">
+        <p></p>
+
+    </div>
+    <p></p>
+    <div id="sliderlayer0" style="z-index: 0;bottom:50px; 
+    position:absolute;background-color: yellow; 
+    width: 1000px;height:20px; color: red;">
+
+    </div>
+    <div id="layer1" style="position:absolute;
+    background-color: blue; z-index: 1;
+    width: 100px;height:20px;bottom:50px; 
+    color: red;">
+
+    </div>
+    <div id="message" style="width: 200px;height: 200px;background-color: yellow;">
+           顏色區:
+    </div>
+
+
+    <div id="SliderValue" style="width: 200px;height: 200px;">
+        ssssssssssssss
+    </div>
+    <input id="num" type="number" name="quantity" min="1" max="5">;
+    <input type="range" name="points" min="0" max="5">
+
+
+
+
+
+
+</body>
+<script type="text/javascript">
+
+    //jquery
+    // $(document).ready(function(){
+    //   $(document).mousemove(function(e){
+    //     $("span").text(e.pageX + ", " + e.pageY);
+    //   });
+    // });
+    //javascript
+
+    let layer0 = document.getElementById("sliderlayer0");
+    let layer1 = document.getElementById("layer1");
+    let numvalue = document.getElementById("num");
+    var TestBGcs = document.getElementsByClassName('TestBG');
+    let spanArr= document.getElementsByTagName("span");
+    var step = 100;
+    let messageui= document.getElementById("message");
+
+
+
+    
+    messageui.innerHTML="目前顏色:"+messageui.style.backgroundColor
+    +"<BR>透明度:"+messageui.style.opacity*10
+    ;
+
+
+  
+    
+    numvalue.addEventListener("change", function() {
+        //alert(numvalue.value);
+        step=numvalue.value;
+        layer1.style.width = (layer0.clientWidth / step);
+    });
+
+    function mouseDownFunction(e) {
+        // document.getElementById("slider").innerHTML += "mouseDownFunction"+"<BR>";
+
+
+        //alert("mouseDownFunction");
+    }
+    function mouseMoveFunction(e) {
+        //document.getElementById("SliderValue").innerHTML = e.pageX + ", " + e.pageY;
+        var inputstepvalue=Math.floor(layer0.clientWidth/100000*parseInt(layer1.style.left));
+        document.getElementById("SliderValue").innerHTML ="目前SLIDER值:"+inputstepvalue;
+        var objlog = {
+            "e.pageX": e.pageX,
+            "layer1.style.width": layer1.style.width,
+            "(e.pageX/100)*layer1.style.width": (e.pageX / 100) * layer1.style.width,
+            "getWidth": getWidth(),
+            "layer1.style.left": layer1.style.left,
+            "layer1.clientWidth": layer1.clientWidth,
+            "layer0.clientWidth": layer0.clientWidth
+        }
+        console.log("mouseMoveFunctionobjlog", objlog);
+        // var posx = e.pageX - (layer1.clientWidth / 2);
+        // var Total = e.pageX + (layer1.clientWidth);
+
+        if (e.pageX < layer0.clientWidth &&e.pageX >layer1.clientWidth) {//1000
+
+            layer1.style.left = e.pageX - (layer1.clientWidth);//high 1000
+        }
+        else if (e.pageX > layer0.clientWidth) {
+            layer1.style.left = layer0.clientWidth - layer1.clientWidth;
+        }
+        else if (e.pageX < 0) {
+            layer1.style.left = 0;
+        }
+
+    }
+
+
+
+    //
+    layer1.addEventListener("mousedown", function (e) {
+        //mouseDownFunction(e);
+
+        document.onmousemove = function (e) {
+            mouseMoveFunction(e);
+        }
+    });
+
+    layer0.addEventListener("mousedown", function (e) {
+            var posmiuns=e.pageX - (layer1.clientWidth / 2);
+            var posadd=e.pageX  +(layer1.clientWidth / 2);
+
+            
+            if(posadd<1000 &&posadd>layer1.clientWidth){
+            layer1.style.left = e.pageX - (layer1.clientWidth / 2);
+            }
+            else if(posadd>1000) {
+                layer1.style.left=layer0.clientWidth-layer1.clientWidth;
+            }
+            else if(posmiuns<0) {
+                layer1.style.left=0;
+            }
+         
+
+
+
+
+            
+            
+
+            //mouseDownFunction(e);
+            var inputstepvalue=Math.floor(layer0.clientWidth/100000*parseInt(layer1.style.left));
+        document.getElementById("SliderValue").innerHTML ="目前SLIDER值:"+inputstepvalue;
+            document.onmousemove = function (e) {
+                mouseMoveFunction(e);
+            }
+        });
+
+
+
+
+
+
+
+
+    document.addEventListener("mousemove", function (e) {
+
+        spanArr[0].innerHTML = e.pageX + ", " + e.pageY;
+    });
+    document.addEventListener("mousedown", function (e) {
+        spanArr[1].innerHTML = e.pageX + ", " + e.pageY;
+    });
+
+    document.addEventListener("mouseup", function (e) {
+
+        document.onmousemove = null;
+        //alert("mouseup");
+    });
+
+
+
+
+
+
+
+
+
+    TestBGcs[0].addEventListener("mousedown", function (e) {
+        TestBGcs[0].innerHTML = "點擊圖片座標：" + e.pageX + ", " + e.pageY;
+
+    });
+
+    for (var i = 0; i < TestBGcs.length; i++) {
+        (function (index) {
+            TestBGcs[index].addEventListener("mousedown", function () {
+                console.log("Clicked index: " + index);
+            })
+        })(i);
+    }
+    function getWidth() {
+        var objlog = {
+            "scrollWidth": document.body.scrollWidth,
+            "body.offsetWidth": document.body.offsetWidth,
+            "documentElement.scrollWidth": document.documentElement.scrollWidth,
+            "documentElement.offsetWidth": document.documentElement.offsetWidth,
+            "documentElement.clientWidth": document.documentElement.clientWidth,
+        }
+        console.log("getWidth", objlog);
+
+    }
+
+
+
+
+</script>
+
+</html>

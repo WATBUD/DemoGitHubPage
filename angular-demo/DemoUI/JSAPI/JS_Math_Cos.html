@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: -webkit-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
+    }
+</style>
+
+<head>
+    <title>Example</title>
+    <div id="ShowMessage">
+
+    </div>
+    <input type="number" id="inputText1"  max="2000" min="1" step="1"
+        onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))">Math.cos(X)</input>
+
+
+    <input type="number" id="inputText2" max="2000" min="1" step="1"
+        onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))">Math.cos(Y)</input>
+
+    <!-- <input type="checkbox" id="all">顯示全部燈效</input>
+    <input type="checkbox" id="draw">停止繪圖、維持計算、然後你可以測CPU rate</input> -->
+
+</head>
+
+<body>
+</body>
+<script>
+    document.addEventListener('mousedown', function (event) {
+        //console.log(event);
+    });
+    document.addEventListener('keydown', function (event) {
+        //console.log(event,event.type);
+    });
+    document.getElementById('inputText1').onchange = function (e) {
+        document.getElementById('ShowMessage').innerHTML="";
+        var elementValue = parseFloat(document.getElementById('inputText1').value);
+
+        //var atan21 = parseFloat(document.getElementById('inputText2').value);
+        //console.log('atan2Value',typeof atan20,typeof atan21);
+        if(isNaN(elementValue)) return;
+        for (let index = 0; index < 1080; index++) {
+            var result = Math.cos(elementValue+index);
+            document.getElementById('ShowMessage').innerHTML += "Math.cos("+(elementValue+index)+")="+result+"<BR>";
+        }
+    };
+
+    function getCircleX(radians, radius) {
+    return Math.cos(radians) * radius;
+    }
+    class accc {
+        constructor(b) {
+            b[0] = 10000;
+            console.log(aaaa);
+
+        }
+        s(b) {
+            b[0] = 10000;
+            console.log(aaaa);
+        }
+    }
+    var aaaa = [5, 3, 2, 1];
+    var z = new accc(aaaa);
+    //document.getElementById('ShowMessage').innerHTML="TextMassage";
+
+</script>
+
+</html>

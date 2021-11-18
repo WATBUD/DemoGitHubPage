@@ -1,0 +1,42 @@
+<p>try pressing some keys.
+
+  <input name="ClearMessage" type="button" id="ClearMessage" value="ClearMessage" >
+  
+
+</p>
+<div id="log"></div>
+<script>
+//document.addEventListener('keydown', logKey(e));
+
+window.addEventListener("contextmenu", function(e) { e.preventDefault(); })
+document.addEventListener('mousedown', logMouseDown);
+
+document.getElementById('ClearMessage').addEventListener('click', (event) => {
+  console.log('ClearMessage',event);
+  log.innerHTML='';
+});
+
+//log.innerHTML ="Direct";
+document.addEventListener('keydown',function logKey(e) {
+  if(e.code!="F5" && e.code!="F12"){
+    event.preventDefault();
+    //event.stopPropagation();
+  }
+  //log.textContent += ` ${e.code}`+"\n";
+  //console.dir(e);
+  //log.innerHTML += JSON.stringify(e);
+  //JSON.parse(JSON.stringify(e));
+  console.log(e);
+  log.innerHTML += ` ${"e.code:"+e.code}`+"/e.keyCode:"+e.keyCode+"/e.key:"+e.key+"/e.which:"+e.which+"/e.location:"+e.location+"<BR>";
+  //event.stopPropagation();
+
+});
+function logMouseDown(e) {
+  event.preventDefault();
+  event.stopPropagation();
+  console.log(e);
+  log.innerHTML += ` ${"e.buttons:"+e.buttons}`+"/e.button:"+e.button+"/e.ctrlKey:"+e.ctrlKey+"/e.which:"+e.which+"/e.detail:"+e.detail+"<BR>";
+}
+
+
+</script>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>客戶區可見範圍限制拖拽</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #parentDiv {
+            width: 500px;
+            height: 500px;
+            background: orange;
+            position: absolute;
+            left: 100px;
+            top: 30px;
+        }
+
+        #circle {
+            width: 5%;
+            height: 5%;
+            background: transparent;
+            position: absolute;
+            border: 1px solid blue;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parentDiv">
+        <div id="circle">
+
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        var parentDiv = document.getElementById('parentDiv');
+        var circleDiv = document.getElementById('circle');
+        function getStyle(obj, attr) {
+            if (obj.currentStyle) {
+                return obj.currentStyle[attr];  
+            } else {
+                return getComputedStyle(obj, null)[attr];
+            }
+        }
+        circleDiv.onmousedown = (ev)=> {
+            var oEvent = ev || event;
+            // var disX = oEvent.clientX - circleDiv.offsetLeft;
+            // var disY = oEvent.clientY - circleDiv.offsetTop;
+            var disX = oEvent.clientX - parseInt(getStyle(circleDiv, 'left'));
+            var disY = oEvent.clientY - parseInt(getStyle(circleDiv, 'top'));
+            document.onmousemove = function (ev) {
+                var oEvent = ev || event;
+                var resultleft = oEvent.clientX - disX;
+                var resultTop = oEvent.clientY - disY;
+                if (resultleft < 0) {
+                    resultleft = 0;
+                } else if (resultleft > parentDiv.offsetWidth - /*parseInt(getStyle(circleDiv,'width'))*/circleDiv.offsetWidth) {
+                    resultleft = parentDiv.offsetWidth - circleDiv.offsetWidth;
+                }
+                if (resultTop < 0) {
+                    resultTop = 0;
+                } else if (resultTop > parentDiv.offsetHeight - circleDiv.offsetHeight) {
+                    resultTop = parentDiv.offsetHeight - circleDiv.offsetHeight;
+                }
+                circleDiv.style.left = resultleft + 'px';
+                circleDiv.style.top = resultTop + 'px';
+            };
+            document.onmouseup = function () {
+                document.onmousemove = null;//如果不取消，滑鼠彈起div依舊會隨著滑鼠移動
+                //document.onmouseup = null;
+            };
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <title>LoadingAnimation1</title>        
+        <style>  
+            body {  
+                width:100%; 
+                height:100%;
+                position: absolute;
+                overflow: hidden;  
+                margin:0px
+            }
+            #loading {
+                background: black;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2;
+            }
+            
+            .loadingImage {
+                position: relative;
+                width: 30px;
+                height: 30px;
+                background: #2e98df;
+                border-radius: 50px;
+                animation: loadingImage 1.5s infinite linear;/*speed*/
+            }
+
+            .loadingImage::after {/*外圈*/
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                border-top: 10px solid yellow;
+                border-bottom: 10px solid blue;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-radius: 50px;
+                content: '';
+                top: -20px;
+                left: -20px;
+                /* animation: loadingImage_after 10.5s infinite linear; */
+            }
+
+            @keyframes loadingImage {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                50% {
+                    transform: rotate(180deg);
+                    background: #2ecc71;
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes loadingImage_after {
+                0% {
+                    border-top: 10px solid red;
+                    border-bottom: 10px solid red;
+                }
+
+                50% {
+                    border-top: 10px solid #dfa72e;
+                    border-bottom: 10px solid #dfa72e;
+                }
+
+                100% {
+                    border-top: 10px solid #131111;
+                    border-bottom: 10px solid #131111;
+                }
+            }
+        </style>  
+    </head>
+    <script>
+    </script>
+    <body>   
+        <div id="loading">
+            <div class="loadingImage"></div>
+        </div>    
+    </body>
+</html>

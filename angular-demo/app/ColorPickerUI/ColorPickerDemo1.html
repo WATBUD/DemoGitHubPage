@@ -1,0 +1,39 @@
+   <div *ngIf="this.CurrentPageName=='LIGHTINGSETTING'"
+      [style.display]="this.M_Light_APMode.getTarget().name != 'Fire'?'block': 'none'" id="color-picker-container">
+      <div id="LedColorPickingArea" class="PickingArea" [style.background-color]="LedColor.gradientBGcolor">
+         <div id="LedColorCircle" class="circle">
+         </div>
+
+      </div>
+      <input id="ColorSliderH" type="range" min="0" max="359" step="1" [(ngModel)]="LedColor.Hue"
+         (ngModelChange)='LedColorhueChange()'>
+      <div id="color_RGBADiv">
+         <div id="RGBA_Red" class="RGBATextStyle">
+            R:
+            <input class="color_quantity" type="number" max="255" min="0"
+               [(ngModel)]="LedColor.RGBA_value[0]" (blur)="updateLedColorRGB()">
+         </div>
+         <div id="RGBA_Green" class="RGBATextStyle">
+            G:
+            <input class="color_quantity" type="number" max="255" min="0"
+               [(ngModel)]="LedColor.RGBA_value[1]" (blur)="updateLedColorRGB()"
+               onkeyup="value=value.replace(/[^\d]/g,'');if(value>255){value=255};if(value<1){value=0}">
+         </div>
+         <div id="RGBA_Blue" class="RGBATextStyle">
+            B:
+            <input class="color_quantity" type="number" max="255" min="0"
+               [(ngModel)]="LedColor.RGBA_value[2]" (blur)="updateLedColorRGB()"
+               onkeyup="value=value.replace(/[^\d]/g,'');if(value>255){value=255};if(value<1){value=0}">
+         </div>
+      </div>
+
+      <div class="colorBaseList">
+         <div *ngFor="let item of M_Light_APMode.getTarget().colors ;let i = index" class="colorBase"
+            (click)="LedColor.onclickColorDefault($event.target,i)" id="colorBase{{i}}"
+            [style.background-color]="M_Light_APMode.getTarget().colors[i]">
+         </div>
+      </div>
+
+
+   </div>
+

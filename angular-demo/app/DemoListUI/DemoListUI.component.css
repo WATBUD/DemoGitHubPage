@@ -1,0 +1,118 @@
+
+li:hover {
+    color: green;
+}
+li:active {
+    color: red;
+}
+li{
+    color: blue;
+    margin: 10px 0;
+}
+:host{
+    margin-top: 3vh;
+}
+/* ul{
+    color: blue;
+    padding: 0px;
+} */
+
+  /* .b{
+    counter-reset:Listt1;
+  }
+  .a::before{
+    content:counters(Listt1, ".") "：...........";
+    counter-increment:Listt1; 
+  } */
+  /* div{
+    margin-left:10px;
+  } */
+
+.list-group:active {
+    background: rgb(34 131 177 / 0%);
+    /* display: block; */
+}
+
+.list-group {
+    margin-top: 20px;
+    background: rgb(34 131 177 / 0%);
+}
+
+/* .btn-toggle::before {
+    display:block;
+    content:'';
+    border-width:8px 8px 8px 8px;
+    border-style:solid;
+    border-color:transparent transparent #ff4d4d transparent;
+    position:absolute;
+    left:40%;
+    top:-16px;
+} */
+
+
+/* .btn-toggle::after{
+    display: block;
+    content: '';
+    border-width: 8px 8px 8px 8px;
+    border-style: solid;
+    border-color:  rgb(0 0 0 / 0%) rgb(0 0 0 / 0%) rgb(0 0 0 / 0%) rgb(255 77 77);
+    left: -20px;
+    top: 0%;
+} */
+.toggleBtn{
+    background: rgb(137 113 145 / 86%);
+    color: rgb(255 255 255);
+    border-radius: 8px;
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: all 4s linear;
+}
+.btn-toggle + .toggleBtn::after{
+    display: block;
+    content: '';
+    border-width: 8px 8px 8px 8px;
+    border-style: solid;
+    border-color: rgb(0 0 0 / 0%) rgb(0 0 0 / 0%) rgb(0 0 0 / 0%) rgb(0 77 255);
+    margin-left: 7px;
+    transition: all 0.2s linear;
+}
+.btn-toggle:checked + .toggleBtn::after{
+    display: block;
+    content: '';
+    border-width: 8px 8px 8px 8px;
+    border-style: solid;
+    border-color: rgb(0 77 255) rgb(0 0 0 / 0%) rgb(0 0 0 / 0%) rgb(0 0 0 / 0%);
+    margin-top: 9px;
+    transition: all 0.2s linear;
+}
+
+.btn-toggle{
+    margin: 0;
+     appearance: none; 
+     display: none;
+}
+.btn-toggle ~ ul{
+    margin: 0;
+    height: 0px;
+    /* transition: all 6s linear; */
+    overflow: hidden;
+}
+.btn-toggle:checked ~ ul{
+    /* display: block; */
+    /* width: 200px; */
+    margin: 0;
+    overflow: hidden;
+    height: auto;
+    
+    /* transition: all 6s linear; */
+}
+
+
+
+
+
+

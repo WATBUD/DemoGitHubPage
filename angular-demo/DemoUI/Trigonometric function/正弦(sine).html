@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<head>
+
+<title>正弦 弧度 = 角度 × π / 180</title>
+
+<script type="text/javascript">
+
+  function draw(id)
+
+  {
+
+     var canvas=document.getElementById(id);
+
+     if (canvas==null)
+
+        return false;
+
+     var context=canvas.getContext('2d');
+
+     context.fillStyle="#EEEEFF";
+
+     context.fillRect(0,0,1200,1200);
+     //context.moveTo(200,200);
+
+     context.strokeStyle="red";
+
+     context.lineWidth=5;
+     var dig=Math.PI/90;
+     var degree=0;
+     //var dig=Math.PI/90;
+     var repeatCount=0;
+     var record = 0;
+     context.beginPath();
+
+     //T_();
+
+     this.repeater = setInterval(() => {
+      
+   //   for (let i_xpos = 0; i_xpos < 834; i_xpos++) {
+   //         var y = (Math.sin(i_xpos * Math.PI / 180) + 1) / 2;
+   //         var h = y * 372;
+   //         context.lineTo(i_xpos, h);
+   //         //console.log(i_xpos, h);
+   //   }
+      // context.clearRect();
+      // context.fillRect(0,0,1200,1200);
+      //   for (let i_xpos = 0; i_xpos < 834; i_xpos++) {
+      //      var y = (Math.sin(i_xpos * Math.PI / 180) + 1) / 2;
+      //      var h = y * 372;
+      //      context.lineTo(i_xpos, h);
+      //      //console.log(i_xpos, h);
+      //   }
+        if (record <= -0.9 || record >= 0.9) {
+           repeatCount += 1;
+        }
+        if (repeatCount % 2 == 0) {
+           record -= 0.01;
+        }
+        else {
+           record += 0.01;
+        }
+        T_();
+     }, 50);
+
+     function T_() {
+      //context.restore();
+      context.clearRect(0, 0, 1200, 1200);
+      context.beginPath();
+      context.fillRect(0,0,1200,1200);
+
+        for (let x = 0; x < 834; x++) { 
+           const radians = record+2*x / 834 * Math.PI * 2 
+           //const scale = (Math.sin(radians - Math.PI * 0.5) + 1) * 0.5 
+           const scale =1
+
+           const h = (Math.sin(x * record)+1/2) * 1 * scale*372
+           context.lineTo(x, h);
+         }
+
+      //   for (let i_xpos = 0; i_xpos < 834; i_xpos++) {
+      //      var y = (Math.sin(record*i_xpos * Math.PI / 180) + 1) / 2;
+      //      var h = y * 372;
+      //      context.lineTo(i_xpos, h);
+      //      //console.log(i_xpos, h);
+      //   }
+        context.stroke();
+     }
+
+
+   //   for (var x=0;x<180;x+=1)
+   //   {
+   //    //Math.PI*你的角度/180.0
+
+   //       y=350-180*Math.sin(Math.PI*x/180);//0~360*
+
+
+   //       //y=350-Math.sin(x/100)*350;//0~360*
+   //       //y=500-(Math.sin(x)*500);//0~360*
+
+   //      //console.log('Math.sin='+x,y,Math.sin(x));
+   //      console.log('Math.sin='+x,Math.sin(Math.PI*x/180));
+
+
+   //       //y=500-(Math.sin(x/20)*360);//0~360*
+
+   //       //y=500-(Math.sin(x/20)*360);//0~360*
+   //       //y=150-120*Math.cos(x*dig);//0~360
+   //       //y=150-120*Math.tan(x*dig);//0~360
+   //       if (x==0)
+   //       {
+
+   //          context.moveTo(x,y);
+
+   //        }
+   //       else
+   //          context.lineTo(x,y);
+   //   }
+
+
+
+   }
+
+</script>
+
+</head>
+
+<body onload="draw('myCanvas');">
+
+<canvas style="margin-left: 150px;margin-top:300px;" id="myCanvas" width="1200" height="1200"></canvas>
+
+</body>
+
+</html>

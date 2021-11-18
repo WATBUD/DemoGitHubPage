@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="show">客制化10進制</div>
+</body>
+<script>    
+// 485/8=60........5               1000/8=125...0
+// 60/8=7........4                 125/8=15 ....5
+// 7/8=0........7                  15/8=1   .... 7
+//                                   7/8=0   ...1
+//80/8 10..0 1..2 0..1 
+//12/16 0 ..12=c
+//6..0 3..0 1..1 0..1 
+//1100
+var BanNumber=16;
+var Target=80;
+var remainArr=[];
+
+    for (let index = Target; index > 0; index = Target) {
+
+        var remain = Target % BanNumber;
+        Target = Math.round(Target / BanNumber);//取整數
+        remainArr.push(remain);
+        document.getElementById("show").innerHTML += "<BR>商=" + Target + " 餘數=_" + remain;
+
+    }
+    document.getElementById("show").innerHTML += "<BR>" + remainArr;
+    var result = '';
+    for (let index = remainArr.length - 1; index >= 0; index--) {
+        result += "" + remainArr[index]
+
+    }
+    document.getElementById("show").innerHTML += "<BR>10進制轉"+BanNumber+"進制結果為" + result;
+
+
+</script>
+
+</html>

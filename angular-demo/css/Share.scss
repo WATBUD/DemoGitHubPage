@@ -1,0 +1,270 @@
+
+
+
+/*#region Select*/
+.SelectTemplate {
+    position: absolute;
+    height: 68vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 14.5vh;
+    width: 21.3vw;
+    background-size: 100% 100%;
+    background: transparent;
+
+}
+
+
+.SelectTemplate ::-webkit-scrollbar-track {
+    /* border: 1px solid red;*/
+    background-repeat: no-repeat;
+}
+.SelectTemplate::-webkit-scrollbar-thumb {
+    // border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);/* border: 1px solid yellow; */
+    background-repeat: no-repeat;
+    background-color: rgb(42, 42, 42);
+};
+
+.SelectTemplate::-webkit-scrollbar {
+    width: 15px;
+}
+.SelectTemplate::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url('/image/ColorSet/UpArrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.SelectTemplate::-webkit-scrollbar-button:vertical:increment {
+    background-image: url('/image/ColorSet/DownArrow.png');
+
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#backHome{
+    position: absolute;
+    height: 58px;
+    width: 260px;
+    margin-left: 5vw;
+    margin-top: 2.1vh;
+}
+
+/*#endregion Select*/
+
+
+
+#LedAdjustable {
+    overflow-y: scroll;
+    height: 80%;
+    width: 35%;
+    margin-top: 8.8%;
+}
+
+#LedAdjustable::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(42, 42, 42);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+#LedAdjustable::-webkit-scrollbar {
+    width: 15px;      
+}
+
+.InputObjectBlock {
+height: 21px;
+width: 261px;
+margin-top: 2%;
+display: FLEX;
+align-items: center;
+}
+
+
+// .InputObjectBlock input[type="checkbox"]{
+//     display: inline-flex;
+//     width:1.5vh;
+//     height: 1.5vh;
+//     border: 2px solid #FFF;
+// }
+
+
+// .InputObjectBlock input[type="checkbox"]:checked {
+//     background: yellow;
+// }
+#CRUD{
+        z-index: 9991;
+        position: absolute;
+        left: 26.4vw;
+        width: 1.6vw;
+        margin-top: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-repeat: repeat;
+        background-size: 100% 100%;
+        // border: 2px solid #e8e6e5;
+        // height: 10vh;
+        height: auto;        
+        /* background: red; */
+}
+#CRUD .ItemClass{
+    width: 12px;
+    height: 12px;
+    background-repeat: repeat;
+    margin-top: 1vh;
+    /* background: red; */
+}
+
+.InputObjectBlock .ClassName{
+    width: 31%;
+    margin-left: 6%;
+    color: rgb(255,87,0);
+}
+
+.LedInputTxtStyle{
+    width: 18%;
+    height: 100%;
+    padding: 0;
+    text-align: center;
+    color: white;
+    background-color: #000;
+    box-sizing: border-box;
+    border: 1px #0000 solid;
+}
+input[type="range"].LedOptionInputRange {
+    -webkit-appearance: none;
+    // background: -webkit-linear-gradient(#2e9cfb, #2e9cfb) no-repeat, rgb(42, 42, 42);
+    background: rgb(112,112,112);
+    background-size: 0 100%;
+    width: 42.5%;
+    height: 38%;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+/* 去除獲取焦點時的邊框 */
+input[type="range"].LedOptionInputRange:focus {
+    outline: none;
+}
+
+/* chrome自定義滑動軌道 */
+input[type="range"].LedOptionInputRange::-webkit-slider-runnable-track {
+    // height: 10px;
+    /* border-radius: 15px; */
+    /* background-color: rgb(47, 0, 255); */
+    height: 250%;
+}
+
+/* chrome自定義滑塊 */
+input[type="range"].LedOptionInputRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.6vh;
+    height: 1.6vh;
+    margin-top: 4px;
+    background: rgb(255, 0, 0);
+    border-radius: 50%;
+    // transform: translateY(-2px);
+}
+
+.dragableArea{
+    position: absolute;
+    height: 51px;
+    width: 72%; 
+    margin-left: 10vw;
+    /* margin-left: 5%; */
+    /* margin-right: 5%; */
+    -webkit-app-region: drag;
+    background-color: #f00;
+}
+.color_quantity{
+    height: 100%;
+    width: 39%;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px rgba(0, 0, 0, 0) solid;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.ShareOptionStyle{
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+.NowSelected{
+    width: 100%;
+    height: auto;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    // box-shadow: rgb(22, 22, 22) 3px 3px 10px;
+    flex-direction: column;
+    align-items: center;
+
+}
+.Selected_item{
+    width: 100%;
+    display: flex;height: 56px;
+    text-align: center;
+    box-sizing: border-box;
+    align-items: center;
+    text-indent: 24.3px;
+}
+
+.ItemList{
+    width: 100%;
+    height: auto;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    box-shadow: rgb(22, 22, 22) 3px 3px 10px;
+    flex-direction: column;
+    background: #E0DFD6;
+    align-items: center;
+}
+.BottomArea{
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 54vh;
+    height: 27.9vh;
+    width: 63.7vw;
+    background-size: 100% 100%;
+}
+
+
+.mainStyleBackround{
+    background: rgb(29, 29, 29);
+}
+
+.mainStyleColor{
+    color: rgba(120, 120, 120,1);
+}
+
+input {
+    color:rgba(120, 120, 120,1);
+    background: rgb(29, 29, 29);
+}
+
+
+
+#TitleCH{
+    position: absolute;
+    height: 27px;
+    width: 37vw;
+    margin-left: 28.6%;
+    line-height: 23px;
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.CenterAlignment{
+    display: flex;
+    justify-items: center;
+    align-content: center;
+}

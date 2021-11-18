@@ -1,0 +1,82 @@
+input.KeyAssignUIStyle:focus {
+    outline: none !important;
+    border: 2px solid #ffc757;
+    border-radius: 10px;
+}
+
+.KeyAssignUIStyle {
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 43px;
+    height: 11%;
+    float: left;
+    margin-top: 0.3%;
+    margin-left: 0.3%;
+    padding: 0;
+    background-color: #0000;
+    box-sizing: border-box;
+    border-radius: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 4;
+}
+
+.KeyAssignHasValue {
+    background: red;
+    width: 60%;
+    height: 15%;
+    margin-bottom: 10px;
+    pointer-events: none;
+}
+
+.RGBColorBlockStyle {
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 43px;
+    height: 11%;
+    float: left;
+    margin-top: 0.3%;
+    margin-left: 0.3%;
+    padding: 0;
+    background-color: #0000;
+    box-sizing: border-box;
+    border-radius: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.RGBColorBlockP7 {
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 6.3%;
+    height: 19%;
+    float: left;
+    margin-top: 0.3%;
+    margin-left: 0.3%;
+    padding: 0;
+    background-color: #0000;
+    box-sizing: border-box;
+    border-radius: 16%;
+}
+
+.KBUICommon {
+    position: absolute;
+    left: 2.6%;
+    top: 3%;
+    height: 292px;
+    width: 757px;
+    /* border: 2px solid red; */
+    box-sizing: border-box;
+    transform: scale(1);
+}
+
+.EventCanBoxSelectRange {
+    position: absolute;
+    left: 28%;
+    top: 21%;
+    height: 320px;
+    width: 825px;
+    background: rgba(255, 255, 255, 0);
+}

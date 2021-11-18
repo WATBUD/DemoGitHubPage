@@ -1,0 +1,40 @@
+
+:host{
+    width: 100%;height:100%;
+    background-color: #45c1a6;
+    opacity: 0.8;
+    background-image:  linear-gradient(#cd1ef9 1px, transparent 1px), linear-gradient(to right, #cd1ef9 1px, #45c1a6 1px);
+    background-size: 20px 20px;
+    margin-top: 3vh;
+}
+
+.KeyboardPageScroll{
+    overflow: auto;
+    display: none;
+}
+
+.KeyboardPageScroll ::-webkit-scrollbar-track {
+    /* border: 1px solid red;*/
+    background-repeat: no-repeat;
+}
+.KeyboardPageScroll::-webkit-scrollbar-thumb {
+    /* border-radius: 10px; */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);/* border: 1px solid yellow; */
+    background-repeat: no-repeat;
+    background-color: rgb(42, 42, 42);
+}
+.KeyboardPageScroll::-webkit-scrollbar {
+    width: 15px;
+    display: none;
+}
+.KeyboardPageScroll::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url('/image/ColorSet/UpArrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.KeyboardPageScroll::-webkit-scrollbar-button:vertical:increment {
+    background-image: url('/image/ColorSet/DownArrow.png');
+
+    background-repeat: no-repeat;
+    background-position: center;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    .droptarget {
+      float: left;
+      width: 100px;
+      height: 35px;
+      margin: 15px;
+      padding: 10px;
+      border: 1px solid #aaaaaa;
+      background: red;
+    }
+  </style>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+</head>
+
+<body>
+
+  <p>Drag the p element back and forth between the two rectangles:</p>
+
+  <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" onmouseover="allowDrop()">
+    <p ondragstart="dragStart(event)" ondragend="dragEnd(event)" draggable="true" id="dragtarget">Drag me!</p>
+  </div>
+
+  <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" onmouseover="allowDrop()"></div>
+
+  <p style="clear:both;">
+    <strong>Note:
+
+    </strong> drag events are not supported in Internet Explorer 8 and earlier versions or Safari 5.1 and earlier
+    versions.
+  </p>
+
+  <p id="demo"></p>
+
+  <script>
+    function dragStart(event) {
+      event.dataTransfer.setData("Text", event.target.id);//set variable 
+      document.getElementById("demo").innerHTML = "Started to drag the p element";//set text status 
+    }
+
+    function dragEnd(event) {
+      document.getElementById("demo").innerHTML = "Finished dragging the p element.";//set text status 
+
+    }
+
+    function allowDrop(event) {
+      event.preventDefault();//evevt set bull
+    }
+
+    function drop(event) {
+      //event.preventDefault();//Set the event to be empty
+      var data = event.dataTransfer.getData("Text");//get variable
+
+      //console.log('%c drop','backgroud:red',data);
+      console.log('%c drop', 'background: red; color: white', data);
+
+      event.target.appendChild(document.getElementById(data));//clone from dataTransfer using appendchild
+    }
+  </script>
+
+</body>
+
+</html>

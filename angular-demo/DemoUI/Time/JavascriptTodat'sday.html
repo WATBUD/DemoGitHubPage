@@ -1,0 +1,21 @@
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript">
+    function showtoday(){
+    var day=new Date();
+    alert("今年月日是"+day.getFullYear()+"年"+(day.getMonth()+1)+"月"+day.getDate()+"日");
+    
+    }
+    
+    
+    </script>
+    
+    <input type="button" onclick="showtoday()" value="顯示今年月日">
+    
+    
+    <p id="Test"></p>
+    <script type="text/javascript">
+    var day2=new Date();
+    document.getElementById("Test").innerHTML="今年月日是"+day2.getFullYear()+"年"+(day2.getMonth()+1)+"月"+day2.getDate()+"日";
+    
+    </script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>測試</title>
+
+    <head>
+
+    <body>
+        <input name="按鈕" type="button" onClick="clic()" value="按鈕"></input>
+        <div id="content">
+        </div>
+        <script type="text/javascript">
+            // document.getElementById("content").innerHTML +="<input name='tt'></input>";
+
+            clic();
+            function clic() {
+                var bs = document.getElementsByTagName("input");
+                for (var i = 0; i < bs.length; i++) {
+                    var b = bs[i]; b.setAttribute("aaa", i);
+                    b.onclick = function () {
+                        var s = confirm("我是" + this.getAttribute("aaa") + "號按鈕,是否生成新按鈕");
+                        if (s) {
+                            document.getElementById("content").innerHTML += "</br><input name='按鈕' type='button' onClick='clic()' value='按鈕'><//input>";
+                            clic();
+
+                        }
+                    };
+
+
+                }
+
+            }
+        </script>
+    </body>
+
+</html> 小細節:1:在js程式碼裡要手動掉一次clic方法。不然第一個按鈕點兩次才有反應。2:innerHtml裡面對於“ " ”和“/”要進行轉義。

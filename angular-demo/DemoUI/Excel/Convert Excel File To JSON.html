@@ -1,0 +1,123 @@
+<html>
+<title> Convert Excel File To JSON </title>
+<meta charset="utf-8">
+
+<head>
+    <!-- <script src="../../jquery-3.4.1.min.js"></script> -->
+    <script src="xlsx.core.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script> -->
+
+</head>
+
+<body>
+    <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx" />
+    <button type="button" onclick="copyEvent('jsonObject')" class="ButtonStyle">Copy</button>
+    </br></br>
+    <label id="jsonObject"> </label>
+</body>
+<script>
+    window.onload = function () {
+        // $(document).ready(function () {
+        var fileUploader = document.getElementById("fileUploader");
+        fileUploader.addEventListener("change", function (evt) {
+            // $("#fileUploader").change(function (evt)      
+            var selectedFile = evt.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var data = event.target.result;
+                var workbook = XLSX.read(data, {
+                    type: 'binary'
+                });
+                workbook.SheetNames.forEach(function (sheetName) {
+                    var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                    console.log("XL_row_object=", XL_row_object);
+
+                    if (XL_row_object.length > 0) {
+                        let processArr = {};
+                        for (let index = 0; index < XL_row_object.length; index++) {
+                            const element = XL_row_object[index];
+                            //processArr.push(element['參數名稱']);
+                            // var T = [];
+                            // T.push(element.EN);
+                            // T.push(element.DE);
+                            // T.push(element.CN);
+
+                            for (const [key, value] of Object.entries(element)) {
+                                //element.style.width = '100px'
+                                try {
+                                    if (value.includes("[")) {
+                                        console.log('%c key', 'background: blue; color: red', key);
+                                        console.log('%c value', 'background: blue; color: red', value);
+                                        console.log('%c element[key]', 'background: blue; color: red', element[key]);
+                                        element[key] = JSON.parse(element[key]);
+                                        //return;
+                                    }
+                                }
+                                catch (error) {
+                                    console.log('%c key_value.includes("["', 'background: blue; color: red', key);
+                                    console.log('%c value', 'background: blue; color: red', value);
+                                    console.log('%c element[key]', 'background: blue; color: red', element[key]);
+                                    //return;
+                                }
+                            }
+
+                            // if(element.EN.includes("[")){
+                            //     console.log("element.EN",element.EN.toString());
+                            //     element.EN=JSON.parse(element.EN.toString());
+                            // }
+                            var field = Object.keys(element);
+                            console.log('splice_field', field);
+
+                            delete field.splice(0, 1); field[0];
+                            //delete field.splice(field.length-1,1);
+                            // console.log('key', key,'value', value);
+
+                            //console.log('element',element);
+                            var temp_obj = {};
+                            for (let index = 0; index < field.length; index++) {
+                                var type = field[index];
+                                try {
+                                    temp_obj[type] = element[type];
+
+                                }
+                                catch{
+                                    console.log('%c field_lose', 'background: blue; color: red', temp_obj, element, type);
+                                }
+                            }
+
+                            //delete T.參數名稱;
+                            processArr[element['參數名稱']] = temp_obj;
+                            //console.log("processArr=>processArr[element['參數名稱']] ", JSON.stringify(processArr[element['參數名稱']]));
+
+                            //element['參數名稱']=
+                        }
+
+                        //let processArrPackage = new Array();
+
+                        //processArrPackage.push(processArr);
+                        console.log("processArr=>", processArr);
+                        console.log("processArr=>", JSON.stringify(processArr));
+                        //document.getElementById("jsonObject").innerHTML = JSON.stringify(XL_row_object);
+
+                        document.getElementById("jsonObject").innerText = JSON.stringify(processArr);
+
+                    }
+                })
+            };
+            reader.onerror = function (event) {
+                console.error("File could not be read! Code " + event.target.error.code);
+            };
+            // 讀取上傳文件為二進制
+            reader.readAsBinaryString(selectedFile);
+        });
+    }
+            
+        
+    function copyEvent(id) {
+        var str = document.getElementById(id);
+        window.getSelection().selectAllChildren(str);
+        document.execCommand("Copy");
+    }
+
+</script>

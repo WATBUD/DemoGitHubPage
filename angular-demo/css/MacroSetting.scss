@@ -1,0 +1,26 @@
+#MacroSetting {
+    position: absolute;
+    height: 28.3vh;
+    margin-top: 52vh;
+    width: 21.3vw;
+
+}
+#MacroSetting #FileName{
+    position: absolute;
+    background-color: rgb(200, 200, 200);
+    color: rgb(29, 29, 29);
+    border: 1.4px solid rgb(30, 30, 30);
+    line-height: 21px;
+    top: 14%;
+    left: 3.5%;
+    width: 80%;
+}
+.MacroClassTitle{
+    position: absolute;
+    height: 4.7vh;
+    width: 21.3vw;
+    margin-top: 13vh;
+    /* background: red; */
+    display: flex;
+    align-items: center;
+}

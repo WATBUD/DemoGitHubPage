@@ -1,0 +1,281 @@
+腳本錄製時間軸
+<meta charset="UTF-8">
+<style type="text/css">
+    body {
+
+        display: block;
+        margin: 0px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+    .layerRange {
+        position: absolute;
+        background-color: red;
+        width: 600px;
+        height: 200px;
+        left: 200px;
+        overflow: auto;
+    }
+
+    .circle {
+        background-color: yellow;
+        width: 0%;
+        height: 20px;
+        pointer-events: none;
+    }
+
+    .MarcoList {
+        background-color: #2452a5;
+        width: 100%;
+        height: 20px;
+        background: transparent;
+
+    }
+    ::-webkit-scrollbar {
+    height: 20px;
+    width: 12px;
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #393812;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+    background: #000;
+}
+    #LeftNameList::-webkit-scrollbar {
+        display: none;
+    }
+    #layerRange::-webkit-scrollbar {
+        height: 19px;
+    width: 12px;
+    background: #000;
+    }
+
+</style>
+
+<body>
+    <!-- x: <span id="x">
+    </span>, y: <span id="y"></span> -->
+
+    <input id="StartRecord" type="button" value="StartRecord" style="background-repeat: no-repeat;border: none;color: FFF;
+    width: 74px;font-size: 12px;height: 26px;padding: 7px;box-sizing: border-box;background-color: #4C4C4C;">
+
+
+    <input id="StopRecord" type="button" value="StopRecord" style="background-repeat: no-repeat;border: none;color: FFF;
+width: 74px;font-size: 12px;height: 26px;padding: 7px;box-sizing: border-box;background-color: #4C4C4C;">
+
+<div id="ScrollList" style="">
+
+    <div id="LeftNameList" style="position: absolute;
+    background-color: #3300ff3d;
+    width: 190px;
+    height: 180px;
+    left: 10px;
+    z-index: 9999;
+    overflow-y: auto;">
+    </div>
+    <div id="layerRange" class="layerRange">
+
+    </div>
+</div>
+
+
+</body>
+
+
+
+<script>
+
+
+
+    
+    class MacroAnimationModel {
+        parent = "";
+        target = "";
+        key = "";
+        isDown = "";
+        index = 0;
+    }
+    //var FrameTime = new Date().getTime() ;
+    var mouseOn = false;
+    var circlecs = document.getElementsByClassName("circle");
+    var layerRange = document.getElementById("layerRange");
+    var timeoutVar;
+    var timeout_percent = 0;
+    var Time_Axis;
+    var LeftNameList=document.getElementById('LeftNameList');
+    var allRecordKeys = [];
+    document.getElementById("StopRecord").addEventListener("click", (e) => {
+        clearInterval(timeoutVar);
+        timeout_percent = 0;
+        Time_Axis.style.left = "0%";
+    });
+
+    function init(){
+
+        LeftNameList.innerHTML = '';
+        layerRange.innerHTML = '';
+        allRecordKeys = [];
+        timeoutVar=null;
+    }
+
+    document.getElementById("StartRecord").addEventListener("click", (e) => {
+        if (e.detail == 0) {
+                return;
+        }
+        init();
+        console.log('進入StartRecord','event.detail='+e.detail);
+
+        Time_Axis = document.createElement('div');
+        Time_Axis.style.cssText = 'position: absolute;width: 2px;height: 100%;background: rebeccapurple;left: 0%;';
+        Time_Axis.id = 'Time_Axis';
+        layerRange.appendChild(Time_Axis);
+
+        //var FrameTime = new Date().getTime() ;
+        timeoutVar = setInterval(function () {
+            if (timeout_percent < 5000) {
+                timeout_percent += 0.1;
+                Time_Axis = document.getElementById("Time_Axis");
+                Time_Axis.style.left = (timeout_percent + "%");
+            }
+            else {
+                //timeout_percent=99;
+                Time_Axis.style.left = timeout_percent + "0%";
+            }
+            //console.log('進入StartRecord', Time_Axis.scrollLeft, Time_Axis.scrollWidth, Time_Axis.style.left);
+
+            layerRange.scrollLeft = layerRange.scrollWidth;
+            Time_Axis.height = layerRange.scrollHeight;
+
+
+        }, 1);
+
+
+    });
+
+
+    //var layerRange = document.getElementById("layerRange");
+    var targetDisX = 0, targetDisY = 0;
+    document.addEventListener('keydown', (e) => {
+        console.log('進入keydown_event', e);
+        if (!timeoutVar) { return; }
+
+
+        target_key = e.code;
+        console.log('allRecordKeys', allRecordKeys,target_key);
+
+        //.toUpperCase();
+        const isExist = allRecordKeys.some((element) => element.code == target_key);
+        if (!isExist) {
+
+            LeftNameList = document.getElementById("LeftNameList");
+
+
+            var createDiv = document.createElement('div');
+            // createDiv.style.cssText = 'position: absolute;\
+            // background-color: yellow;\ssss
+            // width: 5%;\
+            // height: 100%;';
+            createDiv.id = 'LeftNameList';
+            createDiv.innerText = 'evenr.code:' + target_key;
+            createDiv.dataset.status = target_key;
+            createDiv.classList.add("circle");
+            LeftNameList.appendChild(createDiv);
+
+            var createMarcoDiv = document.createElement('div');
+            createMarcoDiv.classList.add("MarcoList");
+            // createDiv.style.cssText = 'position: absolute;\
+            // background-color: yellow;\ssss
+            // width: 5%;\
+            // height: 100%;';
+            createMarcoDiv.id = 'LeftNameList';
+            createMarcoDiv.dataset.status = target_key;
+            layerRange = document.getElementById("layerRange");
+            layerRange.appendChild(createMarcoDiv);
+
+
+            var marcoDivItem = document.createElement('div');
+            marcoDivItem.style.cssText = 'position: absolute;background-color: blue;height: 20px;pointer-events: none;width:0%;';
+            //+parseFloat(Time_Axis.style.left)+100+ "%;"
+            marcoDivItem.dataset.status = target_key;
+            marcoDivItem.style.marginLeft = Time_Axis.style.left;
+            //marcoDivItem.style.width = parseFloat(Time_Axis.style.left)+100+'%';
+            //console.log('Time_Axis.style.left', parseFloat(Time_Axis.style.left));
+            console.log('add_marcoDivItem', marcoDivItem);
+
+            createMarcoDiv.appendChild(marcoDivItem);
+            //style = window.getComputedStyle(marcoDivItem),
+            allRecordKeys.push(
+                {
+                    code: target_key,
+                    parent: createMarcoDiv,
+                    target: [marcoDivItem],
+                    key: target_key,
+                    isDown: true,
+                    index: 0,
+                });
+            //allRecordKeys[0].target.push(marcoDivItem);
+
+
+
+        }
+        else {
+            let recordTarget = allRecordKeys.find(element => element.code === target_key);
+            if (recordTarget.isDown == false) {
+                var marcoDivItem = document.createElement('div');
+                marcoDivItem.style.cssText = 'position: absolute;background-color: blue;\
+                width: 0%;height: 20px;pointer-events: none;';
+                marcoDivItem.dataset.status = target_key;
+                marcoDivItem.style.marginLeft = Time_Axis.style.left;
+                recordTarget.index += 1;
+                recordTarget.target.push(marcoDivItem);
+                recordTarget.parent.appendChild(marcoDivItem);
+                recordTarget.isDown = true;
+
+            }
+
+        }
+        for (let index = 0; index < allRecordKeys.length; index++) {
+            const element = allRecordKeys[index];
+            if (element.isDown == true) {
+                console.log('element.target', element);
+                const Targetdiv = element.target[element.index];
+                //style = window.getComputedStyle(Targetdiv),
+                Targetdiv.style.width = timeout_percent - parseFloat(Targetdiv.style.marginLeft) + 0.1 + "%";
+                //console.log('Targetdiv.style.marginLeft',Targetdiv.style.marginLeft,parseFloat(Targetdiv.style.marginLeft));
+                //console.log('style.marginLeft',style.marginLeft,parseFloat(style.marginLeft));
+                //console.log('Time_Axis.style.left',Time_Axis.style.left,parseFloat(Time_Axis.style.left));                       
+            }
+        }
+
+    });
+    layerRange = document.getElementById("layerRange");
+
+    layerRange.addEventListener("scroll", function (event) {
+        //var scroll = this.scrollY;
+        console.log(event, event.target.scrollTop);
+        var LeftNameList = document.getElementById("LeftNameList");
+        LeftNameList.scrollTop = event.target.scrollTop;
+    });
+    //document.getElementById("layerRange").scrollTop=17;
+    document.addEventListener('keyup', (e) => {
+        let target_Up_key = e.code;
+        //.toUpperCase();
+
+        console.log('進入keyup_event.code', e.code,e);
+        let isExist = allRecordKeys.some((element) => element.code == target_Up_key);
+        if (isExist) {
+            T = allRecordKeys.find((element) => element.code == target_Up_key);
+            T.isDown = false;
+            console.log('allRecordKeys[event.code].isDown', T);
+        }
+    });
+
+</script>

@@ -1,0 +1,681 @@
+.Keyboard {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(234, 233, 227);
+
+    .Keyboard-left {
+        width: 100%;
+        height: 100%;
+
+        .Keyboard-topbar {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            height: 40px;
+
+            .app-profileselect {
+                position: absolute;
+                left: 40px;
+                width: 200px;
+                height: 40px;
+
+            }
+
+            .importprofile {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: 55px;
+                left: 40px;
+                width: 125px;
+                height: 30px;
+                border: 1px solid;
+                border-radius: 5px;
+                font-size: 11px;
+                cursor: pointer;
+                z-index: 29;
+            }
+
+            .exportprofile {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: 95px;
+                left: 40px;
+                width: 125px;
+                height: 30px;
+                border: 1px solid;
+                border-radius: 5px;
+                font-size: 11px;
+                cursor: pointer;
+                z-index: 29;
+            }
+
+            .topbar-group-item {
+                display: flex;
+
+                .block {
+                    display: flex;
+                    flex-direction: column;
+                    height: 50px;
+
+                    .topbar-item {
+                        justify-content: center;
+                        align-items: center;
+                        display: flex;
+                        width: 200px;
+                        height: 40px;
+                        background-color: transparent;
+                        border: 1px solid rgb(253, 186, 59);
+                        margin-right: 15px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        letter-spacing: 2px;
+                        font-size: 14px;
+                    }
+                    .line {
+                        width: 200px;
+                        margin-top: 5px;
+                        height: 2px;
+                    }
+                }
+            }
+        }
+
+        .KeyboardUIFooter-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            .selection {
+                display: flex;
+                justify-content: center;
+                justify-content: space-evenly;
+                align-items: center;
+                width: auto;
+                height: 70px;
+                // background-color: red;
+
+                .selection-item {
+                    display: flex;
+                    flex-direction: column;
+                    height: 45px;
+                    width: auto;
+                    margin-left: 4px;
+                    font-size: 14px;
+
+                    .selection-item-dsc {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 40px;
+                        border: 1px solid rgb(49, 49, 49);
+                        border-radius: 5px;
+                        cursor: pointer;
+                        letter-spacing: 2px;
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
+
+                    .selection-item-line {
+                        height: 1px;
+                        // background-color: rgb(49,49,49);
+                        margin-top: 5px;
+                    }
+                }
+            }
+
+            .selection-dsc {
+                display: flex;
+                justify-content: center;
+                width: 80%;
+                height: 30px;
+                font-family: MB, serif;
+                font-size: 13px;
+            }
+        }
+
+        .Keyboard-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: calc(100%);
+
+            .Content1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .Keyboard-right {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 400px;
+        background-color: rgb(224, 223, 214);
+        margin-top: -30px;
+        transition: 0.5s;
+        letter-spacing: 2px;
+        .close {
+            position: absolute;
+            top: -15px;
+            right: 15px;
+            width: 15px;
+            cursor: pointer;
+        }
+
+        .right-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: calc(100% - 170px);
+            overflow-y: overlay;
+            overflow-x: hidden;
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                font-family: MB, serif;
+                width: 80%;
+                margin-left: 10%;
+                margin-top: 10px;
+                font-size: 15px;
+
+                .SingleKey {
+                    width: 100%;
+                    height: 230px;
+                    margin-top: 10px;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+
+                .SingleKey::-webkit-scrollbar {
+                    width: 1vh;
+                    background: transparent;
+                }
+                .SingleKey::-webkit-scrollbar-track {
+                    background-color: rgb(224, 223, 214);
+                }
+
+                .SingleKey::-webkit-scrollbar-thumb {
+                    // -webkit-border-radius: 4px;
+                    // border-radius: 4px;
+                    background: rgb(253, 186, 59);
+                    cursor: pointer;
+                }
+
+                .app-lightingeffectselect {
+                    height: 40px;
+                    width: 200px;
+                    margin-left: -10px;
+                    font-family: MM, serif;
+                    letter-spacing: 0px;
+                    font-size: 13px;
+                    z-index: 30;
+                }
+
+                .windows {
+                    width: 90%;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    padding-left: 5%;
+                }
+
+                .windows::-webkit-scrollbar {
+                    width: 1vh;
+                    background: transparent;
+                }
+                .windows::-webkit-scrollbar-track {
+                    background-color: rgb(224, 223, 214);
+                }
+
+                .windows::-webkit-scrollbar-thumb {
+                    // -webkit-border-radius: 4px;
+                    // border-radius: 4px;
+                    background: rgb(253, 186, 59);
+                    cursor: pointer;
+                }
+
+                .sub-list {
+                    display: flex;
+                    font-family: MM, serif;
+                    font-size: 13px;
+                    margin-top: 20px;
+                    align-items: center;
+                    letter-spacing: 0px;
+
+                    img {
+                        margin-right: 5px;
+                        margin-left: 3px;
+                    }
+
+                    .slider {
+                        -webkit-appearance: none;
+                        display: flex;
+                        width: 280px;
+                        height: 8px;
+                        // border-radius: 0.5vw;
+                        background: rgb(49, 49, 49);
+                        outline: none;
+                        // opacity: 0.7;
+                        -webkit-transition: 0.2s;
+                        transition: opacity 0.2s;
+                        margin: 0.5px;
+                        margin-right: 10px;
+                        border-radius: 15px;
+                    }
+
+                    .slider::-webkit-slider-thumb {
+                        -webkit-appearance: none;
+                        appearance: none;
+                        // width: 1vw;
+                        // height: 1vw;
+                        width: 18px;
+                        height: 18px;
+                        border: 2px solid rgb(253, 186, 59);
+                        border-radius: 50%;
+                        background: rgb(253, 186, 59);
+                        cursor: pointer;
+                        content: counter(50) '%';
+                    }
+
+                    .slider::-moz-range-thumb {
+                        // width: 1vw;
+                        // height: 1vw;
+                        border-radius: 50%;
+                        background: rgb(253, 186, 59);
+                        cursor: pointer;
+                    }
+                    .slider::-webkit-slider-thumb:hover {
+                        // background: rgb(155,0,0);
+                        width: 18px;
+                        height: 18px;
+                        border: 2px solid rgb(253, 186, 59);
+                    }
+
+                    .DpiInput::-webkit-input-placeholder {
+                        color: rgb(164, 164, 158);
+                    }
+
+                    .DpiInput::-webkit-outer-spin-button,
+                    .DpiInput::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                    }
+
+                    .Launch::-webkit-input-placeholder {
+                        color: rgb(164, 164, 158);
+                    }
+
+                    label {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-left: 10px;
+                        // width: 20px;
+                        // height: 20px;
+                        cursor: pointer;
+                    }
+                    input[type='checkbox'] {
+                        display: none;
+                    }
+                    input[type='checkbox'] + span {
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background: url('/image/lighting/Check.png') no-repeat center;
+                    }
+
+                    input[type='checkbox']:checked + span {
+                        background: url('/image/lighting/Checked.png') no-repeat center;
+                    }
+
+                    input[type='radio'] {
+                        display: none;
+                    }
+                    input[type='radio'] + span {
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background: url('/image/lighting/Check.png') no-repeat center;
+                    }
+
+                    input[type='radio']:checked + span {
+                        background: url('/image/lighting/Checked.png') no-repeat center;
+                    }
+
+                    .colorpicker {
+                        width: 200px;
+                        height: 200px;
+                    }
+
+                    .color-content {
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 20px;
+                        height: 200px;
+
+                        .color-detail {
+                            display: flex;
+                            align-items: center;
+                            width: 100px;
+                            height: 40px;
+                            background-color: rgb(234, 233, 227);
+
+                            .color-title {
+                                margin-left: 10px;
+                                width: 60px;
+                            }
+
+                            input {
+                                height: 20px;
+                                width: 30px;
+                                background-color: transparent;
+                                border: none;
+                            }
+
+                            .button {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 150px;
+                                height: 40px;
+                                background-color: rgb(253, 186, 59);
+                                font-family: MM, serif;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .app-pollingrateselect {
+                        width: 97px;
+                        margin-left: 10px;
+                    }
+                    .app-inputLatencySelect {
+                        width: 97px;
+                        margin-left: 10px;
+                    }
+                    .sub-list-item {
+                        cursor: pointer;
+
+                        .line {
+                            height: 1px;
+                            background-color: rgb(49, 49, 49);
+                        }
+                    }
+
+                    .coloritem {
+                        margin-right: 10px;
+
+                        .colorbox {
+                            width: 40px;
+                            height: 40px;
+                            margin-bottom: 10px;
+                            cursor: pointer;
+                        }
+
+                        .colorvalue {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+
+                    .mouse-macro-record {
+                        width: 25px;
+                        height: 25px;
+                        border-radius: 50%;
+                        background-color: rgb(253, 66, 59);
+                    }
+
+                    .Browse {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 64px;
+                        height: 20px;
+                        margin-left: 10px;
+                        margin-top: -10px;
+                        background-color: #fdba3b;
+                        font-family: MM, serif;
+                        font-size: 9px;
+                        cursor: pointer;
+                        letter-spacing: 2px;
+                    }
+
+                    .color-item {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 40px;
+                        height: 40px;
+                        margin-right: 5px;
+                        cursor: pointer;
+                    }
+                    .color-img {
+                        margin-right: 3px;
+                        cursor: pointer;
+                        z-index: 10;
+                    }
+                }
+
+                .triangle {
+                    position: absolute;
+                    top: 210px;
+                    right: 308px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 30px 30px 30px;
+                    border-color: transparent transparent #efece5 transparent;
+                }
+
+                .nowMacroName {
+                    border: none;
+                    background-color: transparent;
+                    border-bottom: 1px solid black;
+                }
+
+                .nowMacroName:focus {
+                    outline: none;
+                }
+
+                .mouse-shortcut-command {
+                    height: 30px;
+                    padding-left: 30px;
+                }
+
+                .mouse-shortcut-command:focus {
+                    outline: none;
+                }
+
+                label {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 10px;
+                    // width: 20px;
+                    // height: 20px;
+                    cursor: pointer;
+                }
+                input[type=checkbox] {
+                    display: none;
+                }
+                input[type=checkbox] + span{
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background: url('/image/lighting/Check.png') no-repeat center;
+                }
+        
+                input[type=checkbox]:checked + span {
+                    background: url('/image/lighting/Checked.png') no-repeat center;
+                }
+            }
+
+            .short-content {
+                overflow-y: auto;
+                overflow-x: hidden;
+                width: 95%;
+                height: 80%;
+
+                .shortcut-list {
+                    display: flex;
+                    flex-direction: column;
+                    width: 86%;
+                    // height: 250px;
+                    margin-left: 11%;
+
+                    .shortcut-item-title {
+                        display: flex;
+                        align-items: center;
+                        height: 40px;
+                        margin-top: 10px;
+                        padding-left: 20px;
+                        background-image: url('/image/keybinding/CommandBackground.png');
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                        font-size: 14px;
+                        font-family: MB, serif;
+
+                        .title-name {
+                            width: 270px;
+                        }
+
+                        .triangleUp {
+                            width: 0;
+                            height: 0;
+                            border-style: solid;
+                            border-width: 0 8px 8px 8px;
+                            border-color: transparent transparent rgb(49, 49, 49) transparent;
+                        }
+
+                        .triangleDown {
+                            width: 0;
+                            height: 0;
+                            border-style: solid;
+                            border-width: 8px 8px 0 8px;
+                            border-color: rgb(49, 49, 49) transparent transparent transparent;
+                        }
+                    }
+
+                    .shortcut-item-content {
+                        width: 320px;
+                        transition: 0.5s;
+                        overflow-y: auto;
+                        overflow: hidden;
+
+                        .shortcut-item {
+                            display: flex;
+                            align-items: center;
+                            height: 40px;
+                            border: 1px solid rgb(234, 233, 227);
+                            font-size: 13px;
+                            letter-spacing: 0px;
+                            cursor: pointer;
+                            -webkit-user-drag: element;
+                        }
+                    }
+
+                    .shortcut-item-none {
+                        // display: none;
+                        height: 0px;
+                    }
+                }
+            }
+
+            .short-content::-webkit-scrollbar {
+                width: 1vh;
+                background: transparent;
+            }
+            .short-content::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+
+            .short-content::-webkit-scrollbar-thumb {
+                // -webkit-border-radius: 4px;
+                // border-radius: 4px;
+                background: rgb(253, 186, 59);
+                cursor: pointer;
+            }
+        }
+
+        .right-content::-webkit-scrollbar {
+            width: 1vh;
+            background: transparent;
+        }
+        .right-content::-webkit-scrollbar-track {
+            background-color: rgb(224, 223, 214);
+        }
+
+        .right-content::-webkit-scrollbar-thumb {
+            // -webkit-border-radius: 4px;
+            // border-radius: 4px;
+            background: rgb(253, 186, 59);
+            cursor: pointer;
+        }
+
+        .right-footer {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            align-items: center;
+
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 150px;
+                height: 40px;
+                background-color: rgb(253, 186, 59);
+                font-family: MM, serif;
+                margin-left: 40px;
+                cursor: pointer;
+            }
+
+            .button:hover {
+                filter: brightness(110%);
+            }
+        }
+    }
+}
+.KeybindingClassArea_item{
+    display: flex;
+    font-family: MM, serif;
+    align-items: center;
+    letter-spacing: 2px;
+    font-size: 14px;
+    justify-content: space-evenly;
+}
+
+#keyAssignPrompt{
+    border-color: #0000 #0000 #0000 #313131;
+    border-style: solid;
+    border-width: 20px 20px 20px 20px;
+    z-index: 9999;
+    position: absolute;
+    z-index: 20;
+    margin-left: -22px;
+    margin-top: -19px;
+}
+
+
+
+.audioSouceItem{
+    display: flex;
+    width: 119px;
+    height: 32px;
+    white-space: nowrap;
+    margin-left: 10%;
+    line-height: 23px;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <!-- multiple="multiple" -->
+    <div id="show"></div>
+</body>
+
+
+<script>
+    var target="C:\\Users\\Administrator預設使用者\\Desktop.exe";
+    console.log("FFFF", target);
+    var oneposition=target.lastIndexOf("\\");
+    var twoposition=target.lastIndexOf(".");
+    document.getElementById("show").innerText=target.substring(oneposition+1,twoposition);
+</script>
+
+</html>

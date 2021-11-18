@@ -1,0 +1,111 @@
+
+/*#region Select*/
+.SelectTemplate {
+    position: absolute;
+    height: 68vh;
+    overflow-y: overlay;
+    margin-top: 14.5vh;
+    width: 21.3vw;
+    background: url(/imageColorSet/SelectBG.png);
+    background-size: 100% 100%;
+
+}
+
+
+.SelectTemplate ::-webkit-scrollbar-track {
+    /* border: 1px solid red;
+    padding: 2px 0;
+    background-color: blue; */
+    background-repeat: no-repeat;
+}
+.SelectTemplate::-webkit-scrollbar-thumb {
+    background: rgb(253, 186, 59);
+    /* outline: 1px solid slategrey; */
+    border-radius: 20px;
+    border: none;
+}
+.SelectTemplate::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 20px;
+    border: none;
+}
+.SelectTemplate::-webkit-scrollbar-button:vertical:decrement {
+    // background-image: url('/imageColorSet/UpArrow.png');
+    width: 0;
+    height: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.SelectTemplate::-webkit-scrollbar-button:vertical:increment {
+    // background-image: url('/imageColorSet/DownArrow.png');
+    width: 0;
+    height: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemStyle{
+    display: flex;
+    background: #ffc757;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+
+}
+
+.checkedText{
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    margin-left: 8px;
+    pointer-events: none;
+}
+
+#commonSelecListUI{
+    // position: relative;是否使用內容擴充UI
+    height: auto;
+    width: 200px;
+    display: block;
+    /* background: rgb(208, 241, 108); */
+    justify-content: center;box-shadow: rgb(22, 22, 22) 3px 3px 10px;
+    flex-direction: column;    background: #E0DFD6;
+    align-items: center;margin-top: 5px;
+
+}
+
+.app-profileselect{
+   .itemStyle{
+    height:40px;
+    width: 200px;
+   }
+   #commonSelecListUI{
+    height: auto;
+ }
+
+}
+
+.app-macroSelectUI{
+    #commonSelecListUI{
+       height: auto;
+       width: 200px;
+    }
+   .itemStyle{
+    height:32px
+   }
+}
+
+.app-lightingeffectselect
+{
+    #commonSelecListUI{
+       height: 160px;
+       width: 200px;
+    }
+   .itemStyle{
+    height:40px
+   }
+}

@@ -1,0 +1,51 @@
+<style type="text/css" media="screen">
+    #style1 {
+    border: 0;
+    outline: 0;
+    /* 關掉焦點外框 */
+    pointer-events: none;
+    /* 關閉功能 */
+    }
+
+    body .colorwell-selected {
+      /* border: 2px solid #000;
+      font-weight: bold; */
+    }
+  </style>
+
+
+
+
+<input id="原本的" type="text" placeholder="輸入文字" value="adas">
+<input id="style1" type="text" placeholder="" value="我隱形了">
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+  <p>Value: <span id="demo"></span></p>
+</div>
+
+<script>
+    var z = {
+      "code": 0,
+      "target": [{
+        "marginLeft": "0px",
+      }],
+      "key": 0,
+      "isDown": true,
+      "index": 0,
+
+    }
+
+console.log(z);
+
+
+
+  
+  var slider = document.getElementById("myRange");
+  var output = document.getElementById("demo");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function () {
+    output.innerHTML = this.value;
+    console.log(this.value);
+  }
+</script>

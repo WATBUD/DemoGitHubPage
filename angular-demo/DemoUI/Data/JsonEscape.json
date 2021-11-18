@@ -1,0 +1,65 @@
+{
+	"SWVersion": "1.0",
+	"FWContents": [
+		{
+			"FWVersion": 1038,
+			"Lang": [
+				"Fixed bugs:
+				1. In low battery mode, plug in the USB cable, the low battery mode will be off
+				2. If Bluetooth automatically disconnected, press any key to connected back to device
+				3. Fixed battery power detection problem on the keyboard
+				4. fixed the bluetooth connection problem,after turn off the keyboard
+				5. Fixed The wave light effect speed too fast problem, cased software stop working problem.
+				6. Fixed in pairing mode, long press FN+ZXC can not enter the bluetooth connection mode problem.
+				7. Turn off MCU in the sleep mode, and can wake up by press any keys.
+				8. Fixed the software battery power indicator problem.
+				9. Fixed the preset backlight brightness of Bluetooth mode.
+				10.Fixed the connection of three different Bluetooth devices problem.Switch ON / OFF button will remember the last bluetooth setting.
+				11. Fixed the problem of the lighting effect by unplugging usb cable.
+
+				New features:
+				1.Added FN + Backspace feature, control the backlight ON / OFF.
+				2.In buletooth sleep mode, press any key to active the buletooth paring mode
+				3.In Bluetooth mode, the preset of sleep mode is for 10 minutes. In wired mode, the keyboard will shut down with the computer together.
+				4.Added power saving mode, "FN" + Long press "Enter" key for 3 seconds to enter the power saving mode, press "FN" + "enter" to leave the power saving mode.
+				",
+				"已修正問題:
+				 1.在掉電模式，如果插上USB線了，要離開掉電或者低電模式
+				 2.如果藍牙是非 FN+ZXC斷開的，如果自動斷開，按下任意按鍵，讓藍牙回連
+				 3.修正電池電力偵測問題
+				 4.通電後藍牙有機率回連失敗問題.
+				 5.波浪燈效速度太快，導致需要按一下按鍵才會動作
+				 6.FN+Z快連時如果按下FN後按住Z，要進行紅藍燈交替閃爍的藍牙配對.
+				 7.修改了休眠模式，改為休眠模式下，MCU掉電，等有按鍵按下才能喚醒。
+				 8.修正電池電量判定標準.
+				 9.修正藍牙模式預設背光亮度.
+				 10.修正連線三個不同藍牙裝置情況下.開關ON/OFF 會造成顯示連線裝置錯誤
+				 11.當使用驅動中燈光效果時拔除USB線.硬體燈光自動切換至硬體內建燈效.
+				 新增功能:
+				 1.FN+Backspace，增加背光 ON /OFF。
+				 2.休眠喚醒後任意按鍵快連
+				 3.藍牙模式下預設10分鐘進入睡眠模式.有線模式改成跟隨電腦狀態關閉.
+				 4.增加續航(省電)模式，進入的方式 FN+enter 長按3S，再點擊FN+enter 直接離開。
+				",
+				"已修正問題:
+					1.在掉电模式，如果插上USB线了，要离开掉电或者低电模式
+					2.如果蓝牙是非 FN+ZXC断开的，如果自动断开，按下任意按键，让蓝牙回连
+					3.修正电池电力侦测问题
+					4.通电后蓝牙有机率回连失败问题.
+					5.波浪灯效速度太快，导致需要按一下按键才会动作
+					6.FN+Z快连時如果按下FN后按住Z，要进行红蓝灯交替闪烁的蓝牙配对.
+					7.修改了休眠模式，改为休眠模式下，MCU掉电，等有按键按下才能唤醒。
+					8.修正电池电量判定标准.
+					9.修正蓝牙模式预设背光亮度.
+					10.修正连线三个不同蓝牙装置情况下.开关ON/OFF 会造成显示连线装置错误
+					11.当使用驱动中灯光效果时拔除USB线.硬体灯光自动切换至硬体内建灯效.
+				 新增功能:
+				 1.FN+Backspace，增加背光 ON /OFF。
+				 2.休眠喚醒後任意按鍵快連
+				 3.蓝牙模式下预设10分钟进入睡眠模式.有线模式改成跟随电脑状态关闭.
+				 4.增加续航(省电)模式，进入的方式 FN+enter 长按3S，再点击FN+enter 直接离开。
+				"
+			]
+		}
+	]
+}

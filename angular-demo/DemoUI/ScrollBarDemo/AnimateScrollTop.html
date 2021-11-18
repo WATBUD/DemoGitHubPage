@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        nav>a {
+            display: inline;
+        }
+
+        .square {
+            height: 100vh;
+        }
+
+        #aaa {
+            background: #F99;
+        }
+
+        #bbb {
+            background: #9F9;
+        }
+
+        #ccc {
+            background: #99F;
+        }
+    </style>
+    <script src="../jquery.js"></script>
+    <!-- <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+</head>
+
+<body>
+    <nav id="home">
+        <a href="#aaa">aaa</a>
+        <a href="#bbb">bbb</a>
+        <a href="#ccc">ccc</a>
+    </nav>
+    <div id="aaa" class="square">
+        <p>aaa</p>
+        <a href="#home" class="page-scroll">home</a>
+    </div>
+    <div id="bbb" class="square">
+        <p>bbb</p>
+        <a href="#home" class="page-scroll">home</a>
+    </div>
+    <div id="ccc" class="square">
+        <p>ccc</p>
+        <a href="#home" class="page-scroll">home</a>
+    </div>
+</body>
+<script>
+    $(function () {
+        $("nav a").bind('click', function (event) {
+            event.preventDefault();//先取消超連結原本預設動作
+            var $anchor = $(this);
+            $('body').animate({
+                scrollTop: $($anchor.attr('href')).offset().top
+            }, 1000);//, 'easeInOutQuint'
+        });
+        $(".page-scroll").bind('click', function (event) {
+            var $anchor = $(this);
+            $('body').animate(
+                {
+                    specialEasing: {
+                        width: "linear",
+                        height: "easeInOutQuint"
+                    },
+                    scrollTop: '0'
+
+                }, 
+            1000
+            );//,, 'easeInOutQuint'
+            event.preventDefault();//先取消超連結原本預設動作(加在這裡也可以)
+        });
+    });
+</script>
+
+
+
+</html>

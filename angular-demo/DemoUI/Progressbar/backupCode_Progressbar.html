@@ -1,0 +1,214 @@
+<style>
+  .circle-bar {
+    font-size: 200px;
+    width: 1em;
+    height: 1em;
+    /* position: relative; */
+    background-color: #333;
+    position: absolute;
+    left: 40%;
+    top: 40%;
+  }
+
+  .circle-bar-left,
+  .circle-bar-right {
+    width: 1em;
+    height: 1em;
+    background-color: #eee;
+  }
+
+  .circle-bar-right {
+    clip: rect(0, auto, auto, .5em);
+
+  }
+
+  .circle-bar-left {
+    clip: rect(0, .5em, auto, 0);
+  }
+
+  .mask {
+    width: 0.8em;
+    height: 0.8em;
+    background-color: #fff;
+    text-align: center;
+    line-height: 0.2em;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .mask :first-child {
+    font-size: 0.3em;
+    height: 0.8em;
+    line-height: 0.8em;
+    display: block;
+  }
+
+  .circle-bar * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+
+  .circle-bar,
+  .circle-bar>* {
+    border-radius: 50%;
+  }
+
+  .body {
+
+    margin: 0;
+  }
+</style>
+<div class="circle-bar">
+  <div class="circle-bar-left"></div>
+  <div class="circle-bar-right"></div>
+  <div class="mask">
+    <span class="percent">40%</span>
+  </div>
+</div>
+<script>
+  var percent = 0;
+  document.addEventListener('keydown', (event) => {
+    console.log(event);
+
+    if (event.key == "ArrowUp") {
+      percent += 10;
+
+    }
+
+    if (event.key == "ArrowDown") {
+      percent -= 10;
+
+    }
+    setRoundProgress();
+  });
+
+
+
+  //window.onload = 
+
+  function setRoundProgress() {
+
+    var circleBar = document.getElementsByClassName('circle-bar')[0];
+
+
+    //percent      = parseInt(circleBar.getElementsByClassName('percent')[0].firstChild.nodeValue);
+    //var color = circleBar.css('background-color');
+    var color = setTargetBackground('background-color', undefined, circleBar);
+    var left_circle = circleBar.getElementsByClassName('circle-bar-left')[0];
+    var right_circle = circleBar.getElementsByClassName('circle-bar-right')[0];
+    if (percent > 100) {
+      //percent=percent>100?0:percent;
+      percent = 0;
+      // right_circle.css3('transform', 'rotate(0deg)');//右侧不旋转
+      // left_circle.css3('transform', 'rotate(0deg)');
+      setTargetTranform('transform', 'rotate(0deg)',right_circle);
+      setTargetTranform('transform', 'rotate(0deg)',left_circle);
+
+      setTargetBackground('background-color', '#eee', right_circle);
+      setTargetBackground('background-color', '#eee', left_circle);
+
+      //right_circle.css('background-color', '#eee');//背景色设置为进度条的颜色
+      //left_circle.css('background-color', '#eee');//背景色设置为进度条的颜色
+
+    }
+    circleBar.getElementsByClassName('percent')[0].firstChild.nodeValue = percent + "%";
+
+    if (percent <= 50) {
+      var rotate = 'rotate(' + (percent * 3.6) + 'deg)';
+      setTargetTranform('transform', rotate,right_circle);
+      //right_circle.css3('transform', rotate);
+    } else {
+      var rotate = 'rotate(' + ((percent - 50) * 3.6) + 'deg)';
+      //right_circle.css('background-color', color);//背景色设置为进度条的颜色
+      setTargetBackground('background-color', color, right_circle);
+
+      // right_circle.css3('transform', 'rotate(0deg)');//右侧不旋转
+      // left_circle.css3('transform', rotate);//左侧旋转
+      setTargetTranform('transform', 'rotate(0deg)',right_circle);
+      setTargetTranform('transform', rotate,left_circle);
+
+
+    }
+  }
+  function setTargetBackground(property, value, element) {
+    console.log('%c setTargetBackground', 'background: blue; color: red', element.style[property]);
+
+    if (value) {
+      //CSS中像background-color这样的属性，‘-’在JavaScript中不兼容，需要设置成驼峰格式
+      var index = property.indexOf('-');
+      if (index != -1) {
+        var char = property.charAt(index + 1).toUpperCase();
+        property.replace(/(-*){1}/, char);
+      }
+      element.style[property] = value;
+
+    } else {
+      //getPropertyValue()方法参数类似background-color写法，所以不要转驼峰格式
+      return window.getComputedStyle(element).getPropertyValue(property);
+    }
+  }
+  function setTargetTranform(property, value, element) {
+    console.log('%c setTargetTranform', 'background: blue; color: red', element.style);
+    console.log('%c setTargetTranform', 'background: blue; color: red', value);
+
+    if (value) {
+      property = capitalize(property.toLowerCase());
+      element.style['webkit' + property] = value;
+      element.style['Moz' + property] = value;
+      element.style['ms' + property] = value;
+      element.style['O' + property] = value;
+      element.style[property.toLowerCase()] = value;
+    } else {
+      return window.getComputedStyle(this).getPropertyValue(
+        ('webkit' + property) || ('Moz' + property) || ('ms' + property) || ('O' + property) || property);
+
+    }
+
+  }
+  function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+  // //封装了css3函数，主要是懒得重复书写代码，既然写了css3函数，顺便写个css吧，统一样式，好看一些
+  // Element.prototype.css = function (property, value) {
+
+  //   if (value) {
+  //     //CSS中像background-color这样的属性，‘-’在JavaScript中不兼容，需要设置成驼峰格式
+  //     var index = property.indexOf('-');
+  //     if (index != -1) {
+  //       var char = property.charAt(index + 1).toUpperCase();
+  //       property.replace(/(-*){1}/, char);
+  //     }
+  //     this.style[property] = value;
+  //   } else {
+  //     //getPropertyValue()方法参数类似background-color写法，所以不要转驼峰格式
+  //     return window.getComputedStyle(this).getPropertyValue(property);
+  //   }
+  // }
+
+  // //封装一个css3函数，用来快速设置css3属性
+  // Element.prototype.css3 = function (property, value) {
+  //   if (value) {
+  //     property = capitalize(property.toLowerCase());
+  //     this.style['webkit' + property] = value;
+  //     this.style['Moz' + property] = value;
+  //     this.style['ms' + property] = value;
+  //     this.style['O' + property] = value;
+  //     this.style[property.toLowerCase()] = value;
+  //   } else {
+  //     return window.getComputedStyle(this).getPropertyValue(
+  //       ('webkit' + property) || ('Moz' + property) || ('ms' + property) || ('O' + property) || property);
+
+  //   }
+
+  //   //首字母大写
+  //   function capitalize(word) {
+  //     return word.charAt(0).toUpperCase() + word.slice(1);
+  //   }
+  // }
+
+
+
+</script>

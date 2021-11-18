@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="show">LoopArrDisplacement</div>
+</body>
+<script>    
+var testArray = [];
+for (let index = 0; index <= 28; index++) {
+    testArray.push("_"+index);
+}
+LoopArrDisplacement(1,testArray,5);
+    function LoopArrDisplacement(directionSwitch = 2,Arr,Spacing) {
+        if (directionSwitch == 2) {
+            //console.log('%c  LoopArrDisplacement', 'color:rgb(255,77,255)',JSON.stringify());
+            Arr=(Arr.splice(Arr.length-Spacing,Arr.length)).concat(Arr);
+        }
+        else if (directionSwitch == 1) {//反向陣列
+            Arr = Arr.concat(Arr.splice(0, Spacing));
+        }
+        document.getElementById("show").innerText = JSON.parse(JSON.stringify(Arr));
+        return Arr;
+    }
+
+</script>
+
+</html>
+
+

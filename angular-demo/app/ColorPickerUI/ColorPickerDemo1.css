@@ -1,0 +1,180 @@
+
+#color_RGBADiv{
+    width: 40%;
+    height: auto;
+    position: absolute;
+    left: 62%;
+    top: 32%;
+    display: flex;
+    color: white;
+    flex-direction: column;
+}
+.RGBATextStyle{
+    margin-top: 10px;
+   
+   
+}
+:host{
+    width: 100%;height:100%;
+    background-color: #45c1a6;
+    opacity: 0.8;
+    background-image:  linear-gradient(#cd1ef9 1px, transparent 1px), linear-gradient(to right, #cd1ef9 1px, #45c1a6 1px);
+    background-size: 20px 20px;
+}
+
+
+
+
+/*#region ColorPicker*/
+#color-picker-container{
+    left: 54%;position: absolute;z-index: 2;top: 72%;height: 27.5%;width: 24.7%;display: block;
+}
+.PickingArea {
+	/* background: url('https://mdn.mozillademos.org/files/5707/picker_mask_200.png') center center;
+	 background: -moz-linear-gradient(bottom, #000 0%, rgba(0, 0, 0, 0) 100%),
+	 			-moz-linear-gradient(left, #FFF 0%, rgba(255, 255, 255, 0) 100%);
+     background:-webkit-linear-gradient(top, #000 0%, #fff0 100%),-webkit-linear-gradient(right, #fff0 0%, #fff 100%);
+    background:-webkit-linear-gradient(top, #fff 0%, #fff0 50%, #0000 50%, #000 100%), -webkit-linear-gradient(left, #808080 0%, #80808000 100%); */
+    background-color: #F00;
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    background-size: 100% 100%;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, hsl(0, 0%, 100%) 0%, hsla(0, 0%, 100%, 0) 50%, hsla(0, 0%, 0%, 0) 50%, hsl(0, 0%, 0%) 100%), linear-gradient(to right, hsl(0, 0%, 50%) 0%, hsla(0, 0%, 50%, 0) 100%);
+}
+input[type="range"]#ColorSliderH:focus {
+    outline: none;
+}
+input[type="range"]#ColorSliderH::-webkit-slider-thumb {
+    height: 1.6vw;
+    width: 4%;
+    background-repeat: no-repeat;
+    background-image: url(/image/skin/colorBarH_ico.png);
+    -webkit-appearance: none;
+    background-size: 100% 100%;
+}
+
+input[type="range"]#ColorSliderS::-webkit-slider-thumb {
+    height: 10px;
+    width: 5px;
+    background-repeat:no-repeat;
+    background-image:url('/image/skin/colorBarH_ico.png');
+}
+input[type="range"]#ColorSliderV::-webkit-slider-thumb {
+    height: 10px;
+    width: 5px;
+    background-repeat:no-repeat;
+    background-image:url('/image/skin/colorBarH_ico.png');
+
+}
+input[type=radio] ,
+input[type=checkbox]{
+    border-radius: 15px;
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    outline: none;
+}
+input[type=radio]:checked {
+    background: rgb(255,87,0);
+
+}
+
+
+input[type=radio] :before,
+input[type=checkbox] :before{
+  border:1px solid #777;
+  background: rgb(255,87,0);
+}
+#ColorSliderH{
+
+    position: absolute;
+    top: 24%;
+    left: 29%;
+    width: 150px;
+    height: 1.1vw;
+    background-color: #0000;
+    transform: rotate(-90deg);
+    background-image: url(/image/skin/colorBarH.png);
+    -webkit-appearance: none;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+#ColorSliderH.CustomH2{
+    position: absolute;
+    top: 90%;
+    left: 0%;
+    width: 14.9VW;
+    height: 1.2vw;
+    background-color: #0000;
+    transform: rotate(0deg);
+    background-image: url(/image/skin/colorBarH.png);
+    -webkit-appearance: none;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+#ColorSliderS{
+    position:absolute ;
+    top: 14%;
+    left: 54%;
+    width: 41%;
+    height: 10%;
+    /* background: -webkit-linear-gradient(left,#ffffff,black); */
+}
+#ColorSliderV{
+    position: absolute;
+    top: 26%;
+    left: 54%;
+    width: 41%;
+    height: 10%;
+    /* background: -webkit-linear-gradient(left,#ffffff,black); */
+}
+.colorBase{
+    width: 1.2vw;
+    border-radius: 10px;
+    height: 1.2vw;
+    border: 1px #2e2f2e solid;
+}
+.colorBaseList{
+    left: 62%;
+    top: 6%;
+    width: 14vw;
+    height: 6vh;
+    position: absolute;
+    z-index: 9999;
+    display: flex;
+    bottom: 7%;
+    flex-direction: row;
+    /* background: #95fd6c; */
+    flex-wrap: wrap;
+}
+
+.AdvancedColorBase{
+    float: left;
+    background-color: #c7cc33;
+    width: 1.8vw;
+    height: 1.8vw;
+    border: 1px solid #2e2f2e;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    border-radius: 13px;
+}
+
+
+.circle {
+    width: 1vh;
+    height: 1vh;
+    background: transparent;
+    position: absolute;
+    pointer-events: none;
+    border: 1px solid blue;
+    border-radius: 50%;
+
+}
+/*#endregion ColorPicker*/
+
+
+

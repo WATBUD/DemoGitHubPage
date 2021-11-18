@@ -1,0 +1,46 @@
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>GetScrollEvent</title>
+    <style>
+    </style>
+</head>
+
+<div style="    color: rgb(255 0 0);
+margin-top: 10px;
+margin-left: 25px;" >GetScroll_delta</div>
+
+<!-- <div style="color:blue" id="status">scrolling</div> -->
+
+<ul style="    margin-block-start: 8px;">
+    <!-- <li style="color:red">GetScroll_delta</li> -->
+    <li style="color:blue" id="Scroll_Times_Up">Scroll Times Up:</li>
+    <li style="color:blue" id="Scroll_Times_Down">Scroll Times Down:</li>
+    <li style="color:blue" id="deltaX">deltaX:</li>
+    <li style="color:blue" id="deltaY">deltaY:</li>
+</ul>
+
+
+<script>
+    var down_times = 0;
+    var up_times = 0;
+
+    window.addEventListener('wheel', function (event) {
+        console.log('%c wheel_event','background: blue; color: red',event)
+        document.getElementById('deltaX').textContent = 'deltaX' + event.deltaX;
+        document.getElementById('deltaY').textContent = 'deltaY:' + event.deltaY;
+
+        if (event.deltaY < 0) {
+            down_times += 1;
+            console.log('scrolling Down', down_times);
+            document.getElementById('Scroll_Times_Down').textContent = 'Scroll Times Down:' + down_times;
+        }
+        else if (event.deltaY > 0) {
+            up_times += 1;
+            console.log('scrolling Up', up_times);
+            document.getElementById('Scroll_Times_Up').textContent = 'Scroll Times Up:' + up_times;
+        }
+    });
+
+</script>

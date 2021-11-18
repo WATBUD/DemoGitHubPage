@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<script>
+
+
+//     var rabbitDownKeyframes = new KeyframeEffect(
+//         ani, // element to animate
+//     [
+//       { transform: 'translateY(0px)' }, // keyframe
+//       { transform: 'translateY(-300px)' } // keyframe
+//     ],
+//     { duration: 1000, iterations: Infinity } // keyframe options
+//   );
+</script>
+<body>
+    <div id="tunnel" class="tunnel" style="margin-left: 200px;margin-top: 200px; width: 200px;height: 200px; background: red;transform: translateY(0px)">
+    </div>
+    <input style="margin-left: 50%;" type="button" id="Btn_keyCode" onclick="reverse()" onkeydown="" value="reverse" class="ButtonStyle">
+
+    <input style="margin-left: 50%;" type="button" id="Btn_keyCode" onclick="executeAni()" onkeydown="" value="executeAni" class="ButtonStyle">
+    <input style="margin-left: 50%;" type="button" id="Btn_keyCode" onclick="executeAniRotate()" onkeydown="" value="executeAniRotate" class="ButtonStyle">
+
+</body>
+
+<script>
+        var aniDiv = document.getElementById("tunnel");
+        var aniInstance;
+
+    function executeAni() {
+        console.log('%c executeAni', 'color:rgb(255,75,255,1)', aniDiv);
+        if(aniInstance!=undefined){
+                //aniInstance.play();
+            }
+        aniInstance = aniDiv.animate([
+            // keyframes
+            // { transform: 'translateY(0px)' },
+            { transform: 'translateY(-300px)' }
+        ], {
+            // timing options
+            duration: 1000,
+            // iterations: Infinity,
+            iterations: 1,
+            // fill: "none",
+            fill: "forwards",
+            //fill: "backwards",
+
+        });
+        //ani.pause();
+    }
+
+
+        function executeAniRotate() {
+
+            console.log('%c executeAniRotate', 'color:rgb(255,75,255,1)', aniDiv);
+
+            let rotate360 = [
+                { transform: 'rotate(0deg)' },
+                { transform: 'rotate(360deg)' }
+            ];
+
+            let slowInfinite = {
+                duration: 5000,
+                iterations: Infinity
+            }
+
+            aniDiv.animate(rotate360, slowInfinite);
+
+        }
+        function reverse(){
+            //ani.reverse();
+            console.log('%c reverse', 'color:rgb(255,75,255,1)', aniInstance);
+            if(aniInstance!=undefined){
+                //aniInstance.play();
+            }
+            else{
+                aniInstance.cancel()
+                switch (key) {
+                    case value:
+                        
+                        break;
+                
+                    default:
+                        break;
+                }
+                executeAni();
+            }
+        }
+</script>
+</html>

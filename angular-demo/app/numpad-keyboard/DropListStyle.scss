@@ -1,0 +1,41 @@
+/*#region Select*/
+.SelectTemplate {
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-size: 100% 100%;
+    background: transparent;
+}
+
+
+.SelectTemplate ::-webkit-scrollbar-track {
+    /* border: 1px solid red;*/
+    background-repeat: no-repeat;
+}
+.SelectTemplate::-webkit-scrollbar-thumb {
+    // border-radius: 10px;
+    // box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    // background-repeat: no-repeat;
+    background-color: rgb(247,247,247);
+    border-radius: 10px;
+};
+
+.SelectTemplate::-webkit-scrollbar {
+    background: #959595;
+    width: 8px;
+    border-radius: 10px;
+}
+// .SelectTemplate::-webkit-scrollbar-button:vertical:decrement {
+//     background-image: url('/image/ColorSet/UpArrow.png');
+//     background-repeat: no-repeat;
+//     background-position: center;
+// }
+// .SelectTemplate::-webkit-scrollbar-button:vertical:increment {
+//     background-image: url('/image/ColorSet/DownArrow.png');
+//     background-repeat: no-repeat;
+//     background-position: center;
+// }
+
+
+
+/*#endregion Select*/

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div>
+        <BR>
+</body>
+<script>
+//如何統計指定字串出現的次數
+var arr="hellolsadadsadasdlllllweqedasda".split('');//[h,e,l,l ,o];
+var count=0;
+for (let index = 0; index < arr.length; index++) {
+    const element = arr[index];
+    if(element=="l"){
+        count+=1;
+        //count=count+1;
+    }
+}
+
+console.log("切割出來的陣列為=",arr);
+console.log("統計出L的次數為=",count);
+
+</script>
+
+</html>

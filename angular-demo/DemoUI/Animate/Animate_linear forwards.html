@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        /* -webkit-animation: arrowInOut 8s linear forwards; */
+        /* animation-delay: 5s;             animation-delay: 0.5s;
+*/
+        .MessageIn {
+            width: 100%;
+            height: 80vh;
+            /* opacity: 1; */
+            animation: MessageInOut 2s linear forwards;
+            /* animation-iteration-count: 1; */
+            /* animation-iteration-count: infinite; */
+
+        }
+
+        @keyframes MessageInOut {
+
+            0% {
+                opacity: 1;
+                background: red;
+            }
+
+            100% {
+                opacity: 0;
+                background: blue;
+            }
+
+
+        }
+    </style>
+    <!-- <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+</head>
+
+<body>
+    <!-- <div id="arrow_case" style="background: red;" class="arrow_case">
+        
+    </div> -->
+
+    <div id="NEW_KEY" class="arrow_case"
+        style="background: rgba(2, 0, 0, 0.95);position: absolute;width: 1200px;height: 400px;font-family: MS,serif;-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none;z-index: 9999;">
+
+        <div id="新KEY"
+            style="background: rgba(206, 79, 79, 0.31);position: absolute;width: 40%;height: 20%;font-family: MS,serif;-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;top: 40%;left: 30%;user-select:none;z-index: 9999;text-align: center;line-height: 80px;color: white;">
+            請輸入新KEY</div>
+
+
+    </div>
+    </div>
+    <button onclick="relpace()" style="
+    position: absolute;
+    top: 10vh;
+    right: 26vw;
+">刷新動畫 </button>
+
+</body>
+<script>
+    function relpace() {
+        var classVal = document.getElementById("NEW_KEY").getAttribute("class");
+        console.log(classVal);
+        classVal = classVal.replace("MessageIn", "");
+        //classVal = classVal.concat(" Test2");
+        //document.getElementById("NEW_KEY").setAttribute("class", "");
+        document.getElementById("NEW_KEY").removeAttribute("class");
+        //document.getElementById("NEW_KEY").classList.add("MessageIn");
+        document.getElementById('NEW_KEY').children[0].innerHTML="Message"
+
+        setTimeout(function () {
+            document.getElementById("NEW_KEY").setAttribute("class", "MessageIn");
+            //document.getElementById("NEW_KEY").classList.add("MessageIn");
+            //console.dir(document.getElementById('NEW_KEY').children[0].innerHTML="Message");
+
+        }, 1000);
+    }
+
+</script>
+
+
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    tr {
+        border-bottom: 1px solid #ccc;
+    }
+
+    th,
+    td {
+        padding: 3px 10px;
+    }
+
+    body {
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div id="show">客制化10進制</div>
+    <table id="chart">
+        <thead>
+            <tr>
+                <th>Alpha %</th>
+                <th>Hex</th>
+                <th>Num</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+<script>
+    var text = document.getElementById('chart');
+    var tableguts = "";
+    for (var i = 1; i >= 0; i -= 0.01) {
+        i = Math.round(i * 100) / 100;
+        var alpha = Math.round(i * 255);
+        var hex = (alpha + 0x10000).toString(16).substr(-2).toUpperCase();
+        var perc = Math.round(i * 100);
+        tableguts += "<tr><td>" + perc + "%</td><td> " + hex + "</td><td>" + alpha + "</td></tr>";
+    }
+    text.innerHTML += tableguts;
+</script>
+
+</html>

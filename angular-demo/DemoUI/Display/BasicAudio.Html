@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+        body {
+            color: purple;
+            background-color: skyblue;
+        }
+
+        audio {
+            width: 100%;
+            /* min-width: 280px; */
+        }
+
+        audio::-webkit-media-controls-timeline {
+            display: inline;
+        }
+
+        audio::-webkit-media-controls-current-time-display {
+            display: flex;
+        }
+    </style>
+</head>
+<script>
+
+    var MusicName = ('../RecordMusic/以戰止戰哈欠版.wav');
+    var snd = new Audio(MusicName);
+    snd.loop = true; //設定循環播放  
+    //停止
+    function myStop() {
+        snd.pause();
+        snd.currentTime = 0;
+    }
+</script>
+
+<body>
+    <iframe width="420" height="345" src="https://www.youtube.com/embed/75E5z_uDHdQ">
+    </iframe>
+    <input type="button" value="播放JS指定的隱藏 Music" onclick="snd.play()">
+    <input type="button" value="暫停JS指定的隱藏 Music" onclick="snd.pause()">
+    <input type="button" value="停止JS指定的隱藏 Music" onclick="myStop()">
+    <hr size="20px" align="center" width="100%" style="background-color:seagreen">
+
+    <div>
+        <audio id="demo" src=""></audio>
+        <button onclick="document.getElementById('demo').play()">透過jsById 取HTML播放</button>
+        <button onclick="document.getElementById('demo').pause()">透過jsById 取HTML暂停</button>
+        <button onclick="document.getElementById('demo').volume+=0.1">透過jsById 取HTML提高音量</button>
+        <button onclick="document.getElementById('demo').volume-=0.1">透過jsById 取HTML降低音量</button>
+    </div>
+    <hr size="20px" align="center" width="100%" style="background-color:seagreen">
+    <p>有面板的TML PLAY　MUSIC</p>
+    <div>
+        <button onclick="document.getElementById('HaveUIMusic').play()">播放UI音樂</button>
+        <button onclick="document.getElementById('HaveUIMusic').pause()">暂停UI音樂</button>
+        <button onclick="document.getElementById('HaveUIMusic').volume+=0.1">提高UI的音量</button>
+        <button onclick="document.getElementById('HaveUIMusic').volume-=0.1">降低UI的音量</button>
+    </div>
+    <!-- HTML PLAY　MUSIC  -->
+    <audio controls id="HaveUIMusic">
+        <source src="./以戰止戰哈欠版.wav" type="audio/mpeg">
+    </audio>
+    <hr size="20px" align="center" width="100%" style="background-color:seagreen">
+    <p>有面板的 HTML PLAY　Video</p>
+    <div>
+        <button onclick="document.getElementById('loveU').play()">播放面板影片</button>
+        <button onclick="document.getElementById('loveU').pause()">暂停面板影片</button>
+        <button onclick="VolumeChange(0.05);">提高面板影片音量</button>
+        <button onclick="VolumeChange(-0.05);">降低面板影片音量</button>
+        <button onclick="var x=document.getElementById('loveU'); x.muted=! x.muted">靜音</button>
+        <button id="LoopSwitch" class="Soff" onclick="LoopControl()">循環播放開啟</button>
+
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/75E5z_uDHdQ" 
+    
+    
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+    
+    allowfullscreen></iframe>
+
+    
+
+
+
+
+    <li>以戰止戰哈欠版
+
+
+    </li>
+    <button onclick="ChangePlayIndex('../RecordMusic/以戰止戰哈欠版.wav');">以戰止戰</button>
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/Y2ge3KrdeWs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+    <iframe width="300" height="168" src="https://www.youtube.com/embed/Y2ge3KrdeWs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+    <p id="MusicCurrentSong" align="left" width="100%" style="color:blue;font:bold;font-size:50px;background-color: white;">
+        目前播放:我是真的愛上你
+    </p>
+    <h1 id="MM">New word</h1> 
+
+    <p id="VolumeText" align="left" width="100%" style="color:red;font-weight:bold;font-size:40px;">
+        音量%:100%
+    </p>
+    <!-- autoplay muted -->
+    <video id="loveU" controls muted="muted">
+        <source src="" type="video/mp4">
+        <!-- HTML PLAY　Video<code>video</code> element. -->
+    </video>
+
+
+
+
+    <script type="text/javascript">
+        var cc="../RecordMusic/以戰止戰哈欠版.wav";
+        //$("#MM").text(c2);
+            
+        function ChangePlayIndex(Song) {
+            console.log(Song);
+            // var MC=$("#MusicCurrentSong");
+            // MC.src=Song;
+            document.getElementById('demo').src = Song;//放後面是因為還沒產生
+            document.getElementById('HaveUIMusic').src = Song;
+            var newstr = Song.replace(/\//g,"").replace(/\./g,"").replace(/[A-Za-z]/g,"");
+            $("#MusicCurrentSong").text("目前播放:"+newstr);
+        }
+        // $(function () {
+        //     $("p").text("The DOM is now loaded and can be manipulated.");
+        // });
+        var temmoLoveYou = document.getElementById('loveU');
+        document.getElementById('demo').src = MusicName;//放後面是因為還沒產生
+        document.getElementById('HaveUIMusic').src = MusicName;//放後面是因為還沒產生
+        temmoLoveYou.src = 'Music/馮提莫我是真的愛上你.mp4';//放後面是因為還沒產生
+        temmoLoveYou.loop = true;
+        temmoLoveYou.muted = true;
+        temmoLoveYou.volume = 0.1;
+        var percent = parseFloat(temmoLoveYou.volume * 100).toFixed(0) + "%";
+        console.log(parseFloat(temmoLoveYou.volume * 100).toFixed(0) + "%");
+        document.getElementById('VolumeText').innerHTML = "音量%數:" + percent;
+
+        temmoLoveYou.play();
+        function VolumeChange(Changevalue) {
+
+            var loveUObj = document.getElementById('loveU');
+            var totalVolume = loveUObj.volume + Changevalue;
+            if (totalVolume >= 0 && totalVolume <= 1) {
+                temmoLoveYou.muted = false;
+                loveUObj.volume = totalVolume;
+            }
+
+            var percent = parseFloat(loveUObj.volume * 100).toFixed(0) + "%";
+            console.log(parseFloat(loveUObj.volume * 100).toFixed(0) + "%");
+            document.getElementById('VolumeText').innerHTML = "音量%數:" + percent;
+
+        }
+
+        // const isMobile = navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+
+        // function play() {
+        //     var media = document.getElementById("loveU");
+        //     media.play();
+        // }
+        // document.body.addEventListener(isMobile ? "touchend" : "click", play, { once: true });
+
+        //setTimeout(Autoplay, 2000);
+        function Autoplay() {
+            //var playPromise = document.getElementById('loveU').play();
+            // if (playPromise !== undefined) {
+            //     playPromise.then(_ => {
+            //         temmoLoveYou.pause();
+            //         temmoLoveYou.muted = false;
+            //         temmoLoveYou.play();
+            //         setTimeout(Autoplay, 1000);
+            //     })
+            //         .catch(error => {
+
+            //         });
+            // };
+
+        }
+        function LoopControl() {
+            console.log('Enter(LoopControl)');
+            var htmlElement = document.getElementById('LoopSwitch');
+            if (htmlElement.className == 'Son') {
+                htmlElement.className = "Soff"
+                htmlElement.innerHTML = '循環播放開啟';
+                temmoLoveYou.loop = false;
+            }
+            else {
+                htmlElement.className = "Son"
+                htmlElement.innerHTML = '循環播放關閉';
+                temmoLoveYou.loop = true;
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

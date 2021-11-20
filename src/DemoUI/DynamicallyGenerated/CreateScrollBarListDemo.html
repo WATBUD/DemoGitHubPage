@@ -1,0 +1,145 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>CreateScrollBarListDemo</title>
+</head>
+<style>
+    html,
+    body {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .parent {
+        display: block;
+        overflow-y: visible;
+        background: red;
+        width: 100%;
+        height: 10%
+    }
+
+    .child {
+        display: flex;
+        margin: 10px 10px 10px 10px;
+        border: 5px solid black;
+        width: 50px;
+        height: 50px;
+        overflow-y: hidden;
+        background: lightblue;
+        align-items: center;
+        justify-content: center;
+        /* *display: inline; */
+        /* text-align: center; */
+    }
+
+    .itemElementArea {
+        overflow-y: scroll;
+        height: 50vh;
+        width: 100%;
+        background: rgb(204 204 204);
+        background-color: rgb(210 105 30);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: baseline;
+    }
+
+    .itemElementArea::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #4C4C4C;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    }
+
+    .itemElementArea::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    .InputObject input[type="checkbox"] {
+        width: 50px;
+        height: 50px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: red;
+
+    }
+
+    .InputObject input[type="checkbox"]:checked {
+        background: blue;
+
+    }
+
+    .ButtonStyle {
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        font-size: 0.8vw;
+        font-weight: bold;
+        text-shadow: 2px 1px 1px #386379;
+        border: 1px solid #3180a7;
+        background: linear-gradient(to bottom, #6dbfe8 0%, #28a1de 50%, #28a1de 50%, #1f8cc2 51%, #1f8cc2 51%, #33a0d6 100%);
+        border-radius: 3px;
+        outline: none;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
+    }
+</style>
+<body>
+    <!-- <div class="InputObject" style="height: 21px;width: 26px;margin-top: 2%;color: #fff;">
+        <input type="checkbox" class="sa">
+    </div>  -->
+    <input name="ClearMessage" type="button" id="ClearMessage" value="ClearScrollBar" class="ButtonStyle">
+
+
+    <input id="NewBtn" type="button" value="PressCreateUIDemo" class="ButtonStyle""
+        onclick=" Addchild()" onmousedown="Addchild()">
+    <div id="itemElementArea" class="itemElementArea">
+        <div class="child">1</div>
+    </div>
+</body>
+<script>
+    var totalArr = [];
+    var nowItemNum = 1;
+    var NewDivCountdown;
+    NewBtn.addEventListener("mousedown", () => {
+        NewDivCountdown = setInterval(() => { Addchild(); }, 100);
+    });
+    document.addEventListener("mouseup", () => {
+        clearInterval(NewDivCountdown);
+    });
+    document.getElementById('ClearMessage').addEventListener('click', (event) => {
+    console.log('ClearMessage', event);
+    itemElementArea.innerText = '';
+    totalArr = [];
+    });
+    function Addchild() {
+        itemElementArea.innerText = '';
+        totalArr.push("1");
+        var txtShow = document.getElementById("itemElementArea");
+        for (let index = 0; index < totalArr.length; index++) {
+            //const element = totalArr[index];
+            var newDiv = document.createElement("div");
+            newDiv.classList.add("child");
+            //nowItemNum += 1;
+            newDiv.innerText = index+1;
+            txtShow.appendChild(newDiv);
+        }
+        //newDiv.classList.add("InputBtnStyle");
+        //newDiv.style.cssText = "";
+    }
+
+    // var countdown;
+    // countdown = setTimeout(
+    //     function () {
+    //         self.location.reload();
+    //     }, 1000);
+
+</script>
+
+
+
+
+</html>

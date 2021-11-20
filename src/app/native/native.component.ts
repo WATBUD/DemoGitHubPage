@@ -60,6 +60,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Algorithm/GeneratorSlopeEquation.html',
       Name: 'GeneratorSlopeEquation',
     },
+    {
+    URL:'./DemoUI/DynamicallyGenerated/CreateScrollBarListDemo.html',
+    Name:'CreateScrollBarListDemo',
+    }
   ];
 
 

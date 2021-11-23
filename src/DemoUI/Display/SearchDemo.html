@@ -1,0 +1,111 @@
+<!-- <script src="three.min.js"></script> -->
+<meta charset="utf-8">
+
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+</head>
+<style>
+  .ListButtonItem {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    background: #bea9de63;
+  }
+
+  .ButtonStyle {
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8vw;
+    font-weight: bold;
+    text-shadow: 2px 1px 1px #386379;
+    border: 1px solid #3180a7;
+    background: linear-gradient(to bottom, #6dbfe8 0%, #28a1de 50%, #28a1de 50%, #1f8cc2 51%, #1f8cc2 51%, #33a0d6 100%);
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  }
+
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(0, 255, 0, 1);
+    opacity: 1;
+    /* Firefox */
+  }
+</style>
+
+
+
+<body>
+  <!-- <body class="secondAreaDiv-toggle splat-toggle">   -->
+  <div style="width: 90%;
+  color: red;
+  margin: 0.5%;
+  font-weight: bold;">Try search input field
+    <input type="search" id="SearchInput" style="text-decoration: underline;color: blue;" onkeyup="onSearchInput(this)"
+      onkeydown="" placeholder="Search..." class="ButtonStyle">
+  </div>
+  <div id="arrayNumber" style="width: 100%;height: 23px;color: red;"> </div>
+  </div>
+  <div id="CenterArea" style="display: flex;flex-direction:row;width:90%;height:90%;margin-top: 1.5%;">
+    <div id="ListButton"
+      style="width: 20%;height: 100%;background: #2196f357;display: flex;flex-direction: column;overflow: overlay;">
+    </div>
+    <div id="log" style="
+    width: 50%;
+    height: auto;
+    display: flex;
+    word-break: break-word;
+    margin-left: 5%;line-height: 24px;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    "></div>
+  </div>
+</body>
+<script>
+  var AllFunctionMapping = [
+    {
+      isVisble: true,
+      contentString: "波利",
+    },
+    {
+      isVisble: true,
+      contentString: "土波利",
+    }
+  ]
+  setArrayData("");
+  function onSearchInput(SearchText) {
+    console.dir(SearchText);
+    console.log('%c onSearchInput', 'color:rgb(255,75,255,1)', SearchText);
+    setArrayData(SearchText.value);
+  }
+  function setArrayData(SearchText = "") {
+    console.log('%c setArrayData_SearchText', 'color:rgb(255,75,255,1)', SearchText);
+    document.getElementById('ListButton').innerHTML = "";
+    for (let index = 0; index < AllFunctionMapping.length; index++) {
+      const element = AllFunctionMapping[index];
+      if (element.contentString.indexOf(SearchText) > -1) {
+        //var createBtn = document.createElement('input');
+        var createBtn = document.createElement('Div');
+        createBtn.style.cssText = 'text-decoration: underline;color: blue;';
+        //createBtn.dataset.status = element.functionType;
+        createBtn.className = "ListButtonItem";
+        //createBtn.value = element.contentString;
+        createBtn.innerText = element.contentString;
+        //createBtn.style.background="red";
+        //createBtn.style.color="blues";
+        //createBtn.style.textDecoration="";
+        //createBtn.style.marginLeft = Time_Axis.style.left;
+        //createBtn.setAttribute("type", "button");
+        // createBtn.addEventListener("click", function () {
+        //     console.log('switchShowType', _this.switchShowType);
+        // });
+        document.getElementById('ListButton').appendChild(createBtn);
+      }
+    }
+
+  }
+</script>

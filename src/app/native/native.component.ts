@@ -77,7 +77,7 @@ export class NativeComponent implements OnInit {
       Name: 'BorderFillAnimation',
     },
     {
-      URL: './DemoUI/HomemadeTools/KeyPressInterval.html',
+      URL: './DemoUI/Input/KeyPressInterval.html',
       Name: 'KeyPressInterval',
     },
     {
@@ -88,8 +88,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Animate/PolygonAnimation.html',
       Name: 'PolygonAnimation',
     },
-
-
+    {
+      URL: './DemoUI/CSSDemo/CSS_ArrowSymbol.html',
+      Name: 'CSS_ArrowSymbol',
+    },
   ];
 
 

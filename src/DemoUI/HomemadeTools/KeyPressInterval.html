@@ -1,7 +1,7 @@
 <meta charset="utf-8" />
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Key-pressInterva</title>
+<title>KeyPressInterval</title>
 <p>Key-pressInterval</p>
 <div id="log"></div>
 <script>
@@ -111,7 +111,6 @@
     { "event_code": "F10", "event_keycode": 121 },
     { "event_code": "F11", "event_keycode": 122 },
     { "event_code": "F12", "event_keycode": 123 }]
-  //log.innerHTML = "Direct";
   var iskeydown = false;
   var eventRecordkey = "";
   var recodeArr = [];
@@ -128,7 +127,6 @@
     //   var keyCodes = event.keyCode; 
     //   event.preventDefault();
     // }
-
     console.log('push', JSON.stringify(recodeArr));
     //|| (event.key != eventRecordkey
     if (event.key != eventRecordkey) {
@@ -151,16 +149,10 @@
       }
       //console.log('event.key', event.key,eventRecordkey,iskeydown,startTime);
     }
-
-
   });//一次後消失, {once: true}
   document.addEventListener('keyup', (event) => {
     //event.preventDefault();
-
   });
-
-
-
   //function GetDateDiff(startDate, endDate) {
   // var endTime = new Date(Date.parse(endDate.replace(/-/g, "/"))).getTime();
   // var dates = Math.abs((startTime - endTime))/(1000*60*60*24);
@@ -169,8 +161,6 @@
   //return dates;
   //}
   //回傳由 1970-01-01 00:00:00 UTC 開始 到代表時間經過的毫秒數 Date.prototype.getTime()
-
-
   document.addEventListener('keyup', (e) => {
     iskeydown = false;
     //log.innerHTML += startTime + "<BR>";
@@ -180,8 +170,4 @@
     startTime = new Date().getTime();
 
   });
-
-
-
-
 </script>

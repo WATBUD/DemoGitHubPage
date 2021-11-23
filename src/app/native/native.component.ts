@@ -72,6 +72,18 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Animate/ShadowCircleAnimation.html',
       Name: 'ShadowCircleAnimation',
     }
+    {
+      URL: './DemoUI/Animate/BorderFillAnimation.html',
+      Name: 'BorderFillAnimation',
+    },
+    {
+      URL: './DemoUI/HomemadeTools/KeyPressInterval.html',
+      Name: 'KeyPressInterval',
+    },
+    {
+      URL: './DemoUI/DynamicallyGenerated/GenerateButton.html',
+      Name: 'GenerateButton',
+    },
   ];
 
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GenerateButton</title>
+    <head>
+    <body>
+        <div id="content">
+            <input name="CLICK ME" type="button" onClick="addButton()" value="CLICK ME"></input>
+        </div>
+        <script type="text/javascript">
+        var btnName="CLICK ME"
+            addButton();
+            function addButton() {
+                var inputList = document.getElementsByTagName("input");
+                for (var i = 0; i < inputList.length; i++) {
+                    var inputItem = inputList[i]; 
+                    inputItem.setAttribute("record_i", i);
+                    inputItem.onclick = function () {
+                        var answer = confirm("我是" + this.getAttribute("record_i") + "號按鈕,是否生成新按鈕");
+                        if (answer) {
+                            document.getElementById("content").innerHTML += "</br><input name='按鈕' type='button' onClick='clic()' value='"+i+"'><//input>";
+                            addButton();
+                        }
+                    };
+
+
+                }
+
+            }
+        </script>
+    </body>
+
+</html> 

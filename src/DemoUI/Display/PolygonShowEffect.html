@@ -4,19 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Author:水靈(Louis)</title>
-	<script src="../jquery.js"></script>
 	<style>
 		body {
 			display: block;
 			margin: 0px;
 		}
 
-		div.container {
-			height: 820px;
-			border: 4px solid red;
-			display: table;
-			vertical-align: middle;
-		}
 
 		div.left {
 			width: 100%;
@@ -41,18 +34,6 @@
 			justify-content: center;
 			z-index: 0;
 		}
-
-		.MaskFrameL {
-			position: absolute;
-			top: 20%;
-			left: 0%;
-			width: 580px;
-			height: 500px;
-			background-color: white;
-			margin: 0;
-			z-index: 3;
-		}
-
 		.clip {
 			position: absolute;
 			/* background-color: blue; */
@@ -63,30 +44,24 @@
 	</style>
 </head>
 <script>
-	var conutdown = setTimeout(
-		function () {
-			self.location.reload();
-		}, 1000);
+	// var conutdown = setTimeout(
+	// 	function () {
+	// 		self.location.reload();
+	// 	}, 1000);
 </script>
 
 <body>
-	<input id="Close" type="button" value="Close" onclick="clearTimeout(conutdown);">
-	<!-- <input id="Auto" type="button" value="AutoRefresh" onclick="conutdownFn();"> -->
+	<!-- <input id="Close" type="button" value="Close" onclick="clearTimeout(conutdown);"> -->
 	<div class="clip sliderFrame" style="position:absolute">
 	</div>
-	<div class="MaskFrameL">
-	</div>
-	<div class="MaskFrameR">
-	</div>
-	<div class="container">
-	</div>
-	<button id="toggle">toggle</button>
 	<script>
 		// var text="-webkit-linear-gradient(right,"+
 		// 		t[0]+','+t[1]+','+t[2]+','+t[3]+','+t[4]+','+t[5]+','+t[6]+")";
 		// 		console.log(text);
 		// 		obj.style.background=text;
-		$(document).ready(function () {
+		//$(document).ready(function () {
+		window.onload = function() {
+
 			var obj = document.getElementsByClassName("sliderFrame")[0];
 			setInterval(function () {
 				let colorarray = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', '#0000'];
@@ -114,7 +89,7 @@
 			//obj.style.backgroundImage='-webkit-linear-gradient(30deg,blue,red)';
 			//obj.style.background='-webkit-linear-gradient(30deg,blue,red)';
 			// obj.style.background='-webkit-linear-gradient(right, red, orange, yellow, green, blue, indigo, violet)';
-		});
+		};
 	</script>
 </body>
 

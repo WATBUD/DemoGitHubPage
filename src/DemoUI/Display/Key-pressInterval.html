@@ -1,9 +1,9 @@
-<p>檢查時間間隔</p>
+<meta charset="utf-8" />
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Key-pressInterva</title>
+<p>Key-pressInterval</p>
 <div id="log"></div>
-
-
-
-
 <script>
   var customEventCode = [
     { "event_code": "ControlLeft", "event_keycode": 17 },
@@ -115,7 +115,7 @@
   var iskeydown = false;
   var eventRecordkey = "";
   var recodeArr = [];
-  var startTime, endTime;
+  var startTime = 0, endTime = 0;
   document.addEventListener('keypress', (event) => {
     //event.preventDefault();
     //alert("ASDSD");
@@ -141,17 +141,17 @@
         //     log.innerHTML += element.event_code + "<BR>";
         //   }
         // });
-        log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>"+event.key+"放開<BR>";
+        log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>" + event.key + "放開<BR>";
         startTime = new Date().getTime();
       }
-      else{
-        eventRecordkey=event.key;
-        log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>"+event.key+"放開<BR>";
+      else {
+        eventRecordkey = event.key;
+        log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>" + event.key + "放開<BR>";
         startTime = new Date().getTime();
       }
       //console.log('event.key', event.key,eventRecordkey,iskeydown,startTime);
     }
-    
+
 
   });//一次後消失, {once: true}
   document.addEventListener('keyup', (event) => {
@@ -159,7 +159,7 @@
 
   });
 
- 
+
 
   //function GetDateDiff(startDate, endDate) {
   // var endTime = new Date(Date.parse(endDate.replace(/-/g, "/"))).getTime();
@@ -176,7 +176,7 @@
     //log.innerHTML += startTime + "<BR>";
     //log.innerHTML += startTime.getMilliseconds() + "<BR>";
     //console.log('startTime-endtTime',startTime,endtTime);
-    log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>"+e.key+"放開<BR>";
+    log.innerHTML += "差距毫秒:" + (new Date().getTime() - startTime) + "<BR>" + e.key + "放開<BR>";
     startTime = new Date().getTime();
 
   });

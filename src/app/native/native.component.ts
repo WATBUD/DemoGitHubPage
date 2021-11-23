@@ -63,12 +63,12 @@ export class NativeComponent implements OnInit {
     {
       URL: './DemoUI/DynamicallyGenerated/CreateScrollBarListDemo.html',
       Name: 'CreateScrollBarListDemo',
-    }
+    },
     {
       URL: './DemoUI/Animate/RainBackgroundEffect.html',
       Name: 'RainBackgroundEffect',
-    }
-{
+    },
+    {
       URL: './DemoUI/Animate/ShadowCircleAnimation.html',
       Name: 'ShadowCircleAnimation',
     }

@@ -84,6 +84,12 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/DynamicallyGenerated/GenerateButton.html',
       Name: 'GenerateButton',
     },
+    {
+      URL: './DemoUI/Animate/PolygonAnimation.html',
+      Name: 'PolygonAnimation',
+    },
+
+
   ];
 
 

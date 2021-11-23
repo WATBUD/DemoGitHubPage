@@ -53,7 +53,7 @@ export class NativeComponent implements OnInit {
       Name: 'Progress_Bar_Rectangle',
     },
     {
-      URL: './DemoUI/SpecialEffects/ButtonRippleEffect.html',
+      URL: './DemoUI/Animate/ButtonRippleEffect.html',
       Name: 'ButtonRippleEffect',
     },
     {

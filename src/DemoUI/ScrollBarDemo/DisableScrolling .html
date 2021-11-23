@@ -15,14 +15,10 @@
 </head> 
   
 <body> 
-    <h1 style="color: green"> 
-      GeeksforGeeks 
+    <h1 id="TitleTip" style="color: green"> 
+      LockDisable 
   </h1> 
-  
-    <b>How to disable scrolling temporarily 
-      using JavaScript?</b> 
     <p>Click on the buttons below to enable or disable scrolling.</p> 
-  
     <p class="scrollable-place"> 
         <button onclick="disableScroll()">Disable Scrolling</button> 
         <button onclick="enableScroll()">Enable Scrolling</button> 
@@ -30,6 +26,7 @@
   
     <script> 
         function disableScroll() { 
+          document.getElementById('TitleTip').innerText="DisableScroll";
             // Get the current page scroll position 
             scrollTop =  
               window.pageYOffset || document.documentElement.scrollTop; 
@@ -44,6 +41,8 @@
         } 
   
         function enableScroll() { 
+          document.getElementById('TitleTip').innerText="EnableScroll";
+
             window.onscroll = function() {}; 
         } 
     </script> 

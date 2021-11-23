@@ -71,7 +71,7 @@ export class NativeComponent implements OnInit {
     {
       URL: './DemoUI/Animate/ShadowCircleAnimation.html',
       Name: 'ShadowCircleAnimation',
-    }
+    },
     {
       URL: './DemoUI/Animate/BorderFillAnimation.html',
       Name: 'BorderFillAnimation',

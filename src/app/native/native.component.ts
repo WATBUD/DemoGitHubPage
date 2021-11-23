@@ -61,8 +61,16 @@ export class NativeComponent implements OnInit {
       Name: 'GeneratorSlopeEquation',
     },
     {
-    URL:'./DemoUI/DynamicallyGenerated/CreateScrollBarListDemo.html',
-    Name:'CreateScrollBarListDemo',
+      URL: './DemoUI/DynamicallyGenerated/CreateScrollBarListDemo.html',
+      Name: 'CreateScrollBarListDemo',
+    }
+    {
+      URL: './DemoUI/Animate/RainBackgroundEffect.html',
+      Name: 'RainBackgroundEffect',
+    }
+{
+      URL: './DemoUI/Animate/ShadowCircleAnimation.html',
+      Name: 'ShadowCircleAnimation',
     }
   ];
 
@@ -99,7 +107,7 @@ export class NativeComponent implements OnInit {
   setURLContext(URLstring = "") {
     console.log('%c setURLContext', 'background: blue; color: red', URLstring)
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(URLstring);
-    
+
   }
 
   ngOnInit() {
@@ -110,18 +118,18 @@ export class NativeComponent implements OnInit {
   ngAfterViewInit() {
     var realWindow = window.parent || window;
     //document.addEventListener('keyup', this.eventRegister[1]);
-    function frameKeyUp(e){
+    function frameKeyUp(e) {
       console.log('%c frameKeyUp', 'background: blue; color: red', e);
 
       alert(e.keyCode);
-   }
+    }
 
-   var iframe2 = document.getElementById('embedIframe') as HTMLIFrameElement;
-  //  console.log('%c iframe2', 'background: blue; color: red', iframe2,iframe2.body,iframe2.document);
+    var iframe2 = document.getElementById('embedIframe') as HTMLIFrameElement;
+    //  console.log('%c iframe2', 'background: blue; color: red', iframe2,iframe2.body,iframe2.document);
 
-  //  console.log('%c iframe2', 'background: blue; color: red', iframe2.contentWindow);
-   //iframe2.contentWindow.designMode = "on";
-   iframe2.contentWindow.addEventListener('keyup', frameKeyUp,true);
+    //  console.log('%c iframe2', 'background: blue; color: red', iframe2.contentWindow);
+    //iframe2.contentWindow.designMode = "on";
+    iframe2.contentWindow.addEventListener('keyup', frameKeyUp, true);
 
 
   }

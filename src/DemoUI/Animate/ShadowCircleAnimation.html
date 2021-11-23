@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ShadowCircleAnimation</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            margin: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(0, 0, 0);
+        }
+
+        .CustomCircle:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to top, rgb(0 0 0 / 0%), rgb(237 242 101 / 40%));
+            background-size: 200px 200px;
+            background-repeat: no-repeat;
+            border-top-left-radius: 200px;
+            border-bottom-left-radius: 200px;
+        }
+
+        .CustomCircle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8%;
+            height: 8%;
+            background: rgb(247 252 117);
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 10px #f7fc75, 0 0 20px #f7fc75, 0 0 30px #f7fc75, 0 0 40px #f7fc75, 0 0 50px #f7fc75, 0 0 60px #f7fc75, 0 0 70px #f7fc75, 0 0 80px #f7fc75, 0 0 90px #f7fc75, 0 0 100px #f7fc75;
+        }
+
+        .CustomCircle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            -webkit-animation: rorate0_360 2s linear infinite;
+            animation: rorate0_360 2s linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .CustomCircle span {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            background: rgb(48 198 159);
+            border-radius: 50%;
+        }
+
+        @keyframes rorate0_360 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+                /* background: #2ecc71; */
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<script>
+</script>
+
+<body>
+    <div class="CustomCircle">
+        <span data-tag="CenterMask"></span>
+    </div>
+</body>
+
+</html>

@@ -18,14 +18,14 @@ height: 100%;
 z-index: 2;
 }
 
-.rain.back-row {
+.rain.secondAreaDiv {
 display: none;
 z-index: 1;
 bottom: 60px;
 opacity: 0.5;
 }
 
-body.back-row-toggle .rain.back-row {
+body.secondAreaDiv-toggle .rain.secondAreaDiv {
 display: block;
 }
 
@@ -50,15 +50,15 @@ transform: translateY(90vh);
 }
 }
 
-.stem {
+.raindrop {
 width: 2px;
 height: 60%;
 margin-left: 7px;
 background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
-animation: stem 0.5s linear infinite;
+animation: raindrop 0.5s linear infinite;
 }
 
-@keyframes stem {
+@keyframes raindrop {
 0% {
 opacity: 1;
 }
@@ -148,7 +148,7 @@ background-color: rgba(255, 255, 255, 0.4);
 top: 20px;
 }
 
-.back-row-toggle {
+.secondAreaDiv-toggle {
 top: 90px;
 line-height: 12px;
 padding-top: 14px;

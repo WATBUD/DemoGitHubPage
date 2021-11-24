@@ -113,7 +113,9 @@ Reflection Event Parameter
         mouseOn = false;
         console.log("mouseup", mouseOn);
     }
-    layerRange.addEventListener("mousedown", RGBcircleEventArr[0]);
+    
+    //layerRange.addEventListener("mousedown", RGBcircleEventArr[0]);
+    document.addEventListener("mousedown", RGBcircleEventArr[0]);
     document.addEventListener("mousemove", RGBcircleEventArr[1]);
     document.addEventListener("mouseup", RGBcircleEventArr[2]);
 </script>

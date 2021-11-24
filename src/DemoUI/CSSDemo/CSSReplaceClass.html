@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSSReplaceClass</title>
+</head>
+<script src="../jquery-3.6.0.js"></script>
+<style>
+    .Test1 {
+        background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+        width: 300px;
+        height: 300px;
+    }
+
+    .Test2 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(#e66465, #9198e5);
+        color: white;
+        font-size: 14px;
+
+    }
+
+    .someClassName {
+        background-color: blue;
+        width: 300px;
+        height: 300px;
+        color: white;
+    }
+    .CenterAlignment{
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+</style>
+
+<body>
+
+    <div class="Test1 CenterAlignment" id="show"> CSSReplaceClass</div>
+    <button onclick="relpace('Test1','Test2')">Replace Test2</button>
+    <button onclick="relpace('Test2','Test1')">Replace Test1</button>
+
+
+</body>
+<script>
+
+    //document.getElementById("show").setAttribute("Test1","Test2");
+    function relpace(Abcss, bcss) {
+        var classVal = document.getElementById("show").getAttribute("class");
+        classVal = classVal.replace(Abcss, bcss);
+        document.getElementById("show").setAttribute("class", classVal);
+    }
+
+    function Test2() {
+        var classVal = document.getElementById('show').getAttribute("class");
+        classVal = classVal.concat(" Test2");
+        document.getElementById("show").setAttribute("class", classVal);
+    }
+//$("#show").switchClass("Test1", "Test2");
+// $('#show').removeClass("Test2");
+// $('#show').addClass("Test1");
+</script>
+
+</html>

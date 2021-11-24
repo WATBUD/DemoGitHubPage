@@ -96,6 +96,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Mouse/ReflectionEventParameter.html',
       Name: 'ReflectionEventParameter',
     },
+    {
+      URL: './DemoUI/CSSDemo/CSSReplaceClass.html',
+      Name: 'CSSReplaceClass',
+    },
   ];
 
 

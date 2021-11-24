@@ -1,12 +1,7 @@
-座標測試reflection寫法範例
+Reflection Event Parameter
 <meta charset="UTF-8">
-<body>
-    <!-- x: <span id="x">
-    </span>, y: <span id="y"></span> -->
 
-    <!-- ointer-events: none; -->
-    
-    <!-- pointer-events: none; 影響offset layer值-->
+<body>
     <div id="layerRange" class="layerRange">
         <div style="    background-color: black;
         width: 50px;
@@ -23,31 +18,40 @@
 
         </div>
     </div>
-    <div id="txtShow" style="position: absolute; background-color: black;margin-left: 75%;overflow-y: scroll;
-color:yellow;word-wrap: break-word;
-width:500px;height: 500px;">選澤想要查的資料</div>
+    <div id="txtShow" style="background-color: rgb(54 43 43 / 95%);
+    margin-left: 41%;
+    overflow-y: scroll;
+    color: rgb(211 255 0);
+    word-wrap: break-word;
+    width: 500px;
+    height: 500px;">EventParameter</div>
 
 </body>
 
 <style type="text/css">
     body {
-
-        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
         margin: 0px;
-        -webkit-user-select:none;
--moz-user-select:none;
--o-user-select:none;
-user-select:none;
+        display: flex;
+        background: rgb(0, 0, 0);
+        justify-content: center;
+        align-items: center;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
     }
 
     .layerRange {
         position: absolute;
         /* background-image: linear-gradient(to right, red, yellow); */
-        /* border: 5px solid #666; */
+        border: 2px solid gray;
         background-color: red;
         width: 200px;
         height: 200px;
-        left: 200px;
         /* border-radius: 50%; */
     }
 
@@ -69,52 +73,44 @@ user-select:none;
     var RGBcircleEventArr = [];
     var mouseOn = false;
     var layerRange = document.getElementById("layerRange");
-    var targetDisX=0,targetDisY=0;;
+    var targetDisX = 0, targetDisY = 0;;
     var txtShow = document.getElementById("txtShow");
-        //txtShow.innerText=5555555555555;
+    //txtShow.innerText=5555555555555;
     //var circle = document.getElementById("circle");
     RGBcircleEventArr[0] = (e) => {
         if (e.buttons !== 1 || e.which !== 1) return;
         mouseOn = true;
         console.log("mousedown", mouseOn, e);
-        
-    //     // RGBcircle.style.left = e.layerX + "px";
-    //     // RGBcircle.style.top = e.layerY + "px";
-        
-    //     var RGBcircle = document.getElementById("layerRange");
-    //    // console.dir(RGBcircle);
-    //     targetDisX=e.layerX;
-    //     targetDisY=e.layerY;
 
-    //     RGBcircle.style.display = "block"
-    //     RGBcircle.style.marginLeft = targetDisX + "px";
-    //     RGBcircle.style.marginTop = targetDisY + "px";
+        //     // RGBcircle.style.left = e.layerX + "px";
+        //     // RGBcircle.style.top = e.layerY + "px";
+
+        //     var RGBcircle = document.getElementById("layerRange");
+        //    // console.dir(RGBcircle);
+        //     targetDisX=e.layerX;
+        //     targetDisY=e.layerY;
+
+        //     RGBcircle.style.display = "block"
+        //     RGBcircle.style.marginLeft = targetDisX + "px";
+        //     RGBcircle.style.marginTop = targetDisY + "px";
 
     }
-    
-    
-    RGBcircleEventArr[1] = (e) => {
+    RGBcircleEventArr[1] = (eventData) => {
         //if (!mouseOn) return;
         //console.log("mousemove", mouseOn, e);
         //clearEventBubble(e);
-
-        //var T_=Object.keys(e);
-        //console.log("T_", T_);
-        //console.log("T_", T_);
-        //console.log(Object.keys(event))
-        //console.log(e)
-        var eventArray=[];
-        txtShow.innerHTML="";
-        for (const property in e) {
+        var eventArray = [];
+        txtShow.innerHTML = "";
+        for (const property in eventData) {
             //console.log(`${typeof e[property]}: ` + ':its a  fuction');
-            switch (typeof e[property]) {
+            switch (typeof event[property]) {
                 case "function":
                     break;
                 case "boolean":
-                eventArray.push(property);
+                    eventArray.push(property);
                     break;
                 case "number":
-                eventArray.push(property);
+                    eventArray.push(property);
                     break;
                 case "object":
                     break;
@@ -130,22 +126,8 @@ user-select:none;
         for (let index = 0; index < eventArray.length; index++) {
             //const element = array[index];
             //console.log(e[eventArray[index]])
-            
-            txtShow.innerHTML+=eventArray[index]+":"+e[eventArray[index]]+"<BR>";
-            
+            txtShow.innerHTML += eventArray[index] + ":" + eventData[eventArray[index]] + "<BR>";
         }
-
-        // for (const property in eventArray) {
-        //     console.log(property[0])
-        //     //txtShow.innerText+=e[property];
-
-
-        // }
-
-        // var RGBcircle = document.getElementById("RGBcircle");
-        // parentDiv=RGBcircle.parentElement;
-
-
     }
     RGBcircleEventArr[2] = (e) => {
         if (!mouseOn) return;
@@ -157,31 +139,4 @@ user-select:none;
     layerRange.addEventListener("mousedown", RGBcircleEventArr[0]);
     layerRange.addEventListener("mousemove", RGBcircleEventArr[1]);
     document.addEventListener("mouseup", RGBcircleEventArr[2]);
-
-
-    // document.addEventListener("mousemove", (e) => {
-    //     console.log("mousemove", mouseOn, e);
-    //     if (!mouseOn) return;
-    //     //clearEventBubble(e);
-    //     RGBcircle.style.marginLeft = e.clientY + "px";
-    //     RGBcircle.style.marginTop = e.clientX + "px";
-
-    //     // if(e.layerX+RGBcircle.clientWidth<=layerRange.clientWidth+2&& e.layerY+RGBcircle.clientHeight<=layerRange.clientHeight+2){
-    //     // RGBcircle.style.marginLeft= e.layerX+ "px";
-    //     // RGBcircle.style.marginTop= e.layerY+ "px";
-    //     // }
-
-
-
-
-    // });
-
-    // document.addEventListener("mouseup", (e) => {
-    //     console.log("mouseleave", e);
-    //     mouseOn = false;
-    // });
-
-
-
-
 </script>

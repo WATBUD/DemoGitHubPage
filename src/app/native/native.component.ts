@@ -92,6 +92,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/CSSDemo/CSS_ArrowSymbol.html',
       Name: 'CSS_ArrowSymbol',
     },
+    {
+      URL: './DemoUI/Mouse/ReflectionEventParameter.html',
+      Name: 'ReflectionEventParameter',
+    },
   ];
 
 

@@ -1,6 +1,5 @@
 Reflection Event Parameter
 <meta charset="UTF-8">
-
 <body>
     <div id="layerRange" class="layerRange">
         <div style="    background-color: black;
@@ -18,16 +17,14 @@ Reflection Event Parameter
 
         </div>
     </div>
-    <div id="txtShow" style="background-color: rgb(54 43 43 / 95%);
+    <div id="txtShow" style="    background-color: rgb(54 43 43 / 95%);
     margin-left: 41%;
-    overflow-y: scroll;
     color: rgb(211 255 0);
     word-wrap: break-word;
     width: 500px;
-    height: 500px;">EventParameter</div>
+    height: auto;">EventParameter</div>
 
 </body>
-
 <style type="text/css">
     body {
         width: 100%;
@@ -52,14 +49,8 @@ Reflection Event Parameter
         background-color: red;
         width: 200px;
         height: 200px;
-        /* border-radius: 50%; */
     }
-
     .circle {
-        /* position: absolute;
-        z-index: 9999; */
-        /* position: absolute; */
-        /* border: 2px solid blue; */
         background-color: yellow;
         width: 10%;
         height: 10%;
@@ -67,8 +58,6 @@ Reflection Event Parameter
         /* border-radius: 50%; */
     }
 </style>
-
-
 <script>
     var RGBcircleEventArr = [];
     var mouseOn = false;
@@ -81,19 +70,6 @@ Reflection Event Parameter
         if (e.buttons !== 1 || e.which !== 1) return;
         mouseOn = true;
         console.log("mousedown", mouseOn, e);
-
-        //     // RGBcircle.style.left = e.layerX + "px";
-        //     // RGBcircle.style.top = e.layerY + "px";
-
-        //     var RGBcircle = document.getElementById("layerRange");
-        //    // console.dir(RGBcircle);
-        //     targetDisX=e.layerX;
-        //     targetDisY=e.layerY;
-
-        //     RGBcircle.style.display = "block"
-        //     RGBcircle.style.marginLeft = targetDisX + "px";
-        //     RGBcircle.style.marginTop = targetDisY + "px";
-
     }
     RGBcircleEventArr[1] = (eventData) => {
         //if (!mouseOn) return;
@@ -129,6 +105,7 @@ Reflection Event Parameter
             txtShow.innerHTML += eventArray[index] + ":" + eventData[eventArray[index]] + "<BR>";
         }
     }
+    
     RGBcircleEventArr[2] = (e) => {
         if (!mouseOn) return;
         //clearEventBubble(e);
@@ -137,6 +114,6 @@ Reflection Event Parameter
         console.log("mouseup", mouseOn);
     }
     layerRange.addEventListener("mousedown", RGBcircleEventArr[0]);
-    layerRange.addEventListener("mousemove", RGBcircleEventArr[1]);
+    document.addEventListener("mousemove", RGBcircleEventArr[1]);
     document.addEventListener("mouseup", RGBcircleEventArr[2]);
 </script>

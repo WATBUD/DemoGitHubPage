@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 
+<input type="button" onclick="showtosystemTime()" value="顯示今年月日">
+ -->
+
+<p id="GetNowTime"></p>
+<p id="unixTimestamp"></p>
+
+<script type="text/javascript">
+    function showtosystemTime() {
+        var systemTime = new Date();
+        alert("今年月日是" + systemTime.getFullYear() + "年" + (systemTime.getMonth() + 1) + "月" + systemTime.getDate() + "日");
+    }
+    setInterval(() => {
+        var systemTime2 = new Date();
+        document.getElementById("GetNowTime").innerHTML = "Now Time : " + systemTime2.getFullYear() + "年" + (systemTime2.getMonth() + 1) + "月" + systemTime2.getDate() + "日" + systemTime2.getHours() + "時" + systemTime2.getMinutes() + "分" + systemTime2.getSeconds() + "秒";
+        const dateTime = Date.now();
+        const timestamp = Math.floor(dateTime / 1000);//Divide by 1000 to get seconds
+        document.getElementById("unixTimestamp").innerHTML = "unix Timestamp : " + timestamp;
+    }, 1000);
+</script>

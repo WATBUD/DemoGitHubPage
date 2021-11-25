@@ -104,6 +104,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Basic/JS_TimeTable.html',
       Name: 'CSSReplaceClass',
     },
+    {
+      URL: './DemoUI/ArraySort/BubbleSort.html',
+      Name: 'BubbleSort',
+    },
   ];
 
 

@@ -101,8 +101,8 @@ export class NativeComponent implements OnInit {
       Name: 'CSSReplaceClass',
     },
     {
-      URL: './DemoUI/Basic/JS_TimeTable.html',
-      Name: 'CSSReplaceClass',
+      URL: './DemoUI/Basic/JS_GetTime.html',
+      Name: 'JS_GetTime',
     },
     {
       URL: './DemoUI/ArraySort/BubbleSort.html',

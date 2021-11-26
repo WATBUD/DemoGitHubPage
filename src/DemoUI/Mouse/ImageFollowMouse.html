@@ -1,0 +1,42 @@
+
+
+
+<style>
+    html,
+    body {
+        background-color: #222;
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .cat {
+        height: 100px;
+        width: 160px;
+        position: absolute;
+    }
+
+    p {
+        color: white;
+    }
+</style>
+
+<p>Mouse is at coordinates: <span></span></p><img class="cat"
+    src="http://awiclass.monoame.com/catpic/cat_three_cats.png" alt="" />
+<script src="../jquery-3.6.0.js"></script>
+<script>$(document).ready(function () {
+        $(document).mousemove(function (event) {
+            $("span").text(event.pageX + ", " + event.pageY);
+            var yy = event.pageY;
+            var y2 = yy - 50;
+            var xx = event.pageX;
+            var x2 = xx - 80;
+            $(".cat").css({
+                "top": y2 + "px",
+                "left": x2 + "px"
+            })
+        });
+    });
+
+</script>

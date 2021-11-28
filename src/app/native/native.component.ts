@@ -108,6 +108,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/ArraySort/BubbleSort.html',
       Name: 'BubbleSort',
     },
+    {
+      URL: './DemoUI/Animate/3DRotationControl.html',
+      Name: '3DRotationControl',
+    },
   ];
 
 

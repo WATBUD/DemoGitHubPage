@@ -15,11 +15,7 @@ export class DemoListUIComponent implements OnInit {
 
    }
 
-  customURLList=[
-  {
-      URL:'./DemoUI/Excel/Convert Excel File To JSON.html',
-      Name:'Convert Excel File To JSON',
-  }];
+
 
 
 

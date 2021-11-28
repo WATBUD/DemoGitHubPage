@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>TEST 23</title>
+    <style>
+       
+    </style>
+<script src="three.min.js"></script>
+</head>
+<body>
+    <div>Click and Drag to Rotate the Cube</div>
+</body>
+
+<!-- <button type="Button" id="zz" class="btn btn-success form-control" onclick="tt(document.getElementById('zz').tex)" value="5">Run script</button> -->
+<!-- <input type="button" id="zz" value="Volvo" onclick="tt(document.getElementById('zz').value)"> -->
+<!-- <input type="button" id="zz2" value="Volvo" onclick="console.log(this.value)"> -->
+<input type="button" id="zz" value="關閉" onclick="tt(this)">
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<script>
+var camera, scene, renderer;
+var geometry, material, mesh;
+var Switch = 0;
+
+init();
+animate();
+
+function init() {
+
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+	camera.position.z = 1;
+
+	scene = new THREE.Scene();
+
+	geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+	material = new THREE.MeshNormalMaterial();
+
+	mesh = new THREE.Mesh( geometry, material );
+	scene.add( mesh );
+
+	renderer = new THREE.WebGLRenderer( { antialias: true } );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+
+}
+
+function tt(n1){
+	console.log(n1.value);
+	if(n1.value=="開啟"){
+		console.log(n1.value+'狀態');
+		//requestAnimationFrame( animate );//RUN ANIMATE
+		n1.value="關閉";
+		Switch=0;
+		animate();
+	}
+	else if(n1.value=="關閉"){
+		console.log(n1.value+'狀態');
+		n1.value="開啟";
+		cancelAnimationFrame(animate);
+		Switch=1;
+		
+	}
+}
+function animate() {
+    if(Switch!=1){
+	requestAnimationFrame( animate );//RUN ANIMATE
+	 mesh.rotation.x += 0.01;
+	 mesh.rotation.y += 0.02;
+	console.log("1");
+	
+	renderer.render( scene, camera );
+	}
+
+}
+ 
+</script>
+
+</html>

@@ -34,8 +34,15 @@ li{
 }
 
 .list-group {
+    /* display: inline-block; */
     margin-top: 20px;
     background: rgb(34 131 177 / 0%);
+}
+.GroupArea{
+    position: absolute;
+    /* background: rgb(255 0 0); */
+    width: auto;
+    height: 1200px;
 }
 
 /* .btn-toggle::before {

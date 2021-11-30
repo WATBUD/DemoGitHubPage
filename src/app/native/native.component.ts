@@ -112,6 +112,11 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Animate/3DRotationControl.html',
       Name: '3DRotationControl',
     },
+
+    {
+      URL: './DemoUI/CSSDemo/CenterAlignment.html',
+      Name: 'CenterAlignment',
+    },
   ];
 
 

@@ -1,77 +1,91 @@
 <!-- <div *ngFor="let item of this.router.config; let i = index" class="NumKeyBindSourceItem">
     <div style="position: absolute;left: 15%;user-select: none;" data-keyTitle="Key">{{item}}</div>
   </div> -->
-    <!-- <li *ngFor="let item of customRouteList ;let i = index" [style.background-color]="selectPageIndex==i?'rgb(153,255,255)':'rgb(255,255,255)'"
+<!-- <li *ngFor="let item of customRouteList ;let i = index" [style.background-color]="selectPageIndex==i?'rgb(153,255,255)':'rgb(255,255,255)'"
       (click)="this.router.navigate(['/'+item.path])">
       {{item.path}} 
       </li> -->
-  <!-- <div id="AllArea" class="list-group">
+<!-- <div id="AllArea" class="list-group">
 
 
 </div> -->
 
 
 
+<div id="Area1" class="GroupArea" >
 
-<div id="Keyboard Sample Demo" class="list-group">
-  <input id="toggle" class="btn-toggle" type="checkbox" checked>
-  <label class="toggleBtn" for="toggle">Keyboard Sample Demo</label>
-  <ul>
-    <li routerLink="/KeyBoard_RGB" routerLinkActive="active">KeyBoard_RGB</li>
-    <li routerLink="/numpad-keyboard" routerLinkActive="active">numpad-keyboard</li>
-    <li routerLink="/perixx" routerLinkActive="active">perixx</li>
+  <div id="Keyboard Sample Demo" class="list-group">
+    <input id="toggle" class="btn-toggle" type="checkbox" checked>
+    <label class="toggleBtn" for="toggle">Keyboard Sample Demo</label>
+    <ul>
+      <li routerLink="/KeyBoard_RGB" routerLinkActive="active">KeyBoard_RGB</li>
+      <li routerLink="/numpad-keyboard" routerLinkActive="active">numpad-keyboard</li>
+      <li routerLink="/perixx" routerLinkActive="active">perixx</li>
 
-  </ul>
-</div>
-<div id="Practice Example" class="list-group">
-  <input id="toggle2" class="btn-toggle" type="checkbox" checked>
-  <label class="toggleBtn" for="toggle2">Practice Example</label>
-  <ul>
-    <li routerLink="/Line_Graph" routerLinkActive="active">Line_Graph</li>
-    <li routerLink="/ScrollDemo1" routerLinkActive="active">ScrollDemo1</li>
-    <!-- <li routerLink="/TableDemo1" routerLinkActive="active">TableDemo1</li> -->
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'GetScrollEvent' }">GetScrollEvent</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'CompositionEvents' }">CompositionEvents</li>
-    <!-- <li routerLink="/httprequest" routerLinkActive="active">httprequest</li> -->
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'Progress_Bar_Rectangle' }">Progress_Bar_Rectangle</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'CreateScrollBarListDemo' }">CreateScrollBarListDemo</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'GenerateButton' }">GenerateButton</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'CSS_ArrowSymbol' }">CSS_ArrowSymbol</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'JS_GetTime' }">JS_GetTime</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'BubbleSort' }">BubbleSort</li>
-  </ul>
-</div>
-<div id="Homemade Tools" class="list-group">
-  <input id="toggle3" class="btn-toggle" type="checkbox" checked>
-  <label class="toggleBtn" for="toggle3">Homemade Tools</label>
-  <ul>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'Convert Excel File To JSON' }">Convert Excel File To JSON</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'KeyDownArrayGenerator' }">KeyDownArrayGenerator</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'GeneratorArrayText' }">GeneratorArrayText</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'GeneratorSlopeEquation' }">GeneratorSlopeEquation</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'KeyPressInterval' }">KeyPressInterval</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'ReflectionEventParameter' }">ReflectionEventParameter</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'CSSReplaceClass' }">CSSReplaceClass</li>
-  </ul>
-</div>
-<div id="Animation Example" class="list-group">
-  <input id="toggle4" class="btn-toggle" type="checkbox" checked>
-  <label class="toggleBtn" for="toggle4">Animation Example</label>
-  <ul>
-    <li [routerLink]="['/native']" [queryParams]="{ page: '3DRotationControl' }">3DRotationControl</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'Shooting Star' }">Shooting Star</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'CircleRorateLoading' }">CircleRorateLoading</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'LoadingAnimation1' }">LoadingAnimation1</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'LoadingAnimation2' }">LoadingAnimation2</li>
-    <li routerLink="/black-hole" routerLinkActive="active">black-hole</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'ButtonRippleEffect' }">ButtonRippleEffect</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'RainBackgroundEffect' }">RainBackgroundEffect</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'ShadowCircleAnimation' }">ShadowCircleAnimation</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'BorderFillAnimation' }">BorderFillAnimation</li>
-    <li [routerLink]="['/native']" [queryParams]="{ page: 'PolygonAnimation' }">PolygonAnimation</li>
-  </ul>
-</div>
+    </ul>
+  </div>
+  <div id="Practice Example" class="list-group">
+    <input id="toggle2" class="btn-toggle" type="checkbox" checked>
+    <label class="toggleBtn" for="toggle2">Practice Example</label>
+    <ul>
+      <li routerLink="/Line_Graph" routerLinkActive="active">Line_Graph</li>
+      <li routerLink="/ScrollDemo1" routerLinkActive="active">ScrollDemo1</li>
+      <!-- <li routerLink="/TableDemo1" routerLinkActive="active">TableDemo1</li> -->
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'GetScrollEvent' }">GetScrollEvent</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'CompositionEvents' }">CompositionEvents</li>
+      <!-- <li routerLink="/httprequest" routerLinkActive="active">httprequest</li> -->
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'Progress_Bar_Rectangle' }">Progress_Bar_Rectangle</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'CreateScrollBarListDemo' }">CreateScrollBarListDemo</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'GenerateButton' }">GenerateButton</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'JS_GetTime' }">JS_GetTime</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'BubbleSort' }">BubbleSort</li>
+    </ul>
+  </div>
+  <div id="Homemade Tools" class="list-group">
+    <input id="toggle3" class="btn-toggle" type="checkbox" checked>
+    <label class="toggleBtn" for="toggle3">Homemade Tools</label>
+    <ul>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'Convert Excel File To JSON' }">Convert Excel File To JSON
+      </li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'KeyDownArrayGenerator' }">KeyDownArrayGenerator</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'GeneratorArrayText' }">GeneratorArrayText</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'GeneratorSlopeEquation' }">GeneratorSlopeEquation</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'KeyPressInterval' }">KeyPressInterval</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'ReflectionEventParameter' }">ReflectionEventParameter</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'CSSReplaceClass' }">CSSReplaceClass</li>
+    </ul>
+  </div>
 
+</div>
+<div id="Area2" class="GroupArea" style="margin-left: 260px;" >
+
+  <div id="Animation Example" class="list-group">
+    <input id="toggle4" class="btn-toggle" type="checkbox" checked>
+    <label class="toggleBtn" for="toggle4">Animation Example</label>
+    <ul>
+      <li [routerLink]="['/native']" [queryParams]="{ page: '3DRotationControl' }">3DRotationControl</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'Shooting Star' }">Shooting Star</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'CircleRorateLoading' }">CircleRorateLoading</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'LoadingAnimation1' }">LoadingAnimation1</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'LoadingAnimation2' }">LoadingAnimation2</li>
+      <li routerLink="/black-hole" routerLinkActive="active">black-hole</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'ButtonRippleEffect' }">ButtonRippleEffect</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'RainBackgroundEffect' }">RainBackgroundEffect</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'ShadowCircleAnimation' }">ShadowCircleAnimation</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'BorderFillAnimation' }">BorderFillAnimation</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'PolygonAnimation' }">PolygonAnimation</li>
+    </ul>
+  </div>
+  <div id="Practice CSS Example" class="list-group">
+    <input id="toggle5" class="btn-toggle" type="checkbox" checked>
+    <label class="toggleBtn" for="toggle5">Practice CSS</label>
+    <ul>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'CenterAlignment' }">CenterAlignment</li>
+      <li [routerLink]="['/native']" [queryParams]="{ page: 'CSS_ArrowSymbol' }">CSS_ArrowSymbol</li>
+
+    </ul>
+  </div>
+</div>
 
 <!-- <ol>
     　<li>星期一</li>

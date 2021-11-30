@@ -117,6 +117,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/CSSDemo/CenterAlignment.html',
       Name: 'CenterAlignment',
     },
+    {
+      URL: './DemoUI/CSSDemo/CustomizeBorderLength.html',
+      Name: 'CustomizeBorderLength',
+    },
   ];
 
 

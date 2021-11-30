@@ -35,42 +35,37 @@
 </head>
 
 <body>
-    <!-- <div id="arrow_case" style="background: red;" class="arrow_case">
-        
-    </div> -->
 
-    <div id="NEW_KEY" class="arrow_case"
+
+    <div id="Key_Area" class="arrow_case"
         style="background: rgba(2, 0, 0, 0.95);position: absolute;width: 1200px;height: 400px;font-family: MS,serif;-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none;z-index: 9999;">
 
         <div id="新KEY"
             style="background: rgba(206, 79, 79, 0.31);position: absolute;width: 40%;height: 20%;font-family: MS,serif;-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;top: 40%;left: 30%;user-select:none;z-index: 9999;text-align: center;line-height: 80px;color: white;">
-            請輸入新KEY</div>
-
-
+            Please Input New KEY</div>
     </div>
     </div>
     <button onclick="relpace()" style="
     position: absolute;
     top: 10vh;
-    right: 26vw;
-">刷新動畫 </button>
+    right: 26vw;z-index: 9999;
+">StartAnimation </button>
 
 </body>
 <script>
     function relpace() {
-        var classVal = document.getElementById("NEW_KEY").getAttribute("class");
-        console.log(classVal);
+        var classVal = document.getElementById("Key_Area").getAttribute("class");
+        //console.log(classVal);
         classVal = classVal.replace("MessageIn", "");
         //classVal = classVal.concat(" Test2");
-        //document.getElementById("NEW_KEY").setAttribute("class", "");
-        document.getElementById("NEW_KEY").removeAttribute("class");
-        //document.getElementById("NEW_KEY").classList.add("MessageIn");
-        document.getElementById('NEW_KEY').children[0].innerHTML="Message"
-
+        //document.getElementById("Key_Area").setAttribute("class", "");
+        document.getElementById("Key_Area").removeAttribute("class");
+        //document.getElementById("Key_Area").classList.add("MessageIn");
+        document.getElementById('Key_Area').children[0].innerHTML="Message"
         setTimeout(function () {
-            document.getElementById("NEW_KEY").setAttribute("class", "MessageIn");
-            //document.getElementById("NEW_KEY").classList.add("MessageIn");
-            //console.dir(document.getElementById('NEW_KEY').children[0].innerHTML="Message");
+            document.getElementById("Key_Area").setAttribute("class", "MessageIn");
+            //document.getElementById("Key_Area").classList.add("MessageIn");
+            //console.dir(document.getElementById('Key_Area').children[0].innerHTML="Message");
 
         }, 1000);
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
    ColorModule, MacroScriptContent, MacroManager, Wave, APModeModule, KeyBoardManager, LedChainFramesManager,
-   AssociateManager, EffectCenter, KeyShortcut, AlertDevice, EventManager, i18nManager, ImgPathList
+   AssociateManager, EffectCenter, KeyShortcut, AlertDevice, EventManager, i18nManager
    , count_boolean, CreateFakeArray, SharesFunction, ProgressBar, M_Light_CS,KeyAssignManager,
 } from '../../Module/TSImportManager';
 import { Router } from '@angular/router';

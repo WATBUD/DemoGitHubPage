@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {
   ColorModule, MacroScriptContent, MacroManager, Wave, APModeModule, LedChainFramesManager,
-  AssociateManager, EffectCenter, KeyShortcut, AlertDevice, EventManager, ImgPathList
+  AssociateManager, EffectCenter, KeyShortcut, AlertDevice, EventManager
   , count_boolean, CreateFakeArray, SharesFunction, ProgressBar
 } from '../../Module/TSImportManager';
 

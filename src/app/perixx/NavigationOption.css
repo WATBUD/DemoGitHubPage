@@ -1,0 +1,18 @@
+.NavigationOption{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 50%;
+}
+
+.Nav_ProjectItem{
+    border: 2px solid rgb(18 64 162);
+    color: rgb(18 64 162);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 10%;
+    border-radius: 8px;
+    margin-left: 4%;    
+}
+    

@@ -2,15 +2,113 @@
   perixx works!
 </p> -->
 
-<div id="HeaderColumn" style="height: 3vh;z-index: 9999;width: 100vw;background: #1D3460;" >
+<div id="HeaderColumn" style="height: 3vh;z-index: 9999;width: 100vw;background: #1D3460;">
 
 
 </div>
-<div id="HeaderColumn" style="height: 97vh;z-index: 9999;width: 100vw;background: #2D2F34;" >
-  <div id="Content" style="height: 97vh;z-index: 9999;width: 100vw;background: #2D2F34;" >
-    <button type="button" style="position: absolute;
-    left: 20vw;" class="ButtonStyle">Copy StyleText</button>
-    <img id="GMMK_img" src="image/Perixx_Project/PageConnected/SettingIcon.png"/>
+<div id="HeaderColumn" style="height: 97vh;width: 100vw;background: #2D2F34;color: rgb(255, 255, 255);;">
+  <img id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
+    style="position: absolute;bottom: 20px;left: 20px;">
+  <div id="Nav_Project" style="    position: absolute;
+  height: 55px;
+  width: 305px;
+  display: flex;
+  align-items: center;">
+    <div class="Nav_ProjectItem">M1
+    </div>
+    <div class="Nav_ProjectItem">M2
+    </div>
+    <div class="Nav_ProjectItem">M3
+    </div>
+  </div>
+  <div id="NavigationBar" style="margin-top: 55px;
+  position: absolute;
+  background: rgb(255 0 0);
+  height: 640px;
+  width: 65px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;">
+    <img [src]="currentPage=='Home_Nav'? ImgPath.Home_Nav[1]:ImgPath.Home_Nav[0]" (click)="currentPage='Home_Nav'"
+      class="NavigationOption">
+    <img [src]="currentPage=='Keyboard_Nav'? ImgPath.Keyboard_Nav[1]:ImgPath.Keyboard_Nav[0]"
+      (click)="currentPage='Keyboard_Nav'" class="NavigationOption">
+    <img [src]="currentPage=='Lighting_Nav'? ImgPath.Lighting_Nav[1]:ImgPath.Lighting_Nav[0]"
+      (click)="currentPage='Lighting_Nav'" class="NavigationOption">
+    <img [src]="currentPage=='Macro_Nav'? ImgPath.Macro_Nav[1]:ImgPath.Macro_Nav[0]" (click)="currentPage='Macro_Nav'"
+      class="NavigationOption">
 
   </div>
+  <div id="PageOptions"
+    style="margin-left: 65px; margin-top: 55px; position: absolute; background: green;height: 640px;width: 240px;">
+
+
+  </div>
+  <div *ngIf="this.currentPage=='ConnectedPage'" id="Content">
+    <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
+
+    <div id="Content" style="position: absolute;
+    left: 35%;
+    margin-top: 25px;">
+      Only one Perixx keyboard product is connected by USB cable.
+    </div>
+    <div id="Content" style="
+    position: absolute;
+    left: 44%;
+    margin-top: 65px;
+    width: 153px;
+    height: 38px;
+    border: 2px solid rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;">
+      Enter
+    </div>
+
+  </div>
+  <div *ngIf="this.currentPage=='Settings'" id="Content">
+  </div>
+  <div *ngIf="this.currentPage=='AboutPage'" id="Content">
+    <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
+
+    <div id="ChildPage" style="position: absolute;
+    left: 5%;width: 200px;height: 200px;
+    /* background: red; */
+    margin-top: 40px;">
+      <div id="About" style="
+      margin-top: 0px;">
+        About
+      </div>
+      <div id="Update" style="
+      margin-top: 40px;">
+        Update
+      </div>
+      <div id="Help" style="
+      margin-top: 40px;">
+        Help
+      </div>
+
+    </div>
+    <div id="ChildPageContent" style="position: absolute;
+    left: 35%;width: 600px;height: 400px;
+    background: red;
+    margin-top: 40px;">
+      <img id="SettingIcon" style="position: absolute;left:31%;" src="image/Perixx_Project/Settings/Logo.png">
+      <img id="SettingIcon" style="position: absolute;
+      margin-top: 13%;
+      margin-left: 51%;" src="image/Perixx_Project/Settings/Instagram.png">
+      <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
+        margin-top: 13%;
+        margin-left: 40%;">
+      <a style="position: absolute;
+        margin-top: 25%;
+        margin-left: 40%;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
+
+    </div>
+
+
+
+
+  </div>
+
 </div>

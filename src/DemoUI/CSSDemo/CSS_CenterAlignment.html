@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CenterAlignment</title>
+</head>
+<!-- <link rel="stylesheet" href="./CSS_Demo.css" title="axdb"> -->
+<style title="tempCSS">
+  .CenterAlignment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255 0 0);
+    width: 15vw;
+    height: 15vw;
+    position: absolute;
+  }
+  #textshow{
+    background-color: rgb(0 0 0);
+    overflow-y: scroll;
+    color: rgb(255 255 0);
+    width: 400px;
+    height: 220px;
+    position: absolute;
+    left: 20vw;
+    margin-top: 20px;
+  }
+  .ButtonStyle {
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8vw;
+    font-weight: bold;
+    text-shadow: 2px 1px 1px #386379;
+    border: 1px solid #3180a7;
+    background: linear-gradient(to bottom, #6dbfe8 0%, #28a1de 50%, #28a1de 50%, #1f8cc2 51%, #1f8cc2 51%, #33a0d6 100%);
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  }
+</style>
+
+<body>
+  <button type="button" style="position: absolute;
+  left: 20vw;"
+  onclick="copyEvent('textshow')" class="ButtonStyle">Copy StyleText</button>
+
+  <div id="target" class="CenterAlignment">
+    target
+  </div>
+  <div id="textshow">Example Grammar:
+  </div>
+</body>
+<script>
+
+  var textshow = document.getElementById("textshow");
+  //const txtShowStyle = getComputedStyle(textshow);
+  console.log('%c target', 'color:rgb(255,75,255,1)', target);
+  //console.log('%c target', 'color:rgb(255,75,255,1)', target.style.cssText);
+  console.log('%c document.styleSheets', 'color:rgb(255,75,255,1)', document.styleSheets);//styleSheets樣式表
+  //textshow.innerText = document.getElementById("target").style.cssText;
+  // var styleSheetList = document.styleSheets;
+  textshow.innerText=""
+  for (const sheet of document.styleSheets) {
+    if (sheet.title == "tempCSS") {
+      var CSSRuleList = sheet.cssRules;
+      for (const CSSStyleRule of CSSRuleList) {
+        if (CSSStyleRule.selectorText ==".CenterAlignment") {
+          var targetCss=CSSStyleRule.cssText;
+          targetCss=targetCss.replace('{', '{\n');
+          textshow.innerText += targetCss.replaceAll(';', ';\n');
+        }
+      }
+    }
+    //console.log('%c sheet.title', 'color:rgb(255,75,255,1)', sheet.title);
+  }
+  function copyEvent(id) {
+    var str = document.getElementById(id);
+    window.getSelection().selectAllChildren(str);
+    document.execCommand("Copy");
+  }
+
+
+
+
+  // function relpace(Abcss, bcss) {
+
+  //   var classVal = document.getElementById("show").getAttribute("class");
+  //   classVal = classVal.replace(Abcss, bcss);
+  //   document.getElementById("show").setAttribute("class", classVal);
+  // }
+
+  // function Test2() {
+  //   var classVal = document.getElementById('show').getAttribute("class");
+  //   classVal = classVal.concat(" Test2");
+  //   document.getElementById("show").setAttribute("class", classVal);
+  // }
+</script>
+
+</html>

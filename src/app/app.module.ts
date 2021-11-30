@@ -23,6 +23,7 @@ import { M_NumpadSelectModule } from './M_NumpadSelect/M_NumpadSelect.module';
 import { NgColorModule } from './ngcolor/color-picker.module';
 import { BlackHoleComponent } from './black-hole/black-hole.component';
 import { HTTPRequestComponent } from './httprequest/httprequest.component';
+import { PerixxComponent } from './perixx/perixx.component';
 // let routerModule = RouterModule.forRoot(routes);
 // routerModule = RouterModule.forRoot(routes, {useHash: true});
 const routes: Routes = [
@@ -42,7 +43,7 @@ const routes: Routes = [
   { path: 'black-hole', component: BlackHoleComponent },
   { path: 'httprequest', component: HTTPRequestComponent },
   { path: 'Line_Graph', component: EchartComponent },
-  
+  { path: 'perixx', component: PerixxComponent },  
 ];
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ const routes: Routes = [
     BlackHoleComponent,
     HTTPRequestComponent,
     EchartComponent,
+    PerixxComponent,
   ],
   imports: [
     BrowserModule,

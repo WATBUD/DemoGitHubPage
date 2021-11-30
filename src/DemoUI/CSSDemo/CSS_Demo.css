@@ -1,0 +1,26 @@
+.g-right {
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    background: #999;
+    line-height: 0;
+    font-size: 0;
+    vertical-align: middle;
+    -webkit-transform: rotate(45deg);
+  }
+
+  .g-right:after {
+    content: "/";
+    display: block;
+    width: 12px;
+    height: 2px;
+    background: #999;
+    -webkit-transform: rotate(-90deg);
+  }
+
+
+  .CenterAlignment {
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }

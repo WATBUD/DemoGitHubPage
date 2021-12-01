@@ -4,7 +4,7 @@ import { ImgPathList } from './ImgPath';
 @Component({
   selector: 'app-perixx',
   templateUrl: './perixx.component.html',
-  styleUrls: ['./perixx.component.css','./NavigationOption.css']
+  styleUrls: ['./perixx.component.css','./NavigationOption.css','./Lighting_Option.css']
 })
 export class PerixxComponent implements OnInit {
   CRUDCheck = false;

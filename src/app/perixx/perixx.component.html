@@ -48,7 +48,22 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         [style.background-color]="item.name==settingLocation?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
         &nbsp;&nbsp;&nbsp;{{item.name}}
       </div>
-
+      <div id="SettingTitle" style="    color: rgb(45 47 52);
+      height: auto;
+      width: 100%;
+      font-weight: bold;
+      margin-top: 10%;
+      margin-left: 12px;
+    margin-bottom: 2%;">
+        Firmware
+      </div>
+      <div id="SettingTitle" style="height: auto;
+      width: 100%;
+      line-height: 25px;" (click)="settingLocation='FirmwareUpgrade'"
+        [style.color]="settingLocation=='FirmwareUpgrade'?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
+        [style.background-color]="settingLocation=='FirmwareUpgrade'?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
+        &nbsp;&nbsp;&nbsp;Firmware Upgrade
+      </div>
 
 
     </section>

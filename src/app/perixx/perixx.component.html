@@ -2,36 +2,24 @@
   perixx works!
 </p> -->
 
-<div id="HeaderColumn" style="height: 3%;z-index: 9999;width: 100%;background: #1D3460;">
+<div id="HeaderColumn" style="position: relative;height: 3%;z-index: 9999;width: 100%;background: #1D3460;">
 
 
 </div>
 <div id="HeaderColumn" style="
 position: relative;
-height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);;">
-  <img id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
-    style="position: absolute;bottom: 20px;left: 20px;">
-  <div id="Nav_Project" style="    position: absolute;
-  height: 55px;
-  width: 305px;
-  display: flex;
-  align-items: center;
-  background: #F5F5F7;">
-    <div class="Nav_ProjectItem">M1
-    </div>
-    <div class="Nav_ProjectItem">M2
-    </div>
-    <div class="Nav_ProjectItem">M3
+height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
+
+  <div id="Nav_Project">
+    <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
+    (click)="project_select($event,i)"
+      [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
+      [ngStyle]="{'border':KeyBoardManager.currentChooseKeyBoard==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}"
+      >
+      M{{i+1}}
     </div>
   </div>
-  <div id="NavigationBar" style="margin-top: 55px;
-  position: absolute;
-  background: #F5F5F7;
-  height: calc(100% - 55px);
-  width: 65px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;">
+  <div id="NavigationBar">
     <img [src]="currentPage=='Home_Nav'? ImgPath.Home_Nav[1]:ImgPath.Home_Nav[0]" (click)="currentPage='Home_Nav'"
       class="NavigationOption">
     <img [src]="currentPage=='Keyboard_Nav'? ImgPath.Keyboard_Nav[1]:ImgPath.Keyboard_Nav[0]"
@@ -45,6 +33,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);;">
   <div id="PageOptions"
     style="margin-left: 65px; margin-top: 55px; position: absolute; background: #F5F5F7;height: calc(100% - 55px);width: 240px;">
     <section *ngIf="this.currentPage=='Home_Nav'"  id="Home_NavOptions">
+      <!-- [style.background-color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
+      [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
         Settings
       </div>
@@ -136,13 +126,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);;">
     background: rgb(60 60 223);
     height: 100%;
     width: 656px;">
-    <section *ngIf="this.currentPage=='Home_Nav'"  id="Home_NavOptions">
-      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
-        Settings
-      </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Information
-      </div>
+    <section *ngIf="this.currentPage=='Home_Nav'" >
+
     </section>
     <section *ngIf="this.currentPage=='Keyboard_Nav'"  id="Keyboard_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
@@ -224,5 +209,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);;">
 
 
   </div>
+  <img id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
+  style="position: absolute;bottom: 20px;left: 20px;">
 
 </div>

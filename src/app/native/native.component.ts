@@ -121,9 +121,11 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/CSSDemo/CustomizeBorderLength.html',
       Name: 'CustomizeBorderLength',
     },
+    {
+      URL: './DemoUI/ScrollBarDemo/animateScroll.html',
+      Name: 'animateScroll',
+    },
   ];
-
-
 
   eventRegister = [];
   name = 'Set iframe source';
@@ -133,10 +135,8 @@ export class NativeComponent implements OnInit {
   urlSafe: SafeResourceUrl;
   constructor(public sanitizer: DomSanitizer, private route: ActivatedRoute, private location: Location) {
     this.sub = this.route.queryParams.subscribe(params => {
-
       //this.page = +params['page'] || 0;
       console.log('%c params[page]', 'background: blue; color: red', params['page'])
-
       try {
         var target = this.customURLList.find((x) => x.Name == params['page']);
         if (target != undefined) {

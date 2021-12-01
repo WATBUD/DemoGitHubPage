@@ -8,7 +8,7 @@ import { ImgPathList } from './ImgPath';
 })
 export class PerixxComponent implements OnInit {
   CRUDCheck = false;
-  currentPage = "AboutPages";
+  currentPage = "Home_Nav";
   ImgPath=ImgPathList.getInstance();
   constructor() { }
 

@@ -2,6 +2,8 @@
 
 <head>
     <meta charset="utf-8">
+    <title>animateScroll</title>
+
     <style>
         nav>a {
             display: inline;
@@ -11,38 +13,37 @@
             height: 100vh;
         }
 
-        #aaa {
+        #PostiionA {
             background: #F99;
         }
 
-        #bbb {
+        #PostiionB {
             background: #9F9;
         }
 
-        #ccc {
+        #PostiionC {
             background: #99F;
         }
     </style>
-    <script src="../jquery.js"></script>
-    <!-- <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+    <script src="../jquery-3.6.0.js"></script>
 </head>
 
 <body>
     <nav id="home">
-        <a href="#aaa">aaa</a>
-        <a href="#bbb">bbb</a>
-        <a href="#ccc">ccc</a>
+        <a href="#PostiionA">PostiionA</a>
+        <a href="#PostiionB">PostiionB</a>
+        <a href="#PostiionC">PostiionC</a>
     </nav>
-    <div id="aaa" class="square">
-        <p>aaa</p>
+    <div id="PostiionA" class="square">
+        <p>PostiionA</p>
         <a href="#home" class="page-scroll">home</a>
     </div>
-    <div id="bbb" class="square">
-        <p>bbb</p>
+    <div id="PostiionB" class="square">
+        <p>PostiionB</p>
         <a href="#home" class="page-scroll">home</a>
     </div>
-    <div id="ccc" class="square">
-        <p>ccc</p>
+    <div id="PostiionC" class="square">
+        <p>PostiionC</p>
         <a href="#home" class="page-scroll">home</a>
     </div>
 </body>
@@ -65,8 +66,8 @@
                     },
                     scrollTop: '0'
 
-                }, 
-            1000
+                },
+                1000
             );//,, 'easeInOutQuint'
             event.preventDefault();//先取消超連結原本預設動作(加在這裡也可以)
         });

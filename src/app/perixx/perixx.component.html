@@ -2,11 +2,13 @@
   perixx works!
 </p> -->
 
-<div id="HeaderColumn" style="height: 3vh;z-index: 9999;width: 100vw;background: #1D3460;">
+<div id="HeaderColumn" style="height: 3%;z-index: 9999;width: 100%;background: #1D3460;">
 
 
 </div>
-<div id="HeaderColumn" style="height: 97vh;width: 100vw;background: #2D2F34;color: rgb(255, 255, 255);;">
+<div id="HeaderColumn" style="
+position: relative;
+height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);;">
   <img id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
     style="position: absolute;bottom: 20px;left: 20px;">
   <div id="Nav_Project" style="    position: absolute;
@@ -25,7 +27,7 @@
   <div id="NavigationBar" style="margin-top: 55px;
   position: absolute;
   background: #F5F5F7;
-  height: 640px;
+  height: calc(100% - 55px);
   width: 65px;
   display: flex;
   align-items: center;
@@ -41,9 +43,80 @@
 
   </div>
   <div id="PageOptions"
-    style="margin-left: 65px; margin-top: 55px; position: absolute; background: #F5F5F7;height: 640px;width: 240px;">
-
-
+    style="margin-left: 65px; margin-top: 55px; position: absolute; background: #F5F5F7;height: calc(100% - 55px);width: 240px;">
+    <section *ngIf="this.currentPage=='Home_Nav'"  id="Home_NavOptions">
+      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
+        Settings
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Information
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Layout
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Lighting
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Macro
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Auto Sleep
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Bluetooth
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Reset
+      </div>
+    </section>
+    <section *ngIf="this.currentPage=='Keyboard_Nav'"  id="Keyboard_NavOptions">
+      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
+        Library
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Information
+      </div>
+    </section>
+    <section *ngIf="this.currentPage=='Lighting_Nav'"  id="Lighting_NavOptions">
+      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
+        Lighting
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Information
+      </div>
+    </section>
+  </div>
+  <div id="PageContent"
+    style="margin-left: 306px;
+    position: absolute;
+    background: rgb(60 60 223);
+    height: 100%;
+    width: 656px;">
+    <section *ngIf="this.currentPage=='Home_Nav'"  id="Home_NavOptions">
+      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
+        Settings
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Information
+      </div>
+    </section>
+    <section *ngIf="this.currentPage=='Keyboard_Nav'"  id="Keyboard_NavOptions">
+      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
+        Library
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Information
+      </div>
+    </section>
+    <section *ngIf="this.currentPage=='Lighting_Nav'"  id="Lighting_NavOptions">
+      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
+        Lighting
+      </div>
+      <div id="SettingInformation" style="color: #9FA3AA;height: auto;width: 100%;margin-top: 5%;">
+        Information
+      </div>
+    </section>
   </div>
   <div *ngIf="this.currentPage=='ConnectedPage'" id="Content">
     <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->

@@ -12,10 +12,9 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   <div id="Nav_Project">
     <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
-    (click)="project_select($event,i)"
+      (click)="project_select($event,i)"
       [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
-      [ngStyle]="{'border':KeyBoardManager.currentChooseKeyBoard==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}"
-      >
+      [ngStyle]="{'border':KeyBoardManager.currentChooseKeyBoard==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}">
       M{{i+1}}
     </div>
   </div>
@@ -32,35 +31,28 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   </div>
   <div id="PageOptions"
     style="margin-left: 65px; margin-top: 55px; position: absolute; background: #F5F5F7;height: calc(100% - 55px);width: 240px;">
-    <section *ngIf="this.currentPage=='Home_Nav'"  id="Home_NavOptions">
+    <section *ngIf="this.currentPage=='Home_Nav'" id="Home_NavOptions">
       <!-- [style.background-color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
       [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
-      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
+      <div id="SettingTitle" style="    color: rgb(45 47 52);
+      height: auto;
+      width: 100%;
+      font-weight: bold;
+      margin-left: 12px;
+    margin-bottom: 2%;">
         Settings
       </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Information
+      <div class="Lighting_OptionItem" *ngFor="let item of settingsOption ;let i = index"
+        (click)="settingLocation=item.name"
+        [style.color]="item.name==settingLocation?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
+        [style.background-color]="item.name==settingLocation?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
+        &nbsp;&nbsp;&nbsp;{{item.name}}
       </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Layout
-      </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Lighting
-      </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Macro
-      </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Auto Sleep
-      </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Bluetooth
-      </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Reset
-      </div>
+
+
+
     </section>
-    <section *ngIf="this.currentPage=='Keyboard_Nav'"  id="Keyboard_NavOptions">
+    <section *ngIf="this.currentPage=='Keyboard_Nav'" id="Keyboard_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
         Library
       </div>
@@ -68,7 +60,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Information
       </div>
     </section>
-    <section *ngIf="this.currentPage=='Lighting_Nav'"  id="Lighting_NavOptions">
+    <section *ngIf="this.currentPage=='Lighting_Nav'" id="Lighting_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
         Lighting
       </div>
@@ -114,22 +106,21 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <div class="Lighting_OptionItem">
         Rainbow Trigger
       </div>
-      
+
 
 
 
     </section>
   </div>
-  <div id="PageContent"
-    style="margin-left: 306px;
+  <div id="PageContent" style="margin-left: 306px;
     position: absolute;
     background: rgb(60 60 223);
     height: 100%;
     width: 656px;">
-    <section *ngIf="this.currentPage=='Home_Nav'" >
+    <section *ngIf="this.currentPage=='Home_Nav'">
 
     </section>
-    <section *ngIf="this.currentPage=='Keyboard_Nav'"  id="Keyboard_NavOptions">
+    <section *ngIf="this.currentPage=='Keyboard_Nav'" id="Keyboard_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
         Library
       </div>
@@ -137,7 +128,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Information
       </div>
     </section>
-    <section *ngIf="this.currentPage=='Lighting_Nav'"  id="Lighting_NavOptions">
+    <section *ngIf="this.currentPage=='Lighting_Nav'" id="Lighting_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
         Lighting
       </div>
@@ -210,6 +201,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   </div>
   <img id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
-  style="position: absolute;bottom: 20px;left: 20px;">
+    style="position: absolute;bottom: 20px;left: 20px;">
 
 </div>

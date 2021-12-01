@@ -12,6 +12,24 @@ export class PerixxComponent implements OnInit {
   currentPage = "Home_Nav";
   ImgPath=ImgPathList.getInstance();
   KeyBoardManager = new KeyBoardManager(80,3);
+  settingsOption=[
+    {'name':'Information'
+    },
+    {'name':'Layout'
+    },
+    {'name':'Lighting'
+    },
+    {'name':'Macro'
+    },
+    {'name':'Auto Sleep'
+    },
+    {'name':'Bluetooth'
+    },
+    {'name':'Reset'
+    },
+  ]
+  settingLocation="Information";
+
   constructor() { }
 
   ngOnInit() {

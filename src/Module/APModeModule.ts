@@ -1,5 +1,4 @@
 import { BoxSelectionArea } from './BoxSelectionArea';
-import { Injectable } from '@angular/core';
 export class ModeParameter {
     frame_selection_range:any=[];  
     coordinateX: any = 0;

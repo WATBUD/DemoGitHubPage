@@ -61,6 +61,10 @@ export class ImgPathList{
         "./image/ScriptSet/Off/IconRecord.png",
         "./image/ScriptSet/On/IconRecord.png",
     ]
+    Macro_Linking: any = [
+        "./image/Perixx_Project/MacroPage/Off/Linking.png",
+        "./image/Perixx_Project/MacroPage/On/Linking.png",
+    ]
     Macro_Nav: any = [
         "./image/Perixx_Project/NavigationBar/Off/Macro_Nav.png",
         "./image/Perixx_Project/NavigationBar/On/Macro_Nav.png",

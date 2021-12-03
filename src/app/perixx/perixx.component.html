@@ -126,7 +126,38 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
     </section>
+    <section *ngIf="this.currentPage=='Macro_Nav'" id="Macro_NavOptions">
+      <!-- [style.background-color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
+      [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
+      <div id="SettingTitle" style="color: rgb(45 47 52);
+            height: auto;
+            width: 100%;
+            font-weight: bold;    margin-top: 15%;
+    position: absolute;margin-left: 12px;">
+        Library
+      </div>
+      <img src="image/Perixx_Project/Share/AddIcon.png" style="position: absolute;
+      right: 7%;
+      margin-top: 15%;" (click)="MacroManager.createFolderFile()">
+      <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
+            right:20%;
+            margin-top: 15%;" (click)="MacroManager.createFolderFile()">
+
+<!-- (click)="currentPage='Macro_Nav'" -->
+        <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
+          <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
+            (click)="MacroManager.getClass().currentChooseMacro=i;"
+            [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
+>
+            <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
+            &nbsp;&nbsp;&nbsp;{{item.name}}
+          </div>
+        </div>
+
+    </section>
   </div>
+
+
   <div id="PageContent" style="margin-left: 306px;
     position: absolute;
     background: rgb(60 60 223);

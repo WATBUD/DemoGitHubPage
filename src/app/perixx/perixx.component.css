@@ -3,3 +3,9 @@
     overflow: hidden;
     height: 720px;width: 1200px;
 }
+
+.CenterAlignment{
+    display: flex;
+    justify-items: center;
+    align-content: center;
+}

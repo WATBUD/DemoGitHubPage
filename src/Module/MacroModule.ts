@@ -325,7 +325,7 @@ export class MacroManager {
 
 
 
-    cloneClassMacro() {
+    copyFolderFile() {
         if(this.getClass().MacroFiletItem.length>50){
             return;
         }
@@ -482,7 +482,7 @@ export class MacroClass {
 
 export class MacroScriptContent {
 
-    currentlySelectiedPosition = 0;
+    indexPosition = 0;
     name: any = "新檔案";
     IndexCode = new Date().getTime();
     Data: any = [
@@ -515,38 +515,38 @@ export class MacroScriptContent {
    
 
    setDataMs(ms){
-    if (this.Data[this.currentlySelectiedPosition]) {
-        this.Data[this.currentlySelectiedPosition].byDelay=ms;
+    if (this.Data[this.indexPosition]) {
+        this.Data[this.indexPosition].byDelay=ms;
     }
    }
 
 
     getTarget() {
-        if (this.Data[this.currentlySelectiedPosition]) {
-            return this.Data[this.currentlySelectiedPosition];
+        if (this.Data[this.indexPosition]) {
+            return this.Data[this.indexPosition];
         }
     }
 
     move_up_row() {
         if (this.Data.length == 0) { return }
-        if (this.currentlySelectiedPosition > 0) {
+        if (this.indexPosition > 0) {
             let tempVar = JSON.parse(JSON.stringify(this.getTarget()));
-            this.Data[this.currentlySelectiedPosition] = this.Data[this.currentlySelectiedPosition - 1];
-            this.Data[this.currentlySelectiedPosition - 1] = tempVar;
-            this.currentlySelectiedPosition -= 1;
+            this.Data[this.indexPosition] = this.Data[this.indexPosition - 1];
+            this.Data[this.indexPosition - 1] = tempVar;
+            this.indexPosition -= 1;
         }
     }
     move_down_row() {
         if (this.Data.length == 0) { return }
-        if (this.currentlySelectiedPosition != this.Data.length - 1) {
+        if (this.indexPosition != this.Data.length - 1) {
             let tempVar = JSON.parse(JSON.stringify(this.getTarget()));
-            this.Data[this.currentlySelectiedPosition] = this.Data[this.currentlySelectiedPosition + 1];
-            this.Data[this.currentlySelectiedPosition + 1] = tempVar;
-            this.currentlySelectiedPosition += 1;
+            this.Data[this.indexPosition] = this.Data[this.indexPosition + 1];
+            this.Data[this.indexPosition + 1] = tempVar;
+            this.indexPosition += 1;
         }
     }
     createInsert(){
-        //const T1 = this.Data.splice(this.currentlySelectiedPosition,1)
+        //const T1 = this.Data.splice(this.indexPosition,1)
         
         
         //array1.concat(array2);
@@ -562,7 +562,7 @@ export class MacroScriptContent {
         }
         // this.createRow(5,1,65);
         // this.createRow(5,0,65);
-        this.Data.splice(this.currentlySelectiedPosition+1, 0, c1,c2);
+        this.Data.splice(this.indexPosition+1, 0, c1,c2);
      
   
     }
@@ -587,7 +587,7 @@ export class MacroScriptContent {
 
     }
     deleteRow() {
-        const Dindex = this.currentlySelectiedPosition;
+        const Dindex = this.indexPosition;
         this.Data.splice(Dindex, 1);
 
     }

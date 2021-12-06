@@ -186,12 +186,6 @@ export class MacroManager {
             }
         }
         return undefined;
-
-        // var temparray=[];
-        // var obj={x1:0,x2:0,y1:0,y2:0,}
-        // for (let Mindex = 0; Mindex < 100; Mindex++) {
-        //     temparray.push(obj);
-        // }
     }
 
 
@@ -216,29 +210,8 @@ export class MacroManager {
         // console.log("this.currentMacroClass",this.currentMacroClass,this.macroClassItem.length);
         return this.macroClassItem[this.currentMacroClass];
     }
-    createClassMacroFile(name = "宏類別") {
-        if (this.getClass().MacroFiletItem.length > 50) {
-            return;
-        }
-        console.log("createClassMacroFile_log", name);
-        var pass = true;
-        var Num = 0;
-        var Tname = name;
-        while (pass) {
-            if (Num > 0) {
-                Tname = name + Num;
-            }
-            if (this.checkforDuplicateFileNames(Tname)) {
-                Num += 1;
-            }
-            else {
-                pass = false;
-            }
-        }
-        this.getClass().MacroFiletItem.push(new MacroScriptContent(Tname));
-        this.updeteEditName();
-        this.tempMacroContent = this.getClass().getTarget();
-    }
+    //--------MacroClassArea---------------//
+
     createMacroClass(name = "宏類別") {
         if (this.macroClassItem.length > 19) {
             return;
@@ -246,10 +219,6 @@ export class MacroManager {
         console.log("createMacroClass_log=", name);
         this.macroClassItem.push(new MacroClass(this.createNotRepeatClassName(name)));
     }
-
-
-
-
     deleteMacroClass() {
 
         //if (this.macroClassItem.length - 1 > 0) {
@@ -261,6 +230,15 @@ export class MacroManager {
         //}
     }
 
+    checkClassNameIsRepeat(targetName) {
+        for (let index = 0; index < this.macroClassItem.length; index++) {
+            const element = this.macroClassItem[index];
+            if (element.className == targetName) {
+                return true;
+            }
+        }
+        return false;
+    }
     createNotRepeatClassName(name) {
         var pass = true;
         var Num = 0;
@@ -278,45 +256,13 @@ export class MacroManager {
         }
         return Tname;
     }
-
-
-    createFolderFile(name) {
-        if (this.getClass() != undefined) {
-            var pass = true;
-            var Num = 0;
-            var Tname = name;
-            while (pass) {
-                if (Num > 0) {
-                    Tname = name + Num;
-                }
-                if (this.checkforDuplicateFileNames(Tname)) {
-                    Num += 1;
-                }
-                else {
-                    pass = false;
-                }
-            }
-            this.getClass().createMacro(Tname);
-        }
-        //return Tname;
-    }
-
-
-    checkClassNameIsRepeat(targetName) {
-        for (let index = 0; index < this.macroClassItem.length; index++) {
-            const element = this.macroClassItem[index];
-            if (element.className == targetName) {
-                return true;
-            }
-
-        }
-        return false;
-    }
+    //--------End_MacroClassArea---------------//
 
     checkforDuplicateFileNames(targetName) {
         for (let index = 0; index < this.macroClassItem.length; index++) {
             const element = this.macroClassItem[index];
             for (let index2 = 0; index2 < element.MacroFiletItem.length; index2++) {
+                console.log('%c checkforDuplicateFileNames','color:rgb(255,77,255)',  element.MacroFiletItem[index2].name);
                 if (targetName == element.MacroFiletItem[index2].name) {
                     return true;
                 }
@@ -324,29 +270,52 @@ export class MacroManager {
         }
         return false;
     }
-    cloneClassMacro() {
-        if (this.getClass().MacroFiletItem.length > 50) {
-            return;
+    createFolderFile(name = "Macro") {
+        if (this.getClass() != undefined) {
+            this.getClass().createMacro(this.getNotRepeatName(name));
         }
+    }
+    copyFolderFile() {
         if (this.macroClassItem.length > 0) {
-            if (this.getClass().hasFile()) {
-                let clone = this.getClass().getCopyTarget();
-                var Tname = clone.name;
-                var pass = true;
-                var Num = 0;
-                while (pass) {
-                    if (this.checkforDuplicateFileNames(Tname + Num)) {
-                        Num += 1;
-                        //console.log("createMacroTname=");
-                    }
-                    else {
-                        pass = false;
-                        Tname = Tname + Num;
-                    }
-                }
-                clone.name = Tname;
-                this.getClass().MacroFiletItem.push(clone);
+            if (this.getClass().hasFile() ) {
+            var clone = this.getClass().getCopyTarget();
+            this.getClass().copyMacroFile(this.getNotRepeatName(clone.name));
+            // this.updeteEditName();
+            // this.tempMacroContent = this.getClass().getTarget();
             }
+        }
+    }
+    getNotRepeatName(inputName) {
+        console.log('%c getNotRepeatName','color:rgb(255,77,255)',  inputName);
+        var pass = true;
+        var Num = 0;
+        var Tname=inputName;
+        while (pass) {
+            if (this.checkforDuplicateFileNames(Tname + Num)) {
+                Num += 1;
+                //console.log("createMacroTname=");
+            }
+            else {
+                pass = false;
+                Tname = Tname + Num;
+            }
+        }
+        console.log('%c Tname','color:rgb(255,77,255)',  Tname);
+        return Tname;
+    }
+    deleteMacroFile() {
+        if (this.hasClass()) {
+            this.getClass().deleteMacro();
+        }
+    }
+    getExoprtData() {
+        if (this.hasClass()) {
+            if (this.getClass().hasFile()) {
+                return this.getClass().getTarget();
+            }
+        }
+        else {
+            return undefined;
         }
     }
     updeteEditClassName(NewName) {
@@ -386,7 +355,6 @@ export class MacroClass {
 
         this.currentChooseMacro = 0;
     }
-
     ImportFileCreateData(InputData) {
 
         console.log("ImportFileCreateData", InputData);
@@ -414,10 +382,27 @@ export class MacroClass {
         this.MacroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
     }
-
+    copyMacroFile(copyName = "Error") {
+        if (this.MacroFiletItem.length > 50) {
+            return;
+        }
+        var TData = this.newMacroScriptContent();
+        var nowCopyTarget = this.getCopyTarget();
+        var arr = Object.keys(TData);
+        for (let index = 0; index < arr.length; index++) {
+            TData[arr[index]] = nowCopyTarget[arr[index]];
+        }
+        TData.IndexCode = new Date().getTime();
+        TData.name = copyName;
+        this.MacroFiletItem.push(TData);
+        console.log("copyMacroFile", TData, typeof TData);
+    }
     getTarget() {
         // console.log("this.currentMacroClass",this.currentMacroClass,this.macroClassItem.length);
         return this.MacroFiletItem[this.currentChooseMacro];
+    }
+    getCopyTarget() {
+        return JSON.parse(JSON.stringify(this.getTarget()));
     }
     hasFile() {
         if (this.MacroFiletItem.length > 0) {
@@ -427,6 +412,7 @@ export class MacroClass {
             return false;
         }
     }
+
     createMacro(Tname = "宏檔案") {
         console.log("createMacro創造檔案checkNamePass");
         this.MacroFiletItem.push(this.newMacroScriptContent(Tname));
@@ -468,16 +454,35 @@ export class MacroClass {
         }
         return scriptContent;
     }
-    setMacrolocation(index){
+    setMacrolocation(index) {
         console.log('%c setMacrolocation', 'background: black; color: white', index);
-          this.getTarget().macrolocation=index;
+        this.getTarget().macrolocation = index;
+    }
+    move_up_row() {
+
+        if (this.getTarget().Data.length == 0) { return }
+        if (this.getTarget().indexPosition > 0) {
+            let tempVar = this.getTarget().getCopyTarget();
+            this.getTarget().Data[this.getTarget().indexPosition] = this.getTarget().Data[this.getTarget().indexPosition - 1];
+            this.getTarget().Data[this.getTarget().indexPosition - 1] = tempVar;
+            this.getTarget().indexPosition -= 1;
+        }
+    }
+    move_down_row() {
+        if (this.getTarget().Data.length == 0) { return }
+        if (this.getTarget().indexPosition != this.getTarget().Data.length - 1) {
+            let tempVar = this.getTarget().getCopyTarget();
+            this.getTarget().Data[this.getTarget().indexPosition] = this.getTarget().Data[this.getTarget().indexPosition + 1];
+            this.getTarget().Data[this.getTarget().indexPosition + 1] = tempVar;
+            this.getTarget().indexPosition += 1;
+        }
     }
 }
 
 
 export class MacroScriptContent {
 
-    currentlySelectiedPosition = 0;
+    indexPosition = 0;
     name: any = "新檔案";
     IndexCode = new Date().getTime();
     Data: any = [
@@ -503,39 +508,21 @@ export class MacroScriptContent {
 
 
     setDataMs(ms) {
-        if (this.Data[this.currentlySelectiedPosition]) {
-            this.Data[this.currentlySelectiedPosition].byDelay = ms;
+        if (this.Data[this.indexPosition]) {
+            this.Data[this.indexPosition].byDelay = ms;
         }
     }
 
 
     getTarget() {
-        if (this.Data[this.currentlySelectiedPosition]) {
-            return this.Data[this.currentlySelectiedPosition];
+        if (this.Data[this.indexPosition]) {
+            return this.Data[this.indexPosition];
         }
     }
 
-    move_up_row() {
-        if (this.Data.length == 0) { return }
-        if (this.currentlySelectiedPosition > 0) {
-            let tempVar = this.getCopyTarget();
-            this.Data[this.currentlySelectiedPosition] = this.Data[this.currentlySelectiedPosition - 1];
-            this.Data[this.currentlySelectiedPosition - 1] = tempVar;
-            this.currentlySelectiedPosition -= 1;
-        }
-    }
-    move_down_row() {
-        if (this.Data.length == 0) { return }
-        if (this.currentlySelectiedPosition != this.Data.length - 1) {
-            let tempVar = this.getCopyTarget();
-            this.Data[this.currentlySelectiedPosition] = this.Data[this.currentlySelectiedPosition + 1];
-            this.Data[this.currentlySelectiedPosition + 1] = tempVar;
-            this.currentlySelectiedPosition += 1;
-        }
-    }
-    getCopyTarget() {
-        return JSON.parse(JSON.stringify(this.getTarget()));
-    }
+
+
+
     createInsert() {
         var c1 = {
             byDelay: 5,
@@ -549,7 +536,7 @@ export class MacroScriptContent {
         }
         // this.createRow(5,1,65);
         // this.createRow(5,0,65);
-        this.Data.splice(this.currentlySelectiedPosition + 1, 0, c1, c2);
+        this.Data.splice(this.indexPosition + 1, 0, c1, c2);
     }
 
     //MacroIcon 012=Down=>Time=>Up
@@ -572,7 +559,7 @@ export class MacroScriptContent {
 
     }
     deleteRow() {
-        const Dindex = this.currentlySelectiedPosition;
+        const Dindex = this.indexPosition;
         this.Data.splice(Dindex, 1);
 
     }

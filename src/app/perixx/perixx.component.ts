@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ImgPathList } from './ImgPath';
 import { KeyBoardManager } from './KeyBoardManager';
 import { MacroManager } from './MacroModule';
+import { i18nManager } from './i18n';
 
 @Component({
   selector: 'app-perixx',
@@ -14,8 +15,11 @@ export class PerixxComponent implements OnInit {
   CRUDCheck = false;
   currentPage = "Macro_Nav";
   ImgPath=ImgPathList.getInstance();
+  i18nManager=i18nManager.getInstance();
+  macroOnEdit=false;
   KeyBoardManager = new KeyBoardManager(80,3);
   MacroManager=new MacroManager();
+  operationMenuFlag=true;
   settingsOption=[
     {'name':'Information'
     },
@@ -39,6 +43,19 @@ export class PerixxComponent implements OnInit {
   ngOnInit() {
     //this.MacroManager.getClass().add
   }
+
+  ngAfterViewInit(){
+    //this.setPageIndex('SelectDevice');
+    //this.setPageIndex('KEYBOARDSETTINGS');
+    document.addEventListener('click', (e:any)=>{
+       //console.log('%c document_e.target','color:rgb(255,77,255)',  e.target);
+        if (e.target.dataset.identity==undefined) {
+            this.CRUDCheck = false;
+            this.macroOnEdit= false;
+        }
+    });
+  }
+
   project_select(event,index){
     console.log("project_select: ", event, index);
     if (this.KeyBoardManager.currentChooseKeyBoard != index) {
@@ -73,5 +90,27 @@ export class PerixxComponent implements OnInit {
         break
     }
   }
+  getExoprtData(){
+    function download(content, fileName, contentType) {
+      var a = document.createElement("a");
+      var file = new Blob([content], { type: contentType });
+      a.href = URL.createObjectURL(file);
+      a.download = fileName;
+      a.click();
+    }
+    var t_Data=this.MacroManager.getExoprtData();
+    if(t_Data){
+      download(t_Data, 'json.txt', 'text/plain');
+    }
+  }
+  MacroCSNameChange(event) {
+    console.log("event=" + event.target.value);
+    var regex = event.target.value.replace(/[^\a-\z\A-\Z^0-9\u4E00-\u9FA5]/g, '');
+    this.MacroManager.updeteEditClassName(regex);
+    //this.setDBDataToServer('MacroManager');
+  }
+
+
+
 
 }

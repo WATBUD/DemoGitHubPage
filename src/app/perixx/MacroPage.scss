@@ -25,6 +25,7 @@
 #MacroFileSelectList::-webkit-scrollbar {
     width: 16px;
 }
+
 // #MacroFileSelectList::-webkit-scrollbar-button:vertical:decrement {
 //     background-image: url('./image/ColorSet/UpArrow.png');
 //     background-repeat: no-repeat;
@@ -37,5 +38,14 @@
 //     background-position: center;
 
 // }
+
+
+[data-identity="operationList"] {
+    background: rgb(112, 112, 112);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    flex-direction: column;
+}
+
 
 

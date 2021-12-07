@@ -291,13 +291,20 @@ export class MacroManager {
         var Num = 0;
         var Tname=inputName;
         while (pass) {
-            if (this.checkforDuplicateFileNames(Tname + Num)) {
+            var checkName;
+            if(Num>0){
+                checkName=Tname + Num;
+            }
+            else{
+                checkName=Tname;
+            }
+            if (this.checkforDuplicateFileNames(checkName)) {
                 Num += 1;
                 //console.log("createMacroTname=");
             }
             else {
                 pass = false;
-                Tname = Tname + Num;
+                Tname = checkName;
             }
         }
         console.log('%c Tname','color:rgb(255,77,255)',  Tname);
@@ -306,6 +313,13 @@ export class MacroManager {
     deleteMacroFile() {
         if (this.hasClass()) {
             this.getClass().deleteMacro();
+        }
+    }
+    updeteMacroFileName(NewName) {
+        if (this.hasClass()) {
+         var t_name=this.getNotRepeatName(NewName);
+            this.getClass().updeteMacroName(t_name);
+            //this.onEditCSName = NewName;
         }
     }
     getExoprtData() {
@@ -317,16 +331,6 @@ export class MacroManager {
         else {
             return undefined;
         }
-    }
-    updeteEditClassName(NewName) {
-        var targetName = this.getClass().className;
-        if (targetName != NewName) {
-            var changeName = this.createNotRepeatClassName(NewName);
-            console.log("MacroFileNameChange=" + changeName, targetName);
-            this.getClass().className = changeName;
-            this.onEditCSName = this.getClass().className;
-        }
-
     }
     setOnEditCSName() {
         this.onEditCSName = this.getClass().className;
@@ -412,21 +416,17 @@ export class MacroClass {
             return false;
         }
     }
-
     createMacro(Tname = "宏檔案") {
         console.log("createMacro創造檔案checkNamePass");
         this.MacroFiletItem.push(this.newMacroScriptContent(Tname));
 
     }
-
-    checkNameIsRepeat(targetName) {
-        for (let index2 = 0; index2 < this.MacroFiletItem.length; index2++) {
-            if (this.MacroFiletItem[index2].name == targetName) {
-                return true;
-            }
+    updeteMacroName(NewName){
+        if (this.hasFile()) {
+        this.getTarget().name=NewName;
         }
-        return false;
     }
+
     deleteMacro() {
         if (this.hasFile()) {
             if (this.currentChooseMacro > 0) {

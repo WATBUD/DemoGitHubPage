@@ -143,7 +143,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             right:20%;
             margin-top: 15%;" (click)="MacroManager.createFolderFile()">
 
-<!-- (click)="currentPage='Macro_Nav'" -->
+<!-- (click)="currentPage='Macro_Nav'"macroOnEdit=false; -->
         <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
           <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
             (click)="MacroManager.getClass().currentChooseMacro=i;"
@@ -156,8 +156,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             maxlength="15" 
             [style.display]="(MacroManager.getClass().currentChooseMacro==i&&macroOnEdit)?'inline-block': 'none'"
             [(ngModel)]="MacroManager.onEditCSName"
-            (blur)="MacroCSNameChange($event);macroOnEdit=false;"
-            (keyup)="MacroCSNameChange($event);">
+            (blur)="renameMacroFile($event);macroOnEdit=false;"
+            (keyup)="renameMacroFile($event);">
             &nbsp;&nbsp;&nbsp;{{item.name}}
           </div>
           

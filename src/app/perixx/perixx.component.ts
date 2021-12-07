@@ -51,7 +51,7 @@ export class PerixxComponent implements OnInit {
        //console.log('%c document_e.target','color:rgb(255,77,255)',  e.target);
         if (e.target.dataset.identity==undefined) {
             this.CRUDCheck = false;
-            this.macroOnEdit= false;
+            //this.macroOnEdit= false;
         }
     });
   }
@@ -103,10 +103,10 @@ export class PerixxComponent implements OnInit {
       download(t_Data, 'json.txt', 'text/plain');
     }
   }
-  MacroCSNameChange(event) {
+  renameMacroFile(event) {
     console.log("event=" + event.target.value);
     var regex = event.target.value.replace(/[^\a-\z\A-\Z^0-9\u4E00-\u9FA5]/g, '');
-    this.MacroManager.updeteEditClassName(regex);
+    this.MacroManager.updeteMacroFileName(regex);
     //this.setDBDataToServer('MacroManager');
   }
 

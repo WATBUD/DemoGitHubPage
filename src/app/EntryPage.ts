@@ -44,10 +44,10 @@ export class EntryPageComponent implements OnInit {
     //document.addEventListener('keyup', (event) => {
       console.log("KeyShortcut_event.keyCode", event.keyCode);
       //this.router.url != "/DemoListUI"
-      if (event.keyCode == 8) {//Backspace
-        //this.router.navigate(['DemoListUI'], {});
-        this.goBack();
-      }
+      // if (event.keyCode == 8) {//Backspace
+      //   //this.router.navigate(['DemoListUI'], {});
+      //   this.goBack();
+      // }
     });
     document.addEventListener('keyup', this.colorPickerFnArrP1[1]);
   }

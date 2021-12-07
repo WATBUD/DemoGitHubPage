@@ -3,6 +3,8 @@
 // var SupportData_KeyMapping = System._nodeRequire('./backend/others/SupportData').KeyMapping;
 // var SupportData_MouseMapping = System._nodeRequire('./backend/others/SupportData').MouseMapping;
 
+import { AllFunctionMapping } from './SupportData';
+
 export class MacroManager {
     radioOptions = 0;
     nowEditName = "";
@@ -12,10 +14,10 @@ export class MacroManager {
     macroClassItem: any = [
         new MacroClass("i18nName"),
     ]
-    SupportData_KeyMapping = new Array()
-    SupportData_MouseMapping = new Array()
+    SupportData_KeyMapping = AllFunctionMapping;
+    SupportData_MouseMapping = AllFunctionMapping;
     constructor() {
-        console.log('SupportData_KeyMapping', this.SupportData_KeyMapping);
+        console.log('SupportData_KeyMapping', this.SupportData_KeyMapping,AllFunctionMapping);
         console.log('SupportData_MouseMapping', this.SupportData_MouseMapping);
         this.RSEventArr[0] = (event) => {
             console.log('keydown_event', event)
@@ -558,8 +560,6 @@ export class MacroScriptContent {
                 element.scrollBy(0, element.clientHeight);
             }
         }, 50);
-
-
     }
     deleteRow() {
         const Dindex = this.indexPosition;

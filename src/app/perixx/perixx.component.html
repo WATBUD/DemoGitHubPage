@@ -143,61 +143,101 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             right:20%;
             margin-top: 15%;" (click)="MacroManager.createFolderFile()">
 
-<!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
-        <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
-          <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
-            (click)="MacroManager.getClass().currentChooseMacro=i;"
-            [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
-            <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
-            <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
+      <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
+      <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
+        <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
+          (click)="MacroManager.getClass().currentChooseMacro=i;"
+          [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
+          <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
             position: absolute;
-            margin-left: 8%;"
-            maxlength="15" 
+            margin-left: 8%;" maxlength="15"
             [style.visibility]="MacroManager.getClass().currentChooseMacro==i&&macroOnEdit?'visible': 'hidden'"
-            [(ngModel)]="MacroManager.onEditMacroName"
-            (blur)="renameMacroFile($event);macroOnEdit=false;"
+            [(ngModel)]="MacroManager.onEditMacroName" (blur)="renameMacroFile($event);macroOnEdit=false;"
             (keyup)="renameMacroFile($event);">
-            &nbsp;&nbsp;&nbsp;{{item.name}}
-          </div>
-          
+          &nbsp;&nbsp;&nbsp;{{item.name}}
         </div>
-        <div *ngIf="operationMenuFlag" class="CenterAlignment" data-identity="operationList"
-        >
-          <div id="m_Rename" data-identity="m_Rename" (click)="startRenameMacroFile();">
-            {{this.i18nManager.getTarget('Rename')}}
-          </div>
-          <div id="m_Copy" (click)="MacroManager.copyFolderFile();">
-            {{this.i18nManager.getTarget('Copy')}}
-          </div>
-          <div id="m_Export" (click)="ExportProfile();">
-            {{this.i18nManager.getTarget('Export')}}
-          </div>
-          <div id="m_Delete" (click)="MacroManager.deleteMacroFile();">
-            {{this.i18nManager.getTarget('Delete')}}
-          </div>
+
+      </div>
+      <div *ngIf="operationMenuFlag" class="CenterAlignment" data-identity="operationList">
+        <div id="m_Rename" data-identity="m_Rename" (click)="startRenameMacroFile();">
+          {{this.i18nManager.getTarget('Rename')}}
         </div>
+        <div id="m_Copy" (click)="MacroManager.copyFolderFile();">
+          {{this.i18nManager.getTarget('Copy')}}
+        </div>
+        <div id="m_Export" (click)="ExportProfile();">
+          {{this.i18nManager.getTarget('Export')}}
+        </div>
+        <div id="m_Delete" (click)="MacroManager.deleteMacroFile();">
+          {{this.i18nManager.getTarget('Delete')}}
+        </div>
+      </div>
     </section>
   </div>
 
 
-  <section *ngIf="this.currentPage=='Macro_Nav'" id="MacroPageContent" > 
+  <section *ngIf="this.currentPage=='Macro_Nav'" id="MacroPageContent">
     <div id="MiddlePanel" style="
     position: absolute;
     background: rgb(60 60 223);
     height: 100%;
     width: 656px;">
 
-   </div>
-   <div class="RightPanal" style="position: absolute;
+    </div>
+    <div class="RightPanal" style="position: absolute;
    background: rgb(98 106 77);
    height: 100%;
    width: 26.8%;
    right: 0px;">
       <div id="AreaTitle" style="position: absolute;
-      top: 0px;margin-left: 15px;">
-      Macro Editing
-     </div>
-  </div>
+            top: 0px;margin-left: 15px;">
+        Macro Editing
+      </div>
+      <div id="Key" style="position: absolute;
+           top: 0px;    margin-left: 15px;
+          margin-top: 50px;">
+        Key
+      </div>
+      <div id="Start Time" style="position: absolute;
+          top: 0px;    margin-left: 68px;
+          margin-top: 50px;">
+        Start Time
+      </div>
+      <div id="Duration" style="position: absolute;
+         top: 0px;    margin-left: 167px;
+          margin-top: 50px;">
+        Duration
+      </div>
+      <div *ngIf="MacroManager.getClass().hasFile();" id="MactoContentList" style="    position: absolute;
+            top: 0px;
+            width: 92%;
+            background: rgb(255 0 0);
+            margin-top: 69px;
+            margin-left: 4%;
+            height: 522px;">
+        <!-- <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().getTarget().data;let i = index"
+          (click)="MacroManager.getClass().currentChooseMacro=i;"
+          [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+      
+          &nbsp;&nbsp;&nbsp;{{item.text}}
+        </div> -->
+        <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().data;let i = index" style="    position: absolute;
+        top: 0px;
+        width: 100%;
+        background: rgb(148 131 208 / 56%);
+        margin-top: 4%;
+        height: 4%;">
+        {{item.text}}
+    </div>
+      </div>
+         
+      
+
+
+
+
+    </div>
   </section>
 
   <div *ngIf="this.currentPage=='ConnectedPage'" id="Content">

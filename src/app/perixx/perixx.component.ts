@@ -53,6 +53,7 @@ export class PerixxComponent implements OnInit {
             //this.macroOnEdit= false;
         }
     });
+    this.MacroManager.addMacroEvent();
   }
 
   project_select(event,index){

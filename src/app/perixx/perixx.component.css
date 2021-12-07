@@ -9,3 +9,13 @@
     justify-items: center;
     align-content: center;
 }
+
+
+.RightPanal::before{
+    content: "";
+    position: absolute;
+    height: 94%;
+    width: 2px;
+    margin-top: 18%;
+    background-color: rgb(162 170 159);
+}

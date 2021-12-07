@@ -9,7 +9,7 @@ export class MacroManager {
     nowEditName="";
     tempMacroContent=new MacroScriptContent();
     currentMacroClass: any = 0;
-    onEditCSName="";
+    onEditMacroName="";
     macroClassItem: any = [
         //new MacroClass("i18nName"),
     ]
@@ -358,12 +358,12 @@ export class MacroManager {
             var changeName = this.createNotRepeatClassName(NewName);
             console.log("MacroFileNameChange=" + changeName, targetName);
             this.getClass().className = changeName;
-            this.onEditCSName=this.getClass().className;
+            this.onEditMacroName=this.getClass().className;
         }  
 
     }
-    setOnEditCSName(){
-        this.onEditCSName=this.getClass().className;
+    setonEditMacroName(){
+        this.onEditMacroName=this.getClass().className;
     }
 
 

@@ -143,19 +143,18 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             right:20%;
             margin-top: 15%;" (click)="MacroManager.createFolderFile()">
 
-<!-- (click)="currentPage='Macro_Nav'"macroOnEdit=false; -->
+<!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
         <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
           <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
             (click)="MacroManager.getClass().currentChooseMacro=i;"
             [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
             <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
-            
-            <input class="MacroCSName" type="text" placeholder="" style="    width: 70%;
+            <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
             position: absolute;
             margin-left: 8%;"
             maxlength="15" 
-            [style.display]="(MacroManager.getClass().currentChooseMacro==i&&macroOnEdit)?'inline-block': 'none'"
-            [(ngModel)]="MacroManager.onEditCSName"
+            [style.visibility]="MacroManager.getClass().currentChooseMacro==i&&macroOnEdit?'visible': 'hidden'"
+            [(ngModel)]="MacroManager.onEditMacroName"
             (blur)="renameMacroFile($event);macroOnEdit=false;"
             (keyup)="renameMacroFile($event);">
             &nbsp;&nbsp;&nbsp;{{item.name}}
@@ -164,13 +163,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
         <div *ngIf="operationMenuFlag" class="CenterAlignment" data-identity="operationList"
         >
-          <div id="m_Rename" data-identity="m_Rename" (click)="macroOnEdit=true;">
+          <div id="m_Rename" data-identity="m_Rename" (click)="startRenameMacroFile();">
             {{this.i18nManager.getTarget('Rename')}}
           </div>
           <div id="m_Copy" (click)="MacroManager.copyFolderFile();">
             {{this.i18nManager.getTarget('Copy')}}
           </div>
-          <div id="m_Export" (click)="MacroManager.deleteMacroFile();">
+          <div id="m_Export" (click)="ExportProfile();">
             {{this.i18nManager.getTarget('Export')}}
           </div>
           <div id="m_Delete" (click)="MacroManager.deleteMacroFile();">
@@ -181,14 +180,27 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   </div>
 
 
-  <div id="PageContent" style="margin-left: 306px;
+  <section *ngIf="this.currentPage=='Macro_Nav'" id="MacroPageContent" > 
+    <div id="MiddlePanel" style="
     position: absolute;
     background: rgb(60 60 223);
     height: 100%;
     width: 656px;">
-    <section *ngIf="this.currentPage=='Home_Nav'">
 
-    </section>
+   </div>
+   <div class="RightPanal" style="position: absolute;
+   background: rgb(98 106 77);
+   height: 100%;
+   width: 26.8%;
+   right: 0px;">
+      <div id="AreaTitle" style="position: absolute;
+      top: 0px;margin-left: 15px;">
+      Macro Editing
+     </div>
+  </div>
+  </section>
+
+
     <section *ngIf="this.currentPage=='Keyboard_Nav'" id="Keyboard_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
         Library
@@ -202,7 +214,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Lighting
       </div>
     </section>
-  </div>
+
   <div *ngIf="this.currentPage=='ConnectedPage'" id="Content">
     <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
 

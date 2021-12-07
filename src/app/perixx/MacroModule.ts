@@ -8,7 +8,7 @@ export class MacroManager {
     nowEditName = "";
     tempMacroContent = new MacroScriptContent();
     currentMacroClass: any = 0;
-    onEditCSName = "";
+    onEditMacroName = "";
     macroClassItem: any = [
         new MacroClass("i18nName"),
     ]
@@ -317,9 +317,14 @@ export class MacroManager {
     }
     updeteMacroFileName(NewName) {
         if (this.hasClass()) {
-         var t_name=this.getNotRepeatName(NewName);
+            if (this.getClass().hasFile()) {
+            if(this.getClass().getTarget().name==NewName){
+                return;
+            }
+            var t_name=this.getNotRepeatName(NewName);
             this.getClass().updeteMacroName(t_name);
-            //this.onEditCSName = NewName;
+            //this.onEditMacroName = NewName;
+            }
         }
     }
     getExoprtData() {
@@ -332,14 +337,12 @@ export class MacroManager {
             return undefined;
         }
     }
-    setOnEditCSName() {
-        this.onEditCSName = this.getClass().className;
-    }
-    updeteEditName() {
-
-        if (this.getClass().hasFile())
-            this.nowEditName = this.getClass().getTarget().name;
-
+    editMacroFileName() {
+        if (this.hasClass()) {
+            if (this.getClass().hasFile()) {
+                this.onEditMacroName=this.getClass().getTarget().name;
+            }
+        }
     }
     setDefault() {
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { ImgPathList } from './ImgPath';
 import { KeyBoardManager } from './KeyBoardManager';
 import { MacroManager } from './MacroModule';
@@ -37,8 +37,7 @@ export class PerixxComponent implements OnInit {
     },
   ]
   settingLocation="Information";
-
-  constructor() { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     //this.MacroManager.getClass().add
@@ -101,6 +100,20 @@ export class PerixxComponent implements OnInit {
     var t_Data=this.MacroManager.getExoprtData();
     if(t_Data){
       download(t_Data, 'json.txt', 'text/plain');
+    }
+  }
+  startRenameMacroFile() {
+    this.macroOnEdit = true;
+    this.MacroManager.editMacroFileName();
+    //var m_list= document.getElementsByClassName('MacroFileName');
+    this.changeDetectorRef.detectChanges();
+    var m_list = document.querySelectorAll<HTMLElement>('.MacroFileName');
+    var target = m_list[this.MacroManager.getClass().currentChooseMacro];
+    console.log('%c m_list.target','color:rgb(255,77,255)',  m_list,target);
+
+    if (target != undefined) {
+      console.log('%c focus','color:rgb(255,77,255)',  'focus');
+      target.focus();
     }
   }
   renameMacroFile(event) {

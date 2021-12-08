@@ -53,9 +53,13 @@ export class PerixxComponent implements OnInit {
             //this.macroOnEdit= false;
         }
     });
+
+  }
+  onRecordClick(){
+    this.MacroManager.onRecord=!this.MacroManager.onRecord;
+    this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
     this.MacroManager.addMacroEvent();
   }
-
   project_select(event,index){
     console.log("project_select: ", event, index);
     if (this.KeyBoardManager.currentChooseKeyBoard != index) {
@@ -90,6 +94,10 @@ export class PerixxComponent implements OnInit {
         break
     }
   }
+
+
+
+  
   getExoprtData(){
     function download(content, fileName, contentType) {
       var a = document.createElement("a");

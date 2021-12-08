@@ -109,7 +109,8 @@ export class MacroManager {
             for (let Mindex = 0; Mindex <targetClass.MacroFiletItem.length; Mindex++) {
                 //console.log('MacroFiletItem:', MacroObj[MClass2].MacroFiletItem[Mindex]);                            
                 this.macroClassItem[MClass2].ReadFileCreateData(targetClass.MacroFiletItem[Mindex]);
-            }           
+                
+            }
         }
 
 

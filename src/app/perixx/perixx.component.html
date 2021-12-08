@@ -9,7 +9,14 @@
 <div id="HeaderColumn" style="
 position: relative;
 height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
-
+  <div id="onRecordUI" class="CenterAlignment" style="position: absolute;height: 100%;z-index: 9998;width: 100%;background: #0000008a;"
+  [style.display]="MacroManager.onRecord?'flex':'none'">
+    <div class="CenterAlignment" style="height: 20%;width: 20%;" >
+      OnRecord...
+    </div>
+      <!-- <img src="./image/Share/Loading.gif" alt="Loading.gif" style="height: 50px;
+      width: 50px;" /> -->
+  </div>
   <div id="Nav_Project">
     <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
       (click)="project_select($event,i)"
@@ -194,6 +201,17 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             top: 0px;margin-left: 15px;">
         Macro Editing
       </div>
+      <ng-container *ngIf="MacroManager.getClass().hasFile();">
+        <div id="Record" style="    position: absolute;
+        margin-left: 14px;
+        margin-top: 26px;
+        z-index: 9998;" 
+        [style.background-color]="MacroManager.onRecord?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
+        (click)="onRecordClick()">
+          Record
+        </div>
+      </ng-container>
+
       <div id="Key" style="position: absolute;
            top: 0px;    margin-left: 15px;
           margin-top: 50px;">
@@ -222,13 +240,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       
           &nbsp;&nbsp;&nbsp;{{item.text}}
         </div> -->
-        <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().data;let i = index" style="    position: absolute;
-        top: 0px;
-        width: 100%;
-        background: rgb(148 131 208 / 56%);
-        margin-top: 4%;
-        height: 4%;">
-        {{item.text}}
+        <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index">
+        {{item.byKeyCode}}
     </div>
       </div>
          

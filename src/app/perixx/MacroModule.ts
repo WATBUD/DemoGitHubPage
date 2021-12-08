@@ -20,12 +20,12 @@ export class MacroManager {
         console.log('SupportData_KeyMapping', this.SupportData_KeyMapping,AllFunctionMapping);
         console.log('SupportData_MouseMapping', this.SupportData_MouseMapping);
         this.RSEventArr[0] = (event) => {
-            console.log('keydown_event', event)
+            //console.log('keydown_event', event)
             this.recordSimulationPressdown(event)
         }
 
         this.RSEventArr[1] = (event) => {
-            console.log('keyup_event', event)
+            //console.log('keyup_event', event)
             this.recordSimulationPressUp(event)
         }
         this.RSEventArr[2] = (event) => {
@@ -53,7 +53,6 @@ export class MacroManager {
         if (this.onRecord != true) {
             return
         }
-        //console.log('recordSimulationPressdown', event.type);
         var recordValue = '0'
         if (event.type == 'keydown') {
             recordValue = this.SupportData_KeyMapping.find((x) => x.keyCode == event.keyCode).keyCode
@@ -119,6 +118,8 @@ export class MacroManager {
        * //keydownStatus:0 up, 1 down
     */
     addMacroRadioOptions(keyCode, keydownStatus) {
+        console.log('%c allRecordKeys', 'background: blue; color: red;', this.allRecordKeys)
+
         if (this.tempMacroContent.Data.length >= 80) {
             this.onRecord = false;
             return;
@@ -144,6 +145,7 @@ export class MacroManager {
 
                 break;
         }
+
     }
 
     addMacroEvent() {
@@ -365,10 +367,9 @@ export class MacroClass {
         this.currentChooseMacro = 0;
     }
     ImportFileCreateData(InputData) {
-
         console.log("ImportFileCreateData", InputData);
         InputData = JSON.parse(JSON.stringify(InputData));
-        var TData = this.newMacroScriptContent("沒有");
+        var TData = new MacroScriptContent();
         var arr = Object.keys(TData);
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = InputData[arr[index]];
@@ -376,14 +377,13 @@ export class MacroClass {
         TData.IndexCode = new Date().getTime();
         this.MacroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
-
     }
 
     ReadFileCreateData(InputData) {
 
         console.log("ImportFileCreateData", InputData);
         InputData = JSON.parse(JSON.stringify(InputData));
-        var TData = this.newMacroScriptContent("沒有");
+        var TData = new MacroScriptContent();
         var arr = Object.keys(TData);
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = InputData[arr[index]];
@@ -395,7 +395,7 @@ export class MacroClass {
         if (this.MacroFiletItem.length > 50) {
             return;
         }
-        var TData = this.newMacroScriptContent();
+        var TData = new MacroScriptContent();
         var nowCopyTarget = this.getCopyTarget();
         var arr = Object.keys(TData);
         for (let index = 0; index < arr.length; index++) {
@@ -423,7 +423,7 @@ export class MacroClass {
     }
     createMacro(Tname = "宏檔案") {
         console.log("createMacro創造檔案checkNamePass");
-        this.MacroFiletItem.push(this.newMacroScriptContent(Tname));
+        this.MacroFiletItem.push(new MacroScriptContent(Tname));
 
     }
     updeteMacroName(NewName){
@@ -449,39 +449,9 @@ export class MacroClass {
 
 
     }
-    newMacroScriptContent(InputclassName = "未命名") {
-        var scriptContent = {
-            macrolocation: 0,
-            name: InputclassName,
-            IndexCode: new Date().getTime(),
-            Data: [
-            ]
-        }
-        return scriptContent;
-    }
-    setMacrolocation(index) {
-        console.log('%c setMacrolocation', 'background: black; color: white', index);
-        this.getTarget().macrolocation = index;
-    }
-    move_up_row() {
 
-        if (this.getTarget().Data.length == 0) { return }
-        if (this.getTarget().indexPosition > 0) {
-            let tempVar = this.getTarget().getCopyTarget();
-            this.getTarget().Data[this.getTarget().indexPosition] = this.getTarget().Data[this.getTarget().indexPosition - 1];
-            this.getTarget().Data[this.getTarget().indexPosition - 1] = tempVar;
-            this.getTarget().indexPosition -= 1;
-        }
-    }
-    move_down_row() {
-        if (this.getTarget().Data.length == 0) { return }
-        if (this.getTarget().indexPosition != this.getTarget().Data.length - 1) {
-            let tempVar = this.getTarget().getCopyTarget();
-            this.getTarget().Data[this.getTarget().indexPosition] = this.getTarget().Data[this.getTarget().indexPosition + 1];
-            this.getTarget().Data[this.getTarget().indexPosition + 1] = tempVar;
-            this.getTarget().indexPosition += 1;
-        }
-    }
+
+
 }
 
 
@@ -496,9 +466,27 @@ export class MacroScriptContent {
         //     text:"S",
         // }
     ]
-
     constructor(InputclassName = "未命名") {
         this.name = InputclassName;
+    }
+    move_up_row() {
+
+        if (this.Data.length == 0) { return }
+        if (this.indexPosition > 0) {
+            let tempVar = this.getCopyTarget();
+            this.Data[this.indexPosition] = this.Data[this.indexPosition - 1];
+            this.Data[this.indexPosition - 1] = tempVar;
+            this.indexPosition -= 1;
+        }
+    }
+    move_down_row() {
+        if (this.Data.length == 0) { return }
+        if (this.indexPosition != this.Data.length - 1) {
+            let tempVar = this.getCopyTarget();
+            this.Data[this.indexPosition] = this.Data[this.indexPosition + 1];
+            this.Data[this.indexPosition + 1] = tempVar;
+            this.indexPosition += 1;
+        }
     }
     ImportMacroData(InputData) {
         console.log("ImportMacroData", InputData);
@@ -517,7 +505,14 @@ export class MacroScriptContent {
             this.Data[this.indexPosition].byDelay = ms;
         }
     }
-
+    getCopyTarget() {
+        JSON.parse(JSON.stringify(this.Data[this.indexPosition])); 
+    }
+    getIndexTarget() {
+        if (this.Data[this.indexPosition]) {
+            return this.Data[this.indexPosition];
+        }
+    }
 
     getTarget() {
         if (this.Data[this.indexPosition]) {

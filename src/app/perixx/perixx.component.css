@@ -6,8 +6,8 @@
 
 .CenterAlignment{
     display: flex;
-    justify-items: center;
-    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 

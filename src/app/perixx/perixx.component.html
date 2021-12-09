@@ -187,13 +187,11 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   <section *ngIf="this.currentPage=='Macro_Nav'" id="MacroPageContent">
     <div id="MiddlePanel" style="
     position: absolute;
-    background: rgb(60 60 223);
     height: 100%;
     width: 656px;">
 
     </div>
     <div class="RightPanal" style="position: absolute;
-   background: rgb(98 106 77);
    height: 100%;
    width: 26.8%;
    right: 0px;">
@@ -205,44 +203,100 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="Record" style="    position: absolute;
         margin-left: 14px;
         margin-top: 26px;
-        z-index: 9998;" 
+        z-index: 9998;color: rgb(29, 52, 96);" 
         [style.background-color]="MacroManager.onRecord?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
-        (click)="onRecordClick()">
+        (click)="onRecordClick()" data-identity="startRecord">
           Record
+        </div>
+        <div id="Stop" style="    position: absolute;
+        margin-left: 30%;
+        margin-top: 26px;
+        z-index: 9998;color: rgb(29, 52, 96);" 
+        (click)="this.MacroManager.onRecord=false">
+          Stop
         </div>
       </ng-container>
 
-      <div id="Key" style="position: absolute;
+      <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
            top: 0px;    margin-left: 15px;
           margin-top: 50px;">
         Key
       </div>
-      <div id="Start Time" style="position: absolute;
+      <div id="Start Time" style="color: rgb(29, 52, 96);position: absolute;
           top: 0px;    margin-left: 68px;
           margin-top: 50px;">
         Start Time
       </div>
-      <div id="Duration" style="position: absolute;
+      <div id="Duration" style="color: rgb(29, 52, 96);position: absolute;
          top: 0px;    margin-left: 167px;
           margin-top: 50px;">
         Duration
       </div>
+
       <div *ngIf="MacroManager.getClass().hasFile();" id="MactoContentList" style="    position: absolute;
-            top: 0px;
-            width: 92%;
-            background: rgb(255 0 0);
-            margin-top: 69px;
-            margin-left: 4%;
-            height: 522px;">
+                  top: 0px;
+                  width: 92%;
+                  background: rgb(255 0 0);
+                  margin-top: 69px;
+                  margin-left: 4%;
+                  height: 522px;">
         <!-- <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().getTarget().data;let i = index"
-          (click)="MacroManager.getClass().currentChooseMacro=i;"
-          [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+                (click)="MacroManager.getClass().currentChooseMacro=i;"
+                [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+            
+                &nbsp;&nbsp;&nbsp;{{item.text}}
+              </div> -->
       
-          &nbsp;&nbsp;&nbsp;{{item.text}}
-        </div> -->
+      
+      
         <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index">
-        {{item.byKeyCode}}
+          <input id="byKeyCodeEdit" type="text" placeholder="" style="position: absolute;
+                        color: rgb(255, 255, 255);
+                        margin-left: 15.8%;
+                        width: 13.9%;
+                        margin-top: 0.3vh;
+                        display: block;" maxlength="15"
+            [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
+            (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
+            [value]="EM.getkeyCodeTxt(item.byKeyCode)">
+          <div id="KeyCodeText" style="display: inline-block;
+                            color: rgb(159, 163, 170);
+                            line-height: 18px;
+                            margin-left: 1.7%;width: 30%;">
+            {{EM.getkeyCodeTxt(item.byKeyCode)}}
+          </div>
+          <input id="byKeyCodeEdit" type="text" placeholder="" style="position: absolute;
+        color: rgb(255, 255, 255);
+        margin-left: 15.8%;
+        width: 13.9%;
+        margin-top: 0.3vh;
+        display: block;" maxlength="15"
+            [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
+            (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
+            [value]="item.byStartTime">
+          <div id="KeyCodeText" style="display: inline-block;
+            color: rgb(159, 163, 170);
+            line-height: 18px;
+            margin-left: 1.7%;width: 30%;">
+            {{item.byStartTime}}
+          </div>
+
+          <input id="durationEdit" type="text" placeholder="" style="position: absolute;
+          color: rgb(255, 255, 255);
+          margin-left: 15.8%;
+          width: 13.9%;
+          margin-top: 0.3vh;
+          display: block;" maxlength="15"
+      [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
+      (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
+      [value]="item.duration">
+    <div id="durationText" style="display: inline-block;
+              color: rgb(159, 163, 170);
+              line-height: 18px;
+              margin-left: 1.7%;width: 30%;">
+      {{item.duration}}
     </div>
+        </div>
       </div>
          
       

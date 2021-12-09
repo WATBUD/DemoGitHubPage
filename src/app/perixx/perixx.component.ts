@@ -3,6 +3,7 @@ import { ImgPathList } from './ImgPath';
 import { KeyBoardManager } from './KeyBoardManager';
 import { MacroManager } from './MacroModule';
 import { i18nManager } from './i18n';
+import { EventManager } from './EventManager';
 
 @Component({
   selector: 'app-perixx',
@@ -17,9 +18,12 @@ export class PerixxComponent implements OnInit {
   ImgPath=ImgPathList.getInstance();
   i18nManager=i18nManager.getInstance();
   macroOnEdit=false;
+  macroContentInEdit=false;
   KeyBoardManager = new KeyBoardManager(80,3);
   MacroManager=new MacroManager();
   operationMenuFlag=true;
+  EM=new EventManager();
+
   settingsOption=[
     {'name':'Information'
     },
@@ -56,17 +60,27 @@ export class PerixxComponent implements OnInit {
 
   }
   onRecordClick(){
-    this.MacroManager.onRecord=!this.MacroManager.onRecord;
+    this.MacroManager.onRecord=true;
+    this.MacroManager.allRecordKeys=[];
     this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
+    this.MacroManager.tempMacroContent.resetDefaultData();
     this.MacroManager.addMacroEvent();
   }
+
+
+
   project_select(event,index){
     console.log("project_select: ", event, index);
     if (this.KeyBoardManager.currentChooseKeyBoard != index) {
         this.KeyBoardManager.currentChooseKeyBoard = index;
     }
   }
-
+  MacroEditkeyCodeFn(keyCode,index){
+    console.log("MacroEditkeyCodeFn=" + keyCode,this.MacroManager.tempMacroContent.Data);
+    //event.preventDefault();
+    this.MacroManager.tempMacroContent.Data[index].byKeyCode=String(keyCode);
+    //this.setDBDataToServer('MacroManager');
+}
   ExportProfile() {
     this.CRUDCheck = !this.CRUDCheck;
     var typeName = "";

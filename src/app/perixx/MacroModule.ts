@@ -14,6 +14,8 @@ export class MacroManager {
     macroClassItem: any = [
         new MacroClass("i18nName"),
     ]
+    totalRecordTime=0;
+    countIndexCode=0;
     SupportData_KeyMapping = AllFunctionMapping;
     SupportData_MouseMapping = AllFunctionMapping;
     constructor() {
@@ -43,36 +45,82 @@ export class MacroManager {
                 this.recordSimulationPressUp(event)
             }
         }
+        var a=[1,2];
+        for (let index = 0; index < a.length; index++) {
+
+            console.log('index',index);
+        }
     }
     onRecord: any = false;
     RSEventArr: any = [];
     startTime = new Date().getTime();
-    allRecordKeys = {
-    }
+    allRecordKeys = [];
+    checkKeysArr=[
+    // {
+    //     codeName:"",
+    //     finalIndexCode:5,
+    // }
+];
     recordSimulationPressdown(event) {
         if (this.onRecord != true) {
             return
         }
-        var recordValue = '0'
+        var recordValue = 'code';
         if (event.type == 'keydown') {
-            recordValue = this.SupportData_KeyMapping.find((x) => x.keyCode == event.keyCode).keyCode
+            recordValue = String(event.code);
         } else if (event.type == 'mousedown') {
-            recordValue = this.SupportData_MouseMapping.find((x) => x.keyCode == event.button).keyCode // 0 為 左鍵點擊,1 為 中鍵點擊,2 為 右鍵點擊,
-        }
-        console.log('recordSimulationPressdown', recordValue, event.type)
-        //console.log("是否存在",this.getTarget(recordValue));
-        if (this.checkTargetExist(recordValue)) {
-            if (this.allRecordKeys[recordValue].isDown == false) {
-                this.allRecordKeys[recordValue].isDown = true;
-                this.addMacroRadioOptions(recordValue, 1);
+            if (event.target.dataset.identity=="startRecord") {
+                return;
             }
+            recordValue = String(event.button) // 0 為 左鍵點擊,1 為 中鍵點擊,2 為 右鍵點擊,
+        }
+        //console.log('recordSimulationPressdown', recordValue, event.type)
+        //console.log("是否存在",this.getTarget(recordValue));
+        // var checkKey = this.checkKeysArr.find((x) => x.codeName == event.codeName);
+        // if (checkKey == undefined) {
+        //     this.countIndexCode+=1;
+        //     this.checkKeysArr.push({
+        //         codeName:String(recordValue),
+        //         finalIndexCode:this.countIndexCode,
+        //     })
+
+        // }
+        // else{
+        //     this.countIndexCode+=1;
+        //     checkKey.finalIndexCode=this.countIndexCode;
+        // }
+
+        var target = this.allRecordKeys.find((x) => x.codeName ==recordValue);
+        if (target == undefined) {
+            for (let index = 0; index < this.allRecordKeys.length; index++) {
+                var target = this.allRecordKeys[index];
+                if(target.codeName==recordValue&&target.isDown==false){
+                    target.isDown= true;
+                    target.duration= new Date().getTime()-target.startTime;   
+                    this.tempMacroContent.keyRelease(target);
+                }
+                //if(index=this.allRecordKeys.length-1)
+                console.log('index',index);
+            }
+
+
+
+            //console.log('addKeysEnter', this.allRecordKeys)
+            if (this.allRecordKeys.length < 1) {
+                this.totalRecordTime = new Date().getTime();
+            }
+            var t_data={
+                isDown: true,
+                duration: 0,
+                startTime: new Date().getTime(),
+                codeName: recordValue,
+                indexCode: recordValue+this.countIndexCode,
+            }
+            this.allRecordKeys.push(t_data);
+            this.tempMacroContent.createRow(t_data.codeName, t_data.startTime - this.totalRecordTime, 0,t_data.indexCode);
+            this.countIndexCode+=1;
         }
         else {
-            this.addMacroRadioOptions(recordValue, 1);
-            console.log('addKeysEnter', this.allRecordKeys)
-            this.allRecordKeys[recordValue] = {
-                isDown: true,
-            }
         }
     }
 
@@ -80,15 +128,31 @@ export class MacroManager {
         if (this.onRecord != true) {
             return
         }
-        var recordValue = '0'
+        var recordValue = 'code';
         if (event.type == 'keyup') {
-            recordValue = this.SupportData_KeyMapping.find((x) => x.keyCode == event.keyCode).keyCode
+            recordValue =String(event.code);
         } else if (event.type == 'mouseup') {
-            recordValue = this.SupportData_MouseMapping.find((x) => x.keyCode == event.button).keyCode // 0 為 左鍵點擊,1 為 中鍵點擊,2 為 右鍵點擊,
+            console.log('%c event.target.dataset.identity','background: blue; color: red;', event.target.dataset.identity);
+
+            if (event.target.dataset.identity=="startRecord") {
+                return;
+            }
+          recordValue = String(event.button) // 0 為 左鍵點擊,1 為 中鍵點擊,2 為 右鍵點擊,
         }
-        console.log('recordSimulationPressUp', recordValue, event.type)
-        this.allRecordKeys[recordValue].isDown = false
-        this.addMacroRadioOptions(recordValue, 0);
+        for (let index = 0; index < this.allRecordKeys.length; index++) {
+            var target = this.allRecordKeys[index];
+            if(target.codeName==recordValue&&target.isDown==true){
+                target.isDown= false;
+                target.duration= new Date().getTime()-target.startTime;   
+                this.tempMacroContent.keyRelease(target);
+            }
+            
+        }
+    //    else{
+    //     console.log('%c error','color: red;', recordValue, event.type);
+    //    }
+       console.log('%c recordSimulationPressUp', 'background: blue; color: red;', this.allRecordKeys,recordValue)
+
 
     }
 
@@ -119,29 +183,30 @@ export class MacroManager {
     */
     addMacroRadioOptions(keyCode, keydownStatus) {
         console.log('%c allRecordKeys', 'background: blue; color: red;', this.allRecordKeys)
-
+        
         if (this.tempMacroContent.Data.length >= 80) {
             this.onRecord = false;
             return;
         }
         switch (this.radioOptions) {
             case 0:
-
-                var diffTime = new Date().getTime() - this.startTime;
-                this.startTime = new Date().getTime();
-                if (this.tempMacroContent.Data.length < 1) {
-                    diffTime = 0;
+                if(keydownStatus==1){
+                    var diffTime = new Date().getTime() - this.startTime;
+                    this.startTime = new Date().getTime();
+                    if (this.tempMacroContent.Data.length < 1) {
+                        diffTime = 0;
+                        this.totalRecordTime=new Date().getTime();
+                        this.tempMacroContent.createRow(keyCode, 0, 0);
+                    }
+                    else{
+                        this.tempMacroContent.createRow(keyCode, new Date().getTime() - this.totalRecordTime, 0);
+                    }
                 }
+                else if(keydownStatus==0){
+                    //this.tempMacroContent.createRow(keyCode, this.totalRecordTime, diffTime);
+                }
+              
                 console.log('%c addMacroRadioOptions', 'background: black; color: white', this.tempMacroContent.Data);
-                this.tempMacroContent.createRow(diffTime, keydownStatus, keyCode);
-
-                break;
-            case 1:
-                this.tempMacroContent.createRow(5, keydownStatus, keyCode);
-                break;
-            case 2:
-                var customMs = document.getElementById("customMs") as HTMLInputElement;
-                this.tempMacroContent.createRow(parseInt(customMs.value), keydownStatus, keyCode);
 
                 break;
         }
@@ -462,12 +527,14 @@ export class MacroScriptContent {
     IndexCode = new Date().getTime();
     Data: any = [
         // {
-        //     type:2,
-        //     text:"S",
+        //     byKeyCode: 65,
+        //     byDelay: 5,
+        //     byStartTime: 0,
         // }
     ]
     constructor(InputclassName = "未命名") {
         this.name = InputclassName;
+        this.Data.push(this.getDefault());
     }
     move_up_row() {
 
@@ -508,60 +575,63 @@ export class MacroScriptContent {
     getCopyTarget() {
         JSON.parse(JSON.stringify(this.Data[this.indexPosition])); 
     }
-    getIndexTarget() {
-        if (this.Data[this.indexPosition]) {
-            return this.Data[this.indexPosition];
-        }
-    }
-
     getTarget() {
         if (this.Data[this.indexPosition]) {
             return this.Data[this.indexPosition];
         }
     }
 
-
-
-
-    createInsert() {
-        var c1 = {
-            byDelay: 5,
-            bKeyDown: 1,
-            byKeyCode: 65,
+    getDefault(){
+        var obj=
+        {
+            byKeyCode: "error",
+            byStartTime: 0,
+            duration: 1,
+            indexCode:'error',
         }
-        var c2 = {
-            byDelay: 5,
-            bKeyDown: 0,
-            byKeyCode: 65,
-        }
-        // this.createRow(5,1,65);
-        // this.createRow(5,0,65);
-        this.Data.splice(this.indexPosition + 1, 0, c1, c2);
+        return obj;
     }
 
-    //MacroIcon 012=Down=>Time=>Up
-    createRow(byDelay = 0, type = 0, keyCodeInt = 0) {
-        this.Data.push(
-            {
-                byDelay: byDelay,  //Delay Time
-                bKeyDown: type, //0 if up, 1 if down
-                byKeyCode: keyCodeInt,//key code
-            });
-        setTimeout(() => {
-            var element = document.getElementById("MacroContentArea");
-            let _1vw = Math.round(window.innerWidth / 100);
-            let _1vh = Math.round(window.innerHeight / 100);
-            if (element) {
-                element.scrollBy(0, element.clientHeight);
-            }
-        }, 50);
+
+
+    // createInsert() {
+    //     var c1 = this.getDefault();
+    //     var c2 = this.getDefault();
+    //     // this.createRow(5,1,65);
+    //     // this.createRow(5,0,65);
+    //     this.Data.splice(this.indexPosition + 1, 0, c1, c2);
+    // }
+
+    //MacroIcon 012=Down=>Time=>Ups
+    createRow(byKeyCode = "error",byStartTime = 0,duration = 0,indexCode='') {
+        var obj=this.getDefault();
+        obj.byKeyCode=byKeyCode;
+        obj.byStartTime=byStartTime;
+        obj.duration=duration;
+        obj.indexCode=indexCode;
+        this.Data.push(obj);
+        // setTimeout(() => {
+        //     var element = document.getElementById("MacroContentArea");
+        //     let _1vw = Math.round(window.innerWidth / 100);
+        //     let _1vh = Math.round(window.innerHeight / 100);
+        //     if (element) {
+        //         element.scrollBy(0, element.clientHeight);
+        //     }
+        // }, 50);
+    }
+    keyRelease(event){
+        console.log('%c keyRelease','background: blue; color: red;', event);
+        var target = this.Data.find((x) => x.indexCode == event.indexCode);
+        if(target!=undefined){
+            target.duration=event.duration;
+        }
     }
     deleteRow() {
         const Dindex = this.indexPosition;
         this.Data.splice(Dindex, 1);
 
     }
-    clear() {
+    resetDefaultData(){
         this.Data = new Array;
     }
 }

@@ -564,13 +564,27 @@ export class MacroScriptContent {
 
     selectAllMacroData(){
         console.log('%c selectAllMacroData','background: blue; color: red;',this.selectAllDataFlag);
-            //console.log('%c selectAllMacroData_inTheDeleteList','background: blue; color: red;', this.Data);
             this.selectAllDataFlag=!this.selectAllDataFlag;
             for (let index = 0; index < this.Data.length; index++) {
                 this.Data[index].inTheDeleteList=this.selectAllDataFlag;
             }
     }
+    deleteSelectMacro(){
+        var UncheckedList=[];
+        for (let index = 0; index < this.Data.length; index++) {
+            const element = this.Data[index];
+            if(element.inTheDeleteList==false){
+                UncheckedList.push(element);
+            }
+            // if(element.inTheDeleteList==true){
+            //     this.Data.splice(index, 1);
+            // }
+        }
+        this.Data=UncheckedList;
 
+        console.log('%c deleteSelectMacro','background: blue; color: red;', this.Data);
+
+    }
     // createInsert() {
     //     var c1 = this.getDefault();
     //     var c2 = this.getDefault();

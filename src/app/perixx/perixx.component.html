@@ -14,8 +14,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     <div class="CenterAlignment" style="height: 20%;width: 20%;" >
       OnRecord...
     </div>
-      <!-- <img src="./image/Share/Loading.gif" alt="Loading.gif" style="height: 50px;
-      width: 50px;" /> -->
+      <!-- <img src="./image/Share/Loading.gif" alt="Loading.gif" style="height: 92PX;
+      width: 92PX;" /> -->
   </div>
   <div id="Nav_Project">
     <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
@@ -196,70 +196,67 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
    width: 26.8%;
    right: 0px;">
       <div id="AreaTitle" style="position: absolute;
-            top: 0px;margin-left: 15px;">
+            top: 13px;margin-left: 15px;">
         Macro Editing
       </div>
       <ng-container *ngIf="MacroManager.getClass().hasFile();">
         <div id="Record" style="    position: absolute;
         margin-left: 14px;
-        margin-top: 26px;
+        margin-top: 60px;
         z-index: 9998;color: rgb(29, 52, 96);" 
         [style.background-color]="MacroManager.onRecord?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
         (click)="onRecordClick()" data-identity="startRecord">
           Record
         </div>
         <div id="Stop" style="    position: absolute;
-        margin-left: 30%;
-        margin-top: 26px;
+        margin-left: 39%;
+        margin-top: 60px;
         z-index: 9998;color: rgb(29, 52, 96);" 
-        (click)="this.MacroManager.onRecord=false">
+        (click)="this.MacroManager.onRecord=false" data-identity="startRecord">
           Stop
+        </div>
+        <div id="Delete" style="position: absolute;
+        margin-left: 69%;
+        margin-top: 60px;color: rgb(29, 52, 96);" 
+        (click)="MacroManager.tempMacroContent.deleteSelectMacro()">
+          Delete
         </div>
       </ng-container>
       <!-- *ngIf="MacroManager.getClass().hasFile();"  -->
       <input *ngIf="MacroManager.getClass().hasFile();" type="checkbox" style="position: absolute;
       margin-left: 13px;
-      margin-top: 52px;" [checked]="MacroManager.tempMacroContent.selectAllDataFlag" 
+      margin-top: 94px;" [checked]="MacroManager.tempMacroContent.selectAllDataFlag" 
       (change)="MacroManager.tempMacroContent.selectAllMacroData()">
       <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
            top: 0px;    margin-left: 30px;
-          margin-top: 50px;">
+          margin-top: 92PX;">
         Key
       </div>
       <div id="Start Time" style="color: rgb(29, 52, 96);position: absolute;
           top: 0px;    margin-left: 76px;
-          margin-top: 50px;">
+          margin-top: 92PX;">
         Start Time
       </div>
       <div id="Duration" style="color: rgb(29, 52, 96);position: absolute;
-         top: 0px;    margin-left: 167px;
-          margin-top: 50px;">
+         top: 0px;    margin-left: 161px;
+          margin-top: 92PX;">
         Duration
       </div>
 
       <div *ngIf="MacroManager.getClass().hasFile();" id="MactoContentList" style="    position: absolute;
                   top: 0px;
                   width: 92%;
-                  background: rgb(255 0 0);
-                  margin-top: 69px;
+                  margin-top: 106px;
                   margin-left: 4%;
-                  height: 522px;">
-        <!-- <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().getTarget().data;let i = index"
-                (click)="MacroManager.getClass().currentChooseMacro=i;"
-                [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
-            
-                &nbsp;&nbsp;&nbsp;{{item.text}}
-              </div> 
+                  height: 542px;
+                  overflow-y: auto;">
+        <!--  
             MacroManager.tempMacroContent.setSelectAllDataFlag(false);
-            MacroManager.tempMacroContent.selectAllDataFlag=false;
-            -->
-      
-      
-      
+            MacroManager.tempMacroContent.selectAllDataFlag=false;-->
         <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index"
         [style.color]="MacroManager.tempMacroContent.indexPosition==i?'rgb(159, 163, 170)':'rgb(159, 163, 170)'"
         (click)="MacroManager.tempMacroContent.indexPosition=i;">
-          <input type="checkbox" [checked]="item.inTheDeleteList" (change)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
+          <input type="checkbox" [(ngModel)]="item.inTheDeleteList" (change)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
           <input id="byKeyCodeEdit" type="text" placeholder="" style="position: absolute;
                                 margin-left: 15.8%;
                                 width: 13.9%;
@@ -269,9 +266,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
             [value]="EM.getkeyCodeTxt(item.byKeyCode)">
 
-          <div id="KeyCodeText" style="display: inline-block;
-                                    line-height: 18px;
-                                    margin-left: 1.7%;width: 24%;">
+          <div class="KeyCodeText" >
             {{EM.getkeyCodeTxt(item.byKeyCode)}}
           </div>
           <input id="byStartTimeEdit" type="text" placeholder="" style="position: absolute;
@@ -283,7 +278,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
             [value]="item.byStartTime">
           <div id="byStartTime" style="display: inline-block;
-            line-height: 18px;margin-left: 1.7%;width: 30%;">
+          line-height: 18px;
+          width: 28%;">
             {{item.byStartTime}}
           </div>
         
@@ -297,8 +293,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
             [value]="item.duration">
           <div id="durationText" style="display: inline-block;
-                      line-height: 18px;
-                      margin-left: 1.7%;width: 30%;">
+                      line-height: 18px;width: 27%;">
             {{item.duration}}
           </div>
         </div>

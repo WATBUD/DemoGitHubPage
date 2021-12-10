@@ -121,9 +121,6 @@ export class MacroManager {
         }
        console.log('%c recordSimulationPressUp', 'background: blue; color: red;', this.allRecordKeys,recordValue)
     }
-    selectAllMacro(){
-        this.selectAllMacroFlag=true;
-    }
     checkTargetExist(FindkeyCode) {
         if (this.allRecordKeys[FindkeyCode] != undefined) {
             return true

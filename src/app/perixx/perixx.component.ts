@@ -59,6 +59,7 @@ export class PerixxComponent implements OnInit {
     });
 
   }
+
   onRecordClick(){
     this.MacroManager.onRecord=true;
     this.MacroManager.allRecordKeys=[];

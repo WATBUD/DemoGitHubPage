@@ -148,7 +148,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       margin-top: 15%;" (click)="MacroManager.createFolderFile()">
       <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
             right:20%;
-            margin-top: 15%;" (click)="MacroManager.createFolderFile()">
+            margin-top: 15%;" >
 
       <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
       <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
@@ -216,14 +216,18 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           Stop
         </div>
       </ng-container>
-
+      <!-- *ngIf="MacroManager.getClass().hasFile();"  -->
+      <input *ngIf="MacroManager.getClass().hasFile();" type="checkbox" style="position: absolute;
+      margin-left: 13px;
+      margin-top: 52px;" [checked]="MacroManager.tempMacroContent.selectAllDataFlag" 
+      (change)="MacroManager.tempMacroContent.selectAllMacroData()">
       <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
-           top: 0px;    margin-left: 15px;
+           top: 0px;    margin-left: 30px;
           margin-top: 50px;">
         Key
       </div>
       <div id="Start Time" style="color: rgb(29, 52, 96);position: absolute;
-          top: 0px;    margin-left: 68px;
+          top: 0px;    margin-left: 76px;
           margin-top: 50px;">
         Start Time
       </div>
@@ -245,57 +249,58 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                 [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
             
                 &nbsp;&nbsp;&nbsp;{{item.text}}
-              </div> -->
+              </div> 
+            MacroManager.tempMacroContent.setSelectAllDataFlag(false);
+            MacroManager.tempMacroContent.selectAllDataFlag=false;
+            -->
       
       
       
-        <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index">
+        <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index"
+        [style.color]="MacroManager.tempMacroContent.indexPosition==i?'rgb(159, 163, 170)':'rgb(159, 163, 170)'"
+        (click)="MacroManager.tempMacroContent.indexPosition=i;">
+          <input type="checkbox" [checked]="item.inTheDeleteList" (change)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
           <input id="byKeyCodeEdit" type="text" placeholder="" style="position: absolute;
-                        color: rgb(255, 255, 255);
-                        margin-left: 15.8%;
-                        width: 13.9%;
-                        margin-top: 0.3vh;
-                        display: block;" maxlength="15"
+                                margin-left: 15.8%;
+                                width: 13.9%;
+                                margin-top: 0.3vh;
+                                display: block;" maxlength="15"
             [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
             (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
             [value]="EM.getkeyCodeTxt(item.byKeyCode)">
+
           <div id="KeyCodeText" style="display: inline-block;
-                            color: rgb(159, 163, 170);
-                            line-height: 18px;
-                            margin-left: 1.7%;width: 30%;">
+                                    line-height: 18px;
+                                    margin-left: 1.7%;width: 24%;">
             {{EM.getkeyCodeTxt(item.byKeyCode)}}
           </div>
-          <input id="byKeyCodeEdit" type="text" placeholder="" style="position: absolute;
-        color: rgb(255, 255, 255);
-        margin-left: 15.8%;
-        width: 13.9%;
-        margin-top: 0.3vh;
-        display: block;" maxlength="15"
+          <input id="byStartTimeEdit" type="text" placeholder="" style="position: absolute;
+                margin-left: 15.8%;
+                width: 13.9%;
+                margin-top: 0.3vh;
+                display: block;" maxlength="15"
             [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
             (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
             [value]="item.byStartTime">
-          <div id="KeyCodeText" style="display: inline-block;
-            color: rgb(159, 163, 170);
-            line-height: 18px;
-            margin-left: 1.7%;width: 30%;">
+          <div id="byStartTime" style="display: inline-block;
+            line-height: 18px;margin-left: 1.7%;width: 30%;">
             {{item.byStartTime}}
           </div>
-
+        
           <input id="durationEdit" type="text" placeholder="" style="position: absolute;
-          color: rgb(255, 255, 255);
-          margin-left: 15.8%;
-          width: 13.9%;
-          margin-top: 0.3vh;
-          display: block;" maxlength="15"
-      [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
-      (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
-      [value]="item.duration">
-    <div id="durationText" style="display: inline-block;
-              color: rgb(159, 163, 170);
-              line-height: 18px;
-              margin-left: 1.7%;width: 30%;">
-      {{item.duration}}
-    </div>
+                  color: rgb(255, 255, 255);
+                  margin-left: 15.8%;
+                  width: 13.9%;
+                  margin-top: 0.3vh;
+                  display: block;" maxlength="15"
+            [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
+            (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
+            [value]="item.duration">
+          <div id="durationText" style="display: inline-block;
+                      line-height: 18px;
+                      margin-left: 1.7%;width: 30%;">
+            {{item.duration}}
+          </div>
         </div>
       </div>
          

@@ -47,7 +47,6 @@ export class MacroManager {
         }
         var a=[1,2];
         for (let index = 0; index < a.length; index++) {
-
             console.log('index',index);
         }
     }
@@ -55,12 +54,6 @@ export class MacroManager {
     RSEventArr: any = [];
     startTime = new Date().getTime();
     allRecordKeys = [];
-    checkKeysArr=[
-    // {
-    //     codeName:"",
-    //     finalIndexCode:5,
-    // }
-];
     recordSimulationPressdown(event) {
         if (this.onRecord != true) {
             return
@@ -74,54 +67,33 @@ export class MacroManager {
             }
             recordValue = String(event.button) // 0 為 左鍵點擊,1 為 中鍵點擊,2 為 右鍵點擊,
         }
-        //console.log('recordSimulationPressdown', recordValue, event.type)
-        //console.log("是否存在",this.getTarget(recordValue));
-        // var checkKey = this.checkKeysArr.find((x) => x.codeName == event.codeName);
-        // if (checkKey == undefined) {
-        //     this.countIndexCode+=1;
-        //     this.checkKeysArr.push({
-        //         codeName:String(recordValue),
-        //         finalIndexCode:this.countIndexCode,
-        //     })
-
-        // }
-        // else{
-        //     this.countIndexCode+=1;
-        //     checkKey.finalIndexCode=this.countIndexCode;
-        // }
-
-        var target = this.allRecordKeys.find((x) => x.codeName ==recordValue);
-        if (target == undefined) {
+        console.log('recordSimulationPressdown', recordValue, event.type)
+            var sameKeyIsPressing=false;
             for (let index = 0; index < this.allRecordKeys.length; index++) {
-                var target = this.allRecordKeys[index];
-                if(target.codeName==recordValue&&target.isDown==false){
-                    target.isDown= true;
-                    target.duration= new Date().getTime()-target.startTime;   
-                    this.tempMacroContent.keyRelease(target);
-                }
-                //if(index=this.allRecordKeys.length-1)
+                var target = this.allRecordKeys[index];   
                 console.log('index',index);
+                if(target.codeName==recordValue&&target.isDown==true){
+                    sameKeyIsPressing=true;
+                    break;
+                }
             }
-
-
-
+            if(!sameKeyIsPressing){
+                console.log('this.allRecordKeys.length-1',this.allRecordKeys.length-1);
+                if (this.allRecordKeys.length < 1) {
+                    this.totalRecordTime = new Date().getTime();
+                }
+                var t_data={
+                    isDown: true,
+                    duration: 0,
+                    startTime: new Date().getTime(),
+                    codeName: recordValue,
+                    indexCode: recordValue+this.countIndexCode,
+                }
+                this.allRecordKeys.push(t_data);
+                this.tempMacroContent.createRow(t_data.codeName, t_data.startTime - this.totalRecordTime, 0,t_data.indexCode);
+                this.countIndexCode+=1;  
+            }
             //console.log('addKeysEnter', this.allRecordKeys)
-            if (this.allRecordKeys.length < 1) {
-                this.totalRecordTime = new Date().getTime();
-            }
-            var t_data={
-                isDown: true,
-                duration: 0,
-                startTime: new Date().getTime(),
-                codeName: recordValue,
-                indexCode: recordValue+this.countIndexCode,
-            }
-            this.allRecordKeys.push(t_data);
-            this.tempMacroContent.createRow(t_data.codeName, t_data.startTime - this.totalRecordTime, 0,t_data.indexCode);
-            this.countIndexCode+=1;
-        }
-        else {
-        }
     }
 
     recordSimulationPressUp(event) {
@@ -146,16 +118,12 @@ export class MacroManager {
                 target.duration= new Date().getTime()-target.startTime;   
                 this.tempMacroContent.keyRelease(target);
             }
-            
         }
-    //    else{
-    //     console.log('%c error','color: red;', recordValue, event.type);
-    //    }
        console.log('%c recordSimulationPressUp', 'background: blue; color: red;', this.allRecordKeys,recordValue)
-
-
     }
-
+    selectAllMacro(){
+        this.selectAllMacroFlag=true;
+    }
     checkTargetExist(FindkeyCode) {
         if (this.allRecordKeys[FindkeyCode] != undefined) {
             return true
@@ -342,6 +310,7 @@ export class MacroManager {
     createFolderFile(name = "Macro") {
         if (this.getClass() != undefined) {
             this.getClass().createMacro(this.getNotRepeatName(name));
+            this.tempMacroContent=this.getClass().getTarget();
         }
     }
     copyFolderFile() {
@@ -521,7 +490,7 @@ export class MacroClass {
 
 
 export class MacroScriptContent {
-
+    selectAllDataFlag=false;
     indexPosition = 0;
     name: any = "新檔案";
     IndexCode = new Date().getTime();
@@ -588,11 +557,19 @@ export class MacroScriptContent {
             byStartTime: 0,
             duration: 1,
             indexCode:'error',
+            inTheDeleteList:true
         }
         return obj;
     }
 
-
+    selectAllMacroData(){
+        console.log('%c selectAllMacroData','background: blue; color: red;',this.selectAllDataFlag);
+            //console.log('%c selectAllMacroData_inTheDeleteList','background: blue; color: red;', this.Data);
+            this.selectAllDataFlag=!this.selectAllDataFlag;
+            for (let index = 0; index < this.Data.length; index++) {
+                this.Data[index].inTheDeleteList=this.selectAllDataFlag;
+            }
+    }
 
     // createInsert() {
     //     var c1 = this.getDefault();

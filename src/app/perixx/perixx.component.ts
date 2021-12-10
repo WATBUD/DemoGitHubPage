@@ -21,7 +21,7 @@ export class PerixxComponent implements OnInit {
   macroContentInEdit=false;
   KeyBoardManager = new KeyBoardManager(80,3);
   MacroManager=new MacroManager();
-  operationMenuFlag=true;
+  operationMenuFlag=false;
   EM=new EventManager();
 
   settingsOption=[
@@ -54,10 +54,24 @@ export class PerixxComponent implements OnInit {
        //console.log('%c document_e.target','color:rgb(255,77,255)',  e.target);
         if (e.target.dataset.identity==undefined) {
             this.CRUDCheck = false;
+            this.operationMenuFlag=false;
             //this.macroOnEdit= false;
         }
     });
 
+  }
+
+
+  macroFileRightClick(i,Event){
+    this.MacroManager.getClass().currentChooseMacro=i;
+    this.operationMenuFlag=true;
+    var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
+    macroFileOptions.style.left = Event.layerX  + "px";
+    //Event.clientX  + "px";
+    
+    macroFileOptions.style.top = Event.layerY + 80+"px";
+    //Event.clientY + "px";
+    console.log('%c macroFileRightClick','color:rgb(255,77,255)',  Event);
   }
 
   onRecordClick(){
@@ -112,7 +126,7 @@ export class PerixxComponent implements OnInit {
 
 
 
-  
+
   getExoprtData(){
     function download(content, fileName, contentType) {
       var a = document.createElement("a");
@@ -126,6 +140,36 @@ export class PerixxComponent implements OnInit {
       download(t_Data, 'json.txt', 'text/plain');
     }
   }
+  macroOperationOption(FNname="") {
+    //this.CRUDCheck=!this.CRUDCheck;
+    this.operationMenuFlag=false;
+    //var typeName="";
+    console.log('%c macroOperationOption','color:rgb(255,77,255)',this.operationMenuFlag);
+
+    switch (FNname) {
+        case "startRenameMacroFile":
+            this.startRenameMacroFile();
+            break;
+        case "copyFolderFile":
+            this.MacroManager.copyFolderFile();
+            break;
+        case "ExportProfile":
+            this.ExportProfile();
+            break;
+        case "deleteMacroFile":
+          this.MacroManager.deleteMacroFile();
+            break;
+        default:
+            alert("macroOperationOption_Error");
+            return;
+    }
+
+
+
+
+}
+
+
   startRenameMacroFile() {
     this.macroOnEdit = true;
     this.MacroManager.editMacroFileName();

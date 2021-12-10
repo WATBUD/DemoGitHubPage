@@ -138,7 +138,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
       <div id="SettingTitle" style="color: rgb(45 47 52);
             height: auto;
-            width: 100%;
+            width: 100%; 
             font-weight: bold;    margin-top: 15%;
     position: absolute;margin-left: 12px;">
         Library
@@ -153,7 +153,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
       <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
         <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
-          (click)="MacroManager.getClass().currentChooseMacro=i;"
+          (click)="MacroManager.getClass().currentChooseMacro=i" (contextmenu)="macroFileRightClick(i,$event)"
           [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
@@ -166,17 +166,18 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
 
       </div>
-      <div *ngIf="operationMenuFlag" class="CenterAlignment" data-identity="operationList">
-        <div id="m_Rename" data-identity="m_Rename" (click)="startRenameMacroFile();">
+      <div id="macroFileOptions"  [style.display]="operationMenuFlag?'block': 'none'"
+      class="CenterAlignment" data-identity="operationList">
+        <div id="m_Rename" data-identity="m_Rename" (click)="macroOperationOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
           {{this.i18nManager.getTarget('Rename')}}
         </div>
-        <div id="m_Copy" (click)="MacroManager.copyFolderFile();">
+        <div id="m_Copy" (click)="macroOperationOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
           {{this.i18nManager.getTarget('Copy')}}
         </div>
-        <div id="m_Export" (click)="ExportProfile();">
+        <div id="m_Export" (click)="macroOperationOption('ExportProfile');"(contextmenu)="macroOperationOption('ExportProfile');">
           {{this.i18nManager.getTarget('Export')}}
         </div>
-        <div id="m_Delete" (click)="MacroManager.deleteMacroFile();">
+        <div id="m_Delete" (click)="macroOperationOption('deleteMacroFile');"(contextmenu)="macroOperationOption('deleteMacroFile');">
           {{this.i18nManager.getTarget('Delete')}}
         </div>
       </div>
@@ -196,7 +197,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
    width: 26.8%;
    right: 0px;">
       <div id="AreaTitle" style="position: absolute;
-            top: 13px;margin-left: 15px;">
+            top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
         Macro Editing
       </div>
       <ng-container *ngIf="MacroManager.getClass().hasFile();">

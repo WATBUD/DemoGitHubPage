@@ -20,27 +20,27 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   <div id="Nav_Project">
     <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
       (click)="project_select($event,i)"
-      [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
-      [ngStyle]="{'border':KeyBoardManager.currentChooseKeyBoard==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}">
+      [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
+      [ngStyle]="{'border':KeyBoardManager.keyboardOfChoice ==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}">
       M{{i+1}}
     </div>
   </div>
   <div id="NavigationBar">
-    <img [src]="currentPage=='Home_Nav'? ImgPath.Home_Nav[1]:ImgPath.Home_Nav[0]" (click)="currentPage='Home_Nav'"
+    <img [src]="currentPage=='Home_Nav'? ImgPath.Home_Nav[1]:ImgPath.Home_Nav[0]" (click)="setPageIndex('Home_Nav')"
       class="NavigationOption">
     <img [src]="currentPage=='Keyboard_Nav'? ImgPath.Keyboard_Nav[1]:ImgPath.Keyboard_Nav[0]"
-      (click)="currentPage='Keyboard_Nav'" class="NavigationOption">
+      (click)="setPageIndex('Keyboard_Nav')" class="NavigationOption">
     <img [src]="currentPage=='Lighting_Nav'? ImgPath.Lighting_Nav[1]:ImgPath.Lighting_Nav[0]"
-      (click)="currentPage='Lighting_Nav'" class="NavigationOption">
-    <img [src]="currentPage=='Macro_Nav'? ImgPath.Macro_Nav[1]:ImgPath.Macro_Nav[0]" (click)="currentPage='Macro_Nav'"
+      (click)="setPageIndex('Lighting_Nav')" class="NavigationOption">
+    <img [src]="currentPage=='Macro_Nav'? ImgPath.Macro_Nav[1]:ImgPath.Macro_Nav[0]" (click)="setPageIndex('Macro_Nav')"
       class="NavigationOption">
 
   </div>
   <div id="PageOptions"
     style="margin-left: 65px; margin-top: 55px; position: absolute; background: #F5F5F7;height: calc(100% - 55px);width: 240px;">
     <section *ngIf="this.currentPage=='Home_Nav'" id="Home_NavOptions">
-      <!-- [style.background-color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
-      [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
+      <!-- [style.background-color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
+      [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
       <div id="SettingTitle" style="    color: rgb(45 47 52);
       height: auto;
       width: 100%;
@@ -73,14 +73,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
 
 
-    </section>
-    <section *ngIf="this.currentPage=='Keyboard_Nav'" id="Keyboard_NavOptions">
-      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
-        Library
-      </div>
-      <div id="SettingInformation" class="Lighting_OptionItem">
-        Information
-      </div>
     </section>
     <section *ngIf="this.currentPage=='Lighting_Nav'" id="Lighting_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
@@ -133,9 +125,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
     </section>
-    <section *ngIf="this.currentPage=='Macro_Nav'" id="Macro_NavOptions">
-      <!-- [style.background-color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
-      [style.color]="KeyBoardManager.currentChooseKeyBoard==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
+    
+
+  </div>
+  <section *ngIf="this.currentPage=='Keyboard_Nav'" id="SharedPageContent">
+    <section id="Keyboard_NavOptions" style="margin-left: -240px;
+    margin-top: 55px;
+    position: absolute;
+    background: rgb(245 245 247);
+    height: calc(100% - 55px);
+    width: 240px;">
       <div id="SettingTitle" style="color: rgb(45 47 52);
             height: auto;
             width: 100%; 
@@ -143,6 +142,121 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     position: absolute;margin-left: 12px;">
         Library
       </div>
+
+      <img src="image/Perixx_Project/Share/AddIcon.png" style="position: absolute;
+      right: 7%;
+      margin-top: 15%;" (click)="KeyBoardLibray.create_KeyBoard()">
+      <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
+            right:20%;
+            margin-top: 15%;" >
+
+      <div id="SharedSelectList">
+        <div class="Lighting_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
+          (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
+          [style.color]="KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          <input class="KeyBoardLibrayName" [attr.data-mindex]="i" type="text" placeholder="" style="width: 70%;
+            position: absolute;
+            margin-left: 8%;" maxlength="15"
+            [style.visibility]="KeyBoardLibray.keyboardOfChoice==i&&KeyBoardLibray.editingName?'visible': 'hidden'"
+            [(ngModel)]="KeyBoardLibray.editingName" (blur)="renameKeyboard($event);
+            KeyBoardLibray.editingName=false;
+            "
+            (keyup)="renameKeyboard($event);"
+            
+            >
+          &nbsp;&nbsp;&nbsp;{{item.projectName}}
+        </div>
+
+      </div>
+      <div id="KeyBoardLibrayOptions"  [style.display]="operationMenuFlag?'block': 'none'"
+      class="CenterAlignment" data-identity="operationList">
+        <div id="m_Rename" data-identity="m_Rename" (click)="keyboardRMenu('m_Rename');"(contextmenu)="keyboardRMenu('m_Rename');">
+          {{this.i18nManager.getTarget('Rename')}}
+        </div>
+        <div id="m_Copy" (click)="keyboardRMenu('m_Copy');" (contextmenu)="keyboardRMenu('m_Copy');">
+          {{this.i18nManager.getTarget('Copy')}}
+        </div>
+        <div id="m_Export" (click)="keyboardRMenu('m_Export');"(contextmenu)="keyboardRMenu('m_Export');">
+          {{this.i18nManager.getTarget('Export')}}
+        </div>
+        <div id="m_Delete" (click)="keyboardRMenu('m_Delete');"(contextmenu)="keyboardRMenu('m_Delete');">
+          {{this.i18nManager.getTarget('Delete')}}
+        </div>
+      </div>
+    </section>
+    <div id="MiddlePanel" style="
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 656px;">
+            <div id="Macro_EffectArea" class="KeyBoardAreaStyle">
+              <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
+              </div>
+              <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index" class="Macro_Block"
+                  [style.background-color]="M_Light_Perixx.getNowBlock(i).color" [attr.data-index]="i">
+              </div>
+          </div>
+    </div>
+    <div class="RightPanal" style="position: absolute;
+   height: 100%;
+   width: 26.8%;
+   right: 0px;">
+      <div id="AreaTitle" style="position: absolute;
+            top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
+        Macro Editing
+      </div>
+      <ng-container *ngIf="MacroManager.getClass().hasFile();">
+        <div id="Record" style="    position: absolute;
+        margin-left: 14px;
+        margin-top: 60px;
+        z-index: 9998;color: rgb(29, 52, 96);" 
+        [style.background-color]="MacroManager.onRecord?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
+        (click)="onRecordClick()" data-identity="startRecord">
+          Record
+        </div>
+        <div id="Stop" style="    position: absolute;
+        margin-left: 39%;
+        margin-top: 60px;
+        z-index: 9998;color: rgb(29, 52, 96);" 
+        (click)="this.MacroManager.onRecord=false" data-identity="startRecord">
+          Stop
+        </div>
+        <div id="Delete" style="position: absolute;
+        margin-left: 69%;
+        margin-top: 60px;color: rgb(29, 52, 96);" 
+        (click)="MacroManager.tempMacroContent.deleteSelectMacro()">
+          Delete
+        </div>
+      </ng-container>
+
+      
+
+
+
+
+    </div>
+
+  </section>
+
+  <section *ngIf="this.currentPage=='Macro_Nav'" id="SharedPageContent">
+    <section id="Macro_NavOptions" style="margin-left: -240px;
+    margin-top: 55px;
+    position: absolute;
+    background: rgb(245 245 247);
+    height: calc(100% - 55px);
+    width: 240px;">
+      <!-- [style.background-color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
+      [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
+      <div id="SettingTitle" style="color: rgb(45 47 52);
+            height: auto;
+            width: 100%; 
+            font-weight: bold;    margin-top: 15%;
+    position: absolute;margin-left: 12px;">
+        Library
+      </div>
+
       <img src="image/Perixx_Project/Share/AddIcon.png" style="position: absolute;
       right: 7%;
       margin-top: 15%;" (click)="MacroManager.createFolderFile()">
@@ -153,7 +267,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
       <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
         <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
-          (click)="MacroManager.getClass().currentChooseMacro=i" (contextmenu)="macroFileRightClick(i,$event)"
+          (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
           [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
@@ -182,15 +296,20 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
       </div>
     </section>
-  </div>
-
-
-  <section *ngIf="this.currentPage=='Macro_Nav'" id="MacroPageContent">
     <div id="MiddlePanel" style="
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 656px;">
-
+            <div id="Macro_EffectArea" class="KeyBoardAreaStyle">
+              <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
+              </div>
+              <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index" class="Macro_Block"
+                  [style.background-color]="M_Light_Perixx.getNowBlock(i).color" [attr.data-index]="i">
+              </div>
+          </div>
     </div>
     <div class="RightPanal" style="position: absolute;
    height: 100%;
@@ -306,7 +425,17 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
     </div>
+
   </section>
+
+
+
+
+
+
+
+
+
 
   <div *ngIf="this.currentPage=='ConnectedPage'" id="Content">
     <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->

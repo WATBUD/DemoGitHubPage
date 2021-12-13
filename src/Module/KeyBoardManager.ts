@@ -8,7 +8,7 @@ export class KeyBoardManager {
         { name: "Ctrl", check: false },
         { name: "Win", check: false },
     ]
-    currentChooseKeyBoard: any = 0;
+    keyboardOfChoice : any = 0;
     radioOptions: any = 65535;
     radioOptionsFrequency: any = 100;
     KeyBoardArray=[];
@@ -87,12 +87,12 @@ export class KeyBoardManager {
 
 
     getTarget() {
-        var R_Obj=this.KeyBoardArray[this.currentChooseKeyBoard];
+        var R_Obj=this.KeyBoardArray[this.keyboardOfChoice ];
         if(R_Obj!=undefined){
             return R_Obj;
         }
         else{
-        console.log("%c getTarget_error",this.currentChooseKeyBoard);
+        console.log("%c getTarget_error",this.keyboardOfChoice );
         }
     }
 
@@ -105,13 +105,13 @@ export class KeyBoardManager {
         this.KeyBoardArray.push(new KeyBoard(name + index, this.maxKayCapNumber));
     }
     delete_KeyBoard() {
-        if (this.currentChooseKeyBoard > 0) {
-            var T = this.currentChooseKeyBoard;
-            this.currentChooseKeyBoard -= 1;
+        if (this.keyboardOfChoice  > 0) {
+            var T = this.keyboardOfChoice ;
+            this.keyboardOfChoice  -= 1;
             this.KeyBoardArray.splice(T, 1);
         }
-        else if (this.currentChooseKeyBoard == 0) {
-            this.KeyBoardArray.splice(this.currentChooseKeyBoard, 1);
+        else if (this.keyboardOfChoice  == 0) {
+            this.KeyBoardArray.splice(this.keyboardOfChoice , 1);
         }
     }
     setDefault() {

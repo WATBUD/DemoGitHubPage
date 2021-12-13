@@ -6,26 +6,62 @@ import { KB61Prohibit } from './KeyBoardData';
 @Injectable()
 export class KeyBoardManager {
     defaultName = "未配置"
-    combinationkey = "";
-    combination: any = [
-        { name: "Alt", check: false },
-        { name: "Shift", check: false },
-        { name: "Ctrl", check: false },
-        { name: "Win", check: false },
-    ]
-    currentChooseKeyBoard: any = 0;
-    radioOptions: any = 65535;
-    radioOptionsFrequency: any = 100;
+    keyboardOfChoice= 0;
     KeyBoardArray = [];
+    NameBeingEdited="Test";
+    editingName=false;
     maxKayCapNumber: number;
+    keyBoardTemp;
     constructor(inputmax=1,quantity=0) {
         this.maxKayCapNumber = inputmax;
         for (let index = 0; index < quantity; index++) {
             this.KeyBoardArray.push(new KeyBoard("硬體配置" + index, inputmax));
         }
+        this.keyBoardTemp=new KeyBoard("Template", inputmax);
+    }
+    hasKeyBoard() {
+        if (this.KeyBoardArray.length > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
     }
+    updateNameBeingEdited(){
+        if (this.hasKeyBoard()) {
+           this.NameBeingEdited=this.getTarget().projectName;  
+        }
 
+    }
+    create_KeyBoard(name = "Template") {
+        var index = "_"+this.KeyBoardArray.length;
+        this.KeyBoardArray.push(new KeyBoard(name + index, this.maxKayCapNumber));
+    }
+    copyFolderFile(){
+        if (this.hasKeyBoard()) {
+            var clone =JSON.parse(JSON.stringify(this.getTarget()));
+            this.KeyBoardArray.push(clone);
+        }
+    }
+    delete_KeyBoard() {
+        if (this.keyboardOfChoice  > 0) {
+            var T = this.keyboardOfChoice ;
+            this.keyboardOfChoice  -= 1;
+            this.KeyBoardArray.splice(T, 1);
+        }
+        else if (this.keyboardOfChoice  == 0) {
+            this.KeyBoardArray.splice(this.keyboardOfChoice , 1);
+        }
+    }
+
+    updeteProjectName(NewName) {
+        if (this.hasKeyBoard()) {
+            //var t_name=this.getNotRepeatName(NewName);
+            this.getTarget().updeteProjectName(NewName);
+            
+        }
+    }
     keyAssignPrompt(event) {
         var KeyAssignPrompt = document.getElementById("KeyAssignPrompt");
         //KeyAssignPrompt.style.display='block';
@@ -71,13 +107,6 @@ export class KeyBoardManager {
         }
     }
 
-    ChangeAllLookingforLCFMName(changeName = "", targetName = "") {
-        console.log("EnterKeyChangeMacroName", changeName, targetName);
-        var KBMarr = this.KeyBoardArray;
-        for (let index = 0; index < KBMarr.length; index++) {
-            KBMarr[index].ChangeLCFMName(changeName, targetName);
-        }
-    }
     clearRecordMacroData(targetid = "") {
         console.log("clearRecordMacroData", targetid);
         var KBMarr = this.KeyBoardArray;
@@ -86,12 +115,12 @@ export class KeyBoardManager {
         }
     }
     getTarget() {
-        var R_Obj = this.KeyBoardArray[this.currentChooseKeyBoard];
+        var R_Obj = this.KeyBoardArray[this.keyboardOfChoice ];
         if (R_Obj != undefined) {
             return R_Obj;
         }
         else {
-            console.log("%c getTarget_error", this.currentChooseKeyBoard);
+            console.log("%c getTarget_error", this.keyboardOfChoice );
         }
     }
 
@@ -99,24 +128,6 @@ export class KeyBoardManager {
         return this.KeyBoardArray[index];
     }
 
-    create_KeyBoard(name = "配置方案") {
-        var index = this.KeyBoardArray.length + 666;
-        this.KeyBoardArray.push(new KeyBoard(name + index, this.maxKayCapNumber));
-    }
-    delete_KeyBoard() {
-        if (this.currentChooseKeyBoard > 0) {
-            var T = this.currentChooseKeyBoard;
-            this.currentChooseKeyBoard -= 1;
-            this.KeyBoardArray.splice(T, 1);
-        }
-        else if (this.currentChooseKeyBoard == 0) {
-            this.KeyBoardArray.splice(this.currentChooseKeyBoard, 1);
-        }
-    }
-    setDefault() {
-
-
-    }
 }
 
 export class KeyBoard {
@@ -167,73 +178,10 @@ export class KeyBoard {
         //console.log("getHibernateStepTime",this.hibernateTimeArr,this.hibernateTime);
         return this.hibernateTimeArr[this.hibernateTime];
     }
-    clearLostLCFM(LCFMArr = []) {
-        var V3 = this.fiveDefaultLedCode;
-        if (LCFMArr.length <= 0) {
-            return this.clearAllLCFM();
-        }
-        for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-            for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-                var target = this.assignedKeyboardKeys[index];
-                if (target[index].projectCode != 0) {
-                    if (checkExist(LCFMArr, target[index2].projectCode, target[index2].projectName) == false) {
-                        console.log("clearLostLCFMV1=>重置");
-                        target[index2].projectCode = 0;
-                        target[index2].projectName = this.defaultName;
-                    }
-                }
-            }
-        }
-        for (let indexV3 = 0; indexV3 < V3.length; indexV3++) {
-            if (V3[indexV3].projectCode != 0) {
-                if (checkExist(LCFMArr, V3[indexV3].projectCode, V3[indexV3].projectName) == false) {
-                    console.log("clearLostLCFMV3=>重置");
-                    V3[indexV3].projectCode = 0;
-                    V3[indexV3].projectName = this.defaultName;
-
-                }
-            }
-        }
-
-
-
-        //檢查目標是否在陣列內
-        function checkExist(array, findTarget1, findTarget2) {
-            //console.log("checkExistArr",ary,findTarget);
-            for (let index = 0; index < array.length; index++) {
-                const element = array[index];
-                if (element.projectCode == findTarget1 && element.projectName == findTarget2) {
-                    console.log("存在值", element, findTarget1, findTarget2);
-                    return true;
-                }
-            }
-            return false;
-        }
-
+    updeteProjectName(newName=""){
+      this.projectName=newName;
     }
 
-    clearAllLCFM() {
-        var V3 = this.fiveDefaultLedCode;
-        for (let index = 0; index < this.maxKayCapNumber; index++) {
-            for (let index2 = 0; index2 < this.assignedKeyboardKeys.length; index2++) {
-
-                var target = this.assignedKeyboardKeys[index];
-
-                if (target[index2].projectCode != 0) {
-                    target[index2].projectCode = 0;
-                    target[index2].projectName = this.defaultName;
-
-                }
-            }
-        }
-        for (let indexV3 = 0; indexV3 < V3.length; indexV3++) {
-            if (V3[indexV3].projectCode != 0) {
-                V3[indexV3].projectCode = 0;
-                V3[indexV3].projectName = this.defaultName;
-            }
-        }
-
-    }
 
     clearLostMacro(MCIarr = []) {
         console.log("clearLostMacro_MCIarr", MCIarr);
@@ -626,16 +574,23 @@ export class KeyBoard {
 
     defaultModule(type = "") {
         var T = {
-            keyAssignType: ["", "", ""],
-            LongTimePressValue: "",
-            InstantPressValue: "",
-            LongTime_Instant_Status: false,
-            openLongTimePress: false,
-            value: this.defaultName,
-            macroOptionNumber: 65536,
-            macroCode: 0,
-            projectName: this.defaultName,
-            projectCode: 0,
+            macro_RepeatType: 0,
+            macro_Data: {},
+            assignValue: '',
+            defaultValue: 'Default',
+            profileName: '',
+            recordBindCodeType: '',
+            recordBindCodeName: this.defaultName,
+            shortcutsWindowsEnable: false,
+            ApplicationPath: "",
+            WebsitePath: "",
+            combinationkeyEnable: false,
+            Shift: false,
+            Alt: false,
+            Ctrl: false,
+            hasFNStatus: false,
+            Windows: false,
+            changed: false,
         }
         return T;
     }

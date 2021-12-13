@@ -1965,7 +1965,7 @@ export class M_Light_CS {
         }, 100)
     }
 
-    mode_KeepRaining(colors = [[0, 0, 255, 1]], isRainbow = false, bandwidth = 20, BaseSpeed = 140) {
+    mode_KeepRaining(colors = [[0, 0, 255, 1]], isRainbow = false,BaseSpeed = 140) {
         console.log('%c mode_KeepRaining', 'color:rgb(255,75,255,1)', colors, this.repeater);
         clearInterval(this.repeater);
         this.currentBlockIndex = 0;
@@ -1991,11 +1991,11 @@ export class M_Light_CS {
         //x' = cos(θ) * x - sin(θ) * y
         //y' = sin(θ) * x + cos(θ) * y
         //var temp_target=JSON.parse(JSON.stringify(this.AllBlockColor));
-        for (let xpos = -this.minKeyWidth*5; xpos < this.imageMaxWidth; xpos += this.imageMaxWidth/7 ) {
+        for (let xpos = -350; xpos < this.imageMaxWidth; xpos += this.imageMaxWidth/5 ) {
             var space = 0;
-            for (let ypos = -this.minKeyHeight; ypos < this.imageMaxHeight-50; ypos += this.imageMaxHeight/8) {
+            for (let ypos = 0; ypos < this.imageMaxHeight; ypos += this.minKeyHeight) {
                 //space += this.minKeyWidth/2;
-                space += 5;
+                //space += 5;
                 coordinateAllList.push(
                     {
                         coordinate: [xpos + space, ypos],
@@ -2038,15 +2038,15 @@ export class M_Light_CS {
                 var T_CA = coordinateAllList[c2];
                 //T_CA.coordinate[0]+=this.getRandom(25, 75);
                 if(T_CA.coordinate[1]<this.imageMaxHeight){
-                    nowAddx=50;
-                     //T_CA.coordinate[0]+=this.getRandom(25, 75);
-                    T_CA.coordinate[0]+=this.minKeyHeight;
+                    // nowAddx=50;
+                    T_CA.coordinate[0]+=this.getRandom(0, this.minKeyWidth*2);
+                    //T_CA.coordinate[0]+=this.minKeyHeight;
                     T_CA.coordinate[1]+=this.minKeyHeight;
                 }
                 else{
                     //T_CA.coordinate[0]=this.getRandom(0, 20);
                     T_CA.coordinate[0]=T_CA.backupPos[0];
-                    T_CA.coordinate[1]=-this.minKeyHeight;
+                    T_CA.coordinate[1]=0;
                 }
             }
 
@@ -2067,179 +2067,14 @@ export class M_Light_CS {
                         colorData[0] = (temp_block.nowColor[0] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[0] * temp_block.nowStep) / temp_block.totalStep;
                         colorData[1] = (temp_block.nowColor[1] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[1] * temp_block.nowStep) / temp_block.totalStep;
                         colorData[2] = (temp_block.nowColor[2] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[2] * temp_block.nowStep) / temp_block.totalStep;
-                        element.color = JSON.parse(JSON.stringify(colorData));
+                        element.color = this.getBrightnessRatio(colorData)
                     }
-                    // var dis = this.distanceCalculation(T_CA.coordinate[0], T_CA.coordinate[1], element.coordinateData.center_Point[0], element.coordinateData.center_Point[1]);
-                    // if (dis < 25&&element.coordinateData.center_Point[0]>T_CA.coordinate[0]) {
-                    //     //if (Math.abs(RotationMatrixValue2-RotationMatrixValue) < 10) {
-                    //     console.log('%c RotationMatrixValue', 'color:rgb(255,75,255,1)', RotationMatrixValue, RotationMatrixValue2);
-                    //     // if (temp_block.nowStep < temp_block.totalStep) {
-                    //     //     temp_block.nowStep += 1;
-                    //     // }
-                    //     // else {
-                    //     //     //temp_block.nowStep = 0;
-                    //     //     temp_block.repeatCount += 1;
-                    //     //     // var T_Now = JSON.parse(JSON.stringify(temp_block.nowColor));
-                    //     //     // var T_Next = JSON.parse(JSON.stringify(temp_block.nextColor));
-                    //     //     // temp_block.nextColor = T_Now;
-                    //     //     // temp_block.nowColor = T_Next;
-                    //     //     temp_block.switchOn = false;
-                    //     //     // if(temp_block.repeatCount>=1){
-                    //     //     //     temp_block.repeatCount=0;
-                    //     //     //     temp_block.switchOn=false;
-                    //     //     // }
-                    //     // }
-                    //     var colorData = [0, 0, 0, 1]
-                    //     colorData[0] = (temp_block.nowColor[0] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[0] * temp_block.nowStep) / temp_block.totalStep;
-                    //     colorData[1] = (temp_block.nowColor[1] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[1] * temp_block.nowStep) / temp_block.totalStep;
-                    //     colorData[2] = (temp_block.nowColor[2] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[2] * temp_block.nowStep) / temp_block.totalStep;
-                    //     element.color = JSON.parse(JSON.stringify(colorData));
-                    //     break;
-
-                    // }
                 }
 
             }
-        }, 250)
+        }, BaseSpeed * this.animationSpeed)
     }
 
-    mode_KeepRainingBackup(colors = [[0, 0, 255, 1]], isRainbow = false, bandwidth = 20, BaseSpeed = 140) {
-        console.log('%c mode_KeepRainingBackup', 'color:rgb(255,75,255,1)', colors, this.repeater);
-        clearInterval(this.repeater);
-        this.currentBlockIndex = 0;
-        console.log('%c mode_Starlight', 'color:rgb(255,75,255,1)', colors);
-
-        //colors=[[255,0,0,1]];
-        var translatecolors = [];
-        if (isRainbow) {
-            translatecolors = this.rainbow7Color();
-        }
-        else {
-            translatecolors = colors;
-        }
-        var totalStep = 5;
-        var intervalCount = 0;
-        var StartPoint = this.getNowBlock(0).coordinateData;
-        var target = this.AllBlockColor;
-        this.setAllBlockColor([0, 0, 0, 1]);
-        var repeatCountList = [];
-        var RanRange = [1, 200];
-        var coordinateAllList=[];
-        //RotationMatrixValue: xpos + space+ypos,
-        //x' = cos(θ) * x - sin(θ) * y
-        //y' = sin(θ) * x + cos(θ) * y
-        //var temp_target=JSON.parse(JSON.stringify(this.AllBlockColor));
-        for (let xpos = -this.minKeyWidth*10; xpos < this.imageMaxWidth; xpos += this.imageMaxWidth/10 ) {
-            var space = 0;
-            for (let ypos = 0; ypos < this.imageMaxHeight; ypos += this.imageMaxHeight/10) {
-                //space += this.minKeyWidth/2;
-                space += 0;
-                coordinateAllList.push(
-                    {
-                        coordinate: [xpos + space, ypos],
-                        backupPos: [xpos + space, ypos],
-                        RotationMatrixValue: xpos + space+ypos,
-                        isCheck: false,
-                    });
-            }
-        }
-        for (let index = 0; index < target.length; index++) {
-            //var modStep = (target[index].coordinateData.center_Point[0] % this.imageMaxWidth) / this.imageMaxWidth;
-            var ran = this.getRandom(0, translatecolors.length - 1);
-            console.log('ran', ran);
-            repeatCountList.push({
-                nowColor: [0, 0, 0, 1],
-                nextColor: translatecolors[ran],
-                recordIndex: index,
-                nowStep: 10,
-                totalStep: 10,
-                repeatCount: 0,
-                repeatTime: this.getRandom(RanRange[0], RanRange[1]),
-                switchOn:false,
-            })
-            //target[index].color=repeatCountList[index].color;
-        }
-        this.repeater = setInterval(() => {
-            this.setAllBlockColor([0, 0, 0, 1]);
-            var nowAddx=0;
-            for (let c2 = 0; c2 < coordinateAllList.length; c2++) {
-                var T_CA = coordinateAllList[c2];
-                //T_CA.coordinate[0]+=this.getRandom(25, 75);
-                if(T_CA.coordinate[1]<this.imageMaxHeight){
-                    nowAddx=50;
-                    T_CA.coordinate[0]+=55;
-                    T_CA.coordinate[1]+=25;
-                }
-                else{
-                    //T_CA.coordinate[0]=this.getRandom(0, 20);
-                    T_CA.coordinate[0]=T_CA.backupPos[0];
-                    T_CA.coordinate[1]=-50;
-                }
-            }
-
-
-            for (let index = 0; index < target.length; index++) {
-                const element = target[index];
-                var temp_block=repeatCountList[index];
-                for (let i2 = 0; i2 < coordinateAllList.length; i2++) {
-                    var T = coordinateAllList[i2];
-                    var RotationMatrixValue=T.coordinate[0]+ T.coordinate[1];
-                    var RotationMatrixValue2=element.coordinateData.top_Left[0]+ element.coordinateData.center_Point[1] ;
-                    // if (Math.abs(RotationMatrixValue - RotationMatrixValue2) < 2) {
-                    //     console.log('%c RotationMatrixValue', 'color:rgb(255,75,255,1)', RotationMatrixValue, RotationMatrixValue2);
-                    //     if (temp_block.nowStep < temp_block.totalStep) {
-                    //         temp_block.nowStep += 1;
-                    //     }
-                    //     else {
-                    //         temp_block.nowStep = 0;
-                    //         temp_block.repeatCount += 1;
-                    //         var T_Now = JSON.parse(JSON.stringify(temp_block.nowColor));
-                    //         var T_Next = JSON.parse(JSON.stringify(temp_block.nextColor));
-                    //         temp_block.nextColor = T_Now;
-                    //         temp_block.nowColor = T_Next;
-                    //         temp_block.switchOn = false;
-                    //         // if(temp_block.repeatCount>=1){
-                    //         //     temp_block.repeatCount=0;
-                    //         //     temp_block.switchOn=false;
-                    //         // }
-                    //     }
-                    //     break;
-                    // }                
-                    if (T.coordinate[0] > element.coordinateData.top_Left[0] &&
-                        T.coordinate[0] < element.coordinateData.top_Right[0] &&
-                        T.coordinate[1] > element.coordinateData.top_Left[1] &&
-                        T.coordinate[1] < element.coordinateData.bottom_Left[1]
-                    ) {
-                        if (temp_block.nowStep < temp_block.totalStep) {
-                            temp_block.nowStep += 1;
-                        }
-                        else {
-                            //temp_block.nowStep = 0;
-                            temp_block.repeatCount += 1;
-                            // var T_Now = JSON.parse(JSON.stringify(temp_block.nowColor));
-                            // var T_Next = JSON.parse(JSON.stringify(temp_block.nextColor));
-                            // temp_block.nextColor = T_Now;
-                            // temp_block.nowColor = T_Next;
-                            temp_block.switchOn = false;
-                            // if(temp_block.repeatCount>=1){
-                            //     temp_block.repeatCount=0;
-                            //     temp_block.switchOn=false;
-                            // }
-                        }
-                        var colorData=[0,0,0,1]
-                        colorData[0] = (temp_block.nowColor[0] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[0] * temp_block.nowStep) / temp_block.totalStep;
-                        colorData[1] = (temp_block.nowColor[1] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[1] * temp_block.nowStep) / temp_block.totalStep;
-                        colorData[2] = (temp_block.nowColor[2] * (temp_block.totalStep - temp_block.nowStep) + temp_block.nextColor[2] * temp_block.nowStep) / temp_block.totalStep;
-                        element.color = JSON.parse(JSON.stringify(colorData));
-                        //break;
-                                            
-                    }
-
-                }
-
-            }
-        }, 250)
-    }
 
     mode_WaveSyncbackup(colors = [[255,0,0,1]], isRainbow = true){
         console.log('%c mode_WaveSyncbackup_enter','color:rgb(255,75,255,1)',colors,this.repeater);
@@ -3067,11 +2902,7 @@ export class M_Light_CS {
                     }
                     //console.log('repeatCountList;', i2,repeatCountList[i2].repeatCount);
                 }
-                var temp_colorData=JSON.parse(JSON.stringify(T.color));
-                for (let index = 0; index < 3; index++) {
-                    temp_colorData[index] = temp_colorData[index] * this.lightData.brightness/100;
-                }
-                this.twoDimensionalArray[T.pos[0]][T.pos[1]].color = temp_colorData;
+                this.twoDimensionalArray[T.pos[0]][T.pos[1]].color = this.getBrightnessRatio(T.color);
 
             }
             this.showTwoDimensionalArray();
@@ -3079,6 +2910,10 @@ export class M_Light_CS {
 
 
     }
+
+
+
+
     mode_SinGraphics(colors=[]){
         colors =[[255,0,0,1],[0,255,0,1],[0,0,255,1]];
         var Brightness=1;

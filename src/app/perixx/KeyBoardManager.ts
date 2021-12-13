@@ -139,6 +139,7 @@ export class KeyBoard {
     hibernateTime: any = 3;
     defaultName = ""
     projectName: any;
+    projectCode=0;
     lightData
     recordAssignBtnIndex: any = 0;
     assignText: any = "設定按鍵:Y";
@@ -152,6 +153,7 @@ export class KeyBoard {
     constructor(name = "", inputMax) {
         this.maxKayCapNumber = inputMax;
         this.projectName = name;
+        this.projectCode=this.projectName+
         console.log("%c Inpumt_KeyBoard", "color:red", inputMax, this.maxKayCapNumber);
 
         for (let index = 0; index < 4; index++) {

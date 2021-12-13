@@ -205,31 +205,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
    right: 0px;">
       <div id="AreaTitle" style="position: absolute;
             top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
-        Macro Editing
+        Customization
       </div>
-      <ng-container *ngIf="MacroManager.getClass().hasFile();">
-        <div id="Record" style="    position: absolute;
-        margin-left: 14px;
-        margin-top: 60px;
-        z-index: 9998;color: rgb(29, 52, 96);" 
-        [style.background-color]="MacroManager.onRecord?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
-        (click)="onRecordClick()" data-identity="startRecord">
-          Record
-        </div>
-        <div id="Stop" style="    position: absolute;
-        margin-left: 39%;
-        margin-top: 60px;
-        z-index: 9998;color: rgb(29, 52, 96);" 
-        (click)="this.MacroManager.onRecord=false" data-identity="startRecord">
-          Stop
-        </div>
-        <div id="Delete" style="position: absolute;
-        margin-left: 69%;
-        margin-top: 60px;color: rgb(29, 52, 96);" 
-        (click)="MacroManager.tempMacroContent.deleteSelectMacro()">
-          Delete
-        </div>
-      </ng-container>
+      <div id="Record" style="    position: absolute;
+      margin-left: 14px;
+      margin-top: 60px;
+      z-index: 9998;color: rgb(29, 52, 96);" >
+      Character
+      </div>
 
       
 

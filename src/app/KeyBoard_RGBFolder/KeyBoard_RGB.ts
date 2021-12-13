@@ -286,6 +286,10 @@ export class AppComponent implements OnInit {
                     T_CS.mode_NormallyOn(inputColor);    
                 }
                 break;
+            case 'KeepRaining':
+                    T_CS.mode_KeepRaining(inputColor,target.Multicolor,650);
+                    break;
+
             case 'Matrix2':
                 T_CS.mode_Matrix2(inputColor,target.Multicolor);
                 break;

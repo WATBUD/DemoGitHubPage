@@ -386,6 +386,7 @@ export class MacroManager {
 }
 export class MacroClass {
     MacroFiletItem: any = [
+        new MacroScriptContent()
     ]
     currentChooseMacro = 0;
     className: any = "未命名";

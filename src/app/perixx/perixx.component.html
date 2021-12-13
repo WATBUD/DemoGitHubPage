@@ -142,7 +142,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     height: 100%;
     width: 100%;background: red;">
 
-      <div id="SettingTitle" style="color: rgb(45 47 52);
+      <div *ngIf="settingLocation!='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
       height: auto;
       width: 100%;
       font-weight: bold;
@@ -150,6 +150,21 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       margin-top: 1.6%;">
         Settings
       </div>
+      <section id="FirmwareUpgradeArea">
+        <div *ngIf="settingLocation=='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
+        height: auto;
+        width: 100%;
+        font-weight: bold;
+        margin-left: 2.4%;
+        margin-top: 1.6%;">
+          Firmware
+        </div>
+
+        Current Version
+
+      </section>
+     
+      
     </div>
 
   </section>

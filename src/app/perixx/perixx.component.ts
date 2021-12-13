@@ -14,11 +14,12 @@ import { BoxSelectionArea } from './BoxSelectionArea';
   templateUrl: './perixx.component.html',
   styleUrls: ['./perixx.component.css','./NavigationOption.css',
   './Lighting_Option.css','./Home_Option.css',
-  './MacroPage.scss']
+  './MacroPage.scss','./KeyBoardPage.scss']
 })
 export class PerixxComponent implements OnInit {
   CRUDCheck = false;
-  currentPage = "Macro_Nav";
+  //["Keyboard_Nav","Macro_Nav","Home_Nav"]
+  currentPage = "Home_Nav";
   ImgPath=ImgPathList.getInstance();
   i18nManager=i18nManager.getInstance();
   macroOnEdit=false;
@@ -230,7 +231,7 @@ keyboardRMenu(FNname="") {
   switch (FNname) {
       case "m_Rename":
         this.KeyBoardLibray.editingName = true;
-        this.KeyBoardLibray.updateNameBeingEdited();
+        this.KeyBoardLibray.updatenameBeingEdited();
         //var m_list= document.getElementsByClassName('MacroFileName');
         this.changeDetectorRef.detectChanges();
         var m_list = document.querySelectorAll<HTMLElement>('.KeyBoardLibrayName');

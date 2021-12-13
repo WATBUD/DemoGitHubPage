@@ -38,42 +38,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   </div>
   <div id="PageOptions"
     style="margin-left: 65px; margin-top: 55px; position: absolute; background: #F5F5F7;height: calc(100% - 55px);width: 240px;">
-    <section *ngIf="this.currentPage=='Home_Nav'" id="Home_NavOptions">
-      <!-- [style.background-color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
-      [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
-      <div id="SettingTitle" style="    color: rgb(45 47 52);
-      height: auto;
-      width: 100%;
-      font-weight: bold;
-      margin-left: 12px;
-    margin-bottom: 2%;">
-        Settings
-      </div>
-      <div class="Lighting_OptionItem" *ngFor="let item of settingsOption ;let i = index"
-        (click)="settingLocation=item.name"
-        [style.color]="item.name==settingLocation?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
-        [style.background-color]="item.name==settingLocation?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
-        &nbsp;&nbsp;&nbsp;{{item.name}}
-      </div>
-      <div id="SettingTitle" style="    color: rgb(45 47 52);
-      height: auto;
-      width: 100%;
-      font-weight: bold;
-      margin-top: 10%;
-      margin-left: 12px;
-    margin-bottom: 2%;">
-        Firmware
-      </div>
-      <div id="SettingTitle" style="height: auto;
-      width: 100%;
-      line-height: 25px;" (click)="settingLocation='FirmwareUpgrade'"
-        [style.color]="settingLocation=='FirmwareUpgrade'?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
-        [style.background-color]="settingLocation=='FirmwareUpgrade'?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
-        &nbsp;&nbsp;&nbsp;Firmware Upgrade
-      </div>
 
-
-    </section>
     <section *ngIf="this.currentPage=='Lighting_Nav'" id="Lighting_NavOptions">
       <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
         Lighting
@@ -128,6 +93,75 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     
 
   </div>
+
+  <section *ngIf="this.currentPage=='Home_Nav'" id="SharedPageContent">
+    <section id="Home_NavOptions" style="margin-left: -240px;
+    margin-top: 55px;
+    position: absolute;
+    background: rgb(245 245 247);
+    height: calc(100% - 55px);
+    width: 240px;">
+      <!-- [style.background-color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
+      [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
+      <div id="SettingTitle" style="    color: rgb(45 47 52);
+      height: auto;
+      width: 100%;
+      font-weight: bold;
+      margin-left: 12px;
+    margin-bottom: 2%;
+    margin-top: 14%;">
+        Settings
+      </div>
+      <div class="Lighting_OptionItem" *ngFor="let item of settingsOption ;let i = index"
+        (click)="settingLocation=item.name"
+        [style.color]="item.name==settingLocation?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
+        [style.background-color]="item.name==settingLocation?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
+        &nbsp;&nbsp;&nbsp;{{item.name}}
+      </div>
+      <div id="SettingTitle" style="    color: rgb(45 47 52);
+      height: auto;
+      width: 100%;
+      font-weight: bold;
+      margin-top: 10%;
+      margin-left: 12px;
+    margin-bottom: 2%;">
+        Firmware
+      </div>
+      <div id="SettingTitle" style="height: auto;
+      width: 100%;
+      line-height: 25px;" (click)="settingLocation='FirmwareUpgrade'"
+        [style.color]="settingLocation=='FirmwareUpgrade'?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
+        [style.background-color]="settingLocation=='FirmwareUpgrade'?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
+        &nbsp;&nbsp;&nbsp;Firmware Upgrade
+      </div>
+
+
+    </section>
+    <div id="MiddlePanel" style="
+    position: absolute;
+    height: 100%;
+    width: 100%;background: red;">
+
+      <div id="SettingTitle" style="color: rgb(45 47 52);
+      height: auto;
+      width: 100%;
+      font-weight: bold;
+      margin-left: 2.4%;
+      margin-top: 1.6%;">
+        Settings
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+
+
+
+
+
   <section *ngIf="this.currentPage=='Keyboard_Nav'" id="SharedPageContent">
     <section id="Keyboard_NavOptions" style="margin-left: -240px;
     margin-top: 55px;
@@ -150,7 +184,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             right:20%;
             margin-top: 15%;" >
 
-      <div id="SharedSelectList">
+      <div id="SharedSelectList" style="margin-left: 0px;">
         <div class="Lighting_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
           (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
           [style.color]="KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
@@ -158,7 +192,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             position: absolute;
             margin-left: 8%;" maxlength="15"
             [style.visibility]="KeyBoardLibray.keyboardOfChoice==i&&KeyBoardLibray.editingName?'visible': 'hidden'"
-            [(ngModel)]="KeyBoardLibray.editingName" (blur)="renameKeyboard($event);
+            [(ngModel)]="KeyBoardLibray.nameBeingEdited" (blur)="renameKeyboard($event);
             KeyBoardLibray.editingName=false;
             "
             (keyup)="renameKeyboard($event);"
@@ -207,13 +241,20 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
         Customization
       </div>
-      <div id="Record" style="    position: absolute;
+      <div id="KeyAssignSelectList" style="    position: absolute;
+      top: 0px;
+      width: 92%;
+      margin-top: 106px;
+      margin-left: 4%;
+      height: 542px;
+      overflow-y: auto;">
+      <div id="Character" style="    position: absolute;
       margin-left: 14px;
       margin-top: 60px;
       z-index: 9998;color: rgb(29, 52, 96);" >
       Character
       </div>
-
+    </div>
       
 
 
@@ -410,6 +451,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     </div>
 
   </section>
+
 
 
 

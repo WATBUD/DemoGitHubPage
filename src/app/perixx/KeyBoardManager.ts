@@ -8,7 +8,7 @@ export class KeyBoardManager {
     defaultName = "未配置"
     keyboardOfChoice= 0;
     KeyBoardArray = [];
-    NameBeingEdited="Test";
+    nameBeingEdited="Test";
     editingName=false;
     maxKayCapNumber: number;
     keyBoardTemp;
@@ -28,9 +28,9 @@ export class KeyBoardManager {
         }
 
     }
-    updateNameBeingEdited(){
+    updatenameBeingEdited(){
         if (this.hasKeyBoard()) {
-           this.NameBeingEdited=this.getTarget().projectName;  
+           this.nameBeingEdited=this.getTarget().projectName;  
         }
 
     }

@@ -68,7 +68,8 @@ export class PerixxComponent implements OnInit {
             //this.macroOnEdit= false;
         }
     });
-    
+    this.MacroManager.createFolderFile();
+
     this.setPageIndex('Macro_Nav');
   }
 
@@ -89,9 +90,12 @@ export class PerixxComponent implements OnInit {
 
         break;
       case "Keyboard_Nav":
-
+        setTimeout(() => {
+          var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
+          this.KeyBoardStyle.applyStyles(Keyboard_NavList);
+          this.KeyBoardManager.refreshKeyBoardTemp();
+        }, 500);
         break;
-
       case "Lighting_Nav":
 
         break;
@@ -99,6 +103,7 @@ export class PerixxComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
         //this.changeDetectorRef.checkNoChanges();
         setTimeout(() => {
+          //..KeyBoard_Block
           var Macro_BlockList = document.querySelectorAll("[data-Macro_Block]");
           this.KeyBoardStyle.applyStyles(Macro_BlockList);
           this.KeyBoardManager.refreshKeyBoardTemp();

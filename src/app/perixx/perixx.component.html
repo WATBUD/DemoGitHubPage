@@ -36,63 +36,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       class="NavigationOption">
 
   </div>
-  <div id="PageOptions"
-    style="margin-left: 65px; margin-top: 55px; position: absolute; background: #F5F5F7;height: calc(100% - 55px);width: 240px;">
 
-    <section *ngIf="this.currentPage=='Lighting_Nav'" id="Lighting_NavOptions">
-      <div id="SettingTitle" style="color: #2D2F34;height: auto;width: 100%;margin-top: 15%;">
-        Lighting
-      </div>
-      <div class="Lighting_OptionItem">
-        Red
-      </div>
-      <div class="Lighting_OptionItem">
-        Yellow
-      </div>
-      <div class="Lighting_OptionItem">
-        Green
-      </div>
-      <div class="Lighting_OptionItem">
-        Cyan
-      </div>
-      <div class="Lighting_OptionItem">
-        Blue
-      </div>
-      <div class="Lighting_OptionItem">
-        Purple
-      </div>
-      <div class="Lighting_OptionItem">
-        Static Multi
-      </div>
-      <div class="Lighting_OptionItem">
-        Breathing
-      </div>
-      <div class="Lighting_OptionItem">
-        Gradual Breathing
-      </div>
-      <div class="Lighting_OptionItem">
-        Rainbow
-      </div>
-      <div class="Lighting_OptionItem">
-        Breathing per Key
-      </div>
-      <div class="Lighting_OptionItem">
-        Poptang
-      </div>
-      <div class="Lighting_OptionItem">
-        Breathing Trigger
-      </div>
-      <div class="Lighting_OptionItem">
-        Rainbow Trigger
-      </div>
-
-
-
-
-    </section>
-    
-
-  </div>
 
   <section *ngIf="this.currentPage=='Home_Nav'" id="SharedPageContent">
     <section id="Home_NavOptions" style="margin-left: -240px;
@@ -112,7 +56,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     margin-top: 14%;">
         Settings
       </div>
-      <div class="Lighting_OptionItem" *ngFor="let item of settingsOption ;let i = index"
+      <div class="Shard_OptionItem" *ngFor="let item of settingsOption ;let i = index"
         (click)="settingLocation=item.name"
         [style.color]="item.name==settingLocation?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
         [style.background-color]="item.name==settingLocation?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
@@ -169,13 +113,101 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   </section>
 
+  <section *ngIf="this.currentPage=='Lighting_Nav'" id="SharedPageContent">
+    
+    <section id="Lighting_NavOptions" style="margin-left: -240px;
+    margin-top: 55px;
+    position: absolute;
+    background: rgb(245 245 247);
+    height: calc(100% - 55px);
+    width: 240px;">
+      <div id="SettingTitle" style="color: rgb(45 47 52);
+      height: auto;
+      width: 100%;
+      font-weight: bold;
+      margin-left: 12px;
+    margin-bottom: 2%;
+    margin-top: 14%;">
+        Lighting
+      </div>
+      <div class="Lighting_OptionItem">
+        Red
+      </div>
+      <div class="Lighting_OptionItem">
+        Yellow
+      </div>
+      <div class="Lighting_OptionItem">
+        Green
+      </div>
+      <div class="Lighting_OptionItem">
+        Cyan
+      </div>
+      <div class="Lighting_OptionItem">
+        Blue
+      </div>
+      <div class="Lighting_OptionItem">
+        Purple
+      </div>
+      <div class="Lighting_OptionItem">
+        Static Multi
+      </div>
+      <div class="Lighting_OptionItem">
+        Breathing
+      </div>
+      <div class="Lighting_OptionItem">
+        Gradual Breathing
+      </div>
+      <div class="Lighting_OptionItem">
+        Rainbow
+      </div>
+      <div class="Lighting_OptionItem">
+        Breathing per Key
+      </div>
+      <div class="Lighting_OptionItem">
+        Poptang
+      </div>
+      <div class="Lighting_OptionItem">
+        Breathing Trigger
+      </div>
+      <div class="Lighting_OptionItem">
+        Rainbow Trigger
+      </div>
 
 
 
 
-
-
-
+    </section>
+    <div id="MiddlePanel" style="
+      position: absolute;
+      height: 100%;
+      width: 100%;background: red;">
+  
+      <div *ngIf="settingLocation!='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
+        height: auto;
+        width: 100%;
+        font-weight: bold;
+        margin-left: 2.4%;
+        margin-top: 1.6%;">
+        Settings
+      </div>
+      <section id="FirmwareUpgradeArea">
+        <div *ngIf="settingLocation=='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
+          height: auto;
+          width: 100%;
+          font-weight: bold;
+          margin-left: 2.4%;
+          margin-top: 1.6%;">
+          Firmware
+        </div>
+  
+        Current Version
+  
+      </section>
+  
+  
+    </div>
+  
+  </section>
 
   <section *ngIf="this.currentPage=='Keyboard_Nav'" id="SharedPageContent">
     <section id="Keyboard_NavOptions" style="margin-left: -240px;
@@ -200,7 +232,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             margin-top: 15%;" >
 
       <div id="SharedSelectList" style="margin-left: 0px;">
-        <div class="Lighting_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
+        <div class="Shard_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
           (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
           [style.color]="KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <input class="KeyBoardLibrayName" [attr.data-mindex]="i" type="text" placeholder="" style="width: 70%;
@@ -240,14 +272,18 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     align-items: center;
     height: 100%;
     width: 656px;">
-            <div class="KeyBoardAreaStyle">
-              <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
-              </div>
-              <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-              data-Macro_Block="5" class="KeyBoard_Block"
-                  [style.background-color]="M_Light_Perixx.getNowBlock(i).color" [attr.data-index]="i">
-              </div>
+          <div id="mainKeyboardBlock" class="KeyBoardAreaStyle">
+            <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
+            </div>
+            <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
+              [style.background-color]="M_Light_Perixx.getNowBlock(i).color"
+              data-KB_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
+              [attr.data-index]="i">
+            </div>
           </div>
+
+
+
     </div>
     <div class="RightPanal" style="position: absolute;
    height: 100%;
@@ -306,7 +342,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
       <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
       <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
-        <div class="Lighting_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
+        <div class="Shard_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
           [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
@@ -337,22 +373,21 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
     </section>
     <div id="MiddlePanel" style="
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 656px;">
-            <div id="MacroKeyboardBlock" class="KeyBoardAreaStyle">
-              <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
-              </div>
-              <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-              [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'rgb(255, 0, 0)':'rgba(255, 255, 255)'"
-              data-Macro_Block="5" class="KeyBoard_Block"
-              (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
-              [attr.data-index]="i">
-              </div>
-          </div>
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 656px;">
+      <div id="MacroKeyboardBlock" class="KeyBoardAreaStyle">
+        <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
+        </div>
+        <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
+          [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'rgb(255, 0, 0)':'rgba(255, 255, 255)'"
+          data-Macro_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
+          [attr.data-index]="i">
+        </div>
+      </div>
     </div>
     <div class="RightPanal" style="position: absolute;
    height: 100%;
@@ -413,9 +448,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                   margin-left: 4%;
                   height: 505px;
                   overflow-y: auto;">
-        <!--  
-            MacroManager.tempMacroContent.setSelectAllDataFlag(false);
-            MacroManager.tempMacroContent.selectAllDataFlag=false;-->
         <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index"
         [style.color]="MacroManager.tempMacroContent.indexPosition==i?'rgb(159, 163, 170)':'rgb(159, 163, 170)'"
         (click)="MacroManager.tempMacroContent.indexPosition=i;">

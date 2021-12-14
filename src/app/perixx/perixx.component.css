@@ -88,3 +88,11 @@
 }
 
 
+
+
+.Shard_OptionItem{
+    color: rgb(159,163,170);
+    height: auto;
+    width: 100%;
+    line-height: 25px;
+}

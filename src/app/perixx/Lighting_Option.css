@@ -7,9 +7,11 @@
 .Lighting_OptionItem{
     color: rgb(159,163,170);
     height: auto;
-    width: 100%;
+    width: 75%;
     line-height: 25px;
-    /* padding: 4px; */
+    /* background: rgb(255 0 0); */
+    margin-left: 5%;
 }
+
 
 

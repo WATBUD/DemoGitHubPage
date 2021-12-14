@@ -18,19 +18,18 @@ import { BoxSelectionArea } from './BoxSelectionArea';
 })
 export class PerixxComponent implements OnInit {
   CRUDCheck = false;
-  //["Keyboard_Nav","Macro_Nav","Home_Nav"]
-  currentPage = "Home_Nav";
+  currentPage = "";
   ImgPath=ImgPathList.getInstance();
   i18nManager=i18nManager.getInstance();
   macroOnEdit=false;
   macroContentInEdit=false;
-  KeyBoardManager = new KeyBoardManager(80,3);
-  KeyBoardLibray = new KeyBoardManager(80,3);
+  KeyBoardManager;
+  KeyBoardLibray;
   MacroManager=new MacroManager();
   operationMenuFlag=false;
   KeyBoardStyle = new KeyBoardStyle();
   M_Light_Perixx= new M_Light_CS(80);
-  BoxSelectionArea=new BoxSelectionArea("Macro_Block");
+  BoxSelectionArea=new BoxSelectionArea("KeyBoard_Block");
 
   EM=new EventManager();
 
@@ -55,6 +54,7 @@ export class PerixxComponent implements OnInit {
 
   ngOnInit() {
     //this.MacroManager.getClass().add
+    this.initialzeTheDevice();
   }
 
   ngAfterViewInit(){
@@ -68,8 +68,17 @@ export class PerixxComponent implements OnInit {
             //this.macroOnEdit= false;
         }
     });
-
+    
+    this.setPageIndex('Macro_Nav');
   }
+
+  initialzeTheDevice(){
+    this.KeyBoardManager = new KeyBoardManager(this.KeyBoardStyle.getTarget().keyMapping.length,3);
+    this.KeyBoardLibray = new KeyBoardManager(this.KeyBoardStyle.getTarget().keyMapping.length,3);
+  }
+
+
+   //["Keyboard_Nav","Macro_Nav","Home_Nav"]
   setPageIndex(pageName = "") {
 
     if (this.currentPage !=pageName)
@@ -88,8 +97,15 @@ export class PerixxComponent implements OnInit {
         break;
       case "Macro_Nav":
         this.changeDetectorRef.detectChanges();
-        var Macro_BlockList = document.querySelectorAll(".Macro_Block");
-        this.KeyBoardStyle.applyStyles(Macro_BlockList);
+        //this.changeDetectorRef.checkNoChanges();
+        setTimeout(() => {
+          var Macro_BlockList = document.querySelectorAll("[data-Macro_Block]");
+          this.KeyBoardStyle.applyStyles(Macro_BlockList);
+          this.KeyBoardManager.refreshKeyBoardTemp();
+        }, 500);
+        
+
+        //this.changeDetectorRef.detectChanges();
         break;
       default:
         break;
@@ -144,6 +160,21 @@ export class PerixxComponent implements OnInit {
       download(t_Data, 'json.txt', 'text/plain');
     }
   }
+
+  clickMacroInTheAreaOfTheKeyboard(index){
+    //var target=this.KeyBoardManager.getTarget();
+    var target=this.KeyBoardManager.keyBoardTemp;           
+    target.recordAssignBtnIndex=index;
+    var targetMatrixKey=target.getNowModeTargetMatrixKey();
+    var KeyMatrix=target.getNowModeKeyMatrix();
+    targetMatrixKey.recordBindCodeType = "MacroFunction";
+    //this.changeDetectorRef.detectChanges();
+    console.log('%c clickMacroInTheAreaOfTheKeyboard','color:rgb(255,77,255)',  targetMatrixKey,target);
+    console.log('%c KeyMatrix','color:rgb(255,77,255)',  KeyMatrix);
+
+
+  }
+
 
   MacroEditkeyCodeFn(keyCode,index){
     console.log("MacroEditkeyCodeFn=" + keyCode,this.MacroManager.tempMacroContent.Data);

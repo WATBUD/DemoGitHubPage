@@ -91,14 +91,6 @@ export class KeyBoardManager {
         }
     }
 
-    clearAllAssignRecordLed(FindName = "") {
-        var KBMarr = this.KeyBoardArray;
-        for (let index = 0; index < KBMarr.length; index++) {
-            KBMarr[index].clearAssignRecordLed(FindName);
-        }
-    }
-
-
     ChangeAllLookingforMacroName(changeName = "", targetName = "") {
         console.log("EnterKeyChangeMacroName", changeName, targetName);
         var KBMarr = this.KeyBoardArray;
@@ -123,7 +115,16 @@ export class KeyBoardManager {
             console.log("%c getTarget_error", this.keyboardOfChoice );
         }
     }
+    loadTemporaryKeyboardData(){
+    this.getTarget().ImportClassData(this.keyBoardTemp);
+    }
+    refreshKeyBoardTemp(){
+        this.keyBoardTemp.ImportClassData(this.getTarget());
+    }
+    keyBoardTempR(){
 
+
+    }
     getAssignTarget(index) {
         return this.KeyBoardArray[index];
     }
@@ -144,37 +145,27 @@ export class KeyBoard {
     recordAssignBtnIndex: any = 0;
     assignText: any = "設定按鍵:Y";
     maxKayCapNumber;
-    assignedKeyboardKeys: any = [[], [], [], []];//61KEY
-    assignedFnKeyboardKeys: any = [];//61KEY
+    assignedKeyboardKeys = [];
     fnModeMartrix: any = [false, false, false];
     fnModeindex: any = 0;
-    fiveDefaultLedCode: any = [];
     fiveRecordIndex: any = 0;
     constructor(name = "", inputMax) {
         this.maxKayCapNumber = inputMax;
         this.projectName = name;
         this.projectCode=this.projectName+
-        console.log("%c Inpumt_KeyBoard", "color:red", inputMax, this.maxKayCapNumber);
+        console.log("%c Inpunt_KeyBoard", "color:red", inputMax, this.maxKayCapNumber);
 
-        for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < 3; index++) {
+            var tempArr=[];
             for (let i2 = 0; i2 < this.maxKayCapNumber; i2++) {
-
-                this.assignedKeyboardKeys[index].push(
-                    this.defaultModule()
-                );
+                tempArr.push(this.defaultModule());
             }
+            this.assignedKeyboardKeys.push(tempArr);
         }
 
 
 
-        for (let index = 0; index < 5; index++) {
-            this.fiveDefaultLedCode.push(
-                {
-                    projectCode: 0,
-                    projectName: this.defaultName
-                }
-            );
-        }
+
     }
     getHibernateStepTime() {
         //console.log("getHibernateStepTime",this.hibernateTimeArr,this.hibernateTime);
@@ -183,48 +174,6 @@ export class KeyBoard {
     updeteProjectName(newName=""){
       this.projectName=newName;
     }
-
-
-    clearLostMacro(MCIarr = []) {
-        console.log("clearLostMacro_MCIarr", MCIarr);
-        if (MCIarr.length > 0) {
-            for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-                for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-                    var target = this.assignedKeyboardKeys[index];
-                    if (target[index2].keyAssignType[2] == "KMacro") {
-                        if (checkExist(MCIarr, target[index2].macroCode, target[index2].value) == false) {
-                            target[index2].keyAssignType[0] = this.defaultName;
-                            target[index2].value = "";
-                            target[index2].macroOptionNumber = 65536;
-                            target[index2].macroCode = 0;
-                        }
-                    }
-
-                }
-
-
-            }
-        }
-
-        else {
-            this.clearAllKMacro();
-
-        }
-        function checkExist(array, findTarget1, findTarget2) {
-            for (let index = 0; index < array.length; index++) {
-                const element = array[index];
-                if (element.IndexCode == findTarget1 && element.name == findTarget2) {
-                    console.log("存在值", element, findTarget1, findTarget2);
-                    return true;
-                }
-            }
-            return false;
-        }
-
-
-
-    }
-
     clearAllKMacro() {
         for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
 
@@ -241,27 +190,6 @@ export class KeyBoard {
         }
     }
 
-    ChangeLCFMName(changeName = "", targetName = "") {
-        var V3 = this.fiveDefaultLedCode;
-        console.log("ChangeLCFMName", changeName, targetName, this.assignedKeyboardKeys);
-
-        for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-
-            for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-                var target = this.assignedKeyboardKeys[index];
-                if (target[index2].projectName == targetName) {
-                    //V1Fn[index].projectCode=0;
-                    target[index2].projectName = changeName;
-                }
-            }
-        }
-        for (let index = 0; index < V3.length; index++) {
-            if (V3[index].projectName == targetName) {
-                //V3[index].projectCode=0;
-                V3[index].projectName = changeName;
-            }
-        }
-    }
 
     ChangeMacroName(changeName = "", targetName = "") {
         console.log("KeyChangeMacroName", changeName, targetName);
@@ -291,66 +219,14 @@ export class KeyBoard {
         }
     }
 
-    countTotalAssign() {
-        var V2Normal = this.assignedKeyboardKeys[0];
-        var count = 0;
-        for (let index = 0; index < this.maxKayCapNumber; index++) {
-            if (V2Normal[index].projectCode != 0) {
-                count += 1;
-            }
-        }
 
-        return count;
-
-
-    }
-    clearAssignRecordLed(FindName = "") {
-        var V3 = this.fiveDefaultLedCode;
-        for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-            var target = this.assignedKeyboardKeys[index];
-            for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-                if (target[index2].projectName == FindName) {
-                    target[index2].projectCode = 0;
-                    target[index2].projectName = "";
-                }
-            }
-        }
-        for (let index = 0; index < V3.length; index++) {
-            if (V3[index].projectName == FindName) {
-                V3[index].projectCode = 0;
-                V3[index].projectName = "";
-            }
-        }
-
-    }
-    clearAssignLedcode(FindCode = "") {
-        var V3 = this.fiveDefaultLedCode;
-        for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-            var target = this.assignedKeyboardKeys[index];
-
-            for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-                if (target[index2].projectCode == FindCode) {
-                    target[index2].projectCode = 0;
-                    target[index2].projectName = this.defaultName;
-                }
-            }
-
-        }
-        for (let index = 0; index < V3.length; index++) {
-            if (V3[index].projectCode == FindCode) {
-                V3[index].projectCode = 0;
-                V3[index].projectName = this.defaultName;
-            }
-        }
-
-    }
-
-    ImportClassData(InputData) {
+    ImportClassData(inputData) {
+        var InputData=JSON.parse(JSON.stringify(inputData));
         console.log("ImportClassData", InputData);
         var arr = Object.keys(this);
         console.log("Object.keys", arr);
         for (let index = 0; index < arr.length; index++) {
-            if (arr[index] != "KB61Prohibit") {
+            if (arr[index] != "KB61Prohibit"&&arr[index] != undefined) {
                 this[arr[index]] = InputData[arr[index]];
             }
         }
@@ -364,23 +240,6 @@ export class KeyBoard {
         return (N != "" || N2 != "" || N3 != "" || N4 != "") ? true : false;
     }
 
-
-
-
-    getKeyTargetOptionFrequency() {
-
-        var N = this.getNowModeTargetMatrixKey().macroOptionNumber;
-        console.log("getKeyTargetOptionFrequency", N);
-
-        switch (true) {
-            case (N < 65535):
-                return N;
-            case (N == 65535):
-                return 1;
-            case (N == 65536):
-                return 1;
-        }
-    }
 
 
 
@@ -398,9 +257,6 @@ export class KeyBoard {
         }
     }
 
-    switchLongTime_Instant_Status() {
-        this.getNowModeTargetMatrixKey().LongTime_Instant_Status = !this.getNowModeTargetMatrixKey().LongTime_Instant_Status;
-    }
 
     setFnModeMartrix(targetIndex) {
         this.fnModeMartrix[targetIndex] = !this.fnModeMartrix[targetIndex];
@@ -464,11 +320,6 @@ export class KeyBoard {
                 return this.getNowModeTargetMatrixKey().value;
         }
     }
-    //"燈光設置:"
-    get_Led_promptText() {
-        //console.log("FNMode_get_Led_promptText");
-        return this.getNowModeTargetMatrixKey().projectName;
-    }
     checkFnSetOnlyData(inputValue) {
         console.log("clearLostMacro_MCIarr");
         var V1 = this.getNowModeKeyMatrix();
@@ -488,92 +339,34 @@ export class KeyBoard {
         var T = this.getNowModeTargetMatrixKey();
         T.macroOptionNumber = OptionNumber;
         T.macroCode = IndexCode;
-        switch (this.getNowModeTargetKeyPressStatus()) {
-            case 'LongTimePress':
-                T.keyAssignType[0] = type_Code;
-                T.LongTimePressValue = inputValue;
-                break;
-            case 'InstantPress':
-                T.keyAssignType[1] = type_Code;
-                T.InstantPressValue = inputValue;
-                break;
-            case 'NormalPress':
-                T.keyAssignType[2] = type_Code;
-                T.value = inputValue;
-                break;
-        }
-    }
 
-    getNowModeTargetKeyPressStatus() {
-        if (this.getNowModeTargetMatrixKey().openLongTimePress) {
-            if (this.getNowModeTargetMatrixKey().LongTime_Instant_Status) {
-                return 'LongTimePress';
-            }
-            else {
-                return 'InstantPress';
-            }
-        }
-        else {
-            return 'NormalPress';
-        }
-    }
-    setRecordLed(projectName, projectCode) {
-        console.log("setRecordLedVar_", projectName, projectCode);
-        var T = this.getNowModeTargetMatrixKey();
-        T.projectName = projectName;
-        T.projectCode = projectCode;
-
-    }
-
-
-
-
-
-    set_FiveLed(projectName, projectCode) {
-        console.log("set_FiveLed", projectName, projectCode);
-        var T = this.fiveDefaultLedCode[this.fiveRecordIndex];
-        T.projectCode = projectCode;
-        T.projectName = projectName;
-    }
-
-
-
-
-
-    resetAssignFive(index) {
-        var T = this.fiveDefaultLedCode[index];
-        T.projectCode = 0;
-        T.projectName = this.defaultName;
     }
 
     reset_assign_default(type = "") {
-        console.log("reset_assign_default", type);
-        if (type == "key") {
-            var T = this.getNowModeTargetMatrixKey();
-            T.keyAssignType[2] = this.defaultName;
-            T.value = this.defaultName;
-            T.macroOptionNumber = 65536;
-            T.macroCode = 0;
-        }
-        else if (type == "led") {
-            var T = this.getNowModeTargetMatrixKey();
-            T.projectName = this.defaultName;
-            T.projectCode = 0;
-        }
-        else if (type == "LongTime_or_Instant_Delete") {
-            var T = this.getNowModeTargetMatrixKey();
-            if (T.LongTime_Instant_Status) {
-                T.keyAssignType[0] = this.defaultName;
-                T.LongTimePressValue = "";
-            }
-            else {
-                T.keyAssignType[1] = this.defaultName;
-                T.InstantPressValue = "";
-            }
-        }
+       
 
     }
+    theBindingCategoryIsMacro(index) {
+        if (this.getNowModeKeyMatrix()[index].recordBindCodeType == "MacroFunction") {
+            return true;
+        }
+        return false;
+    }
 
+        /**
+       @param CodeName string:recordBindCodeName
+       @param CodeNameType string:recordBindCodeType
+       * CodeNameType list
+       * KEYBOARD
+       * MOUSE
+       * Multimedia
+       * SingleKey
+       * MacroFunction
+       * Shortcuts
+       * DISABLE
+       * LaunchProgram
+       * LaunchWebsite
+       */
     defaultModule(type = "") {
         var T = {
             macro_RepeatType: 0,

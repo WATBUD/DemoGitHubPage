@@ -462,11 +462,6 @@ export class KeyBoard {
         T.profileName = profileName
     }
 
-    resetAssignFive(index) {
-        var T = this.fiveDefaultLedCode[index]
-        T.recordBindCodeName = 0
-        T.profileName = this.defaultName
-    }
 
     reset_assign_default(type = '') {
         console.log('reset_assign_default', type)

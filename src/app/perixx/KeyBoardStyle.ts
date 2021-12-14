@@ -13,9 +13,9 @@ export class KeyBoardStyle {
             ItemCss: [
                 "margin-left: 48px;margin-top: 11px;transform: rotate(7deg);",
                 "margin-left: 72px;margin-top: 14px;transform: rotate( 7deg);",
-                "margin-top: 30px;margin-left: 157px;display: flex;",
-                "margin-top: 30px;margin-left: 213px;display: flex;",
-                "margin-top: 30px;margin-left: 269px;display: flex;",
+                "margin-top: 18px;margin-left: 96px;display: flex;transform: rotate( 7deg);",
+                "margin-top: 21px; margin-left: 120px; display: flex; transform: rotate( 7deg);",
+                "margin-top: 25px; margin-left: 144px; display: flex; transform: rotate( 7deg);",
             ]
             ,
             withoutTraceFakeCoordinates:[
@@ -31,12 +31,7 @@ export class KeyBoardStyle {
             [0,4],[1,4],[2,4],[0,4]],
             hasValueStyle:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]
             ,
-            keyMapping:[
-                "Side Light","NumLock","NumpadDivide","NumpadMultiply","NumpadSubtract","ROTARY ENCODER","Side Light",
-                "Side Light","Side Light","Numpad7","Numpad8","Numpad9","NumpadAdd","slider","Side Light","Side Light",
-                "Side Light","Numpad4","Numpad5","Numpad6","Side Light",
-                "Side Light","Side Light","Numpad1","Numpad2","Numpad3","NumpadEnter","Side Light","Side Light",
-                "Side Light","Numpad0","NumpadDecimal","Side Light"],
+            keyMapping:["Side Light","NumLock","NumpadDivide","NumpadMultiply","NumpadSubtract"],
             cssText: 'position: absolute;height: 100%;width: 100%;pointer-events: none;',
             BGImage: 'url(./image/Perixx_Project/perixx1.png)',
             BGImageKeyerEffects: 'url(./image/Perixx_Project/perixx1.png)',
@@ -105,12 +100,12 @@ export class KeyBoardStyle {
      * @param target Array:HTMLElements List
     */
     applyStyles(target) {
-        //console.log("applyStyles", this.getTarget().ItemCss,target);
+        console.log("applyStyles", this.getTarget().ItemCss,target);
         this.getTarget().ItemCss.forEach((element, index) => {
             //console.log("applyStyles_element", element);
             if(target[index]){
                 //console.log("applyStyles_ItemCss_"+index, target[index].style.cssText);
-                target[index].style.cssText = element;
+                target[index].style.cssText += element;
             }
             else{
               console.log("applyStyles_ItemCss.forEach_Err",target[index],index);

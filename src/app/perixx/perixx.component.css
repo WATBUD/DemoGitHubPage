@@ -38,11 +38,11 @@
 
 }
 
-.Macro_Block{
+.KeyBoard_Block{
     position: absolute;
     width: 23px;
     height: 23px;
-    background: rgb(0 0 255);
+    background: rgb(0,0,255);
     margin-left: 48px;
     margin-top: 11px;
 }

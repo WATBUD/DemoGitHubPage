@@ -142,7 +142,7 @@ export class KeyBoard {
     constructor(name = "", inputMax) {
         this.maxKayCapNumber = inputMax;
         this.projectName = name;
-        console.log("%c Inpumt_KeyBoard","color:red",inputMax,  this.maxKayCapNumber);
+        console.log("%c Inpunt_KeyBoard","color:red",inputMax,  this.maxKayCapNumber);
 
         for (let index = 0; index < 4; index++) {
             for (let i2 = 0; i2 < this.maxKayCapNumber; i2++) {

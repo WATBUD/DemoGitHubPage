@@ -123,6 +123,7 @@ export class PerixxComponent implements OnInit {
     console.log("project_select: ", event, index);
     if (this.KeyBoardManager.keyboardOfChoice  != index) {
         this.KeyBoardManager.keyboardOfChoice  = index;
+        this.KeyBoardManager.refreshKeyBoardTemp();
     }
   }
   ExportProfile() {

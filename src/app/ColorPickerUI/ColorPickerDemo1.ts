@@ -1,22 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import {
-   ColorModule,APModeModule
+   ColorModule
 } from '../../Module/TSImportManager';
 import { Router } from '@angular/router';
+
+import {
+   M_Light_CS
+} from './M_Light_CS';
 @Component({
    selector: 'app-ColorPickerDemo1',
    templateUrl: './ColorPickerDemo1.html',
-   styleUrls: ['./ColorPickerDemo1.css'],
+   styleUrls: ['./ColorPickerDemo1.css','./CircleColorPicker.css'],
    // styles: [':host { display: block;border: 1px solid black; }']//:host custom component style 
 }
 )
 
 export class ColorPickerDemo1Component implements OnInit {
    newcomponent = "Entered in new component created";
-   CurrentPageName = "LIGHTINGSETTING";
+   CurrentPageName = "";//LIGHTINGSETTING
    LedColor = new ColorModule("LedColor");
-   M_Light_APMode = new APModeModule(1);
+   M_Light_APMode = new M_Light_CS(1);
    Built_inColor=new ColorModule("Built_inColor");
+
+
+   HSL_Color=new ColorModule("Built_inColor");
+
+   //radius=Saturation,angle=Hue, 
+ 
 
    constructor(private router: Router) {
 
@@ -25,9 +35,66 @@ export class ColorPickerDemo1Component implements OnInit {
    }
    ngOnInit() {
    }
-   ngAfterViewInit(){
-      this.addColor_PickerEvent();
+   HSLColorPickerFN :any = [];
+   calculationStart(event) {
+      var coordinateCircle = document.getElementById("coordinateCircle");
+      var testColorBlock = document.getElementById("testColorBlock");
+      var cooordinate = [event.offsetX - 5, event.offsetY - 5];
+      coordinateCircle.style.marginLeft = cooordinate[0] + 'px';
+      coordinateCircle.style.marginTop = cooordinate[1] + 'px';
+      console.log('%c ngAfterViewInit', 'background: black; color: white', coordinateCircle);
+
+      //centrePoint
+      //radius=Saturation,angle=Hue, 
+      var centrePoint = [45, 45];
+      var center = ""
+      var angle = this.M_Light_APMode.PointRotation(centrePoint, cooordinate);//Hue
+      var distance = this.findTheDistanceBetweenTwoPoints(centrePoint, cooordinate)*100/50;//Saturation
+
+      
+      this.HSL_Color.Hue = angle;
+      this.HSL_Color.Saturation = distance;
+      this.HSL_Color.Lightness = 50;
+
+      this.HSL_Color.HSL_RGB_HexSet();
+      //this.HSL_Color.hslToRGB(angle,distance,50);
+      testColorBlock.style.background = this.HSL_Color.toCssRGB(this.HSL_Color.getRGBA());
+
+      console.log('%c this.HSL_Color.getRGBA()', 'background: white; color: red', this.HSL_Color.getRGBA());
+
+      console.log('%c angle', 'background: white; color: red', angle, distance);
    }
+   BindingTooltipEvent: any;
+   ngAfterViewInit(){
+      var dataCCP = document.querySelector("[data-CCP]");
+      //this.addColor_PickerEvent();
+     //coordinateCircle.style.cssText;
+   //   coordinateCircle.addEventListener("mousedown", (oEvent: MouseEvent) => {
+   //    console.log('%c mousedown', 'background: black; color: white', oEvent);
+   //   });
+   //this.HSLColorPickerFN[0] = this.calculationStart().bind(this);
+   this.HSLColorPickerFN[0]=this.calculationStart.bind(this);
+   dataCCP.addEventListener("mousedown", this.HSLColorPickerFN[0]);
+   dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[0]);
+
+   }
+
+
+
+
+   findTheDistanceBetweenTwoPoints(PointA,PointB){
+        // var Dx = Math.abs(PointB[0] - PointA[0]);
+        // var Dy = Math.abs(PointB[1] - PointA[1]);
+        var StraightLineDistance =Math.sqrt(Math.pow(PointB[0] - PointA[0],2)+Math.pow(PointB[1] - PointA[1],2));
+        //var zzz2 =Math.pow(PointB[1] - PointA[1],2);
+        console.log('%c StraightLineDistance', 'background: white; color: red', StraightLineDistance);
+        return StraightLineDistance;
+   }
+
+
+
+
+
    LedColorhueChange() {
       this.updateColorBlock(); //by hueChange 
    }

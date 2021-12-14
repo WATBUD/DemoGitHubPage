@@ -178,35 +178,41 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
     </section>
     <div id="MiddlePanel" style="
-      position: absolute;
-      height: 100%;
-      width: 100%;background: red;">
-  
-      <div *ngIf="settingLocation!='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
-        height: auto;
-        width: 100%;
-        font-weight: bold;
-        margin-left: 2.4%;
-        margin-top: 1.6%;">
-        Settings
-      </div>
-      <section id="FirmwareUpgradeArea">
-        <div *ngIf="settingLocation=='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
-          height: auto;
-          width: 100%;
-          font-weight: bold;
-          margin-left: 2.4%;
-          margin-top: 1.6%;">
-          Firmware
-        </div>
-  
-        Current Version
-  
-      </section>
-  
-  
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 656px;">
+          <div id="mainKeyboardBlock" class="KeyBoardAreaStyle">
+            <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
+            </div>
+            <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
+              [style.background-color]="M_Light_Perixx.getNowBlock(i).color"
+              data-KB_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
+              [attr.data-index]="i">
+            </div>
+          </div>
+
+
+
     </div>
-  
+    <div class="RightPanal" style="position: absolute;
+        height: 100%;
+        width: 26.8%;
+        right: 0px;">
+      <div id="AreaTitle" style="position: absolute;
+                 top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
+        Color Palette
+      </div>
+      <ng-color-circle class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
+      (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor">
+      </ng-color-circle>
+    
+    
+    
+    
+    </div>
   </section>
 
   <section *ngIf="this.currentPage=='Keyboard_Nav'" id="SharedPageContent">

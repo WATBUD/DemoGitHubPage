@@ -1,6 +1,6 @@
 
 export { ColorModule } from './ColorVar';
-export { Wave, APModeModule} from './APModeModule';
+export { Wave} from './APModeModule';
 export { MacroScriptContent,MacroManager  } from './MacroModule';
 export { LedChainFramesManager } from './CustomLedChainFrames';
 export { KeyBoardManager } from './KeyBoardManager';

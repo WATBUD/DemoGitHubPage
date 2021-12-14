@@ -8,6 +8,10 @@ import { KeyBoardStyle } from './KeyBoardStyle';
 import { ThrowStmt } from '@angular/compiler';
 import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
+import {
+  ColorModule
+} from '../../Module/TSImportManager';
+import { ColorOutput } from '../ngcolor/color-output';
 
 @Component({
   selector: 'app-perixx',
@@ -30,7 +34,9 @@ export class PerixxComponent implements OnInit {
   KeyBoardStyle = new KeyBoardStyle();
   M_Light_Perixx= new M_Light_CS(80);
   BoxSelectionArea=new BoxSelectionArea("KeyBoard_Block");
-
+  ColorModule = new ColorModule();
+  colordata: ColorOutput;
+  startcolor: any;
   EM=new EventManager();
 
   settingsOption=[
@@ -69,8 +75,8 @@ export class PerixxComponent implements OnInit {
         }
     });
     this.MacroManager.createFolderFile();
-
-    this.setPageIndex('Macro_Nav');
+    this.startcolor = 'FFFFFF';
+    this.setPageIndex('Lighting_Nav');
   }
 
   initialzeTheDevice(){
@@ -84,6 +90,7 @@ export class PerixxComponent implements OnInit {
 
     if (this.currentPage !=pageName)
     this.currentPage = pageName;
+    this.changeDetectorRef.detectChanges();
 
     switch (this.currentPage) {
       case "Home_Nav":
@@ -97,10 +104,13 @@ export class PerixxComponent implements OnInit {
         }, 500);
         break;
       case "Lighting_Nav":
-
+        setTimeout(() => {
+          var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
+          this.KeyBoardStyle.applyStyles(Keyboard_NavList);
+          this.KeyBoardManager.refreshKeyBoardTemp();
+        }, 500);
         break;
       case "Macro_Nav":
-        this.changeDetectorRef.detectChanges();
         //this.changeDetectorRef.checkNoChanges();
         setTimeout(() => {
           //..KeyBoard_Block
@@ -118,6 +128,15 @@ export class PerixxComponent implements OnInit {
 
   }
 
+  /**
+   * move color picker
+   * @param result
+   */
+  colorPickerChange(result: ColorOutput) {
+    console.log('colorPickerChange');
+    var RGB_Arr = [result.rgb.red, result.rgb.green, result.rgb.blue, 1];
+
+  }
 
   project_select(event,index){
     console.log("project_select: ", event, index);

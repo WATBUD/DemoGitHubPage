@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {
    ColorModule
 } from '../../Module/TSImportManager';
+
 import { Router } from '@angular/router';
 
-import {
-   M_Light_CS
-} from './M_Light_CS';
+// import {
+//    M_Light_CS
+// } from './M_Light_CS';
 @Component({
    selector: 'app-ColorPickerDemo1',
    templateUrl: './ColorPickerDemo1.html',
@@ -19,77 +20,74 @@ export class ColorPickerDemo1Component implements OnInit {
    newcomponent = "Entered in new component created";
    CurrentPageName = "";//LIGHTINGSETTING
    LedColor = new ColorModule("LedColor");
-   M_Light_APMode = new M_Light_CS(1);
+   //M_Light_APMode = new M_Light_CS(1);
    Built_inColor=new ColorModule("Built_inColor");
+   ColorWheelModule=new ColorModule("Circle_Animation");
+   theColorWheelISBeingClicked=false;
+
+   DefaultColorList=[
+      [255,0,0],[255,128,0],[255,255,0],[128,255,0],[255,128,0],[0,255,128],[0,255,255],[0,128,255],
+      [0,0,255],[128,0,255],[255,0,128],[255,255,255],[255,152,0],[0,183,195],
+   ]
+   CustomColorList=[
+      [255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255],
+      [255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255],
+   ]
 
 
-   HSL_Color=new ColorModule("Built_inColor");
 
    //radius=Saturation,angle=Hue, 
- 
-
    constructor(private router: Router) {
-
     //this.router.navigate(['KeyBoard_RGB'], {});
-
    }
    ngOnInit() {
    }
    HSLColorPickerFN :any = [];
-   calculationStart(event) {
-      var coordinateCircle = document.getElementById("coordinateCircle");
-      var testColorBlock = document.getElementById("testColorBlock");
-      var cooordinate = [event.offsetX - 5, event.offsetY - 5];
-      coordinateCircle.style.marginLeft = cooordinate[0] + 'px';
-      coordinateCircle.style.marginTop = cooordinate[1] + 'px';
-      console.log('%c ngAfterViewInit', 'background: black; color: white', coordinateCircle);
-
-      //centrePoint
-      //radius=Saturation,angle=Hue, 
-      var centrePoint = [45, 45];
-      var center = ""
-      var angle = this.M_Light_APMode.PointRotation(centrePoint, cooordinate);//Hue
-      var distance = this.findTheDistanceBetweenTwoPoints(centrePoint, cooordinate)*100/50;//Saturation
-
-      
-      this.HSL_Color.Hue = angle;
-      this.HSL_Color.Saturation = distance;
-      this.HSL_Color.Lightness = 50;
-
-      this.HSL_Color.HSL_RGB_HexSet();
-      //this.HSL_Color.hslToRGB(angle,distance,50);
-      testColorBlock.style.background = this.HSL_Color.toCssRGB(this.HSL_Color.getRGBA());
-
-      console.log('%c this.HSL_Color.getRGBA()', 'background: white; color: red', this.HSL_Color.getRGBA());
-
-      console.log('%c angle', 'background: white; color: red', angle, distance);
-   }
-   BindingTooltipEvent: any;
    ngAfterViewInit(){
-      var dataCCP = document.querySelector("[data-CCP]");
       //this.addColor_PickerEvent();
      //coordinateCircle.style.cssText;
    //   coordinateCircle.addEventListener("mousedown", (oEvent: MouseEvent) => {
    //    console.log('%c mousedown', 'background: black; color: white', oEvent);
    //   });
-   //this.HSLColorPickerFN[0] = this.calculationStart().bind(this);
-   this.HSLColorPickerFN[0]=this.calculationStart.bind(this);
+   //this.HSLColorPickerFN[0] = this.setTheColorWheelValue().bind(this);
+   this.HSLColorPickerFN[0]=((oEvent: MouseEvent) => {
+      console.log('%c mousedown', 'background: black; color: white', oEvent);
+      this.theColorWheelISBeingClicked=true;
+      this.ColorWheelModule.setTheColorWheelValue(oEvent);
+   });
+   this.HSLColorPickerFN[1]=((oEvent: MouseEvent) => {
+      //console.log('%c mousemove', 'background: black; color: white', oEvent);
+      //this.theColorWheelISBeingClicked=true;
+      if(this.theColorWheelISBeingClicked){
+         this.ColorWheelModule.setTheColorWheelValue(oEvent);
+      }
+
+   });
+   this.HSLColorPickerFN[2]=((oEvent: MouseEvent) => {
+      console.log('%c mouseup', 'background: black; color: white', oEvent);
+      this.theColorWheelISBeingClicked=false;
+   });
+
+
+
+
+   //this.setTheColorWheelValue.bind(this);
+   var dataCCP = document.querySelector("[data-CCP]");
    dataCCP.addEventListener("mousedown", this.HSLColorPickerFN[0]);
-   dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[0]);
+   dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[1]);
+   dataCCP.addEventListener("mouseup", this.HSLColorPickerFN[2]);
 
+   }
+    
+   updateColorWheel(event) {
+      console.log('%c updateColorWheel', 'background: black; color: white', event);
+      let backgroundColor = event.target.style.backgroundColor;
+      this.ColorWheelModule.onclickColorDefault(event.target,0);
+      
+      console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
    }
 
 
-
-
-   findTheDistanceBetweenTwoPoints(PointA,PointB){
-        // var Dx = Math.abs(PointB[0] - PointA[0]);
-        // var Dy = Math.abs(PointB[1] - PointA[1]);
-        var StraightLineDistance =Math.sqrt(Math.pow(PointB[0] - PointA[0],2)+Math.pow(PointB[1] - PointA[1],2));
-        //var zzz2 =Math.pow(PointB[1] - PointA[1],2);
-        console.log('%c StraightLineDistance', 'background: white; color: red', StraightLineDistance);
-        return StraightLineDistance;
-   }
 
 
 
@@ -145,7 +143,7 @@ export class ColorPickerDemo1Component implements OnInit {
    
    updateLedColorRGB(){
       this.LedColor.update_RGBA_value();
-      this.M_Light_APMode.getTarget().colors[this.LedColor.currentRecordIndex] = this.LedColor.Hex;
+      //this.M_Light_APMode.getTarget().colors[this.LedColor.currentRecordIndex] = this.LedColor.Hex;
       console.log('%c updateLedColorRGB', 'background: red; color: white', this.LedColor);
    }
 
@@ -156,15 +154,8 @@ export class ColorPickerDemo1Component implements OnInit {
          case "LIGHTINGSETTING":
             this.LedColor.HSL_RGB_HexSet();
             this.LedColor.setGradientBGcolor();
-            this.M_Light_APMode.getTarget().colors[this.LedColor.currentRecordIndex] = this.LedColor.Hex;
+            //this.M_Light_APMode.getTarget().colors[this.LedColor.currentRecordIndex] = this.LedColor.Hex;
             //this.setAppModeToServer('byP1');//by updateColorBlock
-            break;
-         case "Built-ineffects":
-            //   this.Built_inColor.HSL_RGB_HexSet();
-            //   this.Built_inColor.setGradientBGcolor(); 
-            //   // this.Built_ineffect.getTarget().colors[this.Built_inColor.currentRecordIndex]=this.Built_inColor.getRGBA();
-            //   this.Built_ineffect.getTarget().currentColorsIndex=this.Built_inColor.currentRecordIndex;
-            //   this.refreshM_Light_BuiltIn();
             break;
       }
 

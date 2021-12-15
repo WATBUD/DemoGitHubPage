@@ -24,6 +24,7 @@
         disX =0;
         disY =0;
         gradientBGcolor:any="#FFFFFF";
+        theColorWheelISBeingClicked
         //-webkit-linear-gradient(left,#FFFFFF,rgb(255,255,255)";
         constructor(inputname=""){
             this.SetHex("#66CC33");
@@ -55,6 +56,107 @@
             return T;      
     
         }
+
+        setTheColorWheelValue(event) {
+            var CircleSS = document.getElementById("CircleSS");
+            var coordinateCircle = document.getElementById("coordinateCircle");
+            var cooordinate = [event.offsetX - 5, event.offsetY - 5];
+            coordinateCircle.style.marginLeft = cooordinate[0] + 'px';
+            coordinateCircle.style.marginTop = cooordinate[1] + 'px';
+            console.log('%c ngAfterViewInit', 'background: black; color: white', coordinateCircle);
+            //centrePoint
+            //radius=Saturation,angle=Hue, 
+            var centrePoint = [CircleSS.offsetWidth/2, CircleSS.offsetHeight/2];
+            var center = ""
+            var angle = this.PointRotation(centrePoint, cooordinate);//Hue
+            var distance = this.findTheDistanceBetweenTwoPoints(centrePoint, cooordinate)*CircleSS.offsetWidth/2/500;//Saturation
+            if(angle<0){
+               angle+=360;
+            }
+            console.log('%c angle', 'background: white; color: red', angle);
+            console.log('%c distance', 'background: white; color: red', distance);
+            this.Hue =Math.round(angle);
+            this.Saturation = Math.round(distance);
+            this.Lightness = 50;
+            this.Value = 100;
+            this.hsv_Rgb_hexSet();
+            //半徑，角度，求圓上的點坐標
+            //x1 = x + radius * cos(angle * π / 180)
+            //y1 = y + radius * sin(angle * π / 180)
+            //this.HSL_RGB_HexSet();
+            //this.hslToRGB(angle,distance,50)
+            console.log('%c this.getRGB()', 'background: white; color: red', this.getRGB());
+            //console.log('%c angle', 'background: white; color: red', angle, distance);
+         }
+        knowTheAngleDistanceFindTheCoordinates(angle,StartPoint,distance)
+        {
+            //角度轉弧度
+            var radian = (angle * Math.PI) / 180;
+           var EndPoint=[];
+            //計算新座標 r 就是兩者的距離
+            EndPoint[0] = StartPoint[0] + distance * Math.cos(radian);
+            EndPoint[1] = StartPoint[1] + distance * Math.sin(radian);
+            //EndPoint[2] = 0;
+     
+            return EndPoint;
+        }
+    
+        PointRotation(PointA, PointB) {
+            // var Dx = Math.abs(PointB[0] - PointA[0]);
+            // var Dy = Math.abs(PointB[1] - PointA[1]);
+            var Dx =(PointB[0] - PointA[0]);
+            var Dy =(PointB[1] - PointA[1]);
+            var DRoation = Math.atan2(Dy, Dx);
+            //console.log('PointRotation,Math.atan2', DRoation);
+            var WRotation = DRoation / Math.PI * 180;
+            //弧度=角度/180*π(PI)
+            //(角度=弧度*180/π(PI))
+            return WRotation;
+        }
+        slopeEquation(point1=[25,0],point2=[320,400]){
+            //斜率y2-y1/x2-x1;
+            var Slope =(point2[1]-point1[1])/(point2[0]-point1[0]);//x*1 y*1*Slope
+            var LinearList=[];
+            var temp_x=[point1[0],point1[1]];
+            while (temp_x[0]<point2[0]&&temp_x[1]<point2[1]) {
+                temp_x[0]+=1;
+                temp_x[1]+=1*Slope;
+                //console.log('temp_x=',temp_x);
+                LinearList.push([temp_x[0],temp_x[1]]);
+            }
+            return LinearList;
+        }
+        
+        U
+       findTheDistanceBetweenTwoPoints(PointA,PointB){
+        // var Dx = Math.abs(PointB[0] - PointA[0]);
+        // var Dy = Math.abs(PointB[1] - PointA[1]);
+        var StraightLineDistance =Math.sqrt(Math.pow(PointB[0] - PointA[0],2)+Math.pow(PointB[1] - PointA[1],2));
+        //var zzz2 =Math.pow(PointB[1] - PointA[1],2);
+        //console.log('%c StraightLineDistance', 'background: white; color: red', StraightLineDistance);
+        return StraightLineDistance;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         mousedown(oEvent: MouseEvent) {
             var parentDiv = document.getElementById(this.name+'PickingArea');
             var circleDiv = document.getElementById(this.name+'Circle');
@@ -131,9 +233,17 @@
         CreateFakeArray(length=0){
             return  Array(length).fill(4);
         }
-        toCssRGB(RGBA=[0,0,0,0]){
+        toCssRGBA(RGBA=[0,0,0,0]){
             return 'rgb('+RGBA[0] + ',' + RGBA[1] + ',' + RGBA[2] + ',' + RGBA[3] + ')';
         }
+        toCssRGB(RGBA=[0,0,0]){
+            return 'rgb('+RGBA[0] + ',' + RGBA[1] + ',' + RGBA[2] + ')';
+        }
+
+        getCSSRGB(){
+            return 'rgb('+this.RGBA_value[0] + ',' + this.RGBA_value[1] + ',' + this.RGBA_value[2] + ')';
+        }
+
         update_RGBA_value() {
             for (let index = 0; index < 3; index++) {
                 let target = Number(this.RGBA_value[index]);
@@ -165,14 +275,14 @@
             this.updateCircleDivPos();    
         }
         updateCircleDivPos(){
-            try {
-                var circleDiv = document.getElementById(this.name+'Circle');
-                console.log('%c updateCircleDivPos', 'background: black; color: white', JSON.stringify(this));    
-                circleDiv.style.left=this.savePosition.precentS*this.Saturation+"px";
-                circleDiv.style.top=this.savePosition.precentL*(100-this.Lightness)+"px"
-            } catch (error) {
-                console.error('%c updateCircleDivPos', 'background: black; color: white', error);    
-            }
+            // try {
+            //     var circleDiv = document.getElementById(this.name+'Circle');
+            //     console.log('%c updateCircleDivPos', 'background: black; color: white', JSON.stringify(this));    
+            //     circleDiv.style.left=this.savePosition.precentS*this.Saturation+"px";
+            //     circleDiv.style.top=this.savePosition.precentL*(100-this.Lightness)+"px"
+            // } catch (error) {
+            //     console.error('%c updateCircleDivPos', 'background: black; color: white', error);    
+            // }
 
         }
 
@@ -218,8 +328,8 @@
         }
 
         hsv_Rgb_hexSet(){
-            this.customlog("Enter_hsv_Rgb_hexSet HSV>rgb>hex");
             var RGBResult =this.HSVtoRGB(this.Hue/360, this.Saturation/100, this.Value/100);
+            console.log('hsv_Rgb_hexSet',RGBResult,this.Hue, this.Saturation);
             this.Hex=  this.rgbToHex(RGBResult[0],RGBResult[1],RGBResult[2]);
             this.RGBA_value[0]=RGBResult[0];
             this.RGBA_value[1]=RGBResult[1];
@@ -464,6 +574,10 @@
             this.customlog("rgb2HSVResult",[computedH,computedS,computedV]);
             return result;
         }
+        hsv2rgb(h, s, v) {
+            let f = (n, k = (n + h / 60) % 6) => v - v * s * Math.max(Math.min(k, 4 - k, 1), 0);
+            return [f(5), f(3), f(1)];
+        }   
         HSVtoRGB(h, s, v) {
            let s1=h;
            let s2=s;
@@ -488,6 +602,7 @@
     
             let result = [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
             //this.customlog("HSVtoRGBResult",result,'Input:h',s1,'s',s2,'v',s3);
+            console.log("HSVtoRGBResult",result,'Input:h',s1,'s',s2,'v',s3);
             return result;
             // return {
             //     r: Math.round(r * 255),

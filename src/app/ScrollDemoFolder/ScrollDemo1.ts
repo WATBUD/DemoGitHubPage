@@ -23,8 +23,8 @@ export class ScrollDemo1Component implements OnInit {
     for (let index = 0; index < 8; index++) {
       //const element = [index];
       this.NumKeyBindSourceArray.push({ 
-        colorValue: this.LedColor.toCssRGB([255/(index+1),0,0,1]) ,
-        BGcolorValue:this.LedColor.toCssRGB([255*(SourceArray-index+1)/SourceArray,192*(SourceArray-index+1)/SourceArray,203*(SourceArray-index+1)/SourceArray,1])
+        colorValue: this.LedColor.toCssRGB([255/(index+1),0,0]) ,
+        BGcolorValue:this.LedColor.toCssRGB([255*(SourceArray-index+1)/SourceArray,192*(SourceArray-index+1)/SourceArray,203*(SourceArray-index+1)/SourceArray])
       }
     );
     }

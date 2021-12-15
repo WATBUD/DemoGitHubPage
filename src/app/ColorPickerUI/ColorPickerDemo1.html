@@ -1,50 +1,112 @@
-   <div *ngIf="this.CurrentPageName=='LIGHTINGSETTING'"
-      [style.display]="this.M_Light_APMode.getTarget().name != 'Fire'?'block': 'none'" id="color-picker-container">
-      <div id="LedColorPickingArea" class="PickingArea" [style.background-color]="LedColor.gradientBGcolor">
-         <div id="LedColorCircle" class="circle">
-         </div>
-
-      </div>
-      <input id="ColorSliderH" type="range" min="0" max="359" step="1" [(ngModel)]="LedColor.Hue"
-         (ngModelChange)='LedColorhueChange()'>
-      <div id="color_RGBADiv">
-         <div id="RGBA_Red" class="RGBATextStyle">
-            R:
-            <input class="color_quantity" type="number" max="255" min="0"
-               [(ngModel)]="LedColor.RGBA_value[0]" (blur)="updateLedColorRGB()">
-         </div>
-         <div id="RGBA_Green" class="RGBATextStyle">
-            G:
-            <input class="color_quantity" type="number" max="255" min="0"
-               [(ngModel)]="LedColor.RGBA_value[1]" (blur)="updateLedColorRGB()"
-               onkeyup="value=value.replace(/[^\d]/g,'');if(value>255){value=255};if(value<1){value=0}">
-         </div>
-         <div id="RGBA_Blue" class="RGBATextStyle">
-            B:
-            <input class="color_quantity" type="number" max="255" min="0"
-               [(ngModel)]="LedColor.RGBA_value[2]" (blur)="updateLedColorRGB()"
-               onkeyup="value=value.replace(/[^\d]/g,'');if(value>255){value=255};if(value<1){value=0}">
-         </div>
+<div *ngIf="this.CurrentPageName=='LIGHTINGSETTING'"
+   [style.display]="this.M_Light_APMode.getTarget().name != 'Fire'?'block': 'none'" id="color-picker-container">
+   <div id="LedColorPickingArea" class="PickingArea" [style.background-color]="LedColor.gradientBGcolor">
+      <div id="LedColorCircle" class="circle">
       </div>
 
-      <div class="colorBaseList">
-         <div *ngFor="let item of M_Light_APMode.getTarget().colors ;let i = index" class="colorBase"
-            (click)="LedColor.onclickColorDefault($event.target,i)" id="colorBase{{i}}"
-            [style.background-color]="M_Light_APMode.getTarget().colors[i]">
-         </div>
+   </div>
+   <input id="ColorSliderH" type="range" min="0" max="359" step="1" [(ngModel)]="LedColor.Hue"
+      (ngModelChange)='LedColorhueChange()'>
+   <div id="color_RGBADiv">
+      <div id="RGBA_Red" class="RGBATextStyle">
+         R:
+         <input class="color_quantity" type="number" max="255" min="0" [(ngModel)]="LedColor.RGBA_value[0]"
+            (blur)="updateLedColorRGB()">
+      </div>
+      <div id="RGBA_Green" class="RGBATextStyle">
+         G:
+         <input class="color_quantity" type="number" max="255" min="0" [(ngModel)]="LedColor.RGBA_value[1]"
+            (blur)="updateLedColorRGB()"
+            onkeyup="value=value.replace(/[^\d]/g,'');if(value>255){value=255};if(value<1){value=0}">
+      </div>
+      <div id="RGBA_Blue" class="RGBATextStyle">
+         B:
+         <input class="color_quantity" type="number" max="255" min="0" [(ngModel)]="LedColor.RGBA_value[2]"
+            (blur)="updateLedColorRGB()"
+            onkeyup="value=value.replace(/[^\d]/g,'');if(value>255){value=255};if(value<1){value=0}">
+      </div>
+   </div>
+
+   <div class="colorBaseList">
+      <div *ngFor="let item of M_Light_APMode.getTarget().colors ;let i = index" class="colorBase"
+         (click)="LedColor.onclickColorDefault($event.target,i)" id="colorBase{{i}}"
+         [style.background-color]="M_Light_APMode.getTarget().colors[i]">
+      </div>
+   </div>
+
+
+</div>
+
+
+
+
+<div id="CircleSS" data-CCP="5" style="margin-left: 500px;">
+
+   <div id="coordinateCircle">
+   </div>
+   <!-- <div id="WhiteMask" style="background: radial-gradient(circle at 50%, rgb(255,255,255) 69%, rgb(220,220,220) 50%);
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      z-index: 9999;
+      top: 0px;
+      border-radius: 50%;
+      opacity: 0.4;
+      margin-left: 698px;
+      margin-top: 243px;">
+   
+   
+   
+         
+      </div> -->
+</div>
+
+
+<div id="testColorBlock" style="position: absolute;width: 500px;height:500px;"
+   [style.background-color]="this.ColorWheelModule.getCSSRGB()">
+
+
+
+</div>
+<div id="RightPanal" style="position: absolute; background: blue;width: 500px;height:500px;    margin-left: 58%;">
+
+   <div id="DefaultColorList" style="    position: absolute;
+      background: rgb(255 0 0,0);
+      width: 192px;
+      height: 49px;
+      margin-left: 25%;
+      margin-top: 14%;
+      display: flex;
+      flex-wrap: wrap;">
+      <div *ngFor="let item of DefaultColorList;let i = index" class="DefaultColorItem"
+         (click)="updateColorWheel($event)" id="colorBase{{i}}"
+         [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
       </div>
 
+
+   </div>
+
+   <div id="CustomColorList" style="    position: absolute;
+      background: rgb(255 0 0,0);
+      width: 192px;
+      height: 49px;
+      margin-left: 25%;
+      margin-top: 35%;
+      display: flex;
+      flex-wrap: wrap;">
+      <div *ngFor="let item of CustomColorList;let i = index" class="DefaultColorItem"
+         (click)="updateColorWheel($event)" id="colorBase{{i}}"
+         [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
+      </div>
 
    </div>
 
 
 
 
-   <div data-CCP="5" style="margin-left: 500px;">
-      <div id="coordinateCircle">
-      </div>
-   </div>9
 
 
-   <div id="testColorBlock" style="background: blue;width: 500px;height:500px;">
-   </div>
+
+
+
+</div>

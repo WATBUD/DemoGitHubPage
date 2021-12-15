@@ -1,0 +1,27 @@
+<div class="chart">
+</div>
+
+
+<style>
+.chart {
+  width: 90vh;
+  height: 90vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  background: radial-gradient(circle closest-side, white, black 90%), conic-gradient(red, #ff8000, yellow, #80ff00, lime, #00ff80, aqua, #0080ff, blue, #8000ff, fuchsia, #ff0080, red);
+  border: 5px solid #fff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  background-blend-mode: screen;
+  border-radius: 50%;
+}
+
+@media screen and (orientation: portrait) {
+  .chart {
+    width: 90vw;
+    height: 90vw;
+  }
+}
+   </style>

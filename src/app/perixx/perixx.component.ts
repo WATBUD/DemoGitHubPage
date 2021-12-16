@@ -18,7 +18,8 @@ import { ColorOutput } from '../ngcolor/color-output';
   templateUrl: './perixx.component.html',
   styleUrls: ['./perixx.component.css','./NavigationOption.css',
   './Lighting_Option.css','./Home_Option.css',
-  './MacroPage.scss','./KeyBoardPage.scss']
+  './MacroPage.scss','./KeyBoardPage.scss','./CircleColorPicker.css'
+,]
 })
 export class PerixxComponent implements OnInit {
   CRUDCheck = false;
@@ -34,11 +35,9 @@ export class PerixxComponent implements OnInit {
   KeyBoardStyle = new KeyBoardStyle();
   M_Light_Perixx= new M_Light_CS(80);
   BoxSelectionArea=new BoxSelectionArea("KeyBoard_Block");
-  ColorModule = new ColorModule();
-  colordata: ColorOutput;
-  startcolor: any;
   EM=new EventManager();
-
+  ColorWheelModule=new ColorModule("Circle_Animation");
+  theColorWheelISBeingClicked=false;
   settingsOption=[
     {'name':'Information'
     },
@@ -55,6 +54,15 @@ export class PerixxComponent implements OnInit {
     {'name':'Reset'
     },
   ]
+  DefaultColorList = [
+    [255, 0, 0], [255, 128, 0], [255, 255, 0], [128, 255, 0], [255, 128, 0], [0, 255, 128], [0, 255, 255], [0, 128, 255],
+    [0, 0, 255], [128, 0, 255], [255, 0, 128], [255, 255, 255], [255, 152, 0], [0, 183, 195],
+  ]
+  CustomColorList = [
+    [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],
+    [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],
+  ]
+
   settingLocation="Information";
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
@@ -75,15 +83,24 @@ export class PerixxComponent implements OnInit {
         }
     });
     this.MacroManager.createFolderFile();
-    this.startcolor = 'FFFFFF';
     this.setPageIndex('Lighting_Nav');
   }
 
   initialzeTheDevice(){
-    this.KeyBoardManager = new KeyBoardManager(this.KeyBoardStyle.getTarget().keyMapping.length,3);
-    this.KeyBoardLibray = new KeyBoardManager(this.KeyBoardStyle.getTarget().keyMapping.length,3);
+    var KeyBoardLength=this.KeyBoardStyle.getTarget().keyMapping.length;
+    this.KeyBoardManager = new KeyBoardManager(KeyBoardLength,3);
+    this.KeyBoardLibray = new KeyBoardManager(KeyBoardLength,3);
+    this.M_Light_Perixx= new M_Light_CS(KeyBoardLength);
   }
 
+  HSLColorPickerFN=[];
+  updateColorWheel(event) {
+    console.log('%c updateColorWheel', 'background: black; color: white', event);
+    let backgroundColor = event.target.style.backgroundColor;
+    this.ColorWheelModule.onclickColorDefault(event.target,0);
+    
+    console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
+  }
 
    //["Keyboard_Nav","Macro_Nav","Home_Nav"]
   setPageIndex(pageName = "") {
@@ -108,6 +125,30 @@ export class PerixxComponent implements OnInit {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
           this.KeyBoardManager.refreshKeyBoardTemp();
+          this.HSLColorPickerFN[0]=((oEvent: MouseEvent) => {
+            console.log('%c mousedown', 'background: black; color: white', oEvent);
+            this.theColorWheelISBeingClicked=true;
+            this.ColorWheelModule.setTheColorWheelValue(oEvent);
+         });
+         this.HSLColorPickerFN[1]=((oEvent: MouseEvent) => {
+            //console.log('%c mousemove', 'background: black; color: white', oEvent);
+            //this.theColorWheelISBeingClicked=true;
+            if(this.theColorWheelISBeingClicked){
+               this.ColorWheelModule.setTheColorWheelValue(oEvent);
+            }
+      
+         });
+         this.HSLColorPickerFN[2]=((oEvent: MouseEvent) => {
+            console.log('%c mouseup', 'background: black; color: white', oEvent);
+            this.theColorWheelISBeingClicked=false;
+         });
+
+         var dataCCP = document.querySelector("[data-CCP]");
+         dataCCP.addEventListener("mousedown", this.HSLColorPickerFN[0]);
+         dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[1]);
+         dataCCP.addEventListener("mouseup", this.HSLColorPickerFN[2]);
+      
+      
         }, 500);
         break;
       case "Macro_Nav":

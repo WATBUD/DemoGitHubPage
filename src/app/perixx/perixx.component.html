@@ -103,8 +103,28 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         margin-top: 1.6%;">
           Firmware
         </div>
-
-        Current Version
+        <div *ngIf="settingLocation=='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
+        height: auto;
+        width: 100%;
+        font-weight: bold;
+        margin-left: 2.4%;
+        margin-top: 1.6%;">
+          Firmware
+        </div>
+        <div id="SharedSelectList" style="margin-left: 0px;">
+          <div id="Information" style="background: blue;">
+            <p  style=" background: blue;width: 100%;">
+              Information
+            </p>
+            <p style="background: yellow;width: 100%;">
+              Device Model  
+              
+            </p>
+            <p style="background: green;width: 100%;">
+              Battery  
+            </p>                                                                                                             
+          </div>
+        </div>
 
       </section>
      
@@ -205,9 +225,45 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                  top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
         Color Palette
       </div>
-      <ng-color-circle class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
+      <!-- <ng-color-circle class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
       (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor">
-      </ng-color-circle>
+      </ng-color-circle> -->
+      <div data-CCP="5" style="width: 200px;
+      height: 200px;
+      margin-top: 58px;
+      margin-left: 8%;">
+        <div id="coordinateCircle" style="margin-left: calc(50% - 5px);margin-top: calc(50% - 5px);">
+        </div>
+     </div>
+     <div id="DefaultColorList" style="    position: absolute;
+     background: rgb(255 0 0,0);
+     width: 192px;
+     height: 49px;
+     margin-left: 11%;
+     margin-top: 313px;
+     display: flex;
+     flex-wrap: wrap;">
+     <div *ngFor="let item of DefaultColorList;let i = index" class="DefaultColorItem"
+        (click)="updateColorWheel($event)" id="colorBase{{i}}"
+        [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
+     </div>
+     <div id="CustomColorList" style="    position: absolute;
+     background: rgb(255 0 0,0);
+     width: 192px;
+     height: 49px;
+     margin-top: 100px;
+     display: flex;
+     flex-wrap: wrap;">
+     <div *ngFor="let item of CustomColorList;let i = index" class="DefaultColorItem"
+        (click)="updateColorWheel($event)" id="colorBase{{i}}"
+        [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
+     </div>
+
+  </div>
+
+  </div>
+
+
     
     
     
@@ -237,7 +293,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             right:20%;
             margin-top: 15%;" >
 
-      <div id="SharedSelectList" style="margin-left: 0px;">
+      <div id="SharedSelectList" style="margin-left: 0%;margin-top: 30%;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
           (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
           [style.color]="KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">

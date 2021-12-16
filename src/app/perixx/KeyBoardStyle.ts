@@ -33,7 +33,7 @@ export class KeyBoardStyle {
             ,
             keyMapping:["Side Light","NumLock","NumpadDivide","NumpadMultiply","NumpadSubtract"],
             cssText: 'position: absolute;height: 100%;width: 100%;pointer-events: none;',
-            BGImage: 'url(./image/Perixx_Project/perixx1.png)',
+            BGImage: 'url(./image/Perixx_Project/perixx1RemoveString.png)',
             BGImageKeyerEffects: 'url(./image/Perixx_Project/perixx1.png)',
             centerBlockPoint:18,
             qigong_Step1_Range: [0, 15, 30, 58, 71, 82],

@@ -59,7 +59,6 @@ export class ColorModule {
 
     setTheColorWheelValue(event) {
         var dataCCP = document.querySelector("[data-CCP]") as HTMLElement;
-        //var dataCCP = document.getElementById("CircleSS");
         var coordinateCircle = document.getElementById("coordinateCircle");
         var cooordinate = [event.offsetX - 5, event.offsetY - 5];
         coordinateCircle.style.marginLeft = cooordinate[0] + 'px';
@@ -97,7 +96,6 @@ export class ColorModule {
     }
     callBackColorWheelValue() {
         var dataCCP = document.querySelector("[data-CCP]") as HTMLElement;
-        //var dataCCP = document.getElementById("CircleSS");
         if (dataCCP != undefined) {
 
 

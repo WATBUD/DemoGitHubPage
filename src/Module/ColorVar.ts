@@ -58,22 +58,22 @@ export class ColorModule {
     }
 
     setTheColorWheelValue(event) {
-        var CircleSS = document.getElementById("CircleSS");
+        var dataCCP = document.querySelector("[data-CCP]") as HTMLElement;
+        //var dataCCP = document.getElementById("CircleSS");
         var coordinateCircle = document.getElementById("coordinateCircle");
         var cooordinate = [event.offsetX - 5, event.offsetY - 5];
         coordinateCircle.style.marginLeft = cooordinate[0] + 'px';
         coordinateCircle.style.marginTop = cooordinate[1] + 'px';
-        console.log('%c ngAfterViewInit', 'background: black; color: white', coordinateCircle);
         //centrePoint
         //radius=Saturation,angle=Hue, 
-        var centrePoint = [CircleSS.offsetWidth / 2, CircleSS.offsetHeight / 2];
+        var centrePoint = [dataCCP.offsetWidth / 2, dataCCP.offsetHeight / 2];
         console.log('%c centrePoint', 'background: white; color: red', centrePoint);
 
         var center = ""
         var angle = this.PointRotation(centrePoint, cooordinate);//Hue
         var distance = this.findTheDistanceBetweenTwoPoints(centrePoint, cooordinate) ;//Saturation
 
-        var distance100percent = Math.round(distance)/(CircleSS.offsetWidth/2)*100 ;//Saturation
+        var distance100percent = Math.round(distance)/(dataCCP.offsetWidth/2)*100 ;//Saturation
 
         if (angle < 0) {
             angle += 360;
@@ -95,7 +95,31 @@ export class ColorModule {
         console.log('%c this.getRGB()', 'background: white; color: red', this.getRGB());
         //console.log('%c angle', 'background: white; color: red', angle, distance);
     }
-    knowTheAngleDistanceFindTheCoordinates(angle, StartPoint, distance) {
+    callBackColorWheelValue() {
+        var dataCCP = document.querySelector("[data-CCP]") as HTMLElement;
+        //var dataCCP = document.getElementById("CircleSS");
+        if (dataCCP != undefined) {
+
+
+            console.log('%c callBackColorWheelValue', 'background: black; color: white', dataCCP);
+            //centrePoint
+            //radius=Saturation,angle=Hue, 
+            var centrePoint = [dataCCP.offsetWidth / 2, dataCCP.offsetHeight / 2];
+            //console.log('%c centrePoint', 'background: white; color: red', centrePoint);
+            var updateCooordinate = this.knowTheAngleDistanceFindTheCoordinates(centrePoint, this.Hue, this.Saturation * dataCCP.offsetWidth / 2 / 100);
+            var coordinateCircle = document.getElementById("coordinateCircle");
+            coordinateCircle.style.marginLeft = updateCooordinate[0] - 5 + 'px';
+            coordinateCircle.style.marginTop = updateCooordinate[1] - 5 + 'px';
+            //半徑，角度，求圓上的點坐標
+            //x1 = x + radius * cos(angle * π / 180)
+            //y1 = y + radius * sin(angle * π / 180)
+            //this.HSL_RGB_HexSet();
+            //this.hslToRGB(angle,distance,50)
+            console.log('%c this.getRGB()', 'background: white; color: red', this.getRGB());
+        }
+
+    }
+    knowTheAngleDistanceFindTheCoordinates(StartPoint,angle, distance) {
         //角度轉弧度
         var radian = (angle * Math.PI) / 180;
         var EndPoint = [];
@@ -262,6 +286,7 @@ export class ColorModule {
         //styleColor=$event.target.style.backgroundColor
         var rgbArr = this.cssRgbToNumberArray(styleColor.style.backgroundColor);
         this.SetRGB(rgbArr);
+        this.callBackColorWheelValue();
         this.customlog('onclickColorDefault', styleColor.style.backgroundColor);
         this.updateCircleDivPos();
     }
@@ -283,18 +308,18 @@ export class ColorModule {
         this.RGBA_value[0] = Arr[0];
         this.RGBA_value[1] = Arr[1];
         this.RGBA_value[2] = Arr[2];
-        var HSL = this.rgbTo_hsl(Arr);
-        this.Hue = Math.round(HSL[0]);
-        this.Saturation = Math.round(HSL[1]);
-        this.Lightness = Math.round(HSL[2]);
-        this.Hex = this.rgbToHex(Arr[0], Arr[1], Arr[2]);
+        // var HSL = this.rgbTo_hsl(Arr);
+        // this.Hue = Math.round(HSL[0]);
+        // this.Saturation = Math.round(HSL[1]);
+        // this.Lightness = Math.round(HSL[2]);
+        // this.Hex = this.rgbToHex(Arr[0], Arr[1], Arr[2]);
         console.log('%c SetRGB', 'background: black; color: white', this);
-        // var HSV_B=this.rgb2HSV(r,g,b);;  
-        // this.Hue=HSV_B[0];
-        // this.Saturation=HSV_B[1];
-        // this.Value=HSV_B[2];
-        this.setGradientBGcolor();
-        this.showColorVarData();
+        var HSVColor=this.rgb2HSV(Arr[0],Arr[1],Arr[2]);  
+        this.Hue=Math.round(HSVColor[0]);
+        this.Saturation=Math.round(HSVColor[1]);
+        this.Value=Math.round(HSVColor[2]);
+        //this.setGradientBGcolor();
+        //this.showColorVarData();
     }
 
     showColorVarData() {

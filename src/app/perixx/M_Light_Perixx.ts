@@ -37,7 +37,7 @@ export class M_Light_CS {
     constructor(inputMax) {
         this.maxkaycapNumber = inputMax
         for (var i_block = 0; i_block < this.maxkaycapNumber; i_block++) {
-            this.AllBlockColor.push({ clearStatus:false,color: [0,0,0,0],breathing:false,border: true,coordinateData:[],keyCode:''})
+            this.AllBlockColor.push({ clearStatus:false,color: [0,0,255,1],breathing:false,border: true,coordinateData:[],keyCode:''})
             this.BreathTempArray.push({ clearStatus:false,color: [0,0,0,0],breathing:false,border: true,coordinateData:[],keyCode:''})
 
         }

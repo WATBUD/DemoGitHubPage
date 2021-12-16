@@ -55,12 +55,12 @@ export class PerixxComponent implements OnInit {
     },
   ]
   DefaultColorList = [
-    [255, 0, 0], [255, 128, 0], [255, 255, 0], [128, 255, 0], [255, 128, 0], [0, 255, 128], [0, 255, 255], [0, 128, 255],
-    [0, 0, 255], [128, 0, 255], [255, 0, 128], [255, 255, 255], [255, 152, 0], [0, 183, 195],
+    [255, 0, 0], [255, 128, 0], [255, 255, 0], [128, 255, 0], [0, 255, 0], [0, 255, 128], [0, 255, 255], [0, 128, 255],
+    [0, 0, 255], [128, 0, 255], [255, 0, 255],[255, 0, 128],[0, 0, 0],[255, 255, 255], [255, 152, 0], [0, 183, 195],
   ]
   CustomColorList = [
-    [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],
-    [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],
+    [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],[255, 255, 255],
+    [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],[255, 255, 255],
   ]
 
   settingLocation="Information";
@@ -98,7 +98,7 @@ export class PerixxComponent implements OnInit {
     console.log('%c updateColorWheel', 'background: black; color: white', event);
     let backgroundColor = event.target.style.backgroundColor;
     this.ColorWheelModule.onclickColorDefault(event.target,0);
-    
+    this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
     console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
   }
 
@@ -135,21 +135,27 @@ export class PerixxComponent implements OnInit {
             //this.theColorWheelISBeingClicked=true;
             if(this.theColorWheelISBeingClicked){
                this.ColorWheelModule.setTheColorWheelValue(oEvent);
+               
             }
       
          });
          this.HSLColorPickerFN[2]=((oEvent: MouseEvent) => {
             console.log('%c mouseup', 'background: black; color: white', oEvent);
             this.theColorWheelISBeingClicked=false;
+            this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+
          });
 
          var dataCCP = document.querySelector("[data-CCP]");
-         dataCCP.addEventListener("mousedown", this.HSLColorPickerFN[0]);
-         dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[1]);
-         dataCCP.addEventListener("mouseup", this.HSLColorPickerFN[2]);
+         if(dataCCP!=undefined){
+          dataCCP.addEventListener("mousedown", this.HSLColorPickerFN[0]);
+          dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[1]);
+          dataCCP.addEventListener("mouseup", this.HSLColorPickerFN[2]);
+         }
+
       
       
-        }, 500);
+        }, 50);
         break;
       case "Macro_Nav":
         //this.changeDetectorRef.checkNoChanges();

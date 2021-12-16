@@ -73,7 +73,7 @@ rgb(255 0 255)
 
 .DefaultColorItem{
     /* pointer-events: none; */
-    width: 14%;
+    width: 12%;
     height: 50%;
     border: 1px solid black;
     box-sizing: border-box;

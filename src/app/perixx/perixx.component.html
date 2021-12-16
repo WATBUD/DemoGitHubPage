@@ -208,7 +208,12 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
             </div>
             <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-              [style.background-color]="M_Light_Perixx.getNowBlock(i).color"
+              [style.background-color]="ColorWheelModule.toCssRGBA(M_Light_Perixx.getNowBlock(i).color)"
+              [style.border-width]="M_Light_Perixx.currentBlockIndex==i?'2px':'0px'"
+              (click)="M_Light_Perixx.currentBlockIndex=i"
+              style="border-style: solid;
+              border-color: rgb(255,87,0);
+              box-sizing: border-box;"
               data-KB_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
               [attr.data-index]="i">
             </div>

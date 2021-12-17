@@ -95,6 +95,15 @@ export class PerixxComponent implements OnInit {
     this.keyboardLeftClick(0);
   }
 
+  
+  scrollMoveToTheSpecifiedlocation(areaName=""){
+    console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName);
+
+      this.settingLocation=areaName;
+      //this[areaName].nativeElement.scrollIntoView();
+  }
+
+
   HSLColorPickerFN=[];
   updateColorWheel(event) {
     console.log('%c updateColorWheel', 'background: black; color: white', event);
@@ -103,6 +112,19 @@ export class PerixxComponent implements OnInit {
     this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
     console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
   }
+
+  updateCustomColorList(index){
+    console.log('%c updateCustomColorList', 'background: black; color: white', event);
+    this.CustomColorList[index]=this.ColorWheelModule.getRGB();
+    // let backgroundColor = event.target.style.backgroundColor;
+    // this.ColorWheelModule.onclickColorDefault(event.target,0);
+    // this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+    //console.log('%c backgroundColor', 'background: black; color: white', backgroundColor)
+
+  }
+
+
+
    //["Keyboard_Nav","Macro_Nav","Home_Nav"]
   setPageIndex(pageName = "") {
 

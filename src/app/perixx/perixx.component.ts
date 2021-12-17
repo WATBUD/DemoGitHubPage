@@ -84,7 +84,7 @@ export class PerixxComponent implements OnInit {
         }
     });
     this.MacroManager.createFolderFile();
-    this.setPageIndex('Keyboard_Nav');
+    this.setPageIndex('Home_Nav');
   }
 
   initialzeTheDevice(){

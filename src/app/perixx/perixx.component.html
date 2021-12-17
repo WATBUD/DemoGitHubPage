@@ -86,46 +86,50 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     height: 100%;
     width: 100%;">
 
-      <div *ngIf="settingLocation!='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
-      height: auto;
-      width: 100%;
-      font-weight: bold;
-      margin-left: 2.4%;
-      margin-top: 1.6%;">
-        Settings
-      </div>
-      <section id="FirmwareUpgradeArea">
-        <div *ngIf="settingLocation=='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
+
+      <section *ngIf="settingLocation!='FirmwareUpgrade'">
+        <div id="SettingTitle" style="color: rgb(45 47 52);
         height: auto;
         width: 100%;
         font-weight: bold;
         margin-left: 2.4%;
         margin-top: 1.6%;">
-          Firmware
-        </div>
-        <div *ngIf="settingLocation=='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
-        height: auto;
-        width: 100%;
-        font-weight: bold;
-        margin-left: 2.4%;
-        margin-top: 1.6%;">
-          Firmware
+          Settings
         </div>
         <div id="SharedSelectList" style="margin-left: 0px;">
-          <div id="Information" style="background: blue;">
-            <p  style=" background: blue;width: 100%;">
-              Information
-            </p>
-            <p style="background: yellow;width: 100%;">
-              Device Model  
-              
-            </p>
-            <p style="background: green;width: 100%;">
-              Battery  
-            </p>                                                                                                             
+          <div id="Information" style="margin-left: 23px;margin-top: 23px;">
+            <section style="color: rgb(18,64,162);" class="ParallelTextString">
+              Information 
+            </section>
+            <section class="ParallelTextString">
+              Device Model 
+              <div style="position: absolute;
+              right: 12%;
+              width: 20%;">
+                Periboard-XXX 
+              </div>
+            </section>
+            <section class="ParallelTextString">
+              Battery
+              <div style="position: absolute;
+              right: 12%;
+              width: 20%;">
+                Periboard-XXX 
+              </div>
+            </section>
           </div>
         </div>
+      </section>
 
+      <section id="FirmwareUpgradeArea" *ngIf="settingLocation=='FirmwareUpgrade'">
+        <div id="SettingTitle" style="color: rgb(45 47 52);
+        height: auto;
+        width: 100%;
+        font-weight: bold;
+        margin-left: 2.4%;
+        margin-top: 1.6%;">
+          Firmware
+        </div>
       </section>
      
       

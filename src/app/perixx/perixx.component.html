@@ -84,7 +84,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     <div id="MiddlePanel" style="
     position: absolute;
     height: 100%;
-    width: 100%;background: red;">
+    width: 100%;">
 
       <div *ngIf="settingLocation!='FirmwareUpgrade'" id="SettingTitle" style="color: rgb(45 47 52);
       height: auto;
@@ -343,13 +343,20 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
             </div>
             <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-              [style.background-color]="M_Light_Perixx.getNowBlock(i).color"
               data-KB_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
-              [attr.data-index]="i">
+              [attr.data-index]="i"
+              [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
+              (click)="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex=i"
+              style="border-style: solid;
+              border-color: rgb(255,87,0);
+              box-sizing: border-box;">
+              <img style="pointer-events: none;" [src]="getKeyBindingIcon(i)" >
             </div>
           </div>
 
-
+          <div class="ApplyBtn" style="position: absolute;bottom: 24px;z-index: 9998;width: 153px;display: flex;height: 38px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
+          (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Apply 
+          </div>
 
     </div>
     <div class="RightPanal" style="position: absolute;
@@ -360,20 +367,33 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
         Customization
       </div>
-      <div id="KeyAssignSelectList" style="    position: absolute;
-      top: 0px;
-      width: 92%;
-      margin-top: 106px;
-      margin-left: 4%;
-      height: 542px;
-      overflow-y: auto;">
-      <div id="Character" style="    position: absolute;
-      margin-left: 14px;
-      margin-top: 60px;
-      z-index: 9998;color: rgb(29, 52, 96);" >
-      Character
+      <div id="KeyAssignSelectList" >
+        <!-- <div id="Character" style="color: rgb(29, 52, 96);
+            background: rgb(255 0 0);
+            width: 100%;
+            height: 309px;">
+          <div style="width: 100%;height: 10%;">Character</div>
+          <img 
+          [src]="currentTouchButtons=='Digit1'? ImgPath.Digit1[1]:ImgPath.Digit1[0]"
+          (mouseover)="currentTouchButtons='Digit1'" 
+          (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Digit1')">
+
+        </div> -->
+        <div id="Number" style="color: rgb(29, 52, 96);
+                    width: 100%;
+                    height: 40%;">
+          <div style="width: 100%;height: 10%;">Number</div>
+          <img 
+          [src]="currentTouchButtons=='Digit1'? ImgPath.Digit1[1]:ImgPath.Digit1[0]"
+          (mouseover)="currentTouchButtons='Digit1'" 
+          (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Digit1')">
+        </div>
+      
+      
+      
       </div>
-    </div>
       
 
 

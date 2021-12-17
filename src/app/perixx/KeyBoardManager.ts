@@ -40,8 +40,8 @@ export class KeyBoardManager {
     }
     copyFolderFile(){
         if (this.hasKeyBoard()) {
-            var clone =JSON.parse(JSON.stringify(this.getTarget()));
-            this.KeyBoardArray.push(clone);
+            this.create_KeyBoard();
+            this.KeyBoardArray[this.KeyBoardArray.length-1].ImportClassData(this.getTarget());
         }
     }
     delete_KeyBoard() {
@@ -138,9 +138,9 @@ export class KeyBoard {
     hibernateTimeArr: any = [1, 3, 5, 10];
     reportRateIndex: any = 0;
     hibernateTime: any = 3;
-    defaultName = ""
-    projectName: any;
-    projectCode=0;
+    defaultName = "";
+    projectName="";
+    projectCode="";
     lightData
     recordAssignBtnIndex: any = 0;
     assignText: any = "設定按鍵:Y";
@@ -152,7 +152,7 @@ export class KeyBoard {
     constructor(name = "", inputMax) {
         this.maxKayCapNumber = inputMax;
         this.projectName = name;
-        this.projectCode=this.projectName+
+        this.projectCode=this.projectName+new Date().getTime();
         console.log("%c Inpunt_KeyBoard", "color:red", inputMax, this.maxKayCapNumber);
 
         for (let index = 0; index < 3; index++) {
@@ -191,56 +191,23 @@ export class KeyBoard {
     }
 
 
-    ChangeMacroName(changeName = "", targetName = "") {
-        console.log("KeyChangeMacroName", changeName, targetName);
-        for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-            var target = this.assignedKeyboardKeys[index];
-            for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-                let T = target[index2];
-                if (T.value == targetName && T.keyAssignType[0] == "KMacro") {
-                    console.log("KeyChangeMacroName_t", T);
-                    T.value = changeName;
-                }
-            }
-        }
-    }
-    clearMacroFile(targetid = "") {
-        for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-            var target = this.assignedKeyboardKeys[index];
-            for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-                let T = target[index2];
-                if (T.macroCode == targetid && T.keyAssignType[2] == "KMacro") {
-                    T.keyAssignType[2] = "";
-                    T.macroCode = 0;
-                    T.value = "";
-                }
-
-            }
-        }
-    }
-
-
     ImportClassData(inputData) {
         var InputData=JSON.parse(JSON.stringify(inputData));
         console.log("ImportClassData", InputData);
         var arr = Object.keys(this);
         console.log("Object.keys", arr);
         for (let index = 0; index < arr.length; index++) {
-            if (arr[index] != "KB61Prohibit"&&arr[index] != undefined) {
+            if (arr[index] != "projectName"&&arr[index] != undefined) {
                 this[arr[index]] = InputData[arr[index]];
             }
         }
     }
-    HasSet(checkIndex = 0) {
-        var target = this.getNowModeKeyMatrix();
-        var N = target[checkIndex].value;
-        var N2 = target[checkIndex].projectName;
-        var N3 = target[checkIndex].LongTimePressValue;
-        var N4 = target[checkIndex].InstantPressValue;
-        return (N != "" || N2 != "" || N3 != "" || N4 != "") ? true : false;
+    HasSet(index) {
+        if (this.getNowModeKeyMatrix()[index].recordBindCodeName!= "") {
+            return true;
+        }
+        return false;
     }
-
-
 
 
 

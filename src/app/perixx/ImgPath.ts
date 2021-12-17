@@ -17,42 +17,6 @@ export class ImgPathList{
             return this.instance;
         }
     }
-
-    dirBgNormalR: any = [
-        "url('./image/skin/dirBgNormalRHover.png')",
-        "url('./image/skin/dirBgNormalR.png')",
-    ];
-
-
-
-    SwitchIcon: any = [
-        "./image/ColorSet/Off/SwitchIcon.png",
-        "./image/ColorSet/On/SwitchIcon.png",
-    ];
-
-
-    LedModeCanSee: any = [
-        "./image/ColorSet/Off/EyeNotSee.png",
-        "./image/ColorSet/On/EyeCanSee.png",
-        "./image/ColorSet/Off/EyeNotSeeWhite.png",
-        "./image/ColorSet/On/EyeCanSeeWhite.png",
-    ];
-    
-
-
-    P_S_OSettingOpen: any = [
-        "./image/Keyboard/Off/P_S_OSettingOpen.png",
-        "./image/Keyboard/On/P_S_OSettingOpen.png",
-    ]
-
-    SystemSettingBtn: any = [
-        "url(./image/Share/Off//SystemSettingBtn.png)",
-        "url(./image/Share/On//SystemSettingBtn.png)",
-    ]
-    
-    EditNameIcon: any = 
-    ["./image/ScriptSet/Off/EditName.png",
-    "./image/ScriptSet/On/EditName.png"]
     MacroIcon: any = [
         "url('./image/ScriptSet/KeyUpIcon.png')",
         "url('./image/ScriptSet/KeyDownIcon.png')",
@@ -81,105 +45,27 @@ export class ImgPathList{
         "./image/Perixx_Project/NavigationBar/Off/Home_Nav.png",
         "./image/Perixx_Project/NavigationBar/On/Home_Nav.png",
     ]
-    FNIcon:any = [
-        "./image/Keyboard/Off/FnIcon.png",
-        "./image/Keyboard/On//FnIcon.png",
+    Digit1: any = [
+        "./image/Perixx_Project/KeyIcon/Off/Digit1.png",
+        "./image/Perixx_Project/KeyIcon/On/Digit1.png",
+        "./image/Perixx_Project/KeyIcon/Print/Digit1.png",
+
     ]
-    FNIcon1:any = [
-        "./image/Keyboard/Off/FnIcon1.png",
-        "./image/Keyboard/On//FnIcon1.png",
-    ]
-    FNIcon2:any = [
-        "./image/Keyboard/Off/FnIcon2.png",
-        "./image/Keyboard/On//FnIcon2.png",
-    ]
-    FNIcon3:any = [
-        "./image/Keyboard/Off/FnIcon3.png",
-        "./image/Keyboard/On//FnIcon3.png",
-    ]
-    ReportRate:any = [
-        "./image/P7/Off/ReportRate.png",
-        "./image/P7/On//ReportRate.png",
-    ]
-    BatteryStats:any = [
-        "url(./image/FirstPage/0%.png)",
-        "url(./image/FirstPage/Charging.png)",
-        "url(./image/FirstPage/Charging.png)",
-        "url(./image/FirstPage/Charging.png)",
-        "url(./image/FirstPage/Charging.png)",
-        "url(./image/FirstPage/100%.png)",
-    ]
+
     ShareOption:any = [
         "url('./image/P7/Off/Option.png')",
         "url('./image/P7/On/Option.png')",
     ]
-    Page1:any = [
-        "url('./image/Share/Off/Page1.png')",
-        "url('./image/Share/mouseover/Page1.png')",
-        "url('./image/Share/On/Page1.png')",
-    ]
-    Page2:any = [
-        "url('./image/Share/Off/Page2.png')",
-        "url('./image/Share/mouseover/Page2.png')",
-        "url('./image/Share/On/Page2.png')",
-    ]
-    Page3:any = [
-        "url('./image/Share/Off/Page3.png')",
-        "url('./image/Share/mouseover/Page3.png')",
-        "url('./image/Share/On/Page3.png')",
-    ]
-    Page4:any = [
-        "url('./image/Share/Off/Page4.png')",
-        "url('./image/Share/mouseover/Page4.png')",
-        "url('./image/Share/On/Page4.png')",
-    ]
-    BoxState:any = [
-        "url('./image/Share/Off/BoxState.png')",
-        "url('./image/Share/On/BoxState.png')",
-    ]  
-    APModeSelectBtn:any = [
-        "url('./image/ColorSet/Off/APModeSelectBtn.png')",
-        "url('./image/ColorSet/On/APModeSelectBtn.png')",
-    ]  
-
-    APModeCenterBtn:any = [
-        "url('./image/ColorSet/Off/APModeCenterBtn.png')",
-        "url('./image/ColorSet/On/APModeCenterBtn.png')",
-    ]  
-    FileIcon:any = [
-        "url('./image/ScriptSet/FileIconOff.png')",
-        "url('./image/ScriptSet/FileIconOn.png')",
-    ]
+  
     BellIcon:any = [
         "url('./image/Share/Off/Bell.png')",
         "url('./image/Share/On/Bell.png')",
     ]
-    SystemDefault:any = [
-        "url('./image/Share/Off/SystemSettingBtn1.png')",
-        "url('./image/Share/On/SystemSettingBtn1.png')",
-        "url('./image/Share/mouseover/SystemSettingBtn1.png')",
+    keyBindingIconList=[{
+        'recordBindCodeName':"",
+        'Icon':"",
+    }]
 
-    ]
-    KBottomBtn: any = [
-        "url('./image/Keyboard/Off/KBottomBtn0.png')",
-        "url('./image/Keyboard/On/KBottomBtn0.png')",
-        "url('./image/Keyboard/Off/KBottomBtn1.png')",
-        "url('./image/Keyboard/On/KBottomBtn1.png')",
-        "url('./image/Keyboard/Off/KBottomBtn2.png')",
-        "url('./image/Keyboard/On/KBottomBtn2.png')",
-        "url('./image/Keyboard/Off/KBottomBtn3.png')",
-        "url('./image/Keyboard/On/KBottomBtn3.png')",
-        "url('./image/Keyboard/Off/KBottomBtn4.png')",
-        "url('./image/Keyboard/On/KBottomBtn4.png')",
-        "url('./image/Keyboard/Off/KBottomBtn5.png')",
-        "url('./image/Keyboard/On/KBottomBtn5.png')",
-        "url('./image/Keyboard/Off/KBottomBtn6.png')",
-        "url('./image/Keyboard/On/KBottomBtn6.png')",
-        "url('./image/Keyboard/Off/KBottomBtn7.png')",
-        "url('./image/Keyboard/On/KBottomBtn7.png')",
-    ]
-
-  
-  
+   
 
 }

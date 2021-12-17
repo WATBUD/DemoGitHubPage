@@ -28,8 +28,8 @@ export class PerixxComponent implements OnInit {
   i18nManager=i18nManager.getInstance();
   macroOnEdit=false;
   macroContentInEdit=false;
-  KeyBoardManager;
-  KeyBoardLibray;
+  KeyBoardManager = new KeyBoardManager(1,3);
+  KeyBoardLibray = new KeyBoardManager(1,3);
   MacroManager=new MacroManager();
   operationMenuFlag=false;
   KeyBoardStyle = new KeyBoardStyle();
@@ -38,6 +38,7 @@ export class PerixxComponent implements OnInit {
   EM=new EventManager();
   ColorWheelModule=new ColorModule("Circle_Animation");
   theColorWheelISBeingClicked=false;
+  currentTouchButtons="";
   settingsOption=[
     {'name':'Information'
     },
@@ -83,7 +84,7 @@ export class PerixxComponent implements OnInit {
         }
     });
     this.MacroManager.createFolderFile();
-    this.setPageIndex('Lighting_Nav');
+    this.setPageIndex('Keyboard_Nav');
   }
 
   initialzeTheDevice(){
@@ -91,6 +92,7 @@ export class PerixxComponent implements OnInit {
     this.KeyBoardManager = new KeyBoardManager(KeyBoardLength,3);
     this.KeyBoardLibray = new KeyBoardManager(KeyBoardLength,3);
     this.M_Light_Perixx= new M_Light_CS(KeyBoardLength);
+    this.keyboardLeftClick(0);
   }
 
   HSLColorPickerFN=[];
@@ -101,7 +103,6 @@ export class PerixxComponent implements OnInit {
     this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
     console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
   }
-
    //["Keyboard_Nav","Macro_Nav","Home_Nav"]
   setPageIndex(pageName = "") {
 
@@ -321,12 +322,15 @@ startRenameMacroFile() {
     target.focus();
   }
 }
+
+
 renameMacroFile(event) {
   console.log("event=" + event.target.value);
   var regex = event.target.value.replace(/[^\a-\z\A-\Z^0-9\u4E00-\u9FA5]/g, '');
   this.MacroManager.updeteMacroFileName(regex);
   //this.setDBDataToServer('MacroManager');
 }
+//----------------Keyboard_Nav--------------//
 
 keyboardRMenu(FNname="") {
   this.operationMenuFlag=false;
@@ -364,6 +368,29 @@ keyboardRMenu(FNname="") {
 
 
 }
+setKeyBindingData(dataValue="") {
+  //if(dataValue!=""){
+    var target=this.KeyBoardManager.keyBoardTemp;           
+    //target.recordAssignBtnIndex=index;
+    var targetMatrixKey=target.getNowModeTargetMatrixKey();
+    //var KeyMatrix=target.getNowModeKeyMatrix();
+    targetMatrixKey.recordBindCodeType = "GeneralBinding";
+    targetMatrixKey.recordBindCodeName = dataValue;
+  //}
+}
+getKeyBindingIcon(index){
+  var target=this.KeyBoardManager.keyBoardTemp;           
+  var KeyMatrix=target.getNowModeKeyMatrix();
+  var targetMatrixKey=KeyMatrix[index];
+  var path =this.ImgPath[targetMatrixKey.recordBindCodeName];
+  targetMatrixKey.recordBindCodeName;
+  if(path!=undefined) {
+    return path[2];
+  }
+  return "";
+
+}
+
 renameKeyboard(event) {
   console.log("event=" + event.target.value);
   var regex = event.target.value.replace(/[^\a-\z\A-\Z^0-9\u4E00-\u9FA5]/g, '');
@@ -372,7 +399,7 @@ renameKeyboard(event) {
 }
 keyboardLeftClick(index){
   this.KeyBoardLibray.keyboardOfChoice=index;
-  this.KeyBoardManager.keyBoardTemp.ImportClassData(this.KeyBoardLibray.getTarget());
+  this.KeyBoardManager.keyBoardTemp=this.KeyBoardLibray.getTarget();
 }
 keyboardRightClick(i,Event){
   this.KeyBoardLibray.keyboardOfChoice=i;

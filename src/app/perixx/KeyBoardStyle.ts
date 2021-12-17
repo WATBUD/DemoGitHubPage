@@ -11,8 +11,8 @@ export class KeyBoardStyle {
     keyBoardList = {
         'perixx1': {
             ItemCss: [
-                "margin-left: 48px;margin-top: 11px;transform: rotate(7deg);",
-                "margin-left: 72px;margin-top: 14px;transform: rotate( 7deg);",
+                "margin-left: 48px;margin-top: 11px;display: flex;transform: rotate(7deg);",
+                "margin-left: 72px;margin-top: 14px;display: flex;transform: rotate( 7deg);",
                 "margin-top: 18px;margin-left: 96px;display: flex;transform: rotate( 7deg);",
                 "margin-top: 21px; margin-left: 120px; display: flex; transform: rotate( 7deg);",
                 "margin-top: 25px; margin-left: 144px; display: flex; transform: rotate( 7deg);",

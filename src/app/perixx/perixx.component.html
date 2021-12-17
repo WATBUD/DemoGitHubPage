@@ -334,7 +334,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="m_Export" (click)="keyboardRMenu('m_Export');"(contextmenu)="keyboardRMenu('m_Export');">
           {{this.i18nManager.getTarget('Export')}}
         </div>
-        <div id="m_Delete" (click)="keyboardRMenu('m_Delete');"(contextmenu)="keyboardRMenu('m_Delete');">
+        <div *ngIf="KeyBoardLibray.KeyBoardArray.length>1" id="m_Delete" 
+        (click)="keyboardRMenu('m_Delete');"(contextmenu)="keyboardRMenu('m_Delete');">
           {{this.i18nManager.getTarget('Delete')}}
         </div>
       </div>
@@ -461,7 +462,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="m_Export" (click)="macroOperationOption('ExportProfile');"(contextmenu)="macroOperationOption('ExportProfile');">
           {{this.i18nManager.getTarget('Export')}}
         </div>
-        <div id="m_Delete" (click)="macroOperationOption('deleteMacroFile');"(contextmenu)="macroOperationOption('deleteMacroFile');">
+        <div id="m_Delete" *ngIf="MacroManager.getClass().MacroFiletItem.length>1"
+        (click)="macroOperationOption('deleteMacroFile');"(contextmenu)="macroOperationOption('deleteMacroFile');">
           {{this.i18nManager.getTarget('Delete')}}
         </div>
       </div>

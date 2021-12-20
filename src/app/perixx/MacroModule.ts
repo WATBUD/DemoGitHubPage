@@ -554,16 +554,20 @@ export class MacroScriptContent {
             byStartTime: 0,
             duration: 1,
             indexCode:'error',
-            inTheDeleteList:false
+            inTheSelectionList:false
         }
         return obj;
     }
+    switchSelectAllFlag(){
+        this.selectAllDataFlag=!this.selectAllDataFlag;
+        this.selectAllMacroData(this.selectAllDataFlag);
+    }
 
-    selectAllMacroData(){
-            this.selectAllDataFlag=!this.selectAllDataFlag;
+
+    selectAllMacroData(dataFlag=false){
             console.log('%c selectAllMacroData','background: blue; color: red;',this.selectAllDataFlag,this.Data);
             for (let index = 0; index < this.Data.length; index++) {
-                this.Data[index].inTheDeleteList=this.selectAllDataFlag;
+                this.Data[index].inTheSelectionList=dataFlag;
             }
     }
     deleteSelectMacro(){
@@ -571,10 +575,10 @@ export class MacroScriptContent {
         var UncheckedList=[];
         for (let index = 0; index < this.Data.length; index++) {
             const element = this.Data[index];
-            if(element.inTheDeleteList==false){
+            if(element.inTheSelectionList==false){
                 UncheckedList.push(element);
             }
-            // if(element.inTheDeleteList==true){
+            // if(element.inTheSelectionList==true){
             //     this.Data.splice(index, 1);
             // }
         }

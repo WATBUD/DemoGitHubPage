@@ -28,6 +28,9 @@ export class PerixxComponent implements OnInit {
   i18nManager=i18nManager.getInstance();
   macroOnEdit=false;
   macroContentInEdit=false;
+  startTimeEditing=false;
+
+
   KeyBoardManager = new KeyBoardManager(1,3);
   KeyBoardLibray = new KeyBoardManager(1,3);
   MacroManager=new MacroManager();
@@ -80,11 +83,14 @@ export class PerixxComponent implements OnInit {
         if (e.target.dataset.identity==undefined) {
             this.CRUDCheck = false;
             this.operationMenuFlag=false;
+            this.startTimeEditing=false;
             //this.macroOnEdit= false;
         }
     });
     this.MacroManager.createFolderFile();
-    this.setPageIndex('Home_Nav');
+       //["Keyboard_Nav","Macro_Nav","Home_Nav"]
+
+    this.setPageIndex('Macro_Nav');
   }
 
   initialzeTheDevice(){
@@ -125,7 +131,6 @@ export class PerixxComponent implements OnInit {
 
 
 
-   //["Keyboard_Nav","Macro_Nav","Home_Nav"]
   setPageIndex(pageName = "") {
 
     if (this.currentPage !=pageName)
@@ -271,12 +276,88 @@ export class PerixxComponent implements OnInit {
   }
 
 
-  MacroEditkeyCodeFn(keyCode,index){
-    console.log("MacroEditkeyCodeFn=" + keyCode,this.MacroManager.tempMacroContent.Data);
+  macroEditkeyCode(keyCode,index,event){
+    console.log("macroEditkeyCode=" + keyCode,this.MacroManager.tempMacroContent.Data);
     //event.preventDefault();
-    this.MacroManager.tempMacroContent.Data[index].byKeyCode=String(keyCode);
+    if(this.MacroManager.tempMacroContent.Data[index].inTheSelectionList==true){
+      this.MacroManager.tempMacroContent.Data[index].byKeyCode=String(keyCode);
+      console.log("getkeyCodeTxt="+this.EM.getkeyCodeTxt(String(keyCode)));
+      this.changeDetectorRef.detectChanges();
+      event.target.value=this.EM.getkeyCodeTxt(String(keyCode));
+      //this.setDBDataToServer('MacroManager');
+    }
+
+  }
+  macroEditStartTime(event,index){
+    var validator = new RegExp(/^[0-9]*$/);
+    //var validator = new RegExp(/^[0]+[0-9]*$/,"");
+    event.target.value=event.target.value.replace(/^[0]+[0-9]*$/gi,"");
+    var startTimeTemp = event.target.value;
+    var runner = validator.test(startTimeTemp);
+    console.log('%c runner','color:rgb(255,77,255)',startTimeTemp,runner);
+    // if (event.type == 'keyup') {
+    
+    // }
+    // else if(event.type=='blur'){
+      if (!runner||startTimeTemp<0||startTimeTemp=="") {
+        //event.preventDefault();
+        startTimeTemp=0;
+      }
+      if (startTimeTemp>65536) {
+        //event.preventDefault();
+        startTimeTemp=65536;
+      }
+      console.log('%c startTimeTemp','color:rgb(255,77,255)',startTimeTemp);
+      // var zzz=this.MacroManager.tempMacroContent.Data;
+      // for (let index = 0; index < zzz.length; index++) {
+      //   const element = zzz[index];
+      //   element.byStartTime=startTimeTemp;
+      // }
+      event.target.value=startTimeTemp;
+      this.MacroManager.tempMacroContent.Data[index].byStartTime=startTimeTemp;
+      //this.changeDetectorRef.detectChanges();
+    //}
+    console.log("macroEditStartTime",event,runner);
+  
     //this.setDBDataToServer('MacroManager');
-}
+  }
+  macroEditduration(event,index){
+    var validator = new RegExp(/^[0-9]*$/);
+    //var validator = new RegExp(/^[0]+[0-9]*$/,"");
+    event.target.value=event.target.value.replace(/^[0]+[0-9]*$/gi,"");
+    var durationTemp = event.target.value;
+    var runner = validator.test(durationTemp);
+    console.log('%c runner','color:rgb(255,77,255)',durationTemp,runner);
+      if (!runner||durationTemp<0||durationTemp=="") {
+        durationTemp=0;
+      }
+      if (durationTemp>65536) {
+        //event.preventDefault();
+        durationTemp=65536;
+      }
+      console.log('%c durationTemp','color:rgb(255,77,255)',durationTemp);
+      event.target.value=durationTemp;
+      this.MacroManager.tempMacroContent.Data[index].duration=durationTemp;
+    console.log("macroEditStartTime",event,runner);
+    //this.setDBDataToServer('MacroManager');
+  }
+
+
+
+  selectMacroSubContent(event,index){
+
+    this.MacroManager.tempMacroContent.indexPosition=index;
+    this.MacroManager.tempMacroContent.selectAllMacroData(false);
+    this.MacroManager.tempMacroContent.Data[index].inTheSelectionList=true;
+    console.log('%c selectMacroSubContent','color:rgb(255,77,255)',index,event.target);
+    this.changeDetectorRef.detectChanges();
+    if (event.target != undefined) {
+      event.target.focus();
+    }
+
+  }
+
+
   macroOperationOption(FNname="") {
     //this.CRUDCheck=!this.CRUDCheck;
     this.operationMenuFlag=false;

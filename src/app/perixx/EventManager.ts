@@ -13,7 +13,7 @@ export class EventManager{
             return AllFunctionMapping[index].translate;
         }
         else{
-            return "XX";
+            return "NoValue";
         }
     
     }

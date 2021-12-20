@@ -520,7 +520,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <input *ngIf="MacroManager.getClass().hasFile();" type="checkbox" style="position: absolute;
       margin-left: 13px;
       margin-top: 94px;" [checked]="MacroManager.tempMacroContent.selectAllDataFlag" 
-      (change)="MacroManager.tempMacroContent.selectAllMacroData()">
+      (change)="MacroManager.tempMacroContent.switchSelectAllFlag()">
       <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
            top: 0px;    margin-left: 30px;
           margin-top: 92PX;">
@@ -546,47 +546,29 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                   overflow-y: auto;">
         <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index"
         [style.color]="MacroManager.tempMacroContent.indexPosition==i?'rgb(159, 163, 170)':'rgb(159, 163, 170)'"
-        (click)="MacroManager.tempMacroContent.indexPosition=i;">
-          <input type="checkbox" [(ngModel)]="item.inTheDeleteList" (change)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
-          <input id="byKeyCodeEdit" type="text" placeholder="" style="position: absolute;
-                                margin-left: 15.8%;
-                                width: 13.9%;
-                                margin-top: 0.3vh;
-                                display: block;" maxlength="15"
-            [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
-            (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
-            [value]="EM.getkeyCodeTxt(item.byKeyCode)">
+        (click)="MacroManager.tempMacroContent.indexPosition=i;"
+        (dblclick)="selectMacroSubContent($event,i);">
+          <input type="checkbox" [(ngModel)]="item.inTheSelectionList" (change)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
 
-          <div class="KeyCodeText" >
-            {{EM.getkeyCodeTxt(item.byKeyCode)}}
-          </div>
-          <input id="byStartTimeEdit" type="text" placeholder="" style="position: absolute;
-                margin-left: 15.8%;
-                width: 13.9%;
-                margin-top: 0.3vh;
-                display: block;" maxlength="15"
-            [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
-            (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
-            [value]="item.byStartTime">
-          <div id="byStartTime" style="display: inline-block;
-          line-height: 18px;
-          width: 28%;">
-            {{item.byStartTime}}
-          </div>
-        
-          <input id="durationEdit" type="text" placeholder="" style="position: absolute;
-                  color: rgb(255, 255, 255);
-                  margin-left: 15.8%;
-                  width: 13.9%;
-                  margin-top: 0.3vh;
-                  display: block;" maxlength="15"
-            [style.display]="(MacroManager.tempMacroContent.indexPosition==i&&macroContentInEdit)?'block': 'none'"
-            (keyup)="MacroEditkeyCodeFn($event.keyCode,i);" (mouseup)="MacroEditkeyCodeFn($event.button,i);"
-            [value]="item.duration">
-          <div id="durationText" style="display: inline-block;
-                      line-height: 18px;width: 27%;">
-            {{item.duration}}
-          </div>
+          <input type="text" class="KeyCodeText" 
+          (keydown)="macroEditkeyCode($event.code,i,$event);" 
+          (keyup)="macroEditkeyCode($event.code,i,$event);" 
+          (mouseup)="macroEditkeyCode($event.button,i,$event);"
+          [value]="EM.getkeyCodeTxt(item.byKeyCode)" 
+          data-identity="KeyCodeText" [readonly]="true">
+
+
+          <input type="text" class="StartTimeText" 
+          (keyup)="macroEditStartTime($event,i);" 
+          (blur)="macroEditStartTime($event,i);"
+          [value]="item.byStartTime" 
+          data-identity="StartTimeText" [disabled]="item.inTheSelectionList ? false : true">
+
+          <input type="text" class="durationText" 
+          (keyup)="macroEditduration($event,i);" 
+          (blur)="macroEditduration($event,i);"
+          [value]="item.duration" 
+          data-identity="durationText" [disabled]="item.inTheSelectionList ? false : true">
         </div>
       </div>
          

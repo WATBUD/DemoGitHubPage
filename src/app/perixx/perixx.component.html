@@ -516,24 +516,25 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           Delete
         </div>
       </ng-container>
-      <!-- *ngIf="MacroManager.getClass().hasFile();"  -->
+      <!-- *ngIf="MacroManager.getClass().hasFile();" 
+          (mouseup)="macroEditkeyCode($event.button,i,$event);" -->
       <input *ngIf="MacroManager.getClass().hasFile();" type="checkbox" style="position: absolute;
       margin-left: 13px;
       margin-top: 94px;" [checked]="MacroManager.tempMacroContent.selectAllDataFlag" 
       (change)="MacroManager.tempMacroContent.switchSelectAllFlag()">
       <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
-           top: 0px;    margin-left: 30px;
-          margin-top: 92PX;">
+           top: 0px;    margin-left: 55px;
+          margin-top: 94px;font-size: 11px;">
         Key
       </div>
       <div id="Start Time" style="color: rgb(29, 52, 96);position: absolute;
-          top: 0px;    margin-left: 76px;
-          margin-top: 92PX;">
+          top: 0px;    margin-left: 95px;
+          margin-top: 94px;font-size: 11px;">
         Start Time
       </div>
       <div id="Duration" style="color: rgb(29, 52, 96);position: absolute;
-         top: 0px;    margin-left: 161px;
-          margin-top: 92PX;">
+         top: 0px;right: 20px;
+          margin-top: 94px;font-size: 11px;">
         Duration
       </div>
 
@@ -553,7 +554,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           <input type="text" class="KeyCodeText" 
           (keydown)="macroEditkeyCode($event.code,i,$event);" 
           (keyup)="macroEditkeyCode($event.code,i,$event);" 
-          (mouseup)="macroEditkeyCode($event.button,i,$event);"
           [value]="EM.getkeyCodeTxt(item.byKeyCode)" 
           data-identity="KeyCodeText" [readonly]="true">
 

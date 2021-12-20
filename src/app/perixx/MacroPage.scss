@@ -87,12 +87,12 @@
         width: 100%;
         margin-top: 4%;
     height: 4%;
-
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
     .KeyCodeText{
-        -webkit-user-select:none;
-        -moz-user-select:none;
-        -o-user-select:none;
-        user-select:none;
+       
                 -webkit-appearance: none;
                 appearance: none;
                 border: none;
@@ -102,12 +102,10 @@
                 width: 27%;
                 margin-left: 1.7%;
                 color: rgb(159, 163, 170);
+                text-align: center;
+                font-size: 11px;
     }
     .StartTimeText{
-        -webkit-user-select:none;
--moz-user-select:none;
--o-user-select:none;
-user-select:none;
         -webkit-appearance: none;
         appearance: none;
         border: none;
@@ -115,23 +113,23 @@ user-select:none;
         display: inline-block;
         line-height: 18px;
         width: 24%;
-        margin-right: 3%;
+        margin-right: 9%;
         color: rgb(159, 163, 170);
+        text-align: center;
+        font-size: 11px;
 
     }
     .durationText{
-        -webkit-user-select:none;
--moz-user-select:none;
--o-user-select:none;
-user-select:none;
         -webkit-appearance: none;
         appearance: none;
         border: none;
         background: rgba(0,0,0,0);
         display: inline-block;
         line-height: 18px;
-        width: 13.9%;
+        width: 21%;
         color: rgb(159, 163, 170);
+        text-align: center;
+        font-size: 11px;
 
     }
     input:focus {
@@ -139,9 +137,9 @@ user-select:none;
         -moz-user-select:none;
         -o-user-select:none;
         user-select:none;
-        outline:none;
-        //outline-color: blue;
-        border:none;
+        // outline:blue;
+        // //outline-color: blue;
+        // border:none;
     
     }
    

@@ -101,7 +101,7 @@ export class PerixxComponent implements OnInit {
 
   
   scrollMoveToTheSpecifiedlocation(areaName=""){
-    console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName,this["SharedSelectList"],this);
+    console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName,this);
 
       this.settingLocation=areaName;
       document.getElementById(areaName).scrollIntoView(

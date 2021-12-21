@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>CustomizedInputRangeStyle3</title>
+  <title>CSSInputRangeStyle</title>
 </head>
 <!-- <link rel="stylesheet" href="./CSS_Demo.css" title="axdb"> -->
 <style title="tempCSS">
@@ -32,52 +32,39 @@
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
   }
 
-/* input[type="range"],
+  /* input[type="range"],
 input[type="range"]::-webkit-slider-runnable-track,
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
 } */
-input[type='range'] {
-      /* overflow: hidden; */
-      width: 160px;
-      height: 10px;
-      -webkit-appearance: none;
-      background-color: #9a905d;
-      border-radius: 15px;
+  input[type='range'] {
+    overflow: hidden;
+    width: 160px;
+    height: 10px;
+    -webkit-appearance: none;
+    background-color: #9a905d;
+    border-radius: 15px;
 
-    }
+  }
 
-    input[type='range']::-webkit-slider-runnable-track {
-      height: 10px;
-      -webkit-appearance: none;
-      /* color: #13bba4; */
-      margin-top: -1px;
-    }
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 10px;
+    -webkit-appearance: none;
+    /* color: #13bba4; */
+    margin-top: -1px;
+  }
 
-    input[type='range']::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      /* cursor: ew-resize; */
-      margin-top: -5px;
-      border-radius: 50%;
-      background: yellow;
-      box-shadow: -80px 0 0 80px #43e5f7;
-    }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    /* cursor: ew-resize; */
+    margin-top: -5px;
+    border-radius: 50%;
+    background: yellow;
 
-    /* input[type='range']::before {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: blue;
-      background: blue;
-      box-shadow: -10px 0 0 50px #43e5f7;
-    } */
-
-
-
-
-
+    box-shadow: -80px 0 0 80px #43e5f7;
+  }
 </style>
 
 <body>
@@ -87,7 +74,8 @@ input[type='range'] {
   <div id="textshow">Example Grammar:
   </div>
 
-  <input data="test" style="margin-left: 500px; margin-top: 500px;" id="rangeUI" type="range" max="100" min="0" value="0">
+  <input data="test" style="    margin-left: 200px;
+  margin-top: 100px;" id="rangeUI" type="range" max="100" min="0" value="0">
 
 
 </body>
@@ -99,32 +87,24 @@ input[type='range'] {
   //var elem = window.getComputedStyle(document.querySelector('#rangeUI'));
   //console.log('%c elem', 'color:rgb(255,75,255,1)', elem);//styleSheets樣式表
   // console.log(window.window.getComputedStyle(
-	// document.querySelector('#item'), ':before'
+  // document.querySelector('#item'), ':before'
   // ));
   //textshow.innerText = document.getElementById("target").style.cssText;
   // var styleSheetList = document.styleSheets;
-
-  textshow.innerHTML="  input[type=\"range\"]#rangeUI::-webkit-slider-thumb::before {<br>\
-    left: 0px;<br>\
-    background: #f22;<br>\
-  }<br>\
-  input[type=\"range\"]#rangeUI::-webkit-slider-thumb:after {<br>\
-    left: 0px;<br>\
-    background: #edc;<br>\
-  }<br>\
-  input[type=\"range\"]#rangeUI::-webkit-slider-thumb:before,<br>\
-  input[type=\"range\"]#rangeUI::-webkit-slider-thumb:after {<br>\
-    position: absolute;<br>\
-    top: 3px;<br>\
-    width: 2000px;<br>\
-    height: 4px;<br>\
-    content: \"\";<br>\
-    pointer-events: none;<br>\
-    transition: .2s;<br>\
-  }"
-
-
-
+  textshow.innerText = ""
+  for (const sheet of document.styleSheets) {
+    if (sheet.title == "tempCSS") {
+      var CSSRuleList = sheet.cssRules;
+      for (const CSSStyleRule of CSSRuleList) {
+        if (CSSStyleRule.selectorText.includes("input")) {
+          var targetCss = CSSStyleRule.cssText;
+          targetCss = targetCss.replace('{', '{\n');
+          textshow.innerText += targetCss.replaceAll(';', ';\n');
+        }
+      }
+    }
+    //console.log('%c sheet.title', 'color:rgb(255,75,255,1)', sheet.title);
+  }
   function copyEvent(id) {
     var str = document.getElementById(id);
     window.getSelection().selectAllChildren(str);

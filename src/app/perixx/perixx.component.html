@@ -62,7 +62,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         [style.background-color]="item.name==settingLocation?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
         &nbsp;&nbsp;&nbsp;{{item.name}}
       </div>
-      <div id="SettingTitle" style="    color: rgb(45 47 52);
+      <div id="Firmware" style="color: rgb(45 47 52);
       height: auto;
       width: 100%;
       font-weight: bold;
@@ -71,7 +71,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     margin-bottom: 2%;">
         Firmware
       </div>
-      <div id="SettingTitle" style="height: auto;
+      <div id="Firmware Upgrade" style="height: auto;
       width: 100%;
       line-height: 25px;" (click)="settingLocation='FirmwareUpgrade'"
         [style.color]="settingLocation=='FirmwareUpgrade'?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
@@ -97,9 +97,11 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           Settings
         </div>
         <div id="SharedSelectList" style="margin-left: 0px;
-        background: rgb(255 0 0);
-        height: 18%;">
-          <div id="Information" style="margin-left: 23px;margin-top: 23px;">
+          background: rgb(87 136 77 / 0%);    margin-top: 2%;
+        height: 90%;">
+          <div id="Information">
+          </div>
+          <div id="InformationArea" style="margin-left: 23px;margin-top: 23px;">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Information 
             </section>
@@ -121,41 +123,140 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </section>
 
           </div>
-          <div class="ParallelLines" style="width:100%;height:1px;background: rgb(29, 52, 96);">
+          <div id="Layout" class="ParallelLines" >
           </div>
-          <div id="Layout" style="margin-left: 23px;margin-top: 23px;">
+          <div id="LayoutArea" style="margin-left: 23px;margin-top: 23px;">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Layout
             </section>
             <section class="ParallelTextString">
-              Default 
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
               <div style="position: absolute;
-              right: 12%;
+              right: 73%;
+              width: 20%;">
+              Default 
+              </div>
+            </section>
+            <section class="ParallelTextString">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
+
+              <div style="position: absolute;
+              right: 73%;
               width: 20%;">
               Custom 
               </div>
             </section>
+
+          </div>
+          <div id="Lighting" class="ParallelLines" >
+          </div>
+          <div id="LightingArea" style="margin-left: 23px;margin-top: 23px;">
+            <section style="color: rgb(18,64,162);" class="ParallelTextString">
+              Lighting
+            </section>
             <section class="ParallelTextString">
-              Custom
               <div style="position: absolute;
-              right: 12%;
+              
               width: 20%;">
-                Periboard-XXX 
+              Brightness 
               </div>
+            </section>
+            <section class="ParallelTextString">
+              <input style="margin-top: 35px;" id="rangeUI" type="range" max="100" min="0" value="0">
             </section>
 
           </div>
-          <div class="ParallelLines" style="width:100%;height:1px;background: rgb(29, 52, 96);">
+          <div id="Macro" class="ParallelLines" >
+          </div>
+          <div id="MacroArea" style="margin-left: 23px;margin-top: 23px;">
+            <section style="color: rgb(18,64,162);" class="ParallelTextString">
+              Macro
+            </section>
+            <section class="ParallelTextString">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
+
+              <div style="position: absolute;
+              right: 73%;
+              width: 20%;">
+              Enable 
+              </div>
+            </section>
+          </div>
+          <div id="Auto Sleep" class="ParallelLines" >
+          </div>
+          <div id="Auto SleepArea" style="margin-left: 23px;margin-top: 23px;">
+            <section style="color: rgb(18,64,162);" class="ParallelTextString">
+              Auto Sleep
+            </section>
+            <section class="ParallelTextString">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
+
+              <div style="position: absolute;
+              right: 73%;
+              width: 20%;">
+              Enable 
+              </div>
+            </section>
+            <section class="ParallelTextString">
+              <input  id="rangeUI" type="range" max="100" min="0" value="0">
+            </section>
+          </div>
+          <div id="Bluetooth" class="ParallelLines" >
+          </div>
+          <div id="BluetoothArea" style="margin-left: 23px;margin-top: 23px;">
+            <section style="color: rgb(18,64,162);" class="ParallelTextString">
+              Bluetooth
+            </section>
+            <section class="ParallelTextString">
+              Bluetooth Bind    
+              <div style="position: absolute;
+              right: 26%;
+              width: 52px;
+              height: 23px;
+              background: rgb(29,52,96);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: rgb(245,245,247);">
+              Clear
+              </div>
+            </section>
+          </div>
+          <div id="Reset" class="ParallelLines" >
+          </div>
+          <div id="ResetArea" style="margin-left: 23px;margin-top: 23px;">
+            <section style="color: rgb(18,64,162);" class="ParallelTextString">
+              Reset
+            </section>
+            <section class="ParallelTextString">
+              Restore factory settings
+              <div style="position: absolute;
+              right: 26%;
+              width: 52px;
+              height: 23px;
+              background: rgb(29,52,96);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: rgb(245,245,247);">
+              Clear
+              </div>
+            </section>
           </div>
 
 
 
+
+
+          
+          <div style="height: 150%;" >
+          </div>
 
         </div>
       </section>
 
       <section id="FirmwareUpgradeArea" *ngIf="settingLocation=='FirmwareUpgrade'">
-        <div id="SettingTitle" style="color: rgb(45 47 52);
+        <div id="Title" style="color: rgb(45 47 52);
         height: auto;
         width: 100%;
         font-weight: bold;
@@ -163,6 +264,52 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         margin-top: 1.6%;">
           Firmware
         </div>
+        <div id="SharedSelectList" style="margin-left: 0px;
+        background: rgb(87 136 77 / 0%);    margin-top: 2%;
+      height: 90%;">
+        <div id="Current VersionArea" style="margin-left: 23px;margin-top: 23px;">
+          <section style="color: rgb(18,64,162);" class="ParallelTextString">
+            Information 
+          </section>
+          <section class="ParallelTextString">
+            Date:2021/12/21
+          </section>
+          <section class="ParallelTextString">
+            Version:XXXXXXX
+          </section>
+          <section class="ParallelTextString">
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          </section>
+
+        </div>
+        <div id="Latest Firmware" class="ParallelLines" >
+        </div>
+        <div id="Latest FirmwareArea" style="margin-left: 23px;margin-top: 23px;">
+          <section style="color: rgb(18,64,162);" class="ParallelTextString">
+            Latest Firmware 
+          </section>
+          <section class="ParallelTextString">
+            Date:2021/12/21
+          </section>
+          <section class="ParallelTextString">
+            Version:XXXXXXX
+          </section>
+          <section class="ParallelTextString">
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+          </section>
+
+        </div>
+
+
+
+
+
+
+      </div>
       </section>
      
       

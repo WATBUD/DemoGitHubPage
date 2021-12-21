@@ -69,15 +69,13 @@
 
 
 #SharedSelectList::-webkit-scrollbar-track {
-
     background-repeat: no-repeat;
 }
 #SharedSelectList::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);/* border: 1px solid yellow; */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);/* border: 1px solid yellow; */
     background-repeat: no-repeat;
-    background-color: rgb(42, 42, 42);
-
+    background-color: rgba(42, 42, 42,0);
 
 }
 #SharedSelectList::-webkit-scrollbar {
@@ -92,4 +90,35 @@
     height: auto;
     width: 100%;
     line-height: 25px;
+}
+
+
+
+input[type="range"] {
+    -webkit-appearance: none;
+    /* background: -webkit-linear-gradient(#2e9cfb, #2e9cfb) no-repeat, #606060;
+    background-size: 0 100%; */
+    background: rgb(29, 52, 96);
+    width: 200px;
+    height: 7px;
+    border-radius: 15px;
+
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+/* 
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 7px;
+    background: rgb(29, 52, 96);
+    border-radius: 15px; 
+} */
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 6px;
+    height: 26px;
+    background: rgb(18, 64, 162);
+    border-radius: 15px;
 }

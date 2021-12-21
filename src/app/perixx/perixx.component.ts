@@ -17,8 +17,9 @@ import { ColorOutput } from '../ngcolor/color-output';
   selector: 'app-perixx',
   templateUrl: './perixx.component.html',
   styleUrls: ['./perixx.component.css','./NavigationOption.css',
-  './Lighting_Option.css','./Home_Option.css',
-  './MacroPage.scss','./KeyBoardPage.scss','./CircleColorPicker.css'
+  './Lighting_Option.css',
+  './MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss',
+  './CircleColorPicker.css',
 ,]
 })
 export class PerixxComponent implements OnInit {

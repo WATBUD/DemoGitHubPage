@@ -125,15 +125,22 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Layout
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
+              <input type="radio" name="Layout"
+              (change)="StartupChange();"
+              [(ngModel)]="SettingManager.layoutMode"
+              [value]="'Default'">
               <div style="position: absolute;
               right: 73%;
               width: 20%;">
-              Default 
+              Default           
               </div>
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
+              <input type="radio" name="Layout"
+              (change)="StartupChange();"
+              [(ngModel)]="SettingManager.layoutMode"
+              [value]="'Custom'">
+
 
               <div style="position: absolute;
               right: 73%;
@@ -168,7 +175,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Macro
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.macroEnable' (ngModelChange)="StartupChange()">
 
               <div style="position: absolute;
               right: 73%;
@@ -184,7 +191,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Auto Sleep
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='Startup' (ngModelChange)="StartupChange()">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.autoSleepEnable' (ngModelChange)="StartupChange()">
 
               <div style="position: absolute;
               right: 73%;
@@ -193,7 +200,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               </div>
             </section>
             <section class="ParallelTextString">
-              <input  id="rangeUI" type="range" max="100" min="0" value="0">
+              <input  id="rangeUI" [(ngModel)]='SettingManager.autoSleepValue'  type="range" max="100" min="0" value="0">
             </section>
           </div>
           <div id="Bluetooth" class="ParallelLines" >

@@ -8,6 +8,7 @@ import { KeyBoardStyle } from './KeyBoardStyle';
 import { ThrowStmt } from '@angular/compiler';
 import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
+import { SettingManager } from './SettingManager';
 import {
   ColorModule
 } from '../../Module/TSImportManager';
@@ -20,7 +21,7 @@ import { ColorOutput } from '../ngcolor/color-output';
   './Lighting_Option.css',
   './MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss',
   './CircleColorPicker.css',
-,]
+]
 })
 export class PerixxComponent implements OnInit {
   CRUDCheck = false;
@@ -30,7 +31,7 @@ export class PerixxComponent implements OnInit {
   macroOnEdit=false;
   macroContentInEdit=false;
   startTimeEditing=false;
-
+  SettingManager=new SettingManager();
 
   KeyBoardManager = new KeyBoardManager(1,3);
   KeyBoardLibray = new KeyBoardManager(1,3);
@@ -132,7 +133,11 @@ export class PerixxComponent implements OnInit {
     //console.log('%c backgroundColor', 'background: black; color: white', backgroundColor)
 
   }
+  StartupChange(){
 
+
+    
+  };
 
 
   setPageIndex(pageName = "") {

@@ -125,6 +125,11 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/ScrollBarDemo/animateScroll.html',
       Name: 'animateScroll',
     },
+
+    {
+      URL: './DemoUI/Input/Input_Range_Customized.html',
+      Name: 'Input_Range_Customized',
+    },
   ];
 
   eventRegister = [];

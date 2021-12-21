@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input_Range_Customized</title>
+    <style>
+        input[type="range"]#rangeUI {
+            -webkit-appearance: none;
+            /* background: -webkit-linear-gradient(#2e9cfb, #2e9cfb) no-repeat, #606060;
+            background-size: 0 100%; */
+            background: red;
+            width: 200px;
+            height: 10px;
+            border-radius: 15px;
+
+        }
+
+        input[type="range"]:focus {
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            /* border-radius: 15px; */
+            /* background-color: rgb(47, 0, 255); */
+            height: 12px;
+            margin-bottom: 2px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: rgba(46, 218, 75, 0.92);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input data="test" id="rangeUI" type="range" max="100" min="0" value="0">
+    </div>
+
+</body>
+<script>
+    var rangeUI = document.getElementById("rangeUI");
+    //mousemove,mousedown,change,input
+    updateInput_Range_Customized();
+    rangeUI.addEventListener('input', (event) => {
+        updateInput_Range_Customized();
+
+    });
+ 
+    function updateInput_Range_Customized(){
+
+        console.log('range.onmousemove', rangeUI.value);
+        var alpha = rangeUI.value / 50;
+        var setColor = "rgba(0,0,255," + alpha + ")";
+        var setColor2 = "rgba(0,0,255," + 1 + ")";
+        rangeUI.style.background = "-webkit-linear-gradient(" + setColor2 + "," + setColor2 + ") no-repeat, #606060";
+        rangeUI.style.backgroundSize = rangeUI.value + '% 100%';
+
+    }
+
+
+
+
+</script>
+
+</html>

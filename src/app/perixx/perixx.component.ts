@@ -76,8 +76,6 @@ export class PerixxComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    //this.setPageIndex('SelectDevice');
-    //this.setPageIndex('KEYBOARDSETTINGS');
     document.addEventListener('click', (e:any)=>{
        //console.log('%c document_e.target','color:rgb(255,77,255)',  e.target);
         if (e.target.dataset.identity==undefined) {
@@ -90,7 +88,7 @@ export class PerixxComponent implements OnInit {
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav"]
 
-    this.setPageIndex('Macro_Nav');
+    this.setPageIndex('Home_Nav');
   }
 
   initialzeTheDevice(){
@@ -103,10 +101,15 @@ export class PerixxComponent implements OnInit {
 
   
   scrollMoveToTheSpecifiedlocation(areaName=""){
-    console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName);
+    console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName,this["SharedSelectList"],this);
 
       this.settingLocation=areaName;
-      //this[areaName].nativeElement.scrollIntoView();
+      document.getElementById(areaName).scrollIntoView(
+        {
+          behavior: 'smooth', block: 'start', inline: 'nearest'
+        }
+        );
+
   }
 
 

@@ -330,7 +330,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           </section>
         </div>
-        <div class="ApplyBtn" 
+        <div class="ApplyBtn" style="margin-left: 23px;"
         (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Upgrade 
         </div>
 
@@ -514,7 +514,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="m_Copy" (click)="keyboardRMenu('m_Copy');" (contextmenu)="keyboardRMenu('m_Copy');">
           {{this.i18nManager.getTarget('Copy')}}
         </div>
-        <div id="m_Export" (click)="keyboardRMenu('m_Export');"(contextmenu)="keyboardRMenu('m_Export');">
+        <div id="m_Export" (click)="downloadExoprtData();"(contextmenu)="downloadExoprtData();">
           {{this.i18nManager.getTarget('Export')}}
         </div>
         <div *ngIf="KeyBoardLibray.KeyBoardArray.length>1" id="m_Delete" 
@@ -642,7 +642,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="m_Copy" (click)="macroOperationOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
           {{this.i18nManager.getTarget('Copy')}}
         </div>
-        <div id="m_Export" (click)="macroOperationOption('ExportProfile');"(contextmenu)="macroOperationOption('ExportProfile');">
+        <div id="m_Export" (click)="downloadExoprtData();" (contextmenu)="downloadExoprtData();">
           {{this.i18nManager.getTarget('Export')}}
         </div>
         <div id="m_Delete" *ngIf="MacroManager.getClass().MacroFiletItem.length>1"

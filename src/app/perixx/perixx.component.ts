@@ -90,7 +90,7 @@ export class PerixxComponent implements OnInit {
     });
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-    this.setPageIndex('ConnectedPage');
+    this.setPageIndex('Lighting_Nav');
   }
 
   initialzeTheDevice(){
@@ -229,34 +229,25 @@ export class PerixxComponent implements OnInit {
         this.KeyBoardManager.refreshKeyBoardTemp();
     }
   }
-  ExportProfile() {
+  downloadExoprtData() {
     this.CRUDCheck = !this.CRUDCheck;
-    var typeName = "";
     var defaultName = "";
+    var typeName=this.currentPage;
+           //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
+
+    var exoprtData=undefined;
     switch (this.currentPage) {
-      case "LIGHTINGSETTING":
-        typeName = "APMode"
-        //defaultName=this.M_Light_APMode.getTarget().name;
+      case "Keyboard_Nav":
+        exoprtData=this.MacroManager.getExoprtData();
         break
-      case "KEYBOARDSETTINGS":
-        typeName = "KeyAssign"
-        //defaultName=this.KeyBoardManager.getTarget().projectName;
+      case "Macro_Nav":
+        exoprtData=this.MacroManager.getExoprtData();
         break
-      case "MACROSETTINGS":
-        typeName = "Macro"
-        //defaultName=this.MacroManager.getClass().getTarget().name;
-        break
-      case "AboutPage":
-          typeName = "Macro"
-          //defaultName=this.MacroManager.getClass().getTarget().name;
-          break
-      case "ConnectedPage":
-        typeName = "Advanced"
-        //defaultName=this.LCFM.getClass().projectName;
-        break
+      case "Lighting_Nav":
+        exoprtData=this.Built_ineffect.getTarget();
+        break;
     }
-  }
-  getExoprtData(){
+    exoprtData=JSON.stringify(exoprtData);
     function download(content, fileName, contentType) {
       var a = document.createElement("a");
       var file = new Blob([content], { type: contentType });
@@ -264,9 +255,8 @@ export class PerixxComponent implements OnInit {
       a.download = fileName;
       a.click();
     }
-    var t_Data=this.MacroManager.getExoprtData();
-    if(t_Data){
-      download(t_Data, 'json.txt', 'text/plain');
+    if(exoprtData!=undefined){
+      download(exoprtData, this.currentPage+'_Data.txt', 'text/plain');
     }
   }
 

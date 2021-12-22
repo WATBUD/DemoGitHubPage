@@ -6,7 +6,7 @@
 
 
 </div>
-<div id="HeaderColumn" style="
+<div id="DeviceContentPage" style="
 position: relative;
 height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   <div id="onRecordUI" class="CenterAlignment" style="position: absolute;height: 100%;z-index: 9998;width: 100%;background: #0000008a;"
@@ -17,7 +17,34 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <!-- <img src="./image/Share/Loading.gif" alt="Loading.gif" style="height: 92PX;
       width: 92PX;" /> -->
   </div>
-  <div id="Nav_Project">
+  <div *ngIf="this.currentPage=='ConnectedPage'"
+    style="position: absolute;height: 100%;z-index: 9998;width: 100%;background: #0000008a;" id="Content">
+    <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
+  
+    <div id="Content" style="position: absolute;
+    left: 35%;
+    margin-top: 25px;">
+      Only one Perixx keyboard product is connected by USB cable.
+    </div>
+    <div id="Content" style="
+    position: absolute;
+    left: 44%;
+    margin-top: 65px;
+    width: 153px;
+    height: 38px;
+    border: 2px solid rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;"   (click)="this.setPageIndex('Home_Nav');">
+      Enter
+    </div>
+  
+  </div>
+
+
+
+
+  <div *ngIf="this.currentPage!='ConnectedPage'" id="Nav_Project">
     <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
       (click)="project_select($event,i)"
       [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
@@ -25,7 +52,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       M{{i+1}}
     </div>
   </div>
-  <div id="NavigationBar">
+  <div *ngIf="this.currentPage!='ConnectedPage'" id="NavigationBar">
     <img [src]="currentPage=='Home_Nav'? ImgPath.Home_Nav[1]:ImgPath.Home_Nav[0]" (click)="setPageIndex('Home_Nav')"
       class="NavigationOption">
     <img [src]="currentPage=='Keyboard_Nav'? ImgPath.Keyboard_Nav[1]:ImgPath.Keyboard_Nav[0]"
@@ -36,7 +63,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       class="NavigationOption">
 
   </div>
-
 
   <section *ngIf="this.currentPage=='Home_Nav'" id="SharedPageContent">
     <section id="Home_NavOptions">
@@ -303,9 +329,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           </section>
-
         </div>
-
+        <div class="ApplyBtn" 
+        (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Upgrade 
+        </div>
 
 
 
@@ -336,48 +363,25 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     margin-top: 14%;">
         Lighting
       </div>
-      <div class="Lighting_OptionItem">
-        Red
+
+      <div *ngFor="let item of Built_ineffect.ListData ;let i = index"
+      class="Lighting_OptionItem"
+      [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'"
+      [style.marginTop.px]="item.translate=='Breathing'?'15':'0'"
+      (click)="Built_ineffect.currentModeIndex=i"
+      >
+      {{i18nManager.getTarget(item.translate)}}
       </div>
-      <div class="Lighting_OptionItem">
-        Yellow
+      <div id="Built_ineffectLines" style="position: absolute;
+      width: 85%;
+      height: 1px;
+      background: rgb(29 52 96);
+      top: 237px;
+      margin-left: 5%;" >
       </div>
-      <div class="Lighting_OptionItem">
-        Green
-      </div>
-      <div class="Lighting_OptionItem">
-        Cyan
-      </div>
-      <div class="Lighting_OptionItem">
-        Blue
-      </div>
-      <div class="Lighting_OptionItem">
-        Purple
-      </div>
-      <div class="Lighting_OptionItem">
-        Static Multi
-      </div>
-      <div class="Lighting_OptionItem">
-        Breathing
-      </div>
-      <div class="Lighting_OptionItem">
-        Gradual Breathing
-      </div>
-      <div class="Lighting_OptionItem">
-        Rainbow
-      </div>
-      <div class="Lighting_OptionItem">
-        Breathing per Key
-      </div>
-      <div class="Lighting_OptionItem">
-        Poptang
-      </div>
-      <div class="Lighting_OptionItem">
-        Breathing Trigger
-      </div>
-      <div class="Lighting_OptionItem">
-        Rainbow Trigger
-      </div>
+
+
+
 
 
 
@@ -541,7 +545,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </div>
           </div>
 
-          <div class="ApplyBtn" style="position: absolute;bottom: 24px;z-index: 9998;width: 153px;display: flex;height: 38px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
+          <div class="ApplyBtn"
           (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Apply 
           </div>
 
@@ -762,83 +766,59 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   </section>
 
-
-
-
-
-
-
-
-
-
-
-  <div *ngIf="this.currentPage=='ConnectedPage'" id="Content">
-    <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
-
-    <div id="Content" style="position: absolute;
-    left: 35%;
-    margin-top: 25px;">
-      Only one Perixx keyboard product is connected by USB cable.
-    </div>
-    <div id="Content" style="
-    position: absolute;
-    left: 44%;
-    margin-top: 65px;
-    width: 153px;
-    height: 38px;
-    border: 2px solid rgb(255, 255, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;">
-      Enter
-    </div>
-
-  </div>
   <div *ngIf="this.currentPage=='Settings'" id="Content">
   </div>
   <div *ngIf="this.currentPage=='AboutPage'" id="Content">
     <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
 
     <div id="ChildPage" style="position: absolute;
-    left: 5%;width: 200px;height: 200px;
-    /* background: red; */
-    margin-top: 40px;">
+  left: 5%;width: 200px;height: 200px;
+  /* background: red; */
+  margin-top: 40px;">
       <div id="About" style="
-      margin-top: 0px;">
+    margin-top: 0px;">
         About
       </div>
       <div id="Update" style="
-      margin-top: 40px;">
+    margin-top: 40px;">
         Update
       </div>
       <div id="Help" style="
-      margin-top: 40px;">
+    margin-top: 40px;">
         Help
       </div>
 
     </div>
     <div id="ChildPageContent" style="position: absolute;
-    left: 35%;width: 600px;height: 400px;
-    background: red;
-    margin-top: 40px;">
+  left: 35%;width: 600px;height: 400px;
+  background: red;
+  margin-top: 40px;">
       <img id="SettingIcon" style="position: absolute;left:31%;" src="image/Perixx_Project/Settings/Logo.png">
       <img id="SettingIcon" style="position: absolute;
-      margin-top: 13%;
-      margin-left: 51%;" src="image/Perixx_Project/Settings/Instagram.png">
+    margin-top: 13%;
+    margin-left: 51%;" src="image/Perixx_Project/Settings/Instagram.png">
       <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
-        margin-top: 13%;
-        margin-left: 40%;">
+      margin-top: 13%;
+      margin-left: 40%;">
       <a style="position: absolute;
-        margin-top: 25%;
-        margin-left: 40%;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
+      margin-top: 25%;
+      margin-left: 40%;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
 
     </div>
-
-
-
-
   </div>
+
   <img id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
     style="position: absolute;bottom: 20px;left: 20px;">
 
 </div>
+
+<!-- <div id="DeviceContentPage" style="
+position: relative;
+height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
+
+
+
+
+
+
+</div> -->

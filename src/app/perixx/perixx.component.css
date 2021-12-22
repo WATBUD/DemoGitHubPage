@@ -91,6 +91,11 @@
     width: 100%;
     line-height: 25px;
 }
+.ApplyBtn{
+    position: absolute;bottom: 24px;z-index: 9998;width: 153px;display: flex;height: 38px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);
+
+}
+
 
 
 

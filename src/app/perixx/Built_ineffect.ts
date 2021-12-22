@@ -176,7 +176,7 @@ export class Built_ineffect {
         new RainbowTrigger(),
     ];
     Built_inSelected=new Red();
-    currentModeIndex=0;
+    currentModeIndex=-1;
     
     constructor() {
         console.log("Built_ineffect","color:red",this.ListData);

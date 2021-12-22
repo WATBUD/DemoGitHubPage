@@ -9,6 +9,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
+import { Built_ineffect } from './Built_ineffect';
 import {
   ColorModule
 } from '../../Module/TSImportManager';
@@ -32,7 +33,7 @@ export class PerixxComponent implements OnInit {
   macroContentInEdit=false;
   startTimeEditing=false;
   SettingManager=new SettingManager();
-
+  Built_ineffect=new Built_ineffect();
   KeyBoardManager = new KeyBoardManager(1,3);
   KeyBoardLibray = new KeyBoardManager(1,3);
   MacroManager=new MacroManager();
@@ -88,9 +89,8 @@ export class PerixxComponent implements OnInit {
         }
     });
     this.MacroManager.createFolderFile();
-       //["Keyboard_Nav","Macro_Nav","Home_Nav"]
-
-    this.setPageIndex('Home_Nav');
+       //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
+    this.setPageIndex('ConnectedPage');
   }
 
   initialzeTheDevice(){
@@ -136,7 +136,7 @@ export class PerixxComponent implements OnInit {
   StartupChange(){
 
 
-    
+
   };
 
 

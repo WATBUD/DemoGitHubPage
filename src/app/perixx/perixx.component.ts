@@ -33,7 +33,7 @@ export class PerixxComponent implements OnInit {
   macroContentInEdit=false;
   startTimeEditing=false;
   SettingManager=new SettingManager();
-  Built_ineffect=new Built_ineffect();
+  Built_ineffect=new Built_ineffect(1);
   KeyBoardManager = new KeyBoardManager(1,3);
   KeyBoardLibray = new KeyBoardManager(1,3);
   MacroManager=new MacroManager();
@@ -97,6 +97,7 @@ export class PerixxComponent implements OnInit {
     var KeyBoardLength=this.KeyBoardStyle.getTarget().keyMapping.length;
     this.KeyBoardManager = new KeyBoardManager(KeyBoardLength,3);
     this.KeyBoardLibray = new KeyBoardManager(KeyBoardLength,3);
+    this.Built_ineffect=new Built_ineffect(KeyBoardLength);
     this.M_Light_Perixx= new M_Light_CS(KeyBoardLength);
     this.keyboardLeftClick(0);
   }
@@ -120,7 +121,8 @@ export class PerixxComponent implements OnInit {
     console.log('%c updateColorWheel', 'background: black; color: white', event);
     let backgroundColor = event.target.style.backgroundColor;
     this.ColorWheelModule.onclickColorDefault(event.target,0);
-    this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+    //this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+    this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
     console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
   }
 
@@ -163,7 +165,7 @@ export class PerixxComponent implements OnInit {
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
           this.KeyBoardManager.refreshKeyBoardTemp();
           this.HSLColorPickerFN[0]=((oEvent: MouseEvent) => {
-            console.log('%c mousedown', 'background: black; color: white', oEvent);
+            console.log('%c HSL_mousedown', 'background: black; color: white', oEvent);
             this.theColorWheelISBeingClicked=true;
             this.ColorWheelModule.setTheColorWheelValue(oEvent);
          });
@@ -177,9 +179,9 @@ export class PerixxComponent implements OnInit {
       
          });
          this.HSLColorPickerFN[2]=((oEvent: MouseEvent) => {
-            console.log('%c mouseup', 'background: black; color: white', oEvent);
+            console.log('%c HSL_mouseup', 'background: black; color: white', oEvent);
             this.theColorWheelISBeingClicked=false;
-            this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+            this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
 
          });
 
@@ -229,11 +231,10 @@ export class PerixxComponent implements OnInit {
         this.KeyBoardManager.refreshKeyBoardTemp();
     }
   }
-  downloadExoprtData() {
+  downloadExportData() {
     this.CRUDCheck = !this.CRUDCheck;
     var defaultName = "";
-    var typeName=this.currentPage;
-           //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
+    //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
 
     var exoprtData=undefined;
     switch (this.currentPage) {
@@ -244,10 +245,9 @@ export class PerixxComponent implements OnInit {
         exoprtData=this.MacroManager.getExoprtData();
         break
       case "Lighting_Nav":
-        exoprtData=this.Built_ineffect.getTarget();
+        exoprtData=this.Built_ineffect.ListData;
         break;
     }
-    exoprtData=JSON.stringify(exoprtData);
     function download(content, fileName, contentType) {
       var a = document.createElement("a");
       var file = new Blob([content], { type: contentType });
@@ -255,10 +255,18 @@ export class PerixxComponent implements OnInit {
       a.download = fileName;
       a.click();
     }
+
+    //console.log('%c originalData','color:rgb(255,77,255)',  exoprtData);
+    console.log('%c downloadExportData','color:rgb(255,77,255)',  exoprtData,this.currentPage);
+    var stringifyExoprtData=JSON.stringify(exoprtData);
+
     if(exoprtData!=undefined){
-      download(exoprtData, this.currentPage+'_Data.txt', 'text/plain');
+      download(stringifyExoprtData, this.currentPage+'_Data.txt', 'text/plain');
     }
   }
+
+
+
 
   clickMacroInTheAreaOfTheKeyboard(index){
     //var target=this.KeyBoardManager.getTarget();
@@ -370,9 +378,6 @@ export class PerixxComponent implements OnInit {
         case "copyFolderFile":
             this.MacroManager.copyFolderFile();
             break;
-        case "ExportProfile":
-            this.ExportProfile();
-            break;
         case "deleteMacroFile":
           this.MacroManager.deleteMacroFile();
             break;
@@ -454,9 +459,6 @@ keyboardRMenu(FNname="") {
         break;
       case "m_Copy":
           this.KeyBoardLibray.copyFolderFile();
-          break;
-      case "m_Export":
-          this.ExportProfile();
           break;
       case "m_Delete":
         this.KeyBoardLibray.delete_KeyBoard();

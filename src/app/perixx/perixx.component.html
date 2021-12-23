@@ -354,6 +354,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     background: rgb(245 245 247);
     height: calc(100% - 55px);
     width: 240px;">
+          <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
+          right:20%;
+          margin-top: 15%;" 
+          (click)="downloadExportData();" (contextmenu)="downloadExportData();">
       <div id="SettingTitle" style="color: rgb(45 47 52);
       height: auto;
       width: 100%;
@@ -368,7 +372,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       class="Lighting_OptionItem"
       [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'"
       [style.marginTop.px]="item.translate=='Breathing'?'15':'0'"
-      (click)="Built_ineffect.currentModeIndex=i"
+      (click)="Built_ineffect.switchBuilt_ineffect(i)"
       >
       {{i18nManager.getTarget(item.translate)}}
       </div>
@@ -398,13 +402,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
             </div>
             <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-              [style.background-color]="ColorWheelModule.toCssRGBA(M_Light_Perixx.getNowBlock(i).color)"
-              [style.border-width]="M_Light_Perixx.currentBlockIndex==i?'2px':'0px'"
-              (click)="M_Light_Perixx.currentBlockIndex=i"
-              style="border-style: solid;
-              border-color: rgb(255,87,0);
-              box-sizing: border-box;"
-              data-KB_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
+              [style.background-color]="Built_ineffect.Built_inSelected.hasSingleKeyLighting? Built_ineffect.getIndexCssRGBA(i):'rgba(0,0,0,0)'"
+              [style.border-width]="Built_ineffect.getBlockValue(i).choosing&&Built_ineffect.Built_inSelected.hasSingleKeyLighting?'2px':'0px'"
+              (click)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
+              data-KB_Block="i" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
               [attr.data-index]="i">
             </div>
           </div>
@@ -514,7 +515,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="m_Copy" (click)="keyboardRMenu('m_Copy');" (contextmenu)="keyboardRMenu('m_Copy');">
           {{this.i18nManager.getTarget('Copy')}}
         </div>
-        <div id="m_Export" (click)="downloadExoprtData();"(contextmenu)="downloadExoprtData();">
+        <div id="m_Export" (click)="downloadExportData();"(contextmenu)="downloadExportData();">
           {{this.i18nManager.getTarget('Export')}}
         </div>
         <div *ngIf="KeyBoardLibray.KeyBoardArray.length>1" id="m_Delete" 
@@ -642,7 +643,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="m_Copy" (click)="macroOperationOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
           {{this.i18nManager.getTarget('Copy')}}
         </div>
-        <div id="m_Export" (click)="downloadExoprtData();" (contextmenu)="downloadExoprtData();">
+        <div id="m_Export" (click)="downloadExportData();" (contextmenu)="downloadExportData();">
           {{this.i18nManager.getTarget('Export')}}
         </div>
         <div id="m_Delete" *ngIf="MacroManager.getClass().MacroFiletItem.length>1"

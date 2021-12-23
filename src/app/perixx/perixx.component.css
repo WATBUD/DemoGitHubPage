@@ -44,6 +44,9 @@
     height: 23px;
     margin-left: 48px;
     margin-top: 11px;
+    border-style: solid;
+    /* border-color: rgb(255,87,0); */
+    box-sizing: border-box;
 }
 
 

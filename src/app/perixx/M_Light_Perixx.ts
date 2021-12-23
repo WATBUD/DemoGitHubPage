@@ -14,6 +14,7 @@ export class M_Light_CS {
         brightness:100,
         speed:50,
     };
+    hasSingleKeyLighting=false;
     animationSpeed=1;
     currentBlockIndex=0;
     minKeyWidth=43;
@@ -3646,7 +3647,7 @@ export class M_Light_CS {
         }
     }
 
-    replaceAllBlockColor(AllBlock){
+    importAllBlockLayout(AllBlock){
         for (let index = 0; index < AllBlock.length; index++) {
             this.AllBlockColor[index].color=AllBlock[index].color;
             this.AllBlockColor[index].breathing=AllBlock[index].breathing;

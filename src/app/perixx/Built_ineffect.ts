@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+
+var PerixxLayout={"AllData":[{"devicename":"Perixx","SN":"0x320F0x5044","name":"Layout 1","value":1,"m_Identifier":"1","content":{"AllBlockColor":[{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]},{"clearStatus":false,"color":[0,0,0,0]}],"lightData":{"rate":50,"brightness":50,"colorHex":"#ff0000","colorPickerValue":[255,0,0,1],"brightness_Enable":false,"rate_Enable":false,"color_Enable":false,"isRainbow":false,"lightSelected":{"name":"GloriousMode","value":0,"translate":"GloriousMode"}}}}],"_id":"S21tw2mhN6A65aVZnS"}
 @Injectable()
 export class ModeParameter {
     color_quantity:number=1;
     translate="";
     Multicolor=false;
     Multicolor_Enable=true;
-    colorPickerValue=[255,0,0,1]
+    colorPickerValue=[0,0,0,1]
     brightness=100; 
     speed=50;
     brightness_Enable=true;
@@ -13,6 +15,8 @@ export class ModeParameter {
     rate_Enable=true;
     hasChanged=true;
     hasSingleKeyLighting=true;
+    AllBlockColor=[];
+    BreathTempArray=[];
     PointEffectName;
     colors= ["#ff0000","#ff8000","#80ff00","#00ff00","#00ffff","#0000ff","#8000ff","#ff00ff","#ff0080","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"];
     ParameterNumberList=[
@@ -43,6 +47,8 @@ export class Red extends ModeParameter{
         super();
         this.translate='Red';
         this.PointEffectName='Red';
+        this.colorPickerValue=[255,0,0,1];
+
         this.color_Enable=false;
         this.rate_Enable=false;
         this.Multicolor_Enable=false;
@@ -53,6 +59,7 @@ class Yellow extends ModeParameter{
         super();
         this.translate='Yellow';
         this.PointEffectName='Yellow';
+        this.colorPickerValue=[255,255,0,1];
     }
 };
 class Green extends ModeParameter{
@@ -60,6 +67,8 @@ class Green extends ModeParameter{
         super();
         this.translate='Green';
         this.PointEffectName='Green';
+        this.colorPickerValue=[0,255,0,1];
+
     }
 };
 class Cyan extends ModeParameter{
@@ -67,6 +76,8 @@ class Cyan extends ModeParameter{
         super();
         this.translate='Cyan';
         this.PointEffectName='Cyan';
+        this.colorPickerValue=[0,255,255,1];
+
     }
 };
 class Blue extends ModeParameter{
@@ -74,6 +85,8 @@ class Blue extends ModeParameter{
         super();
         this.translate='Blue';
         this.PointEffectName='Blue';
+        this.colorPickerValue=[0,0,255,1];
+
     }
 };
 class Purple extends ModeParameter{
@@ -81,6 +94,7 @@ class Purple extends ModeParameter{
         super();
         this.translate='Purple';
         this.PointEffectName='Purple';
+        this.colorPickerValue=[128,0,128,1];
         this.color_Enable=false;
         this.Multicolor_Enable=false;
     }
@@ -159,6 +173,7 @@ class RainbowTrigger extends ModeParameter{
     }
 };
 export class Built_ineffect {
+    maxkaycapNumber=0;
     ListData = [
         new Red(),
         new Yellow(),
@@ -178,8 +193,22 @@ export class Built_ineffect {
     Built_inSelected=new Red();
     currentModeIndex=-1;
     
-    constructor() {
+    constructor(inputMax) {
         console.log("Built_ineffect","color:red",this.ListData);
+
+        this.maxkaycapNumber = inputMax;
+        for (var i_ListD = 0; i_ListD < this.ListData.length; i_ListD++) {
+            var target=this.ListData[i_ListD];
+            for (var i_ListD2 = 0; i_ListD2 < inputMax; i_ListD2++) {
+            target.AllBlockColor.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
+            target.BreathTempArray.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
+            }
+        }
+        // for (var i_ListD2 = 0; i_ListD2 < inputMax; i_ListD2++) {
+        //     this.Built_inSelected.AllBlockColor.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
+        //     this.Built_inSelected.BreathTempArray.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
+        // }
+        this.Built_inSelected=JSON.parse(JSON.stringify(this.ListData[0]));
     }
     getTarget() {
         if(this.ListData[this.currentModeIndex]===undefined){
@@ -189,7 +218,12 @@ export class Built_ineffect {
         return this.ListData[this.currentModeIndex];
         //return this.ListData[0];
     }
-    
+    switchBuilt_ineffect(index){
+        this.currentModeIndex=index;
+        this.Built_inSelected=this.getTarget();
+        console.log('%c switchBuilt_ineffect','color:rgb(255,77,255)',  index,this.getTarget());
+
+    }
     resetAllData(){
         this.ListData = [
             new Red(),
@@ -209,7 +243,38 @@ export class Built_ineffect {
         ];
         this.setModeIndex(null,0);
     }
-  
+    setGroupArrayColor(assignColor){  
+        var target=this.Built_inSelected.AllBlockColor;
+        console.log('%c setGroupArrayColor', 'background: black; color: white', assignColor,target);
+
+        for (var i_ListD2 = 0; i_ListD2 < target.length; i_ListD2++) {
+            if(target[i_ListD2].choosing){
+                target[i_ListD2].color = assignColor;
+            }
+        }
+    }
+    getBlockValue(index) {
+        var data = this.Built_inSelected.AllBlockColor[index];
+        //console.log("getBlockValue", data);
+
+        return data;
+    }
+
+
+    getIndexCssRGBA(index){
+        if(index!=-1){
+            return this.toCssRGBA(this.Built_inSelected.AllBlockColor[index].color);
+        }
+        else{
+            return [0,0,0,0];
+        }
+    }
+    toCssRGBA(RGBA = [0, 0, 0, 0]) {
+        return 'rgb(' + RGBA[0] + ',' + RGBA[1] + ',' + RGBA[2] + ',' + RGBA[3] + ')';
+    }
+    toCssRGB(RGBA = [0, 0, 0]) {
+        return 'rgb(' + RGBA[0] + ',' + RGBA[1] + ',' + RGBA[2] + ')';
+    }
     setModeIndex($event,index){
      
         this.currentModeIndex=index;

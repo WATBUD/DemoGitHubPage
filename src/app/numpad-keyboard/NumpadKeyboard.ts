@@ -191,22 +191,37 @@ export class NumpadKeyboardComponent implements OnInit {
       }
       element.addEventListener('mousedown', (e: MouseEvent) => {
         this.KeyBoardManager.notClickedYet = false;
-        //var keyAssignPrompt_UI = document.getElementById("keyAssignPrompt") as HTMLElement;
         var keyAssignPromptline_UI = document.getElementById("keyAssignPromptline") as HTMLElement;
         var keyAssignTarget = e.target as HTMLElement;
         var Prompt_offset = ((keyAssignTarget.offsetTop + (keyAssignTarget.clientHeight / 2))) + 2;
-        //keyAssignPrompt_UI.style.marginTop = Prompt_offset + 'px'
         keyAssignPromptline_UI.style.marginTop = Prompt_offset + 'px'
-        keyAssignPromptline_UI.style.marginLeft = -50 + 'px'
-        keyAssignPromptline_UI.style.width = (keyAssignTarget.offsetLeft) + 40 + 'px'
+        keyAssignPromptline_UI.style.marginLeft = 0 + 'px'
+        keyAssignPromptline_UI.style.width = (keyAssignTarget.offsetLeft)  + 'px'
         this.KeyBoardManager.setAllProfileFieldData('recordAssignBtnIndex', index);
         var target = this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey();
+        if(target.defaultValue=="Num Lock"||target.defaultValue=="ROTARY ENCODER"){
+            this.macroService.macroTypeSelectData = [
+                { name: 'No Repeat', value: 0, translate: 'NoRepeat' },
+                { name: 'Toggle', value: 1, translate: 'Toggle' },
+            ]
+        }
+        else{
+            this.macroService.macroTypeSelectData = [
+                { name: 'No Repeat', value: 0, translate: 'NoRepeat' },
+                { name: 'Toggle', value: 1, translate: 'Toggle' },
+                { name: 'Repeat While holding', value: 2, translate: 'WhilePressed' },
+            ]
+        }
+
+        this.cdr.detectChanges();
         this.KeyAssignManager.updateVariable(target);
         this.M_SoundVolume.bindTarget=target.d_SoundVolume.bindTarget;
-        // if (target.recordBindCodeType == "MacroFunction") {
-        //     this.macroService.setMacroTypeValue(target.macro_RepeatType);
-        //     this.macroService.setMacroSelectValue(target.macro_Data.value);
-        // }
+        this.M_SoundVolume.lightData=target.d_SoundVolume.lightData;
+        this.setRGBcolor();
+        if (target.recordBindCodeType == "MacroFunction") {
+            this.macroService.setMacroTypeValue(target.macro_RepeatType);
+            this.macroService.setMacroSelectValue(target.macro_Data.value);
+        }
         console.log("KeyAssignUIStyleList__index", index, target);
       })
     }
@@ -294,34 +309,40 @@ export class NumpadKeyboardComponent implements OnInit {
   }
 
 
-  /**
-   * move color picker
-   * @param result
-   */
-  colorPickerChange(result: ColorOutput) {
-    console.log('colorPickerChange');
-    var RGB_Arr = [result.rgb.red, result.rgb.green, result.rgb.blue, 1];
-    if (this.lightingPage == 'PRESETS') {
-      this.Built_ineffect.Built_inSelected.colorPickerValue = RGB_Arr;
-      this.setRGBcolor();//by colorPickerChange;
-    }
-    if (this.lightingPage == 'PERKEY') {
-      var target = this.PERKEY_lightData;
-      target.colorPickerValue = JSON.parse(JSON.stringify(RGB_Arr));
-      target.colorHex = this.M_Light_PERKEY.rgbToHex(target[0], target[1], target[2]);
+    /**
+     * move color picker
+     * @param result
+     */
+    colorPickerChange(result: ColorOutput) {
+      console.log('colorPickerChange');
+      var RGB_Arr = [result.rgb.red, result.rgb.green, result.rgb.blue, 1];
 
-      if (this.PerKeyArea == "PerKey_SIDELIGHT" || this.PerKeyArea == "PerKey_ALL") {
-        this.PERKEY_lightData.sideLightColor = JSON.parse(JSON.stringify(RGB_Arr));
+      if (this.keybindingflag == true) {
+          let target = this.M_SoundVolume.lightData;
+          target.colorPickerValue = JSON.parse(JSON.stringify(RGB_Arr));
+          target.colorHex = this.M_Light_Keybinding.rgbToHex(target[0], target[1], target[2]);
+          this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey().d_SoundVolume.lightData.colorPickerValue = JSON.parse(JSON.stringify(RGB_Arr));
+          this.SoundVolume_AreaCick(this.KeyBoardManager.getTarget().recordAssignBtnIndex);
+          this.setRGBcolor();//by keybind_colorPickerChange;
       }
-      this.PerKeyAreaCick(this.PerKeyArea);
-    }
-    if (this.keybindingflag == true) {
-      let target = this.M_SoundVolume.lightData;
-      target.colorPickerValue = JSON.parse(JSON.stringify(RGB_Arr));
-      target.colorHex = this.M_Light_Keybinding.rgbToHex(target[0], target[1], target[2]);
-      this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey().d_SoundVolume.lightData.colorPickerValue = JSON.parse(JSON.stringify(RGB_Arr));
-      this.SoundVolume_AreaCick(this.KeyBoardManager.getTarget().recordAssignBtnIndex);
-    }
+      else{
+          if(this.lightingflag){
+              if (this.lightingPage == 'PRESETS') {
+                  this.Built_ineffect.Built_inSelected.colorPickerValue = RGB_Arr;
+                  this.setRGBcolor();//by colorPickerChange;
+              }
+              if (this.lightingPage == 'PERKEY') {
+                  var target = this.PERKEY_lightData;
+                  target.colorPickerValue = JSON.parse(JSON.stringify(RGB_Arr));
+                  target.colorHex = this.M_Light_PERKEY.rgbToHex(target[0], target[1], target[2]);
+      
+                  if (this.PerKeyArea == "PerKey_SIDELIGHT" || this.PerKeyArea == "PerKey_ALL") {
+                      this.PERKEY_lightData.sideLightColor = JSON.parse(JSON.stringify(RGB_Arr));
+                  }
+                  this.PerKeyAreaCick(this.PerKeyArea);
+              }
+          }
+      }
   }
 
   /**
@@ -364,55 +385,62 @@ export class NumpadKeyboardComponent implements OnInit {
 
 
   /**
-   * RGB input
-   */
+    * RGB input
+    */
   setRGBcolor() {
     console.log('setRGBcolor', this.lightingflag, this.lightingPage);
+    var target = undefined;
+
     if (this.lightingflag) {
-      var target;
       if (this.lightingPage == 'PRESETS') {
         target = this.Built_ineffect.Built_inSelected;
       }
       if (this.lightingPage == 'PERKEY') {
         target = this.PERKEY_lightData;
       }
-      // if (this.lightingPage == 'PERKEY') {
-      //   target = this.per;
-      // }
-      var rgbArr = target.colorPickerValue;
-      console.log('setRGBcolor_Target', JSON.parse(JSON.stringify(target)));
-      for (let index = 0; index < 3; index++) {
+    }
+    else if (this.keybindingflag) {
+      target = this.M_SoundVolume.lightData;
+    }
+    if (target == undefined) {
+      return;
+    }
+    var rgbArr = target.colorPickerValue;
+    console.log('setRGBcolor_Target', JSON.parse(JSON.stringify(target)), this.M_SoundVolume.lightData);
+    for (let index = 0; index < 3; index++) {
 
-        if (isNaN(parseInt(rgbArr[index])) == true) {
-          console.log('setRGBcolor_isNaN_0');
-          rgbArr[index] = 0;
-        }
-        else {
-          rgbArr[index] = parseInt(rgbArr[index]);
-        }
+      if (isNaN(parseInt(rgbArr[index])) == true) {
+        console.log('setRGBcolor_isNaN_0');
+        rgbArr[index] = 0;
       }
-      if (rgbArr[0] > 255) rgbArr[0] = 255;
-      if (rgbArr[1] > 255) rgbArr[1] = 255;
-      if (rgbArr[2] > 255) rgbArr[2] = 255;
-      if (rgbArr[0] < 0) rgbArr[0] = 0;
-      if (rgbArr[1] < 0) rgbArr[1] = 0;
-      if (rgbArr[2] < 0) rgbArr[2] = 0;
-      console.log('setRGBcolor', rgbArr);
-      let ColortObj = this.ColorModule.rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2]);
-      target.colorHex = ColortObj,
-        this.startcolor = 'FFFFFF';
-      this.cdr.detectChanges();
+      else {
+        rgbArr[index] = parseInt(rgbArr[index]);
+      }
+    }
+    if (rgbArr[0] > 255) rgbArr[0] = 255;
+    if (rgbArr[1] > 255) rgbArr[1] = 255;
+    if (rgbArr[2] > 255) rgbArr[2] = 255;
+    if (rgbArr[0] < 0) rgbArr[0] = 0;
+    if (rgbArr[1] < 0) rgbArr[1] = 0;
+    if (rgbArr[2] < 0) rgbArr[2] = 0;
+    console.log('setRGBcolor', rgbArr);
+    let ColortObj = this.ColorModule.rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2]);
+    target.colorHex = ColortObj,
+      // this.startcolor = 'FFFFFF';
+      // this.cdr.detectChanges();
       this.startcolor = ColortObj.split('#')[1]//#0000=>00000
-      console.log('ColortObj', ColortObj, this.startcolor);
+    console.log('ColortObj', ColortObj, this.startcolor);
+    if (this.lightingflag) {
       if (this.lightingPage == 'PERKEY') {
         this.PerKeyAreaCick(this.PerKeyArea);
       }
       if (this.lightingPage == 'PRESETS') {
         this.PRESETS_SelectedChange();//by setRGBcolor();
       }
-      this.cdr.detectChanges();
-
     }
+    this.cdr.detectChanges();
+
+
   }
   /**
    * Select Lighting Effect

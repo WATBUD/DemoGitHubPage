@@ -405,11 +405,21 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               [style.background-color]="Built_ineffect.Built_inSelected.hasSingleKeyLighting? Built_ineffect.getIndexCssRGBA(i):'rgba(0,0,0,0)'"
               [style.border-width]="Built_ineffect.getBlockValue(i).choosing&&Built_ineffect.Built_inSelected.hasSingleKeyLighting?'2px':'0px'"
               (click)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
-              data-KB_Block="i" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
+              (contextmenu)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
+              data-KB_Block="i" class="KeyBoard_Block" 
               [attr.data-index]="i">
             </div>
           </div>
 
+          <section  style="position: absolute;right: 44px;margin-top: 304px;">
+            <div  style="position: absolute;right: 11px;width: 20%;color: rgb(18,64,162);"> Brightness </div>
+            <input  id="rangeUI" max="100" min="0" style="margin-top: 35px;width: 272px;" type="range"  
+            [(ngModel)]="Built_ineffect.Built_inSelected.brightness">
+            <div [style.marginLeft.px]="Built_ineffect.Built_inSelected.brightness*272/100-20" style="position: absolute;text-align: center;
+            width: 20%;
+            margin-top: 15px;
+            color: rgb(18,64,162);">{{Built_ineffect.Built_inSelected.brightness}}%</div>
+          </section>
 
 
     </div>

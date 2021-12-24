@@ -2756,8 +2756,8 @@ export class M_Light_Numpad {
             for (let index = 0; index < tempTarget.length; index++) {
                 var setRGB = InputArray[index];
                 //target[index]colors[this.getRandom(0, colors.length - 1)];
-                tempTarget[index].color = setRGB;
-                target[index].color = setRGB;
+                tempTarget[index].color = this.getBrightnessRatio(setRGB);
+                target[index].color =  this.getBrightnessRatio(setRGB);
             }
         } catch (error) {
             console.error('%c target_error', 'color:rgb(255,75,255,1)', tempTarget);

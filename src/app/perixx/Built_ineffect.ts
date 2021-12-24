@@ -191,6 +191,7 @@ export class Built_ineffect {
         new RainbowTrigger(),
     ];
     Built_inSelected=new Red();
+    choosingList=[];
     currentModeIndex=-1;
     
     constructor(inputMax) {
@@ -201,13 +202,9 @@ export class Built_ineffect {
             var target=this.ListData[i_ListD];
             for (var i_ListD2 = 0; i_ListD2 < inputMax; i_ListD2++) {
             target.AllBlockColor.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
-            target.BreathTempArray.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
+            target.BreathTempArray.push({ color: target.colorPickerValue})
             }
         }
-        // for (var i_ListD2 = 0; i_ListD2 < inputMax; i_ListD2++) {
-        //     this.Built_inSelected.AllBlockColor.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
-        //     this.Built_inSelected.BreathTempArray.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
-        // }
         this.Built_inSelected=JSON.parse(JSON.stringify(this.ListData[0]));
     }
     getTarget() {
@@ -220,7 +217,11 @@ export class Built_ineffect {
     }
     switchBuilt_ineffect(index){
         this.currentModeIndex=index;
+        for (var i_ListD = 0; i_ListD < this.Built_inSelected.AllBlockColor.length; i_ListD++) {
+            this.getTarget().AllBlockColor[i_ListD].choosing=this.Built_inSelected.AllBlockColor[i_ListD].choosing;
+         }
         this.Built_inSelected=this.getTarget();
+
         console.log('%c switchBuilt_ineffect','color:rgb(255,77,255)',  index,this.getTarget());
 
     }
@@ -249,7 +250,7 @@ export class Built_ineffect {
 
         for (var i_ListD2 = 0; i_ListD2 < target.length; i_ListD2++) {
             if(target[i_ListD2].choosing){
-                target[i_ListD2].color = assignColor;
+                this.Built_inSelected.BreathTempArray[i_ListD2].color = assignColor;
             }
         }
     }
@@ -263,7 +264,7 @@ export class Built_ineffect {
 
     getIndexCssRGBA(index){
         if(index!=-1){
-            return this.toCssRGBA(this.Built_inSelected.AllBlockColor[index].color);
+            return this.toCssRGBA(this.Built_inSelected.BreathTempArray[index].color);
         }
         else{
             return [0,0,0,0];

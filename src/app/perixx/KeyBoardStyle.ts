@@ -121,10 +121,10 @@ export class KeyBoardStyle {
                 "margin-left: 575px;margin-top: 129px;transform: rotate(0deg);" ,
             ],
             quicklySelectTheBlockList:[
-                {"name":"Characters","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"Characters","groupIndex":[40,41,42,43,44,45,46,47,48,49,50,60,61,62,63,64,65,66,67,68,69,70,76,77,78,79,80,81,82,83,84,85],'currentStateOfTheSwitch':false},
                 {"name":"F Keys","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
-                {"name":"Numerals","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
-                {"name":"Big Keys","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"Numerals","groupIndex":[19,20,21,22,23,24,25,26,27,28,29,30],'currentStateOfTheSwitch':false},
+                {"name":"Big Keys","groupIndex":[18,31,39,51,59,71,75,86,92,93,94,95,96,97,98,99,100,101],'currentStateOfTheSwitch':false},
                 {"name":"Block 1","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
                 {"name":"Block 2","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
                 {"name":"Block 3","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},

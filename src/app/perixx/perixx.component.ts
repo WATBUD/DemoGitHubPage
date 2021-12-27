@@ -95,7 +95,7 @@ export class PerixxComponent implements OnInit {
     });
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-    this.setPageIndex('Macro_Nav');
+    this.setPageIndex('Lighting_Nav');
   }
 
   initialzeTheDevice(){
@@ -278,7 +278,16 @@ export class PerixxComponent implements OnInit {
         exoprtData=this.MacroManager.getExoprtData();
         break
       case "Lighting_Nav":
-        exoprtData=this.Built_ineffect.ListData;
+        //exoprtData=this.Built_ineffect.ListData;
+        var testIndexList=[];
+        var target=this.Built_ineffect.Built_inSelected.AllBlockColor;
+        for (let index = 0; index < target.length; index++) {
+          const element = target[index];
+          if(element.choosing==true){
+            testIndexList.push(index);
+          }
+        }
+        exoprtData=testIndexList;
         break;
     }
     function download(content, fileName, contentType) {

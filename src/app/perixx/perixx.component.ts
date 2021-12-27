@@ -190,7 +190,7 @@ export class PerixxComponent implements OnInit {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
           this.KeyBoardManager.refreshKeyBoardTemp();
-        }, 500);
+        }, 50);
         break;
       case "Lighting_Nav":
         setTimeout(() => {
@@ -236,7 +236,7 @@ export class PerixxComponent implements OnInit {
           var Macro_BlockList = document.querySelectorAll("[data-Macro_Block]");
           this.KeyBoardStyle.applyStyles(Macro_BlockList);
           this.KeyBoardManager.refreshKeyBoardTemp();
-        }, 500);
+        }, 50);
         
 
         //this.changeDetectorRef.detectChanges();

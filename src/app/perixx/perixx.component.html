@@ -428,6 +428,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               (contextmenu)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
               data-KB_Block="i" class="KeyBoard_Block" 
               [attr.data-index]="i">
+              <img style="pointer-events: none;" [src]="getKeyBindingIcon(i)">
             </div>
           </div>
 
@@ -654,6 +655,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
         <div class="Shard_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
+          [style.background-color]="MacroManager.getClass().currentChooseMacro==i?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
           [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
@@ -694,11 +696,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
         </div>
         <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-          [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'rgb(255, 0, 0)':'rgba(255, 255, 255)'"
-          data-Macro_Block="5" class="KeyBoard_Block" 
+          [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'rgb(255, 0, 0)':'rgba(0, 0, 0,0)'"
+          data-Macro_Block="5" style="border-style: unset;" class="KeyBoard_Block" 
           (click)="clickMacroInTheAreaOfTheKeyboard(i,true)"
           (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i,false)"
-          [attr.data-index]="i">
+          [attr.data-index]="i"
+          >
+          <img style="pointer-events: none;" [src]="getKeyBindingIcon(i)">
         </div>
       </div>
     </div>

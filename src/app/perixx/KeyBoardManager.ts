@@ -243,39 +243,6 @@ export class KeyBoard {
 
     }
 
-
-    set_prohibit(Class = "") {
-        var target = KB61Prohibit.get_prohibit(Class);
-        console.log("get_prohibit", target);
-        for (let index = 0; index < target.length; index++) {
-            var T = this.getNowModeKeyMatrix()[target[index]];
-            for (let KATindex = 0; KATindex < 3; KATindex++) {
-                T.keyAssignType[KATindex] = "K12";
-            }
-            T.value = "⊘";
-            T.LongTimePressValue = "⊘";
-            T.InstantPressValue = "⊘";
-            T.macroOptionNumber = 65536;
-        }
-    }
-    cancel_prohibit() {
-        console.log("cancel_prohibit_FNMode");
-        let T = this.getNowModeKeyMatrix();
-        for (let index = 0; index < T.length; index++) {
-            for (let KATindex = 0; KATindex < 3; KATindex++) {
-                if (T[index].keyAssignType[KATindex] == "K12") {
-                    T[index].keyAssignType[KATindex] = this.defaultName;
-                    T[index].LongTimePressValue = this.defaultName;
-                    T[index].InstantPressValue = this.defaultName;
-                    T[index].value = this.defaultName;
-                    T[index].macroOptionNumber = 65536;
-                    T[index].macroCode = 0;
-                }
-            }
-
-        }
-
-    }
     //"設定按鍵:"
     get_assign_promptText(Type) {
         switch (Type) {
@@ -308,7 +275,7 @@ export class KeyBoard {
         T.macroCode = IndexCode;
 
     }
-
+    
     reset_assign_default(type = "") {
        
 
@@ -318,6 +285,10 @@ export class KeyBoard {
             return true;
         }
         return false;
+    }
+    resetTheSpecifiedKeyBindData(index) {
+        this.getNowModeKeyMatrix()[index].recordBindCodeType=""
+        this.getNowModeKeyMatrix()[index].recordBindCodeName=""
     }
 
         /**

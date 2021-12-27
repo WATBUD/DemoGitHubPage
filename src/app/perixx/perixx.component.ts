@@ -301,16 +301,23 @@ export class PerixxComponent implements OnInit {
 
 
 
-  clickMacroInTheAreaOfTheKeyboard(index){
+  clickMacroInTheAreaOfTheKeyboard(index,bool=false){
     //var target=this.KeyBoardManager.getTarget();
     var target=this.KeyBoardManager.keyBoardTemp;           
-    target.recordAssignBtnIndex=index;
-    var targetMatrixKey=target.getNowModeTargetMatrixKey();
+    // target.recordAssignBtnIndex=index;
+    // var targetMatrixKey=target.getNowModeTargetMatrixKey();
     var KeyMatrix=target.getNowModeKeyMatrix();
-    targetMatrixKey.recordBindCodeType = "MacroFunction";
+    if(bool){
+      KeyMatrix[index].recordBindCodeType = "MacroFunction";
+    }
+    else{
+      if(KeyMatrix[index].recordBindCodeType=="MacroFunction"){
+        KeyMatrix[index].recordBindCodeType = "";
+      }
+    }
     //this.changeDetectorRef.detectChanges();
-    console.log('%c clickMacroInTheAreaOfTheKeyboard','color:rgb(255,77,255)',  targetMatrixKey,target);
-    console.log('%c KeyMatrix','color:rgb(255,77,255)',  KeyMatrix);
+    //console.log('%c clickMacroInTheAreaOfTheKeyboard','color:rgb(255,77,255)',  targetMatrixKey,target);
+    console.log('%c clickMacroInTheAreaOfTheKeyboard','color:rgb(255,77,255)',  KeyMatrix);
 
 
   }

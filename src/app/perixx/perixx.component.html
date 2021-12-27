@@ -565,10 +565,11 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
             </div>
             <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-              data-KB_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
+              data-KB_Block="5" class="KeyBoard_Block" 
               [attr.data-index]="i"
               [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
               (click)="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex=i"
+              (contextmenu)="KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)"
               style="border-style: solid;
               border-color: rgb(255,87,0);
               box-sizing: border-box;">
@@ -694,7 +695,9 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
         <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
           [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'rgb(255, 0, 0)':'rgba(255, 255, 255)'"
-          data-Macro_Block="5" class="KeyBoard_Block" (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i)"
+          data-Macro_Block="5" class="KeyBoard_Block" 
+          (click)="clickMacroInTheAreaOfTheKeyboard(i,true)"
+          (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i,false)"
           [attr.data-index]="i">
         </div>
       </div>

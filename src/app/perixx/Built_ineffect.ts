@@ -253,13 +253,27 @@ export class Built_ineffect {
             }
         }
     }
-    setQuicklySelectionArea(assignArray=[]){  
-        console.log('%c setQuicklySelectionArea', 'background: black; color: white', assignArray);
-        var target=this.Built_inSelected.AllBlockColor;
-
-        for (var i_ListD2 = 0; i_ListD2 < assignArray.length; i_ListD2++) {
-            target[assignArray[i_ListD2]].choosing=!target[assignArray[i_ListD2]].choosing;
+    setQuicklySelectionArea(assignData){  
+        if(assignData==undefined){
+            return;
         }
+        console.log('%c setQuicklySelectionArea', 'background: black; color: white', assignData);
+        var target=this.Built_inSelected.AllBlockColor;
+        if(assignData.name=="All Keys"){
+            for (var i_List1 = 0; i_List1 < target.length; i_List1++) {
+                target[i_List1].choosing=assignData.currentStateOfTheSwitch;
+            }
+        }
+        else
+        {
+            var group=assignData.groupIndex;
+            console.log('%c group', 'background: black; color: white', group);
+
+            for (var i_ListD2 = 0; i_ListD2 < group.length; i_ListD2++) {
+                target[group[i_ListD2]].choosing=!target[group[i_ListD2]].choosing;
+            }
+        }
+
     }
 
 

@@ -131,6 +131,7 @@ export class PerixxComponent implements OnInit {
         }
       }
       else{
+
         var allAreasHaveBeenSelected=true;
         for (let index = 0; index < mainData.length; index++) {
           const element = mainData[index];
@@ -138,11 +139,11 @@ export class PerixxComponent implements OnInit {
             allAreasHaveBeenSelected=false;
           }
         }
-          var target =this.KeyBoardStyle.getTarget().quicklySelectTheBlockList.find((x) => x.name == "All Keys")
-          target.currentStateOfTheSwitch=allAreasHaveBeenSelected;
-        
+          var AllKeytarget =this.KeyBoardStyle.getTarget().quicklySelectTheBlockList.find((x) => x.name == "All Keys")
+          AllKeytarget.currentStateOfTheSwitch=allAreasHaveBeenSelected;
       }
-      this.Built_ineffect.setQuicklySelectionArea(target.groupIndex);
+      this.Built_ineffect.setQuicklySelectionArea(target);
+
     }
   }
 

@@ -247,13 +247,24 @@ export class Built_ineffect {
     setGroupArrayColor(assignColor){  
         var target=this.Built_inSelected.AllBlockColor;
         console.log('%c setGroupArrayColor', 'background: black; color: white', assignColor,target);
-
         for (var i_ListD2 = 0; i_ListD2 < target.length; i_ListD2++) {
             if(target[i_ListD2].choosing){
                 this.Built_inSelected.BreathTempArray[i_ListD2].color = assignColor;
             }
         }
     }
+    setQuicklySelectionArea(assignArray=[]){  
+        console.log('%c setQuicklySelectionArea', 'background: black; color: white', assignArray);
+        var target=this.Built_inSelected.AllBlockColor;
+
+        for (var i_ListD2 = 0; i_ListD2 < assignArray.length; i_ListD2++) {
+            target[assignArray[i_ListD2]].choosing=!target[assignArray[i_ListD2]].choosing;
+        }
+    }
+
+
+
+
     getBlockValue(index) {
         var data = this.Built_inSelected.AllBlockColor[index];
         //console.log("getBlockValue", data);

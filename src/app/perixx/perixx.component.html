@@ -391,6 +391,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
     </section>
+
     <div id="MiddlePanel" style="
     position: absolute;
     display: flex;
@@ -398,6 +399,25 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     align-items: center;
     height: 100%;
     width: 656px;">
+    <section id="quicklySelectTheBlock" style="    position: absolute;
+    width: 92%;
+    top: 25%;
+    display: flex;
+    flex-direction: row-reverse;">
+      <div *ngFor="let item of KeyBoardStyle.getTarget().quicklySelectTheBlockList ;let i = index"
+        [style.color]="item.currentStateOfTheSwitch?'rgb(18,64,162)':'rgb(159,163,170)'"
+        class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction(item.name)">
+        {{this.i18nManager.getTarget(item.name)}}
+      </div>
+      <!-- <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('F Keys')"> F Keys </div>
+      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Numerals')"> Numerals </div>
+      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Big Keys')"> Big Keys </div>
+      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Block 1')"> Block 1 </div>
+      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Block 2')"> Block 2 </div>
+      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Block 3')"> Block 3 </div>
+      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('All Keys')"> All Keys </div>
+      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Characters')"> Characters </div> -->
+    </section>
           <div id="mainKeyboardBlock" class="KeyBoardAreaStyle">
             <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
             </div>

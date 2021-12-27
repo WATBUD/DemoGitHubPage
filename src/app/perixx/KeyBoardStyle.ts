@@ -119,6 +119,16 @@ export class KeyBoardStyle {
                 "margin-left: 500px;margin-top: 129px;transform: rotate(0deg);" ,
                 "width: 45px;margin-left: 526px;margin-top: 129px;transform: rotate(0deg);" ,
                 "margin-left: 575px;margin-top: 129px;transform: rotate(0deg);" ,
+            ],
+            quicklySelectTheBlockList:[
+                {"name":"Characters","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"F Keys","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"Numerals","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"Big Keys","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"Block 1","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"Block 2","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"Block 3","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
+                {"name":"All Keys","groupIndex":[1,2,3],'currentStateOfTheSwitch':false},
             ]
             ,
             keyMapping:["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""],

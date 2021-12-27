@@ -11,6 +11,13 @@
     line-height: 25px;
     /* background: rgb(255 0 0); */
     margin-left: 5%;
+    
+}
+.QuicklySelectBlockItem{
+    color: rgb(159,163,170);
+    font-size: 15px;
+    margin-right: 1%;
+    border-bottom: 2px solid rgb(18,62,162);
 }
 
 

@@ -5,7 +5,7 @@ import { MacroManager } from './MacroModule';
 import { i18nManager } from './i18n';
 import { EventManager } from './EventManager';
 import { KeyBoardStyle } from './KeyBoardStyle';
-import { ThrowStmt } from '@angular/compiler';
+import { ThrowStmt, CompileShallowModuleMetadata } from '@angular/compiler';
 import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
@@ -43,6 +43,11 @@ export class PerixxComponent implements OnInit {
   BoxSelectionArea=new BoxSelectionArea("KeyBoard_Block");
   EM=new EventManager();
   ColorWheelModule=new ColorModule("Circle_Animation");
+
+  //quicklySelectTheBlockFunctionOntheLightingEffectPage
+
+
+
   theColorWheelISBeingClicked=false;
   currentTouchButtons="";
   settingsOption=[
@@ -114,6 +119,33 @@ export class PerixxComponent implements OnInit {
         );
 
   }
+  quicklySelectTheBlockFunction(areaName=""){
+    var mainData=this.KeyBoardStyle.getTarget().quicklySelectTheBlockList;
+    var target =this.KeyBoardStyle.getTarget().quicklySelectTheBlockList.find((x) => x.name == areaName)
+    if(target!=undefined){
+      target.currentStateOfTheSwitch=!target.currentStateOfTheSwitch;
+      if(target.name=="All Keys"){
+        for (let index = 0; index < mainData.length; index++) {
+          const element = mainData[index];
+          element.currentStateOfTheSwitch=target.currentStateOfTheSwitch;
+        }
+      }
+      else{
+        var allAreasHaveBeenSelected=true;
+        for (let index = 0; index < mainData.length; index++) {
+          const element = mainData[index];
+          if(element.name!="All Keys"&&element.currentStateOfTheSwitch==false){
+            allAreasHaveBeenSelected=false;
+          }
+        }
+          var target =this.KeyBoardStyle.getTarget().quicklySelectTheBlockList.find((x) => x.name == "All Keys")
+          target.currentStateOfTheSwitch=allAreasHaveBeenSelected;
+        
+      }
+      this.Built_ineffect.setQuicklySelectionArea(target.groupIndex);
+    }
+  }
+
 
 
   HSLColorPickerFN=[];

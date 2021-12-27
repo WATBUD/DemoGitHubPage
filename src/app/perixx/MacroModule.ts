@@ -492,11 +492,11 @@ export class MacroScriptContent {
     name: any = "新檔案";
     IndexCode = new Date().getTime();
     Data: any = [
-        // {
-        //     byKeyCode: 65,
-        //     byDelay: 5,
-        //     byStartTime: 0,
-        // }
+        // byKeyCode: "error",
+        // byStartTime: 0,
+        // duration: 1,
+        // indexCode:'error',
+        // inTheSelectionList:false
     ]
     constructor(InputclassName = "未命名") {
         this.name = InputclassName;
@@ -557,6 +557,36 @@ export class MacroScriptContent {
             inTheSelectionList:false
         }
         return obj;
+    }
+
+    sortData(fromSmallToLarge=true) {
+        var temp_Data=this.Data;
+        if(fromSmallToLarge==true){
+            for (let i = 1; i < temp_Data.length; i++) {
+                let temp = temp_Data[i];//Currently recorded time
+                let j = i;//
+                while (j > 0 && temp.byStartTime < temp_Data[j - 1].byStartTime) {
+                  temp_Data[j] = temp_Data[j - 1]; 
+                  j -= 1;
+                }
+                temp_Data[j] =temp;  
+              }
+        }
+        else{//fromLargeToSmall
+            for (let i = 1; i < temp_Data.length; i++) {
+                let temp = temp_Data[i];//Currently recorded time
+                let j = i;//
+                while (j > 0 && temp.byStartTime > temp_Data[j - 1].byStartTime) {
+                  temp_Data[j] = temp_Data[j - 1]; 
+                  j -= 1;
+                }
+                temp_Data[j] =temp;  
+              }
+        }
+
+
+
+
     }
     switchSelectAllFlag(){
         this.selectAllDataFlag=!this.selectAllDataFlag;

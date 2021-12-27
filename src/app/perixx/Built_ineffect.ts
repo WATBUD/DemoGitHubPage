@@ -267,10 +267,10 @@ export class Built_ineffect {
         else
         {
             var group=assignData.groupIndex;
-            console.log('%c group', 'background: black; color: white', group);
+            console.log('%c group', 'background: black; color: white', group,assignData.currentStateOfTheSwitch);
 
             for (var i_ListD2 = 0; i_ListD2 < group.length; i_ListD2++) {
-                target[group[i_ListD2]].choosing=!target[group[i_ListD2]].choosing;
+                target[group[i_ListD2]].choosing=assignData.currentStateOfTheSwitch;
             }
         }
 

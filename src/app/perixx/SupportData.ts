@@ -13,9 +13,26 @@ export const AllFunctionMapping = [{ "keyCode": "Multimedia_Fun_0", "functionTyp
 { "keyCode": "KEYBOARD_Fun_11", "functionType": "KEYBOARD", "value": "Profilecycledown", "hid": 1, "translate": "Profilecycledown", "code": "KEYBOARD_Fun_11" },
 { "keyCode": "KEYBOARD_Fun_12", "functionType": "KEYBOARD", "value": "Layercycleup", "hid": 4, "translate": "Layercycleup", "code": "KEYBOARD_Fun_12" },
 { "keyCode": "KEYBOARD_Fun_13", "functionType": "KEYBOARD", "value": "Layercycledown", "hid": 3, "translate": "Layercycledown", "code": "KEYBOARD_Fun_13" },
-{ "keyCode": "MOUSE_Fun_14", "functionType": "MOUSE", "value": "Leftbutton", "hid": 1, "translate": "Leftbutton", "code": "MOUSE_Fun_14" },
-{ "keyCode": "MOUSE_Fun_15", "functionType": "MOUSE", "value": "Rightbutton", "hid": 2, "translate": "Rightbutton", "code": "MOUSE_Fun_15" },
-{ "keyCode": "MOUSE_Fun_16", "functionType": "MOUSE", "value": "Middlebutton", "hid": 3, "translate": "Middlebutton", "code": "MOUSE_Fun_16" },
+
+
+{ "keyCode": "MOUSE_Fun_14", "functionType": "MOUSE", "value": "MouseLeft", "hid": 1, "translate": "MouseLeft", "code": "MouseLeft" },
+{ "keyCode": "MOUSE_Fun_15", "functionType": "MOUSE", "value": "MouseRight", "hid": 2, "translate": "MouseRight", "code": "MouseRight" },
+{ "keyCode": "MOUSE_Fun_16", "functionType": "MOUSE", "value": "MouseMiddle", "hid": 3, "translate": "MouseMiddle", "code": "MouseMiddle" },
+
+{ "keyCode": "MOUSE_Fun_14", "functionType": "MOUSE", "value": "MouseMoveUp1", "hid": 1, "translate": "MouseMoveUp1", "code": "MouseMoveUp1" },
+{ "keyCode": "MOUSE_Fun_15", "functionType": "MOUSE", "value": "MouseMoveDown1", "hid": 2, "translate": "MouseMoveDown1", "code": "MouseMoveDown1" },
+{ "keyCode": "MOUSE_Fun_16", "functionType": "MOUSE", "value": "MouseMoveLeft1", "hid": 3, "translate": "MouseMoveLeft1", "code": "MouseMoveLeft1" },
+{ "keyCode": "MOUSE_Fun_16", "functionType": "MOUSE", "value": "MouseMoveRight1", "hid": 3, "translate": "MouseMoveRight1", "code": "MouseMoveRight1" },
+
+{ "keyCode": "MOUSE_Fun_14", "functionType": "MOUSE", "value": "MouseMoveUp3", "hid": 1, "translate": "MouseMoveUp3", "code": "MouseMoveUp3" },
+{ "keyCode": "MOUSE_Fun_15", "functionType": "MOUSE", "value": "MouseMoveDown3", "hid": 2, "translate": "MouseMoveDown3", "code": "MouseMoveDown3" },
+{ "keyCode": "MOUSE_Fun_16", "functionType": "MOUSE", "value": "MouseMoveLeft3", "hid": 3, "translate": "MouseMoveLeft3", "code": "MouseMoveLeft3" },
+{ "keyCode": "MOUSE_Fun_16", "functionType": "MOUSE", "value": "MouseMoveRight3", "hid": 3, "translate": "MouseMoveRight3", "code": "MouseMoveRight3" },
+
+
+
+
+
 { "keyCode": "MOUSE_Fun_17", "functionType": "MOUSE", "value": "Forward", "hid": 5, "translate": "Forward", "code": "MOUSE_Fun_17" },
 { "keyCode": "MOUSE_Fun_18", "functionType": "MOUSE", "value": "Back", "hid": 4, "translate": "Back", "code": "MOUSE_Fun_18" },
 { "keyCode": "MOUSE_Fun_19", "functionType": "MOUSE", "value": "Scrollup", "hid": 6, "translate": "Scrollup", "code": "MOUSE_Fun_19" },

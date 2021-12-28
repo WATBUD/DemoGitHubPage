@@ -589,10 +589,121 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Customization
       </div>
       <div id="KeyAssignSelectList" >
-        <!-- <div id="Character" style="color: rgb(29, 52, 96);
+        <div id="Character" class="KeyBindClass">
+          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Character</div>
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyA'? ImgPath.getThePicture('KeyA')[1]:ImgPath.getThePicture('KeyA')[0]"
+            (mouseover)="currentTouchButtons='KeyA'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyA')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyB'? ImgPath.getThePicture('KeyB')[1]:ImgPath.getThePicture('KeyB')[0]"
+            (mouseover)="currentTouchButtons='KeyB'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyB')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyC'? ImgPath.getThePicture('KeyC')[1]:ImgPath.getThePicture('KeyC')[0]"
+            (mouseover)="currentTouchButtons='KeyC'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyC')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyD'? ImgPath.getThePicture('KeyD')[1]:ImgPath.getThePicture('KeyD')[0]"
+            (mouseover)="currentTouchButtons='KeyD'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyD')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyE'? ImgPath.getThePicture('KeyE')[1]:ImgPath.getThePicture('KeyE')[0]"
+            (mouseover)="currentTouchButtons='KeyE'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyE')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyF'? ImgPath.getThePicture('KeyF')[1]:ImgPath.getThePicture('KeyF')[0]"
+            (mouseover)="currentTouchButtons='KeyF'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyF')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyG'? ImgPath.getThePicture('KeyG')[1]:ImgPath.getThePicture('KeyG')[0]"
+            (mouseover)="currentTouchButtons='KeyG'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyG')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyH'? ImgPath.getThePicture('KeyH')[1]:ImgPath.getThePicture('KeyH')[0]"
+            (mouseover)="currentTouchButtons='KeyH'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyH')">
+            <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyI'? ImgPath.getThePicture('KeyI')[1]:ImgPath.getThePicture('KeyI')[0]"
+            (mouseover)="currentTouchButtons='KeyI'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyI')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyJ'? ImgPath.getThePicture('KeyJ')[1]:ImgPath.getThePicture('KeyJ')[0]"
+            (mouseover)="currentTouchButtons='KeyJ'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyJ')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyK'? ImgPath.getThePicture('KeyK')[1]:ImgPath.getThePicture('KeyK')[0]"
+            (mouseover)="currentTouchButtons='KeyK'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyK')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyL'? ImgPath.getThePicture('KeyL')[1]:ImgPath.getThePicture('KeyL')[0]"
+            (mouseover)="currentTouchButtons='KeyL'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyL')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyM'? ImgPath.getThePicture('KeyM')[1]:ImgPath.getThePicture('KeyM')[0]"
+            (mouseover)="currentTouchButtons='KeyM'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyM')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyN'? ImgPath.getThePicture('KeyN')[1]:ImgPath.getThePicture('KeyN')[0]"
+            (mouseover)="currentTouchButtons='KeyN'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyN')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyO'? ImgPath.getThePicture('KeyO')[1]:ImgPath.getThePicture('KeyO')[0]"
+            (mouseover)="currentTouchButtons='KeyO'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyO')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyP'? ImgPath.getThePicture('KeyP')[1]:ImgPath.getThePicture('KeyP')[0]"
+            (mouseover)="currentTouchButtons='KeyP'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyP')">
+            <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyQ'? ImgPath.getThePicture('KeyQ')[1]:ImgPath.getThePicture('KeyQ')[0]"
+            (mouseover)="currentTouchButtons='KeyQ'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyQ')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyR'? ImgPath.getThePicture('KeyR')[1]:ImgPath.getThePicture('KeyR')[0]"
+            (mouseover)="currentTouchButtons='KeyR'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyR')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyS'? ImgPath.getThePicture('KeyS')[1]:ImgPath.getThePicture('KeyS')[0]"
+            (mouseover)="currentTouchButtons='KeyS'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyS')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyT'? ImgPath.getThePicture('KeyT')[1]:ImgPath.getThePicture('KeyT')[0]"
+            (mouseover)="currentTouchButtons='KeyT'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyT')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyU'? ImgPath.getThePicture('KeyU')[1]:ImgPath.getThePicture('KeyU')[0]"
+            (mouseover)="currentTouchButtons='KeyU'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyU')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyV'? ImgPath.getThePicture('KeyV')[1]:ImgPath.getThePicture('KeyV')[0]"
+            (mouseover)="currentTouchButtons='KeyV'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyV')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyW'? ImgPath.getThePicture('KeyW')[1]:ImgPath.getThePicture('KeyW')[0]"
+            (mouseover)="currentTouchButtons='KeyW'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyW')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyX'? ImgPath.getThePicture('KeyX')[1]:ImgPath.getThePicture('KeyX')[0]"
+            (mouseover)="currentTouchButtons='KeyX'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyX')">
+            <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyY'? ImgPath.getThePicture('KeyY')[1]:ImgPath.getThePicture('KeyY')[0]"
+            (mouseover)="currentTouchButtons='KeyY'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyY')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='KeyZ'? ImgPath.getThePicture('KeyZ')[1]:ImgPath.getThePicture('KeyZ')[0]"
+            (mouseover)="currentTouchButtons='KeyZ'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('KeyZ')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Minus'? ImgPath.getThePicture('Minus')[1]:ImgPath.getThePicture('Minus')[0]"
+            (mouseover)="currentTouchButtons='Minus'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Minus')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Equal'? ImgPath.getThePicture('Equal')[1]:ImgPath.getThePicture('Equal')[0]"
+            (mouseover)="currentTouchButtons='Equal'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Equal')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='BracketLeft'? ImgPath.getThePicture('BracketLeft')[1]:ImgPath.getThePicture('BracketLeft')[0]"
+            (mouseover)="currentTouchButtons='BracketLeft'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('BracketLeft')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='BracketRight'? ImgPath.getThePicture('BracketRight')[1]:ImgPath.getThePicture('BracketRight')[0]"
+            (mouseover)="currentTouchButtons='BracketRight'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('BracketRight')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Backslash'? ImgPath.getThePicture('Backslash')[1]:ImgPath.getThePicture('Backslash')[0]"
+            (mouseover)="currentTouchButtons='Backslash'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Backslash')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Semicolon'? ImgPath.getThePicture('Semicolon')[1]:ImgPath.getThePicture('Semicolon')[0]"
+            (mouseover)="currentTouchButtons='Semicolon'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Semicolon')">
+            <img class="KeyBindStyle" [src]="currentTouchButtons=='Quote'? ImgPath.getThePicture('Quote')[1]:ImgPath.getThePicture('Quote')[0]"
+            (mouseover)="currentTouchButtons='Quote'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Quote')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Backquote'? ImgPath.getThePicture('Backquote')[1]:ImgPath.getThePicture('Backquote')[0]"
+            (mouseover)="currentTouchButtons='Backquote'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Backquote')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Comma'? ImgPath.getThePicture('Comma')[1]:ImgPath.getThePicture('Comma')[0]"
+            (mouseover)="currentTouchButtons='Comma'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Comma')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Period'? ImgPath.getThePicture('Period')[1]:ImgPath.getThePicture('Period')[0]"
+            (mouseover)="currentTouchButtons='Period'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Period')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Slash'? ImgPath.getThePicture('Slash')[1]:ImgPath.getThePicture('Slash')[0]"
+            (mouseover)="currentTouchButtons='Slash'" (mouseleave)="currentTouchButtons=''"
+            (click)="setKeyBindingData('Slash')">
+        </div>
 
-
-        </div> -->
         <div id="Number" class="KeyBindClass" >
           <div style="width: 100%;height: 10%;margin-left: 6%;">Number</div>
           <img [src]="currentTouchButtons=='Digit1'? ImgPath.Digit1[1]:ImgPath.Digit1[0]"
@@ -674,8 +785,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (mouseover)="currentTouchButtons='ArrowRight'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('ArrowRight')">
         </div>
-        <div id="Arrow" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Arrow</div>
+        <div id="Function" class="KeyBindClass">
+          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Function</div>
           <img class="KeyBindStyle" [src]="currentTouchButtons=='F1'? ImgPath.getThePicture('F1')[1]:ImgPath.getThePicture('F1')[0]"
             (mouseover)="currentTouchButtons='F1'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('F1')">
@@ -768,6 +879,50 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
         </div>
+
+        <div id="Mouse" class="KeyBindClass">
+          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Mouse</div>
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseLeft'? ImgPath.getThePicture('MouseLeft')[1]:ImgPath.getThePicture('MouseLeft')[0]"
+          (mouseover)="currentTouchButtons='MouseLeft'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseLeft')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseRight'? ImgPath.getThePicture('MouseRight')[1]:ImgPath.getThePicture('MouseRight')[0]"
+          (mouseover)="currentTouchButtons='MouseRight'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseRight')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMiddle'? ImgPath.getThePicture('MouseMiddle')[1]:ImgPath.getThePicture('MouseMiddle')[0]"
+          (mouseover)="currentTouchButtons='MouseMiddle'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMiddle')">
+          <p></p>
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveUp1'? ImgPath.getThePicture('MouseMoveUp1')[1]:ImgPath.getThePicture('MouseMoveUp1')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveUp1'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveUp1')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveDown1'? ImgPath.getThePicture('MouseMoveDown1')[1]:ImgPath.getThePicture('MouseMoveDown1')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveDown1'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveDown1')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveLeft1'? ImgPath.getThePicture('MouseMoveLeft1')[1]:ImgPath.getThePicture('MouseMoveLeft1')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveLeft1'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveLeft1')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveRight1'? ImgPath.getThePicture('MouseMoveRight1')[1]:ImgPath.getThePicture('MouseMoveRight1')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveRight1'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveRight1')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveUp3'? ImgPath.getThePicture('MouseMoveUp3')[1]:ImgPath.getThePicture('MouseMoveUp3')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveUp3'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveUp3')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveDown3'? ImgPath.getThePicture('MouseMoveDown3')[1]:ImgPath.getThePicture('MouseMoveDown3')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveDown3'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveDown3')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveLeft3'? ImgPath.getThePicture('MouseMoveLeft3')[1]:ImgPath.getThePicture('MouseMoveLeft3')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveLeft3'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveLeft3')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='MouseMoveRight3'? ImgPath.getThePicture('MouseMoveRight3')[1]:ImgPath.getThePicture('MouseMoveRight3')[0]"
+          (mouseover)="currentTouchButtons='MouseMoveRight3'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('MouseMoveRight3')">
+
+          
+          
+        </div>
+
+
+
 
 
 

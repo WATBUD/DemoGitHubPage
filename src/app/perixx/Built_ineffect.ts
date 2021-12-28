@@ -232,6 +232,11 @@ export class Built_ineffect {
         this.Built_inSelected.colorCardSelectionLocation=index;
     }
     
+    setTheSelectedColorCardColor(colorRGBA=[0,0,0,1]){
+        console.log('%c setTheSelectedColorCardColor', 'background: black; color: white', colorRGBA);
+
+        this.Built_inSelected.colors[this.Built_inSelected.colorCardSelectionLocation]=colorRGBA;
+    }
     resetAllData(){
         this.ListData = [
             new Red(),
@@ -253,12 +258,18 @@ export class Built_ineffect {
     }
     setGroupArrayColor(assignColor){  
         var target=this.Built_inSelected.AllBlockColor;
-        console.log('%c setGroupArrayColor', 'background: black; color: white', assignColor,target);
-        for (var i_ListD2 = 0; i_ListD2 < target.length; i_ListD2++) {
-            if(target[i_ListD2].choosing){
-                this.Built_inSelected.BreathTempArray[i_ListD2].color = assignColor;
+        if(this.Built_inSelected.hasSingleKeyLighting){
+            for (var i_ListD2 = 0; i_ListD2 < target.length; i_ListD2++) {
+                if(target[i_ListD2].choosing){
+                    this.Built_inSelected.BreathTempArray[i_ListD2].color = assignColor;
+                }
             }
         }
+        else{
+            this.setTheSelectedColorCardColor(assignColor);
+        }
+        console.log('%c setGroupArrayColor', 'background: black; color: white', assignColor,target);
+
     }
     setQuicklySelectionArea(assignData){  
         if(assignData==undefined){

@@ -432,7 +432,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </div>
           </div>
 
-          <section class="colorBaseList">
+          <section *ngIf="!Built_ineffect.Built_inSelected.hasSingleKeyLighting" class="colorBaseList">
             <div *ngFor="let item of Built_ineffect.Built_inSelected.colors ;let i = index" class="colorBase"
                 (click)="Built_ineffect.setColorCardSelectionLocation(i)" id="colorBase{{i}}"
                 [style.background-color]="this.ColorWheelModule.toCssRGBA(item)"

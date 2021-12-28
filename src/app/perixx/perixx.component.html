@@ -432,7 +432,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </div>
           </div>
 
-          <section  style="position: absolute;right: 44px;margin-top: 304px;">
+          <section class="colorBaseList">
+            <div *ngFor="let item of Built_ineffect.Built_inSelected.colors ;let i = index" class="colorBase"
+                (click)="Built_ineffect.setColorCardSelectionLocation(i)" id="colorBase{{i}}"
+                [style.background-color]="this.ColorWheelModule.toCssRGBA(item)"
+                [style.border-width]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==i?'2px':'0px'"
+                [style.height]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==i?'1.5vw':'1.2vw'"
+                >
+            </div>
+          </section>
+          <section  style="position: absolute;right: 44px;margin-top: 367px;">
             <div  style="position: absolute;right: 11px;width: 20%;color: rgb(18,64,162);"> Brightness </div>
             <input  id="rangeUI" max="100" min="0" style="margin-top: 35px;width: 272px;" type="range"  
             [(ngModel)]="Built_ineffect.Built_inSelected.brightness">
@@ -441,6 +450,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             margin-top: 15px;
             color: rgb(18,64,162);">{{Built_ineffect.Built_inSelected.brightness}}%</div>
           </section>
+
+
+
+          
+          <div class="ApplyBtn" 
+          (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Apply 
+          </div>
 
 
     </div>

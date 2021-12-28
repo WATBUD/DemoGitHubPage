@@ -15,10 +15,12 @@ export class ModeParameter {
     rate_Enable=true;
     hasChanged=true;
     hasSingleKeyLighting=true;
+    colorCardSelectionLocation=0;
     AllBlockColor=[];
     BreathTempArray=[];
     PointEffectName;
-    colors= ["#ff0000","#ff8000","#80ff00","#00ff00","#00ffff","#0000ff","#8000ff","#ff00ff","#ff0080","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"];
+    colors= [[255,0 ,0,1],[255 ,165,0,1],[255 ,255,0,1],[0,255,0,1],[0,127,255,1],[0,0,255,1],[139 ,0,255,1],[255 ,255,255,1]];
+
     ParameterNumberList=[
         {   
             visible:false,
@@ -225,6 +227,11 @@ export class Built_ineffect {
         console.log('%c switchBuilt_ineffect','color:rgb(255,77,255)',  index,this.getTarget());
 
     }
+
+    setColorCardSelectionLocation(index){
+        this.Built_inSelected.colorCardSelectionLocation=index;
+    }
+    
     resetAllData(){
         this.ListData = [
             new Red(),

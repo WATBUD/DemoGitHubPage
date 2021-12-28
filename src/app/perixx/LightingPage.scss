@@ -22,3 +22,23 @@
 
 
 
+.colorBase{
+    width: 1.2vw;
+    height: 1.2vw;
+    transform: skewX(-30deg);
+    border-color: white;
+    border-style: solid;
+}
+.colorBaseList{
+    right: -5%;
+    width: 14vw;
+    height: 6vh;
+    position: absolute;
+    display: flex;
+    bottom: 26%;
+    align-items: center;
+}
+
+
+
+

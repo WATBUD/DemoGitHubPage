@@ -1921,8 +1921,6 @@ export class M_Light_CS {
         clearInterval(this.repeater);
         this.currentBlockIndex = 0;
         console.log('%c mode_Starlight', 'color:rgb(255,75,255,1)', colors);
-
-        //colors=[[255,0,0,1]];
         var translatecolors = [];
         if (isRainbow) {
             translatecolors = this.rainbow7Color();
@@ -2059,8 +2057,6 @@ export class M_Light_CS {
         clearInterval(this.repeater);
         this.currentBlockIndex = 0;
         console.log('%c mode_Starlight', 'color:rgb(255,75,255,1)', colors);
-
-        //colors=[[255,0,0,1]];
         var translatecolors = [];
         if (isRainbow) {
             translatecolors = this.rainbow7Color();
@@ -3509,8 +3505,6 @@ export class M_Light_CS {
         clearInterval(this.repeater);
         this.currentBlockIndex=0;
         console.log('%c mode_Starlight','color:rgb(255,75,255,1)',colors);
-
-        //colors=[[255,0,0,1]];
         var translatecolors=[];
         if(isRainbow){
             translatecolors=this.rainbow7Color();

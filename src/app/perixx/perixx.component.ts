@@ -19,8 +19,7 @@ import { ColorOutput } from '../ngcolor/color-output';
   selector: 'app-perixx',
   templateUrl: './perixx.component.html',
   styleUrls: ['./perixx.component.css','./NavigationOption.css',
-  './Lighting_Option.css',
-  './MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss',
+  './LightingPage.scss','./MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss',
   './CircleColorPicker.css',
 ]
 })
@@ -95,7 +94,7 @@ export class PerixxComponent implements OnInit {
     });
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-    this.setPageIndex('Keyboard_Nav');
+    this.setPageIndex('Lighting_Nav');
   }
 
   initialzeTheDevice(){

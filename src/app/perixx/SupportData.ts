@@ -55,12 +55,11 @@ export const AllFunctionMapping = [{ "keyCode": "Multimedia_Fun_0", "functionTyp
 { "keyCode": "Side Light", "functionType": "SideLight", "value": "Side Light", "hid": 14, "translate": "Side Light", "code": "Side Light" },
 { "keyCode": "slider", "functionType": "slider", "value": "SLIDER", "hid": 14, "translate": "slider", "code": "slider" },
 { "keyCode": "ROTARY ENCODER", "functionType": "RotaryEncoder", "value": "ROTARY ENCODER", "hid": 14, "translate": "ROTARY ENCODER", "code": "ROTARY ENCODER" },
-
 { "keyCode": "MacroFunction", "functionType": "MacroFunction", "value": "MacroFunction", "hid": 1923, "translate": "MacroFunction", "code": "MacroFunction" },
 { "keyCode": "ScrollWheel", "functionType": "ScrollWheel", "value": "Volume", "hid": 1922, "translate": "ScrollWheel", "code": "ScrollWheel" },
-{ "keyCode": "Custom_Fnkey", "functionType": "Custom_Fnkey", "value": "FN", "hid": "0x781", "translate": "FN", "code": "Custom_Fnkey" },
-{ "keyCode": "FunctionLock", "functionType": "FunctionLock", "value": "FN", "hid": "0x781", "translate": "FN", "code": "FunctionLock" },
-{ "keyCode": "WinLock", "functionType": "WinLock", "value": "FN", "hid": "0x781", "translate": "FN", "code": "WinLock" },
+{ "keyCode": "Custom_Fnkey", "functionType": "Custom_Fnkey", "value": "Custom_Fnkey", "hid": "0x781", "translate": "FunctionLock", "code": "Custom_Fnkey" },
+{ "keyCode": "FunctionLock", "functionType": "FunctionLock", "value": "FunctionLock", "hid": "0x781", "translate": "FunctionLock", "code": "FunctionLock" },
+{ "keyCode": "WinLock", "functionType": "WinLock", "value": "WinLock", "hid": "0x781", "translate": "WinLock", "code": "WinLock" },
 
 { "keyCode": "0", "functionType": "Singlekey", "value": "Left Click", "hid": 0xB0, "hid_ModelO:": 0x01, "translate": "Left Click", "code": "0" },
 { "keyCode": "1", "functionType": "Singlekey", "value": "Scroll Click", "hid": 0xB2, "hid_ModelO:": 0x03, "translate": "Scroll Click", "code": "1" },

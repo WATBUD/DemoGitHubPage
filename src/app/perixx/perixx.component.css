@@ -39,15 +39,27 @@
 }
 
 .KeyBoard_Block{
+    display: flex;
     position: absolute;
-    width: 23px;
-    height: 23px;
+    width: 21px;
+    height: 22px;
     margin-left: 48px;
     margin-top: 11px;
     border-style: solid;
     /* border-color: rgb(255,87,0); */
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12%;
 }
+
+.KeyBoardBindImg{
+    pointer-events: none;height: 18px;width: 18px;
+}
+
+
+
+
 
 
 #SharedPageContent{

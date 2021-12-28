@@ -313,7 +313,7 @@ export class KeyBoard {
             defaultValue: 'Default',
             profileName: '',
             recordBindCodeType: '',
-            recordBindCodeName: this.defaultName,
+            recordBindCodeName:"Digit1",//this.defaultName,
             shortcutsWindowsEnable: false,
             ApplicationPath: "",
             WebsitePath: "",

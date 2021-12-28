@@ -3,7 +3,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     margin-top: 21%;
-    width: 90%;
+    width: 94%;
     position: absolute;
     margin-left: 5%;
 }
@@ -22,7 +22,18 @@
 }
 
 
+.KeyBindClass{
 
+    color: rgb(29, 52, 96);
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.KeyBindStyle{
+    vertical-align: top;
+
+}
 .ParallelTextString{
     color: rgb(29,52,196);
     display: flex;
@@ -37,5 +48,16 @@
     margin-top: 20px;
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 

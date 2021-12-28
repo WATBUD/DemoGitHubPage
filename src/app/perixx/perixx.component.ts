@@ -95,7 +95,7 @@ export class PerixxComponent implements OnInit {
     });
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-    this.setPageIndex('Lighting_Nav');
+    this.setPageIndex('Keyboard_Nav');
   }
 
   initialzeTheDevice(){
@@ -535,8 +535,8 @@ getKeyBindingIcon(index){
   var target=this.KeyBoardManager.keyBoardTemp;           
   var KeyMatrix=target.getNowModeKeyMatrix();
   var targetMatrixKey=KeyMatrix[index];
-  var path =this.ImgPath[targetMatrixKey.recordBindCodeName];
-  targetMatrixKey.recordBindCodeName;
+  var path =this.ImgPath.getThePicture(targetMatrixKey.recordBindCodeName);
+  //this.ImgPath[targetMatrixKey.recordBindCodeName];
   if(path!=undefined) {
     return path[2];
   }

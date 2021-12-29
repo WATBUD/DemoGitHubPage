@@ -1131,48 +1131,114 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   </section>
 
-  <div *ngIf="this.currentPage=='Settings'" id="Content">
+  <div *ngIf="softwareSettingPage" id="softwareSettingPage" class="CenterAlignment"
+  style="position: absolute;height: 100%;z-index: 9998;width: 100%;background: #0000008a;">
+    <div id="ChildPageContent" style="    position: absolute;
+    width: 631px;
+    height: 454px;
+    background: rgb(45 47 52);">
+      <section id="toolbar" style="width: 100%;height:7%;background-color: rgb(29, 52, 96);display: flex;flex-direction: row-reverse;">
+        <div id="ExitApplicationIcon" class="ToolbarOptions"
+        [style.background-color]="ExitMouseover=='Exit'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
+        (mouseover)="ExitMouseover='Exit'"
+        (mouseleave)="ExitMouseover=''"
+        (click)="softwareSettingPage=false">
+          <img style="position: absolute;bottom: 25%;" src="image/Perixx_Project/Share/ExitApplication.png">
+        </div>
+        <div id="MinimizeIcon" class="ToolbarOptions"
+        [style.background-color]="ExitMouseover=='Minimize'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
+        (mouseover)="ExitMouseover='Minimize'"
+        (mouseleave)="ExitMouseover=''">
+          <img style="position: absolute;bottom: 30%;" src="image/Perixx_Project/Share/MinimizeIcon.png">
+        </div>
+      </section>
+      <div id="ChildPage" style="position: absolute;    left: 5%;
+      width: 15%;margin-top: 40px;">
+      <div id="VerticalAnimationLine" style="width: 1px;height: 26px;background: rgb(255 255 255);position: absolute;right: -6px;top: -1px;
+          transition-property: opacity, left, top, height;
+    transition-duration: 0.4s;"
+      [style.top.px]="verticalAnimationLineValue">
+             
+      </div>
+        <div (click)="softwareSettingCurrentPage='About';verticalAnimationLineValue=-5;" id="About" 
+        style="margin-top: 0px;">
+          About
+        </div>
+        <div (click)="softwareSettingCurrentPage='Update';verticalAnimationLineValue=53;" id="Update" 
+        style="margin-top: 40px;">
+          Update
+        </div>
+
+        <div (click)="softwareSettingCurrentPage='Help';verticalAnimationLineValue=112;" id="Help" 
+        style="margin-top: 40px;">
+          Help
+        </div>
+    
+      </div>
+      <section id="ChildPageArea" style="    position: absolute;
+                  left: 20%;
+                  width: 80%;
+                  height: 93%;">
+        <section *ngIf="softwareSettingCurrentPage=='About'" id="AboutArea">
+          <img id="SettingIcon" style="position: absolute;left:31%;top: 9%;" src="image/Perixx_Project/Settings/Logo.png">
+          <img id="SettingIcon" style="position: absolute;
+                      margin-top: 22%;
+                      margin-left: 54%;" src="image/Perixx_Project/Settings/Instagram.png">
+          <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
+                        margin-top: 22%;
+                        margin-left: 43%;">
+          <a style="    position: absolute;
+          margin-top: 33%;
+          margin-left: 41%;
+          color: rgb(255 255 255);
+          text-decoration: unset;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
+          <div id="ParallelLine" style="    position: absolute;
+                background: rgb(159,163,170);
+                width: 403px;
+                height: 1px;
+                margin-left: 80px;
+                margin-top: 210px;">
+          </div>
+          <div id="IntroductionText" style="    position: absolute;
+          width: 350px;
+          height: 148px;
+          margin-top: 40px;
+          word-break: break-word;
+          /* background: rgb(128 128 128); */
+          margin-left: 22%;
+          bottom: 10%;">
+            eeeeefdsjivjsdfvjnsdkfnsilhgiuerhfiuerhfiufhiusdfhiusdhiusdhfiusdfhiusdhfiusdhhifwoifowueoifsoijsoijvoicxjvoisjociwjdoifjdoijcoicoimcowjdoifjwdoifjsoijfoisdjvoivcxojojosifdjoijdfoijgoidjfdsicjsdijc
+            Sdkjvcsidvcsdcnsdoivncoisdv
+            Sdkjvnsdvndksdnvjksdnvjks
+          </div>
+      
+      
+        </section>
+        <section *ngIf="softwareSettingCurrentPage=='Update'" id="Update">
+          <div style="margin-left: 30%;
+          margin-top: 17%;font-weight: bold;">Current Version: XXX
+         </div>
+          <div style="margin-left: 31%;
+          margin-top: 4%;
+          font-size: 14px;" class="LanguageBtn"> Check
+            New Version
+          </div>
+        </section>
+        <section *ngIf="softwareSettingCurrentPage=='Help'" id="Help">
+          <p style="margin-left: 36%;top: 16%;position: absolute;    font-weight: bold;">User Manual
+          </p>
+          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> English
+          </div>
+          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Deutsch
+          </div>
+        </section>
+      </section>
+      
+      
+      </div>
   </div>
-  <div *ngIf="this.currentPage=='AboutPage'" id="Content">
-    <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
 
-    <div id="ChildPage" style="position: absolute;
-  left: 5%;width: 200px;height: 200px;
-  /* background: red; */
-  margin-top: 40px;">
-      <div id="About" style="
-    margin-top: 0px;">
-        About
-      </div>
-      <div id="Update" style="
-    margin-top: 40px;">
-        Update
-      </div>
-      <div id="Help" style="
-    margin-top: 40px;">
-        Help
-      </div>
-
-    </div>
-    <div id="ChildPageContent" style="position: absolute;
-  left: 35%;width: 600px;height: 400px;
-  background: red;
-  margin-top: 40px;">
-      <img id="SettingIcon" style="position: absolute;left:31%;" src="image/Perixx_Project/Settings/Logo.png">
-      <img id="SettingIcon" style="position: absolute;
-    margin-top: 13%;
-    margin-left: 51%;" src="image/Perixx_Project/Settings/Instagram.png">
-      <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
-      margin-top: 13%;
-      margin-left: 40%;">
-      <a style="position: absolute;
-      margin-top: 25%;
-      margin-left: 40%;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
-
-    </div>
-  </div>
-
-  <img id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
+  <img (click)="softwareSettingPage=true" id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
     style="position: absolute;bottom: 20px;left: 20px;">
 
 </div>

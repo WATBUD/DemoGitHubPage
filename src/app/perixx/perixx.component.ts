@@ -19,17 +19,22 @@ import { ColorOutput } from '../ngcolor/color-output';
   selector: 'app-perixx',
   templateUrl: './perixx.component.html',
   styleUrls: ['./perixx.component.css','./NavigationOption.css',
-  './LightingPage.scss','./MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss',
+  './LightingPage.scss','./MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss','./SoftwareSettingPage.scss'
   './CircleColorPicker.css',
 ]
 })
 export class PerixxComponent implements OnInit {
   CRUDCheck = false;
   currentPage = "";
+  macroContentInEdit=false;
+  softwareSettingCurrentPage="About"//About/Update/Help
+
+  verticalAnimationLineValue="-5";
+
   ImgPath=ImgPathList.getInstance();
   i18nManager=i18nManager.getInstance();
   macroOnEdit=false;
-  macroContentInEdit=false;
+  softwareSettingPage=true;
   startTimeEditing=false;
   SettingManager=new SettingManager();
   Built_ineffect=new Built_ineffect(1);

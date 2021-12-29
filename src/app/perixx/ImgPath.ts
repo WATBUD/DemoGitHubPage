@@ -17,14 +17,14 @@ export class ImgPathList{
             return this.instance;
         }
     }
-    MacroIcon: any = [
-        "url('./image/ScriptSet/KeyUpIcon.png')",
-        "url('./image/ScriptSet/KeyDownIcon.png')",
+    BackupPath: any = [
+        "url('./image/Share/ExitApplication.png')",
+        "url('./image/Share/KeyDownIcon.png')",
     ]
-    IconRecord: any = [
-        "./image/ScriptSet/Off/IconRecord.png",
-        "./image/ScriptSet/On/IconRecord.png",
-    ]
+
+
+
+
     Macro_Linking: any = [
         "./image/Perixx_Project/MacroPage/Off/Linking.png",
         "./image/Perixx_Project/MacroPage/On/Linking.png",

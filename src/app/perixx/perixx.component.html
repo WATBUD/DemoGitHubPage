@@ -1152,60 +1152,70 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           <img style="position: absolute;bottom: 30%;" src="image/Perixx_Project/Share/MinimizeIcon.png">
         </div>
       </section>
-      <div id="ChildPage" style="position: absolute;    left: 5%;
-      width: 15%;margin-top: 40px;">
-      <div id="VerticalAnimationLine" style="width: 1px;height: 26px;background: rgb(255 255 255);position: absolute;right: -6px;top: -1px;
-          transition-property: opacity, left, top, height;
-    transition-duration: 0.4s;"
-      [style.top.px]="verticalAnimationLineValue">
-             
-      </div>
-        <div (click)="softwareSettingCurrentPage='About';verticalAnimationLineValue=-5;" id="About" 
-        style="margin-top: 0px;">
+      <div id="ChildPage" style="    position: relative;width: fit-content;
+            display: inline-flex;flex-direction: column;
+            height: 93%;vertical-align: top;
+            ">
+      
+        <div (click)="softwareSettingCurrentPage='About';verticalAnimationLineValue=28;" id="About" style="padding-left: 37px;
+              margin-top: 31px;
+              display: flex;
+          flex-direction: row-reverse;">
           About
         </div>
-        <div (click)="softwareSettingCurrentPage='Update';verticalAnimationLineValue=53;" id="Update" 
-        style="margin-top: 40px;">
+        <div (click)="softwareSettingCurrentPage='Update';verticalAnimationLineValue=86;" id="Update" style="margin-top: 40px;    display: flex;
+              flex-direction: row-reverse;">
           Update
         </div>
-
-        <div (click)="softwareSettingCurrentPage='Help';verticalAnimationLineValue=112;" id="Help" 
-        style="margin-top: 40px;">
+      
+        <div (click)="softwareSettingCurrentPage='Help';verticalAnimationLineValue=144;" id="Help" style="margin-top: 40px;    display: flex;
+              flex-direction: row-reverse;">
           Help
         </div>
-    
+      
       </div>
-      <section id="ChildPageArea" style="    position: absolute;
-                  left: 20%;
-                  width: 80%;
-                  height: 93%;">
+      <div id="VerticalAnimationLine" style="    width: 1px;
+      height: 26px;
+      background: rgb(255, 255, 255);
+      vertical-align: top;
+      display: inline-flex;
+      margin-left: 6px;
+      margin-top: 28px;
+      transition-property: margin-top;
+      transition-duration: 0.4s;"
+      [style.marginTop.px]="verticalAnimationLineValue">
+             
+      </div>
+      <section id="ChildPageArea" style="    width: fit-content;
+      height: 93%;
+      background: rgb(0 0 255);
+      display: inline-flex;">
         <section *ngIf="softwareSettingCurrentPage=='About'" id="AboutArea">
-          <img id="SettingIcon" style="position: absolute;left:31%;top: 9%;" src="image/Perixx_Project/Settings/Logo.png">
+          <img id="SettingIcon" style="position: absolute;margin-left: 21%;
+          margin-top: 9%;" src="image/Perixx_Project/Settings/Logo.png">
           <img id="SettingIcon" style="position: absolute;
                       margin-top: 22%;
-                      margin-left: 54%;" src="image/Perixx_Project/Settings/Instagram.png">
+                      margin-left: 31%;" src="image/Perixx_Project/Settings/Instagram.png">
           <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
                         margin-top: 22%;
-                        margin-left: 43%;">
+                        margin-left: 40%;">
           <a style="    position: absolute;
-          margin-top: 33%;
-          margin-left: 41%;
+          margin-top: 30%;
+          margin-left: 29%;
           color: rgb(255 255 255);
           text-decoration: unset;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
-          <div id="ParallelLine" style="    position: absolute;
-                background: rgb(159,163,170);
-                width: 403px;
-                height: 1px;
-                margin-left: 80px;
-                margin-top: 210px;">
+          <div id="ParallelLine" style="position: absolute;
+          background: rgb(159,163,170);
+          width: 54%;
+          height: 1px;
+          margin-left: 80px;
+          margin-top: 210px;">
           </div>
           <div id="IntroductionText" style="    position: absolute;
           width: 350px;
           height: 148px;
-          margin-top: 40px;
           word-break: break-word;
-          /* background: rgb(128 128 128); */
-          margin-left: 22%;
+          margin-left: 13%;
           bottom: 10%;">
             eeeeefdsjivjsdfvjnsdkfnsilhgiuerhfiuerhfiufhiusdfhiusdhiusdhfiusdfhiusdhfiusdhhifwoifowueoifsoijsoijvoicxjvoisjociwjdoifjdoijcoicoimcowjdoifjwdoifjsoijfoisdjvoivcxojojosifdjoijdfoijgoidjfdsicjsdijc
             Sdkjvcsidvcsdcnsdoivncoisdv
@@ -1214,12 +1224,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       
       
         </section>
+
         <section *ngIf="softwareSettingCurrentPage=='Update'" id="Update">
-          <div style="margin-left: 30%;
-          margin-top: 17%;font-weight: bold;">Current Version: XXX
+          <div style="    position: absolute;
+          margin-left: 30%;
+          margin-top: 17%;
+          font-weight: bold;">Current Version: XXX
          </div>
-          <div style="margin-left: 31%;
-          margin-top: 4%;
+          <div style="    position: absolute;
+          margin-left: 31%;
+          margin-top: 22%;
           font-size: 14px;" class="LanguageBtn"> Check
             New Version
           </div>

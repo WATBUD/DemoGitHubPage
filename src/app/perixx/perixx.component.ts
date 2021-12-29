@@ -29,7 +29,7 @@ export class PerixxComponent implements OnInit {
   macroContentInEdit=false;
   softwareSettingCurrentPage="About"//About/Update/Help
 
-  verticalAnimationLineValue="-5";
+  verticalAnimationLineValue="28";
 
   ImgPath=ImgPathList.getInstance();
   i18nManager=i18nManager.getInstance();

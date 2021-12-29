@@ -19,7 +19,7 @@ import { ColorOutput } from '../ngcolor/color-output';
   selector: 'app-perixx',
   templateUrl: './perixx.component.html',
   styleUrls: ['./perixx.component.css','./NavigationOption.css',
-  './LightingPage.scss','./MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss','./SoftwareSettingPage.scss'
+  './LightingPage.scss','./MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss','./SoftwareSettingPage.scss',
   './CircleColorPicker.css',
 ]
 })

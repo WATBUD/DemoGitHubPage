@@ -150,8 +150,13 @@ export class PerixxComponent implements OnInit {
 
     }
   }
-
-
+  linkToTheDesignatedWebsite(weburl="") {
+    window.open(weburl, "_blank");
+  // function aaa() { 
+  //   window.open( 
+  //     "https://www.yourURL.com", "_blank");
+  // }
+}
 
   HSLColorPickerFN=[];
   updateColorWheel(event) {

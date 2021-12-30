@@ -431,13 +431,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                  <img class="KeyBoardBindImg" [src]="getKeyBindingIcon(i)">
             </div>
           </div>
-
+          <!-- (click)="Built_ineffect.setColorCardSelectionLocation(i)" -->
           <section *ngIf="!Built_ineffect.Built_inSelected.hasSingleKeyLighting" class="colorBaseList">
             <div *ngFor="let item of Built_ineffect.Built_inSelected.colors ;let i = index" class="colorBase"
-                (click)="Built_ineffect.setColorCardSelectionLocation(i)" id="colorBase{{i}}"
+                id="colorBase{{i}}"
                 [style.background-color]="this.ColorWheelModule.toCssRGBA(item)"
-                [style.border-width]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==i?'2px':'0px'"
-                [style.height]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==i?'1.5vw':'1.2vw'"
+                [style.border-width]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==999?'2px':'0px'"
+                [style.height]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==999?'1.5vw':'1.2vw'"
                 >
             </div>
           </section>
@@ -460,7 +460,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
     </div>
-    <div class="RightPanal" style="position: absolute;
+    <div *ngIf="Built_ineffect.Built_inSelected.hasSingleKeyLighting" class="RightPanal" style="position: absolute;
         height: 100%;
         width: 26.8%;
         right: 0px;">
@@ -830,7 +830,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <img class="KeyBindStyle" [src]="currentTouchButtons=='F9'? ImgPath.getThePicture('F9')[1]:ImgPath.getThePicture('F9')[0]"
             (mouseover)="currentTouchButtons='F9'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('F9')">
-            <img class="KeyBindStyle" [src]="currentTouchButtons=='F9'? ImgPath.getThePicture('F9')[1]:ImgPath.getThePicture('F9')[0]"
+            <img class="KeyBindStyle" [src]="currentTouchButtons=='F10'? ImgPath.getThePicture('F10')[1]:ImgPath.getThePicture('F10')[0]"
             (mouseover)="currentTouchButtons='F10'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('F10')">
             <img class="KeyBindStyle" [src]="currentTouchButtons=='F11'? ImgPath.getThePicture('F11')[1]:ImgPath.getThePicture('F11')[0]"
@@ -1195,10 +1195,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           margin-top: 9%;" src="image/Perixx_Project/Settings/Logo.png">
           <img id="SettingIcon" style="position: absolute;
                       margin-top: 22%;
-                      margin-left: 31%;" src="image/Perixx_Project/Settings/Instagram.png">
+                      margin-left: 31%;" 
+                      src="image/Perixx_Project/Settings/Instagram.png"
+                      (click)="linkToTheDesignatedWebsite('https://www.instagram.com/perixxofficial/?hl=en')">
           <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
                         margin-top: 22%;
-                        margin-left: 40%;">
+                        margin-left: 40%;" 
+          (click)="linkToTheDesignatedWebsite('https://www.facebook.com/Perixx.Computer/')">
+
           <a style="    position: absolute;
           margin-top: 30%;
           margin-left: 29%;

@@ -19,7 +19,7 @@ export class ModeParameter {
     AllBlockColor=[];
     BreathTempArray=[];
     PointEffectName;
-    colors= [[255,0 ,0,1],[255 ,165,0,1],[255 ,255,0,1],[0,255,0,1],[0,127,255,1],[0,0,255,1],[139 ,0,255,1],[255 ,255,255,1]];
+    colors= [[255,0,0,1],[255,128,0,1],[255,255,0,1],[128,255,0,1],[0,255,0,1],[0,255,128,1],[0,255,255,1],[0,128,255,1],[0,0,255,1],[128,0,255,1],[255,0,255,1],[255,0,128,1]];
 
     ParameterNumberList=[
         {   
@@ -117,14 +117,12 @@ class Breathing extends ModeParameter{
         this.hasSingleKeyLighting=false;
     }
 };
-class GradualBreathing extends ModeParameter{
+
+class BreathingPerKey extends ModeParameter{
     constructor (){
         super();
-        this.translate='Gradual Breathing';
-        this.PointEffectName='Gradual Breathing';
-        this.brightness_Enable=false;
-        this.rate_Enable=false;
-        this.color_Enable=false;
+        this.translate='Breathing Per Key';
+        this.PointEffectName='Breathing Per Key';
         this.hasSingleKeyLighting=false;
 
     }
@@ -138,15 +136,6 @@ class Rainbow extends ModeParameter{
 
     }
 };
-class BreathingPerKey extends ModeParameter{
-    constructor (){
-        super();
-        this.translate='Breathing Per Key';
-        this.PointEffectName='Breathing Per Key';
-        this.hasSingleKeyLighting=false;
-
-    }
-};
 class Poptang extends ModeParameter{
     constructor (){
         super();
@@ -156,24 +145,23 @@ class Poptang extends ModeParameter{
 
     }
 };
-class BreathingTrigger extends ModeParameter{
+class Firework extends ModeParameter{
     constructor (){
         super();
-        this.translate='Breathing Trigger';
-        this.PointEffectName='Breathing Trigger';
+        this.translate='Firework';
+        this.PointEffectName='Firework';
         this.hasSingleKeyLighting=false;
-
     }
 };
-class RainbowTrigger extends ModeParameter{
+class StarrySky extends ModeParameter{
     constructor (){
         super();
-        this.translate='RainbowTrigger';
-        this.PointEffectName='RainbowTrigger';
+        this.translate='StarrySky';
+        this.PointEffectName='StarrySky';
         this.hasSingleKeyLighting=false;
-
     }
 };
+
 export class Built_ineffect {
     maxkaycapNumber=0;
     ListData = [
@@ -184,13 +172,13 @@ export class Built_ineffect {
         new Blue(),
         new Purple(),
         new StaticMulti(),
+        //ParallelLine
         new Breathing(),
-        new GradualBreathing(),
-        new Rainbow(),
         new BreathingPerKey(),
+        new Rainbow(),
         new Poptang(),
-        new BreathingTrigger(),
-        new RainbowTrigger(),
+        new Firework(),
+        new StarrySky(),
     ];
     Built_inSelected=new Red();
     choosingList=[];
@@ -198,7 +186,6 @@ export class Built_ineffect {
     
     constructor(inputMax) {
         console.log("Built_ineffect","color:red",this.ListData);
-
         this.maxkaycapNumber = inputMax;
         for (var i_ListD = 0; i_ListD < this.ListData.length; i_ListD++) {
             var target=this.ListData[i_ListD];
@@ -208,6 +195,7 @@ export class Built_ineffect {
             }
         }
         this.Built_inSelected=JSON.parse(JSON.stringify(this.ListData[0]));
+        
     }
     getTarget() {
         if(this.ListData[this.currentModeIndex]===undefined){
@@ -246,13 +234,13 @@ export class Built_ineffect {
             new Blue(),
             new Purple(),
             new StaticMulti(),
+            //ParallelLine
             new Breathing(),
-            new GradualBreathing(),
-            new Rainbow(),
             new BreathingPerKey(),
+            new Rainbow(),
             new Poptang(),
-            new BreathingTrigger(),
-            new RainbowTrigger(),
+            new Firework(),
+            new StarrySky(),
         ];
         this.setModeIndex(null,0);
     }

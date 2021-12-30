@@ -121,14 +121,16 @@ export class KeyBoardStyle {
                 "margin-left: 573px;margin-top: 128px;transform: rotate(0deg);",
             ],
             quicklySelectTheBlockList: [
-                { "name": "Characters", "groupIndex": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85], 'currentStateOfTheSwitch': false },
-                { "name": "F Keys", "groupIndex": [1, 2, 3], 'currentStateOfTheSwitch': false },
-                { "name": "Numerals", "groupIndex": [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 'currentStateOfTheSwitch': false },
-                { "name": "Big Keys", "groupIndex": [18, 31, 39, 51, 59, 71, 75, 86, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101], 'currentStateOfTheSwitch': false },
-                { "name": "Block 1", "groupIndex": [1, 2, 3], 'currentStateOfTheSwitch': false },
-                { "name": "Block 2", "groupIndex": [1, 2, 3], 'currentStateOfTheSwitch': false },
-                { "name": "Block 3", "groupIndex": [1, 2, 3], 'currentStateOfTheSwitch': false },
                 { "name": "All Keys", "groupIndex": [1, 2, 3], 'currentStateOfTheSwitch': false },
+                { "name": "Block 3", "groupIndex": [35,36,37,38,56,57,58,59,73,74,75,89,90,91,92,106,107], 'currentStateOfTheSwitch': false },
+                { "name": "Block 2", "groupIndex": [15,16,17,32,33,34,53,54,55,88,103,104,105], 'currentStateOfTheSwitch': false },
+                { "name": "Block 1", "groupIndex": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,39,40,41,42,43,44,45,46,47,48,49,50,51,52,60,61,62,63,64,65,66,67,68,69,70,71,72,76,77,78,79,80,81,82,83,84,85,86,87,93,94,95,96,97,98,99,100,101,102], 'currentStateOfTheSwitch': false },
+                { "name": "Big Keys", "groupIndex": [0,31,39,60,72,76,87,93,94,95,96,97,98,99,100,101,102], 'currentStateOfTheSwitch': false },
+                { "name": "Numerals", "groupIndex": [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 'currentStateOfTheSwitch': false },
+                { "name": "F Keys", "groupIndex": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,94], 'currentStateOfTheSwitch': false },
+                { "name": "Characters", "groupIndex": [18,40,41,42,43,44,45,46,47,48,49,50,51,52,61,62,63,64,65,66,67,68,69,70,71,77,78,79,80,81,82,83,84,85,86], 'currentStateOfTheSwitch': false },
+
+
             ]
             ,
             keyMapping: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],

@@ -189,9 +189,19 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Brightness 
               </div>
             </section>
-            <section class="ParallelTextString">
-              <input style="margin-top: 35px;" id="rangeUI" type="range" max="100" min="0" value="0">
-            </section>
+          <section style="    flex-direction: column;
+          height: 24px;
+          margin-top: 33px;" class="ParallelTextString">
+                <input  id="rangeUI" max="100" min="0" style="width: 272px;" type="range"  
+                [(ngModel)]="SettingManager.brightness">
+                <div [style.marginLeft.px]="SettingManager.brightness*272/100-20" style="text-align: center;
+                width: 7%;
+                margin-top: 15px;
+                color: rgb(18, 64, 162);
+                margin-left: 252px;
+                color: rgb(18,64,162);">{{SettingManager.brightness}}%</div>
+                      
+          </section>
 
           </div>
           <div id="Macro" class="ParallelLines" >
@@ -432,7 +442,15 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </div>
           </div>
           <!-- (click)="Built_ineffect.setColorCardSelectionLocation(i)" -->
+          
           <section *ngIf="!Built_ineffect.Built_inSelected.hasSingleKeyLighting" class="colorBaseList">
+            <div style="    position: absolute;
+            width: 100%;
+            margin-top: -52px;
+            color: rgb(18,64,162);
+            text-align: right;">
+              Dynamic Light Color Table
+            </div>
             <div *ngFor="let item of Built_ineffect.Built_inSelected.colors ;let i = index" class="colorBase"
                 id="colorBase{{i}}"
                 [style.background-color]="this.ColorWheelModule.toCssRGBA(item)"
@@ -441,14 +459,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                 >
             </div>
           </section>
-          <section  style="position: absolute;right: 44px;margin-top: 367px;">
+          <section  style="position: absolute;right: 44px;margin-top: 406px;">
             <div  style="position: absolute;right: 11px;width: 20%;color: rgb(18,64,162);"> Brightness </div>
             <input  id="rangeUI" max="100" min="0" style="margin-top: 35px;width: 272px;" type="range"  
-            [(ngModel)]="Built_ineffect.Built_inSelected.brightness">
-            <div [style.marginLeft.px]="Built_ineffect.Built_inSelected.brightness*272/100-20" style="position: absolute;text-align: center;
+            [(ngModel)]="SettingManager.brightness">
+            <div [style.marginLeft.px]="SettingManager.brightness*272/100-20" style="position: absolute;text-align: center;
             width: 20%;
             margin-top: 15px;
-            color: rgb(18,64,162);">{{Built_ineffect.Built_inSelected.brightness}}%</div>
+            color: rgb(18,64,162);">{{SettingManager.brightness}}%</div>
           </section>
 
 

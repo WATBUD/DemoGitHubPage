@@ -595,6 +595,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         (click)="keyboardRMenu('m_Delete');"(contextmenu)="keyboardRMenu('m_Delete');">
           {{this.i18nManager.getTarget('Delete')}}
         </div>
+        <div id="m_Delete" 
+          (click)="keyboardRMenu('m_Reset');"(contextmenu)="keyboardRMenu('m_Reset');">
+          {{this.i18nManager.getTarget('Reset')}}
+        </div>
       </div>
     </section>
     <div id="MiddlePanel" style="
@@ -613,7 +617,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
               (click)="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex=i"
               (contextmenu)="KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)">
-              <img class="KeyBoardBindImg" [src]="getKeyBindingIcon(i)" >
+              <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)" >
             </div>
           </div>
 

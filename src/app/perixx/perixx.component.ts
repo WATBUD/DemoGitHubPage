@@ -11,6 +11,7 @@ import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
 import { Built_ineffect } from './Built_ineffect';
 import {ColorModule} from '../../Module/TSImportManager';
+import { HttpService } from '../../Module/HttpService';
 
 @Component({
   selector: 'app-perixx',
@@ -77,7 +78,7 @@ export class PerixxComponent implements OnInit {
   ]
 
   settingLocation="Information";
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef,private httpService: HttpService) { }
 
   ngOnInit() {
     //this.MacroManager.getClass().add
@@ -97,6 +98,11 @@ export class PerixxComponent implements OnInit {
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
     this.setPageIndex('Lighting_Nav');
+    var ssss="https://whatismyipaddress.com/ds3?token=4e597c7f0683735321f498c9091ba2b1&v=6";
+    this.httpService.getURL(ssss).subscribe(x=> {
+      console.log('%c zzzzzzzzzzz', 'color:rgb(255,75,255,1)', x)
+
+    }) ;
   }
 
   initialzeTheDevice(){
@@ -347,29 +353,30 @@ export class PerixxComponent implements OnInit {
     var validator = new RegExp(/^[0-9]*$/);
     //var validator = new RegExp(/^[0]+[0-9]*$/,"");
     event.target.value=event.target.value.replace(/^[0]+[0-9]*$/gi,"");
-    var startTimeTemp = event.target.value;
-    var runner = validator.test(startTimeTemp);
-    console.log('%c runner','color:rgb(255,77,255)',startTimeTemp,runner);
+    var startTimeStr =event.target.value;
+    var startTimeNum =parseInt(event.target.value);
+    var runner = validator.test(startTimeStr);
+    console.log('%c runner','color:rgb(255,77,255)',startTimeStr,runner);
     // if (event.type == 'keyup') {
     
     // }
     // else if(event.type=='blur'){
-      if (!runner||startTimeTemp<0||startTimeTemp=="") {
+      if (!runner||startTimeNum<0||startTimeStr=="") {
         //event.preventDefault();
-        startTimeTemp=0;
+        startTimeNum=0;
       }
-      if (startTimeTemp>65536) {
+      if (startTimeNum>65536) {
         //event.preventDefault();
-        startTimeTemp=65536;
+        startTimeNum=65536;
       }
-      console.log('%c startTimeTemp','color:rgb(255,77,255)',startTimeTemp);
+      console.log('%c startTimeTemp','color:rgb(255,77,255)',startTimeNum);
       // var zzz=this.MacroManager.tempMacroContent.Data;
       // for (let index = 0; index < zzz.length; index++) {
       //   const element = zzz[index];
       //   element.byStartTime=startTimeTemp;
       // }
-      event.target.value=startTimeTemp;
-      this.MacroManager.tempMacroContent.Data[index].byStartTime=startTimeTemp;
+      event.target.value=startTimeNum;
+      this.MacroManager.tempMacroContent.Data[index].byStartTime=startTimeNum;
       //this.changeDetectorRef.detectChanges();
     //}
     console.log("macroEditStartTime",event,runner);
@@ -513,8 +520,11 @@ keyboardRMenu(FNname="") {
           this.KeyBoardLibray.copyFolderFile();
           break;
       case "m_Delete":
-        this.KeyBoardLibray.delete_KeyBoard();
+          this.KeyBoardLibray.delete_KeyBoard();
           break;
+      case "m_Reset":
+        this.KeyBoardLibray.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
+        break;
       default:
           alert("keyboardRMenu_Error");
           return;

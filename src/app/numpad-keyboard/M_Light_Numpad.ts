@@ -1891,7 +1891,7 @@ export class M_Light_Numpad {
         }, BaseSpeed*this.animationSpeed)
     }
 
-    mode_Spiral(colors = [[255,0,0,1]], isRainbow = true,direction=0){
+    mode_Spiral(colors = [[255,0,0,1]], isRainbow = true,direction=0,BaseSpeed = 100){
         console.log('%c mode_Spiral','color:rgb(255,75,255,1)',colors,this.repeater);
         clearInterval(this.repeater);
         this.currentBlockIndex=0;
@@ -2006,7 +2006,7 @@ export class M_Light_Numpad {
                 element.color = temp_colorData;
             }
 
-        }, 100)
+        }, BaseSpeed*this.animationSpeed)
     }
 
     mode_WaveSyncBack2(colors = [[255,0,0,1]], isRainbow = true){
@@ -3288,7 +3288,7 @@ export class M_Light_Numpad {
                 }
         },150*this.animationSpeed)
     }
-    mode_HeartbeatSensor(colors =[[255,0,0,1],[0,255,0,1],[0,0,255,1]]){
+    mode_HeartbeatSensor(colors =[[255,0,0,1],[0,255,0,1],[0,0,255,1]],BaseSpeed=60){
         console.log('%c Enter_mode_HeartbeatSensor','color:rgb(255,77,255)',colors);
         var Brightness=1;
         clearInterval(this.repeater);
@@ -3370,7 +3370,7 @@ export class M_Light_Numpad {
                 }
             }
         //console.log('this.animationSpeed', this.animationSpeed);
-        },60*this.animationSpeed)
+        },BaseSpeed*this.animationSpeed)
     }
 
     mode_SinMoving_Up_Down(colors =[[255,0,0,1],[0,255,0,1],[0,0,255,1]]){
@@ -3539,7 +3539,7 @@ export class M_Light_Numpad {
         }, 100*this.animationSpeed*speed)
 
     }
-    mode_Matrix3(colors = [[255,255,0,1]], isRainbow = false,speed=1){
+    mode_Matrix3(colors = [[255,255,0,1]], isRainbow = false,BaseSpeed=100){
         clearInterval(this.repeater);
         this.currentBlockIndex=0;
         var RGBcolors=[];
@@ -3662,7 +3662,7 @@ export class M_Light_Numpad {
             // if(repeatCount>2){
             //     clearInterval(this.repeater);
             // }
-        }, 100*speed)
+        }, BaseSpeed*this.animationSpeed)
 
     }
     mode_Matrix2(colors = [[255,255,0,1]], isRainbow = false,speed=1){
@@ -4139,7 +4139,7 @@ export class M_Light_Numpad {
             }
         },35*this.animationSpeed)
     }
-    mode_PassWithoutTrace(colors=[[0,0,255,1]],index=20) {
+    mode_PassWithoutTrace(colors=[[0,0,255,1]],index=20,BaseSpeed=50) {
         clearInterval(this.repeater);
         //this.setAllBlockColor([0,0,0,1]);
         var nowStep=0;
@@ -4161,7 +4161,7 @@ export class M_Light_Numpad {
             }
             var target = this.AllBlockColor;
             target[index].color = temp_colorData;   
-        }, 50*this.animationSpeed)
+        }, BaseSpeed*this.animationSpeed)
     }
     
     mode_Shadow_disappear(colors=[[0,0,255,1]],index=20) {

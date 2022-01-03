@@ -617,116 +617,7 @@ export class NumpadKeyboardComponent implements OnInit {
     return '-webkit-linear-gradient(left ,#FDBA3B 0%,#FDBA3B ' + value + '%,#313131 ' + value + '%, #313131 100%)';
   }
 
-  /**
-   * process NowLightMode Event
-  */
-  setNowLightMode() {
-    var T_CS = this.M_Light_PRESETS;
-    var target = JSON.parse(JSON.stringify(this.Built_ineffect.Built_inSelected));
-    var inputColor = [target.colorPickerValue];
-    if (inputColor == undefined) {
-      console.log('%c setNowLightMode_undefined', 'color:rgb(255,77,255)', T_CS.lightData);
-      return;
-    }
-    this.M_Light_PRESETS.lightData = target;
-    T_CS.onSetModeRefresh();
-    switch (target.PointEffectName) {
-      case 'GloriousMode':
-        //T_CS.mode_ConicRipple(inputColor, true, this.M_Light_PRESETS.centerBlockPoint);\
-        T_CS.mode_Fake_ConicRipple(inputColor, true);
-        break;
-      case 'SpiralingWave':
-        T_CS.mode_Spiral(inputColor, target.Multicolor, 0);
-        break;
-      case 'AcidMode':
-        T_CS.mode_AcidMode(inputColor);
-        break;
-      case 'Breathing':
-        if (target.Multicolor) {
-          T_CS.mode_fixedColor(this.KeyBoardStyle.getTarget().fixedColor,true);
-      }
-        else {
-          T_CS.mode_CycleBreath(inputColor, false);
-        }
-        break;
-      case 'NormallyOn':
-        if (target.Multicolor) {
-          T_CS.mode_fixedColor(this.KeyBoardStyle.getTarget().fixedColor,false);
-         }
-        else {
-          T_CS.mode_NormallyOn(inputColor);
-        }
-        break;
-      case 'Matrix2':
-        T_CS.mode_Starlight(inputColor, target.Multicolor, 1);
-        //T_CS.mode_Matrix2(inputColor, target.Multicolorzzzzcz,0.5);
-        break;
-      case 'Matrix3':
-        T_CS.mode_Matrix3(inputColor, target.Multicolor, 1);
-        break;
-      case 'Rainbow':
-        T_CS.mode_Rainbow([], true, 80, 150);
-        break;
-      case 'HeartbeatSensor':
-        if (target.Multicolor) {
-          T_CS.mode_HeartbeatSensor([[255, 0, 0, 1], [0, 255, 0, 1], [0, 0, 255, 1]]);
-        }
-        else {
-          T_CS.mode_HeartbeatSensor(inputColor);
-        }
-        break;
-      case 'DigitTimes':
-        if (target.Multicolor) {
-          T_CS.mode_snowing_Special1([[255, 0, 0, 1], [0, 255, 0, 1], [0, 0, 255, 1]]);
-          //T_CS.mode_DigitTimes([[255, 0, 0, 1], [0, 255, 0, 1], [0, 0, 255, 1]]);
-        }
-        else {
-          T_CS.mode_snowing_Special1(inputColor);
-        }
-        break;
-      case 'Kamehemeha':
-        T_CS.mode_qigong_Special1_Step(inputColor, target.Multicolor)
-        break;
-      case 'Pingpong':
-        T_CS.mode_Pingpong(inputColor, target.Multicolor);
-        break;
-      case 'Surmount':
-        T_CS.mode_Surmount(inputColor, target.Multicolor, T_CS.centerBlockPoint);
-        break;
-      case 'LEDOFF':
-        T_CS.mode_LEDOFF();
-        break;
-      case 'Starlight':
-        T_CS.mode_Starlight(inputColor);
-        break;
-      case 'Snowing':
-        T_CS.mode_snowing_Special1(inputColor, target.Multicolor);
-        //T_CS.mode_Snowing(inputColor, target.Multicolor);
-        break;
-      case 'WaveSync':
-        T_CS.mode_WaveSync(inputColor, true, 20);
-        break;
-      case 'Wave1':
-        if (target.Multicolor) {
-          T_CS.mode_WaveSync(inputColor, true, 80, 150);
-        }
-        else {
-          T_CS.mode_WaveSync(inputColor, false, 100, 250);
-        }
-        break;
-      case 'Wave2':
-        if (target.Multicolor) {
-          T_CS.mode_WaveSync(inputColor, true, 80, 150);
-        }
-        else {
-          T_CS.mode_WaveSync(inputColor, false, 300, 100);
-        }
-        break;
 
-      default:
-        break;
-    }
-  }
   /**
    * process multicolor_Change Event
   */
@@ -1132,11 +1023,12 @@ setPassiveEffect(obj) {
       target_cs.mode_RippleGraff(inputColor, target.Multicolor, index);
       break;
     case 'PassWithoutTrace'://單點
+      let magnification=target_cs.animationSpeed*100*target_cs.animationSpeed;
       if (target.Multicolor) {
         var colors = [[255, 0, 0, 1], [0, 255, 0, 1], [0, 0, 255, 1]];
         inputColor = [colors[this.M_Light_PRESETS.getRandom(0, colors.length - 1)]];
       }
-      target_cs.mode_PassWithoutTrace(inputColor, index);
+      target_cs.mode_PassWithoutTrace(inputColor, index,magnification);
       break;
     case 'FastRunWithoutTrace'://一排
       //target_cs.mode_FastRunWithoutTrace(inputColor, target.Multicolor, index,this.KeyBoardStyle.getTarget().withoutTraceFakeCoordinates);
@@ -1153,6 +1045,123 @@ setPassiveEffect(obj) {
   }
 }
 
+  /**
+   * process NowLightMode Event
+  */
+ setNowLightMode() {
+  var T_CS = this.M_Light_PRESETS;
+  var target = JSON.parse(JSON.stringify(this.Built_ineffect.Built_inSelected));
+  var inputColor = [target.colorPickerValue];
+  if (inputColor == undefined) {
+    console.log('%c setNowLightMode_undefined', 'color:rgb(255,77,255)', T_CS.lightData);
+    return;
+  }
+  this.M_Light_PRESETS.lightData = target;
+  T_CS.onSetModeRefresh();
+  switch (target.PointEffectName) {
+    case 'GloriousMode':
+      //T_CS.mode_ConicRipple(inputColor, true, this.M_Light_PRESETS.centerBlockPoint);\
+      T_CS.mode_Fake_ConicRipple(inputColor, true);
+      break;
+    case 'SpiralingWave':
+      let magnification=T_CS.animationSpeed*100;
+      T_CS.mode_Spiral(inputColor, target.Multicolor, 0,magnification);
+      break;
+    case 'AcidMode':
+      T_CS.mode_AcidMode(inputColor);
+      break;
+    case 'Breathing':
+      if (target.Multicolor) {
+        T_CS.mode_fixedColor(this.KeyBoardStyle.getTarget().fixedColor,true);
+    }
+      else {
+        T_CS.mode_CycleBreath(inputColor, false);
+      }
+      break;
+    case 'NormallyOn':
+      if (target.Multicolor) {
+        T_CS.mode_fixedColor(this.KeyBoardStyle.getTarget().fixedColor,false);
+       }
+      else {
+        T_CS.mode_NormallyOn(inputColor);
+      }
+      break;
+    case 'Matrix2':
+      T_CS.mode_Starlight(inputColor, target.Multicolor, 1);
+      //T_CS.mode_Matrix2(inputColor, target.Multicolorzzzzcz,0.5);
+      break;
+    case 'Matrix3':
+      T_CS.mode_Matrix3(inputColor, target.Multicolor, T_CS.animationSpeed*100);
+      break;
+    case 'Rainbow':
+      T_CS.mode_Rainbow([], true, 80, 150);
+      break;
+    case 'HeartbeatSensor':
+      if (target.Multicolor) {
+        let magnification=T_CS.animationSpeed*60;
+        T_CS.mode_HeartbeatSensor([[255, 0, 0, 1], [0, 255, 0, 1], [0, 0, 255, 1]],magnification);
+      }
+      else {
+        let magnification=T_CS.animationSpeed*60;
+        T_CS.mode_HeartbeatSensor(inputColor,magnification);
+      }
+      break;
+    case 'DigitTimes':
+      if (target.Multicolor) {
+        T_CS.mode_snowing_Special1([[255, 0, 0, 1], [0, 255, 0, 1], [0, 0, 255, 1]]);
+        //T_CS.mode_DigitTimes([[255, 0, 0, 1], [0, 255, 0, 1], [0, 0, 255, 1]]);
+      }
+      else {
+        T_CS.mode_snowing_Special1(inputColor);
+      }
+      break;
+    case 'Kamehemeha':
+      T_CS.mode_qigong_Special1_Step(inputColor, target.Multicolor)
+      break;
+    case 'Pingpong':
+      T_CS.mode_Pingpong(inputColor, target.Multicolor);
+      break;
+    case 'Surmount':
+      T_CS.mode_Surmount(inputColor, target.Multicolor, T_CS.centerBlockPoint);
+      break;
+    case 'LEDOFF':
+      T_CS.mode_LEDOFF();
+      break;
+    case 'Starlight':
+      T_CS.mode_Starlight(inputColor);
+      break;
+    case 'Snowing':
+      T_CS.mode_snowing_Special1(inputColor, target.Multicolor);
+      //T_CS.mode_Snowing(inputColor, target.Multicolor);
+      break;
+    case 'WaveSync':
+      T_CS.mode_WaveSync(inputColor, true, 20);
+      break;
+    case 'Wave1':
+      if (target.Multicolor) {
+
+        T_CS.mode_WaveSync(inputColor, true, 80, 150);
+      }
+      else {
+        T_CS.mode_WaveSync(inputColor, false, 100, 250);
+      }
+      break;
+    case 'Wave2':
+ 
+      if (target.Multicolor) {
+        let magnification=T_CS.animationSpeed*150;
+        T_CS.mode_WaveSync(inputColor, true, 80, magnification);
+      }
+      else {
+        let magnification=T_CS.animationSpeed*200;
+        T_CS.mode_WaveSync(inputColor, false, 300, magnification);
+      }
+      break;
+
+    default:
+      break;
+  }
+}
 
 }
 

@@ -73,7 +73,17 @@ export class KeyBoardManager {
         //console.log('keyAssignPrompt', event.offsetX, event.offsetY);
 
     }
-
+    /**
+     * setALLDefaultKeyArray
+     * @param data array:KeyArray
+    */
+    setALLDefaultKeyArray(data) {
+        console.log('setALLDefaultKeyArray');
+        var KBMarr = this.KeyBoardArray
+        for (let index = 0; index < KBMarr.length; index++) {
+            KBMarr[index].setTargetDefaultKeyArray(data);
+        }
+    }
     clearAllKeyboardData(Name) {
         console.log("%c clearAllKeyboardData", "color:red", Name, this.maxKayCapNumber);
 
@@ -167,6 +177,18 @@ export class KeyBoard {
 
 
     }
+
+  /**
+     * setTargetDefaultKeyArray
+     * @param data array:KeyBoardDefaultArray
+    */
+   setTargetDefaultKeyArray(data) {
+    //console.log('setTargetDefaultKeyArray',AllFunctionMapping);
+    for (let index = 0; index < data.length; index++) {
+            this.getNowModeKeyMatrix()[index].recordBindCodeName = data[index];
+    }
+}
+
     getHibernateStepTime() {
         //console.log("getHibernateStepTime",this.hibernateTimeArr,this.hibernateTime);
         return this.hibernateTimeArr[this.hibernateTime];

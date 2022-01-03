@@ -15,8 +15,8 @@ import {ColorModule} from '../../Module/TSImportManager';
 @Component({
   selector: 'app-perixx',
   templateUrl: './perixx.component.html',
-  styleUrls: ['./perixx.component.css','./NavigationOption.css',
-  './LightingPage.scss','./MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss','./SoftwareSettingPage.scss',
+  styleUrls: ['./NavigationOption.css',
+  './LightingPage.scss','./MacroPage.scss','./KeyBoardPage.scss','./Home_Page.scss','./SoftwareSettingPage.scss','./perixx.component.scss',
   './CircleColorPicker.css',
 ]
 })
@@ -105,6 +105,9 @@ export class PerixxComponent implements OnInit {
     this.KeyBoardLibray = new KeyBoardManager(KeyBoardLength,3);
     this.Built_ineffect=new Built_ineffect(KeyBoardLength);
     this.M_Light_Perixx= new M_Light_CS(KeyBoardLength);
+    this.KeyBoardManager.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
+    this.KeyBoardLibray.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
+
     this.keyboardLeftClick(0);
   }
 
@@ -251,9 +254,6 @@ export class PerixxComponent implements OnInit {
     }
 
   }
-
-
-
   project_select(event,index){
     console.log("project_select: ", event, index);
     if (this.KeyBoardManager.keyboardOfChoice  != index) {

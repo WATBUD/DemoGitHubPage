@@ -3,6 +3,7 @@
     overflow: hidden;
     height: 720px;width: 1200px;
     user-select: none;
+    position: absolute;
 }
 
 .CenterAlignment{
@@ -18,7 +19,7 @@
     height: 94%;
     width: 2px;
     margin-top: 18%;
-    background-color: rgb(162 170 159);
+    background-color: rgb(162,170,159);
 }
 
 
@@ -41,7 +42,7 @@
 .KeyBoard_Block{
     display: flex;
     position: absolute;
-    width: 21px;
+    width: 22px;
     height: 22px;
     margin-left: 48px;
     margin-top: 11px;
@@ -54,7 +55,9 @@
 }
 
 .KeyBoardBindImg{
-    pointer-events: none;height: 18px;width: 18px;
+    pointer-events: none;
+    //height: 18px;
+    width: 18px;
 }
 
 

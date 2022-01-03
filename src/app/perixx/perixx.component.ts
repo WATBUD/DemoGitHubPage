@@ -185,7 +185,6 @@ export class PerixxComponent implements OnInit {
 
 
   setPageIndex(pageName = "") {
-
     if (this.currentPage !=pageName)
     this.currentPage = pageName;
     this.changeDetectorRef.detectChanges();
@@ -195,6 +194,7 @@ export class PerixxComponent implements OnInit {
 
         break;
       case "Keyboard_Nav":
+        
         setTimeout(() => {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
@@ -202,33 +202,32 @@ export class PerixxComponent implements OnInit {
         }, 50);
         break;
       case "Lighting_Nav":
+        this.HSLColorPickerFN[0]=((oEvent: MouseEvent) => {
+          //console.log('%c HSL_mousedown', 'background: black; color: white', oEvent);
+          this.theColorWheelISBeingClicked=true;
+          this.ColorWheelModule.setTheColorWheelValue(oEvent);
+       });
+       this.HSLColorPickerFN[1]=((oEvent: MouseEvent) => {
+          //console.log('%c mousemove', 'background: black; color: white', oEvent);
+          if(this.theColorWheelISBeingClicked){
+             this.ColorWheelModule.setTheColorWheelValue(oEvent);
+             this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
+          }
+       });
+       this.HSLColorPickerFN[2]=((oEvent: MouseEvent) => {
+          //console.log('%c HSL_mouseup', 'background: black; color: white', oEvent);
+          this.theColorWheelISBeingClicked=false;
+          this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
+       });
         setTimeout(() => {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
           this.KeyBoardManager.refreshKeyBoardTemp();
-          this.HSLColorPickerFN[0]=((oEvent: MouseEvent) => {
-            console.log('%c HSL_mousedown', 'background: black; color: white', oEvent);
-            this.theColorWheelISBeingClicked=true;
-            this.ColorWheelModule.setTheColorWheelValue(oEvent);
-         });
-         this.HSLColorPickerFN[1]=((oEvent: MouseEvent) => {
-            //console.log('%c mousemove', 'background: black; color: white', oEvent);
-            //this.theColorWheelISBeingClicked=true;
-            if(this.theColorWheelISBeingClicked){
-               this.ColorWheelModule.setTheColorWheelValue(oEvent);
-               
-            }
-      
-         });
-         this.HSLColorPickerFN[2]=((oEvent: MouseEvent) => {
-            console.log('%c HSL_mouseup', 'background: black; color: white', oEvent);
-            this.theColorWheelISBeingClicked=false;
-            this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
-
-         });
-
          var dataCCP = document.querySelector("[data-CCP]");
          if(dataCCP!=undefined){
+          dataCCP.removeEventListener("mousedown", this.HSLColorPickerFN[0]);
+          dataCCP.removeEventListener("mousemove", this.HSLColorPickerFN[1]);
+          dataCCP.removeEventListener("mouseup", this.HSLColorPickerFN[2]);
           dataCCP.addEventListener("mousedown", this.HSLColorPickerFN[0]);
           dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[1]);
           dataCCP.addEventListener("mouseup", this.HSLColorPickerFN[2]);
@@ -318,6 +317,8 @@ export class PerixxComponent implements OnInit {
 
 
 
+
+  //--------------------------------------------------Macro_Nav---------------------------------------------//
 
   clickMacroInTheAreaOfTheKeyboard(index,bool=false){
     //var target=this.KeyBoardManager.getTarget();
@@ -495,7 +496,11 @@ renameMacroFile(event) {
   this.MacroManager.updeteMacroFileName(regex);
   //this.setDBDataToServer('MacroManager');
 }
-//----------------Keyboard_Nav--------------//
+
+
+
+
+//--------------------------------------------------Keyboard_Nav---------------------------------------------//
 
 keyboardRMenu(FNname="") {
   this.operationMenuFlag=false;
@@ -574,6 +579,12 @@ keyboardRightClick(i,Event){
   //Event.clientY + "px";
   console.log('%c keyboardRightClick','color:rgb(255,77,255)',  Event);
 }
+
+
+
+
+
+
 
 
 

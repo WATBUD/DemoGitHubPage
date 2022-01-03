@@ -34,7 +34,7 @@
       </div>
    </div>
 </div>
-<div data-CCP="5" style="margin-left: 500px;">
+<div data-CCPTest="5" style="margin-left: 500px;">
    <div id="coordinateCircle" style="margin-left: calc(50% - 5px);margin-top: calc(50% - 5px);">
    </div>
 </div>
@@ -56,10 +56,10 @@
       margin-top: 14%;
       display: flex;
       flex-wrap: wrap;">
-      <div *ngFor="let item of DefaultColorList;let i = index" class="DefaultColorItem"
-         (click)="updateColorWheel($event)" id="colorBase{{i}}"
-         [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
-      </div>
+     <div *ngFor="let item of DefaultColorList;let i = index" class="DefaultColorItem"
+        (click)="updateColorWheel($event)" id="colorBase{{i}}"
+        [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
+     </div>
 
 
    </div>
@@ -72,10 +72,10 @@
       margin-top: 35%;
       display: flex;
       flex-wrap: wrap;">
-      <div *ngFor="let item of CustomColorList;let i = index" class="DefaultColorItem"
-         (click)="updateColorWheel($event)" id="colorBase{{i}}"
-         [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
-      </div>
+     <div *ngFor="let item of CustomColorList;let i = index" class="DefaultColorItem"
+     (click)="updateColorWheel($event)" (contextmenu)="updateCustomColorList(i)" id="colorBase{{i}}"
+     [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
+  </div>
 
    </div>
 

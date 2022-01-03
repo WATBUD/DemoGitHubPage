@@ -24,7 +24,6 @@ export class ColorModule {
     disX = 0;
     disY = 0;
     gradientBGcolor: any = "#FFFFFF";
-    theColorWheelISBeingClicked
     //-webkit-linear-gradient(left,#FFFFFF,rgb(255,255,255)";
     constructor(inputname = "") {
         this.SetHex("#66CC33");
@@ -58,29 +57,32 @@ export class ColorModule {
     }
 
     setTheColorWheelValue(event) {
-        var dataCCP = document.querySelector("[data-CCP]") as HTMLElement;
+        var dataCCP = event.target; 
+        if(dataCCP==undefined){
+            return;
+        }
+        //document.querySelector("[data-CCP]") as HTMLElement;
         var coordinateCircle = document.getElementById("coordinateCircle");
         var cooordinate = [event.offsetX - 5, event.offsetY - 5];
         coordinateCircle.style.marginLeft = cooordinate[0] + 'px';
         coordinateCircle.style.marginTop = cooordinate[1] + 'px';
+        var logVar={
+        }
         //centrePoint
         //radius=Saturation,angle=Hue, 
         var centrePoint = [dataCCP.offsetWidth / 2, dataCCP.offsetHeight / 2];
-        console.log('%c centrePoint', 'background: white; color: red', centrePoint);
-
+        logVar['centrePoint']=centrePoint;
         var center = ""
         var angle = this.PointRotation(centrePoint, cooordinate);//Hue
         var distance = this.findTheDistanceBetweenTwoPoints(centrePoint, cooordinate) ;//Saturation
-
         var distance100percent = Math.round(distance)/(dataCCP.offsetWidth/2)*100 ;//Saturation
 
         if (angle < 0) {
             angle += 360;
         }
-        console.log('%c angle', 'background: white; color: red', angle);
-        console.log('%c distance', 'background: white; color: red', distance);
-        console.log('%c distance100percent', 'background: white; color: red', distance100percent);
-
+        logVar['angle']=angle;
+        logVar['distance']=distance;
+        logVar['distance100percent']=distance100percent;
         this.Hue = Math.round(angle);
         this.Saturation = distance100percent;
         this.Lightness = 50;
@@ -91,15 +93,15 @@ export class ColorModule {
         //y1 = y + radius * sin(angle * π / 180)
         //this.HSL_RGB_HexSet();
         //this.hslToRGB(angle,distance,50)
-        console.log('%c this.getRGB()', 'background: white; color: red', this.getRGB());
-        //console.log('%c angle', 'background: white; color: red', angle, distance);
+        logVar['getRGB']=this.getRGB();
+        //console.log('%c setTheColorWheelValue', 'background: white; color: red', logVar,event);
     }
     callBackColorWheelValue() {
         var dataCCP = document.querySelector("[data-CCP]") as HTMLElement;
         if (dataCCP != undefined) {
 
 
-            console.log('%c callBackColorWheelValue', 'background: black; color: white', dataCCP);
+            console.log('%c callBackColorWheelValue', 'background: black; color: white', dataCCP,event);
             //centrePoint
             //radius=Saturation,angle=Hue, 
             var centrePoint = [dataCCP.offsetWidth / 2, dataCCP.offsetHeight / 2];
@@ -343,7 +345,7 @@ export class ColorModule {
 
     hsv_Rgb_hexSet() {
         var RGBResult = this.HSVtoRGB(this.Hue / 360, this.Saturation / 100, this.Value / 100);
-        console.log('hsv_Rgb_hexSet', RGBResult, this.Hue, this.Saturation);
+        //console.log('hsv_Rgb_hexSet', RGBResult, this.Hue, this.Saturation);
         this.Hex = this.rgbToHex(RGBResult[0], RGBResult[1], RGBResult[2]);
         this.RGBA_value[0] = RGBResult[0];
         this.RGBA_value[1] = RGBResult[1];
@@ -616,7 +618,7 @@ export class ColorModule {
 
         let result = [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
         //this.customlog("HSVtoRGBResult",result,'Input:h',s1,'s',s2,'v',s3);
-        console.log("HSVtoRGBResult", result, 'Input:h', s1, 's', s2, 'v', s3);
+        //console.log("HSVtoRGBResult", result, 'Input:h', s1, 's', s2, 'v', s3);
         return result;
         // return {
         //     r: Math.round(r * 255),

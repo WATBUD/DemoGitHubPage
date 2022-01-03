@@ -235,8 +235,19 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Enable 
               </div>
             </section>
-            <section class="ParallelTextString">
-              <input  id="rangeUI" [(ngModel)]='SettingManager.autoSleepValue'  type="range" max="100" min="0" value="0">
+            <section style="    flex-direction: column;
+            height: 24px;
+            margin-top: 33px;" class="ParallelTextString">
+                  <input  id="rangeUI" max="60" min="0" style="width: 272px;" type="range"  
+                  [(ngModel)]='SettingManager.autoSleepValue' (ngModelChange)="StartupChange()">
+                  <div [style.marginLeft.px]="SettingManager.autoSleepValue*272/60-20" style="text-align: center;
+                  width: 7%;
+                  margin-top: 15px;
+                  color: rgb(18, 64, 162);
+                  margin-left: 252px;
+                      white-space: nowrap;
+                  color: rgb(18,64,162);">{{SettingManager.autoSleepValue}} mins</div>
+                        
             </section>
           </div>
           <div id="Bluetooth" class="ParallelLines" >
@@ -478,7 +489,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
     </div>
-    <div *ngIf="Built_ineffect.Built_inSelected.hasSingleKeyLighting" class="RightPanal" style="position: absolute;
+    <div [style.display]="Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" class="RightPanal" style="position: absolute;
         height: 100%;
         width: 26.8%;
         right: 0px;">

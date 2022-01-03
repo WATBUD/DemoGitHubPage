@@ -120,7 +120,7 @@ export class KeyBoardStyle {
                 "width: 45px;margin-left: 526px;margin-top: 128px;transform: rotate(0deg);",
                 "margin-left: 573px;margin-top: 128px;transform: rotate(0deg);",
             ],
-            quicklySelectTheBlockList: [
+            quicklySelectTheBlockList: [ 
                 { "name": "All Keys", "groupIndex": [1, 2, 3], 'currentStateOfTheSwitch': false },
                 { "name": "Block 3", "groupIndex": [35,36,37,38,56,57,58,59,73,74,75,89,90,91,92,106,107], 'currentStateOfTheSwitch': false },
                 { "name": "Block 2", "groupIndex": [15,16,17,32,33,34,53,54,55,88,103,104,105], 'currentStateOfTheSwitch': false },

@@ -72,7 +72,7 @@ export class ColorPickerDemo1Component implements OnInit {
 
 
    //this.setTheColorWheelValue.bind(this);
-   var dataCCP = document.querySelector("[data-CCP]");
+   var dataCCP = document.querySelector("[data-CCPTest]");
    dataCCP.addEventListener("mousedown", this.HSLColorPickerFN[0]);
    dataCCP.addEventListener("mousemove", this.HSLColorPickerFN[1]);
    dataCCP.addEventListener("mouseup", this.HSLColorPickerFN[2]);
@@ -87,7 +87,15 @@ export class ColorPickerDemo1Component implements OnInit {
       console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
    }
 
-
+   updateCustomColorList(index){
+      console.log('%c updateCustomColorList', 'background: black; color: white', event);
+      this.CustomColorList[index]=this.ColorWheelModule.getRGB();
+      // let backgroundColor = event.target.style.backgroundColor;
+      // this.ColorWheelModule.onclickColorDefault(event.target,0);
+      // this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+      //console.log('%c backgroundColor', 'background: black; color: white', backgroundColor)
+  
+    }
 
 
 

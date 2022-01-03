@@ -91,6 +91,8 @@ export class NumpadKeyboardComponent implements OnInit {
     this.M_Light_PRESETS = new M_Light_Numpad(T_length);
     this.M_Light_PERKEY = new M_Light_Numpad(T_length)
     this.KeyBoardManager = new KeyBoardManager(T_length);
+    this.M_Light_Keybinding = new M_Light_Numpad(T_length);
+
     var deviceObj = {
       SN: "0x320F0x504B",
       devicename: "GMMK NUMPAD"
@@ -226,6 +228,41 @@ export class NumpadKeyboardComponent implements OnInit {
       })
     }
   }
+
+  /**
+   * Reset to Default
+   */
+  ResetToDefault() {
+    if (this.lightingflag) {
+      if (this.lightingPage == 'PRESETS') {
+        this.M_Light_PRESETS.resetDefault(new GloriousMode());
+        this.Built_ineffect.resetAllData();
+        this.Built_ineffect.Built_inSelected = new GloriousMode();
+        this.KeyBoardManager.getTarget().light_PRESETS_Data = JSON.parse(JSON.stringify(this.Built_ineffect.Built_inSelected));
+      }
+      if (this.lightingPage == 'PERKEY') {
+        this.PerKeyArea = '';
+        this.M_Light_PERKEY.settingPerkeyName = '';
+        this.M_Light_PERKEY.resetDefault(this.default_LightData());
+        this.PERKEY_lightData = this.default_LightData();
+        this.LayoutManager.updateContentToDB(this.M_Light_PERKEY.AllBlockColor, this.PERKEY_lightData);
+      }
+      this.setRGBcolor();//by ResetToDefault
+    }
+    else if (this.keybindingflag) {
+      this.KeyBoardManager.getTarget().reset_AllKey();
+      this.M_Light_Keybinding.setAllBlockColor([255, 0, 0, 0]);
+    }
+    else if (this.performanceflag) {
+      this.pollingrateSelect = this.PollingRateData[3]
+      this.KeyBoardManager.getTarget().pollingrate = this.pollingrateSelect.value;
+      this.inputLatencySelect = this.inputLatencyData[2];
+      this.KeyBoardManager.getTarget().inputLatency = this.inputLatencySelect.value;
+    }
+    //this.setKeyMatrixToBackend();
+  }
+
+
   /**
  * process LightingGroup Event
 */
@@ -570,7 +607,6 @@ export class NumpadKeyboardComponent implements OnInit {
     }
     
     this.M_Light_Keybinding.setGroupArrayColor(obj);
-
 }
 
   /**

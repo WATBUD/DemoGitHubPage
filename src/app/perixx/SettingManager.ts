@@ -6,7 +6,7 @@ export class SettingManager {
     brightness=100;
     macroEnable=true;
     autoSleepEnable=true;
-    autoSleepValue=100;
+    autoSleepValue=60;
     constructor(inputmax=1,quantity=0) {
 
     }

@@ -10,10 +10,7 @@ import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
 import { Built_ineffect } from './Built_ineffect';
-import {
-  ColorModule
-} from '../../Module/TSImportManager';
-import { ColorOutput } from '../ngcolor/color-output';
+import {ColorModule} from '../../Module/TSImportManager';
 
 @Component({
   selector: 'app-perixx',
@@ -255,15 +252,7 @@ export class PerixxComponent implements OnInit {
 
   }
 
-  /**
-   * move color picker
-   * @param result
-   */
-  colorPickerChange(result: ColorOutput) {
-    console.log('colorPickerChange');
-    var RGB_Arr = [result.rgb.red, result.rgb.green, result.rgb.blue, 1];
 
-  }
 
   project_select(event,index){
     console.log("project_select: ", event, index);

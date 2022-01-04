@@ -100,7 +100,7 @@ export class PerixxComponent implements OnInit {
     this.setPageIndex('Lighting_Nav');
     //var ssss="/upload/prime/version.json";//Remove the primary domain Set the primary domain from the proxy.conf file
     //var ssss="?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
-    var ssss="http://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
+    var ssss="https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
     //var ssss="https://app.fusebox.fm/api/players/track/32XDRaOgO0/44/";
     this.httpService.noOptionToGetURL(ssss).subscribe((res:any)=>{
       console.log('%c noOptionToGetURL', 'color:rgb(255,75,255,1)', res)

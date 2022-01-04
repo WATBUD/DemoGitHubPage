@@ -388,12 +388,17 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     margin-top: 14%;">
         Lighting
       </div>
-
+      <!-- [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'" -->
       <div *ngFor="let item of Built_ineffect.lightListData ;let i = index" class="Lighting_OptionItem"
-        [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'"
         [style.marginTop.px]="item.PointEffectName=='Breathing Per Key'?'15':'0'"
-        (click)="Built_ineffect.switchBuilt_ineffect(i)">
-        {{item.translate}}
+        (click)="Built_ineffect.switchBuilt_ineffect(i)"
+        [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'"
+        (contextmenu)="lighting_RClick(i,$event)">
+        <input type="text" class="lightingNameField" 
+        (keyup)="lightingRename($event,i);" 
+        (blur)="lightingRename($event,i);"
+        data-identity="lightingNameField"
+        [value]="item.translate"  [disabled]="Built_ineffect.editingNumber==i? false : true">
       </div>
       <div id="Built_ineffectLines" style="position: absolute;
             width: 85%;
@@ -402,7 +407,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             top: 264px;
             margin-left: 5%;">
       </div>
-
+      <div id="Built_ineffectRMenu"   [style.display]="operationMenuFlag?'block': 'none'"
+      class="CenterAlignment" data-identity="operationList">
+        <div id="m_Rename" (click)="lighting_MenuFn('m_Rename');"(contextmenu)="lighting_MenuFn('m_Rename');">
+          {{this.i18nManager.getTarget('Rename')}}
+        </div>
+        <div id="m_Delete" 
+          (click)="lighting_MenuFn('m_Reset');"(contextmenu)="lighting_MenuFn('m_Reset');">
+          {{this.i18nManager.getTarget('Reset')}}
+        </div>
+      </div>
 
 
 

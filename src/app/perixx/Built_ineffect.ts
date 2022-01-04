@@ -166,6 +166,7 @@ class StarrySky extends ModeParameter{
 
 export class Built_ineffect {
     maxkaycapNumber=0;
+    editingName=false;
     lightListData = [
         new Red(),
         new Yellow(),
@@ -185,10 +186,11 @@ export class Built_ineffect {
     Built_inSelected=new Red();
     choosingList=[];
     currentModeIndex=-1;
-    
+    editingNumber=-5;
     constructor(inputMax) {
         console.log("Built_ineffect","color:red",this.lightListData);
         this.maxkaycapNumber = inputMax;
+        this.lightListData = this.defaultLightListData();
         for (var i_ListD = 0; i_ListD < this.lightListData.length; i_ListD++) {
             var target=this.lightListData[i_ListD];
             for (var i_ListD2 = 0; i_ListD2 < inputMax; i_ListD2++) {
@@ -207,7 +209,19 @@ export class Built_ineffect {
         return this.lightListData[this.currentModeIndex];
         //return this.lightListData[0];
     }
+    resetTarget() {
+        var target = this.getTarget();
+        for (var i_ListD2 = 0; i_ListD2 < target.AllBlockColor.length; i_ListD2++) {
+            target.AllBlockColor[i_ListD2].color=target.colorPickerValue;
+            target.BreathTempArray[i_ListD2].color=target.colorPickerValue;
+        }
+
+    }
     switchBuilt_ineffect(index){
+        if(index==this.currentModeIndex){
+            return;
+        }
+        this.editingNumber=-5;
         this.currentModeIndex=index;
         for (var i_ListD = 0; i_ListD < this.Built_inSelected.AllBlockColor.length; i_ListD++) {
             this.getTarget().AllBlockColor[i_ListD].choosing=this.Built_inSelected.AllBlockColor[i_ListD].choosing;
@@ -228,7 +242,11 @@ export class Built_ineffect {
         this.Built_inSelected.colors[this.Built_inSelected.colorCardSelectionLocation]=colorRGBA;
     }
     resetAllData(){
-        this.lightListData = [
+        this.lightListData = this.defaultLightListData();
+        this.setModeIndex(null,0);
+    }
+    defaultLightListData() {
+        return [
             new Red(),
             new Yellow(),
             new Green(),
@@ -244,7 +262,6 @@ export class Built_ineffect {
             new Firework(),
             new StarrySky(),
         ];
-        this.setModeIndex(null,0);
     }
     setGroupArrayColor(assignColor){  
         var target=this.Built_inSelected.AllBlockColor;

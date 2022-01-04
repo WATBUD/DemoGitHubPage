@@ -22,7 +22,6 @@ import { HttpService } from '../../Module/HttpService';
 ]
 })
 export class PerixxComponent implements OnInit {
-  CRUDCheck = false;
   currentPage = "";
   macroContentInEdit=false;
   softwareSettingCurrentPage="About"//About/Update/Help
@@ -80,13 +79,21 @@ export class PerixxComponent implements OnInit {
 
   ngAfterViewInit(){
     document.addEventListener('click', (e:any)=>{
+       var identity=e.target.dataset.identity
        //console.log('%c document_e.target','color:rgb(255,77,255)',  e.target);
-        if (e.target.dataset.identity==undefined) {
-            this.CRUDCheck = false;
+
+        if (identity==undefined) {
             this.operationMenuFlag=false;
             this.startTimeEditing=false;
-            //this.macroOnEdit= false;
         }
+        else{
+          console.log('%c document_e.target','color:rgb(255,77,255)',  identity);
+        }
+        if(identity=="lightingNameField"){
+          this.operationMenuFlag=false;
+          //this.Built_ineffect.editingNumber = -5;
+        }
+
     });
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
@@ -264,7 +271,6 @@ export class PerixxComponent implements OnInit {
     }
   }
   downloadExportData() {
-    this.CRUDCheck = !this.CRUDCheck;
     var defaultName = "";
     //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
 
@@ -306,9 +312,85 @@ export class PerixxComponent implements OnInit {
     }
   }
 
+  //--------------------------------------------------Lighting_Nav---------------------------------------------//
+
+    lighting_RClick(i, Event) {
+    if(this.Built_ineffect.editingNumber==i){
+       return;
+    }
+    this.Built_ineffect.switchBuilt_ineffect(i);
+    this.operationMenuFlag = true;
+    var Built_ineffectRMenu = document.getElementById("Built_ineffectRMenu") as HTMLDivElement;
+    Built_ineffectRMenu.style.left = Event.layerX + "px";
+    //Event.clientX  + "px";
+    Built_ineffectRMenu.style.top = Event.layerY + "px";
+    //Event.clientY + "px";
+    console.log('%c lighting_RClick', 'color:rgb(255,77,255)', Event);
+    }
+    lighting_MenuFn(FNname = "") {
+    this.operationMenuFlag = false;
+    console.log('%c lighting_MenuFn', 'color:rgb(255,77,255)', this.operationMenuFlag);
+    switch (FNname) {
+      case "m_Rename":
+        // this.KeyBoardLibray.updatenameBeingEdited();
+        // if(this.Built_ineffect.editingNumber!=this.Built_ineffect.currentModeIndex){
+        //   this.Built_ineffect.editingNumber=this.Built_ineffect.currentModeIndex;
+        // }
+        // else{
+        // }
+        this.Built_ineffect.editingNumber=this.Built_ineffect.currentModeIndex;
+
+        this.changeDetectorRef.detectChanges();
+        var m_list = document.querySelectorAll<HTMLElement>('.lightingNameField');
+        var target = m_list[this.Built_ineffect.currentModeIndex];
+        console.log('%c m_list.target', 'color:rgb(255,77,255)', m_list, target);
+
+        if (target != undefined) {
+          console.log('%c focus', 'color:rgb(255,77,255)', 'focus');
+          target.focus();
+        }
+        break;
+      case "m_Reset":
+        this.Built_ineffect.resetTarget();
+        break;
+      default:
+        alert("lighting_MenuFn_Error");
+        return;
+    }
 
 
 
+
+    }
+    lightingRename(event, index) {
+    var validator = new RegExp(/^[0-9]*$/);
+    //var validator = new RegExp(/^[0]+[0-9]*$/,"");
+    event.target.value = event.target.value.replace(/^[0]+[0-9]*$/gi, "");
+    var startTimeStr = event.target.value;
+    //var startTimeNum = parseInt(event.target.value);
+    var runner = validator.test(startTimeStr);
+    console.log('%c runner', 'color:rgb(255,77,255)', startTimeStr, runner);
+    // if (event.type == 'keyup') {
+
+    // }
+    // else if(event.type=='blur'){
+    // if (!runner || startTimeNum < 0 || startTimeStr == "") {
+    //   //event.preventDefault();
+    //   startTimeNum = 0;
+    // }
+    // if (startTimeNum > 65536) {
+    //   //event.preventDefault();
+    //   startTimeNum = 65536;
+    // }
+    console.log('%c startTimeTemp', 'color:rgb(255,77,255)', startTimeStr);
+    //event.target.value = startTimeStr;
+    this.Built_ineffect.getTarget().PointEffectName= startTimeStr;
+    //this.changeDetectorRef.detectChanges();
+    //}
+    console.log("lightingRename", event, runner);
+
+    //this.setDBDataToServer('lightingRename');
+    }
   //--------------------------------------------------Macro_Nav---------------------------------------------//
 
   clickMacroInTheAreaOfTheKeyboard(index,bool=false){
@@ -417,7 +499,6 @@ export class PerixxComponent implements OnInit {
 
 
   macroOperationOption(FNname="") {
-    //this.CRUDCheck=!this.CRUDCheck;
     this.operationMenuFlag=false;
     //var typeName="";
     console.log('%c macroOperationOption','color:rgb(255,77,255)',this.operationMenuFlag);

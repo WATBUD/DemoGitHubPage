@@ -106,6 +106,7 @@ class StaticMulti extends ModeParameter{
         super();
         this.translate='Static Multi';
         this.PointEffectName='Static Multi';
+        this.colorPickerValue=[0,0,0,1];
         this.rate_Enable=false;
     }
 };
@@ -114,7 +115,8 @@ class Breathing extends ModeParameter{
         super();
         this.translate='Breathing';
         this.PointEffectName='Breathing';
-        this.hasSingleKeyLighting=false;
+        this.colorPickerValue=[0,0,0,1];
+        this.hasSingleKeyLighting=true;
     }
 };
 
@@ -164,7 +166,7 @@ class StarrySky extends ModeParameter{
 
 export class Built_ineffect {
     maxkaycapNumber=0;
-    ListData = [
+    lightListData = [
         new Red(),
         new Yellow(),
         new Green(),
@@ -185,25 +187,25 @@ export class Built_ineffect {
     currentModeIndex=-1;
     
     constructor(inputMax) {
-        console.log("Built_ineffect","color:red",this.ListData);
+        console.log("Built_ineffect","color:red",this.lightListData);
         this.maxkaycapNumber = inputMax;
-        for (var i_ListD = 0; i_ListD < this.ListData.length; i_ListD++) {
-            var target=this.ListData[i_ListD];
+        for (var i_ListD = 0; i_ListD < this.lightListData.length; i_ListD++) {
+            var target=this.lightListData[i_ListD];
             for (var i_ListD2 = 0; i_ListD2 < inputMax; i_ListD2++) {
             target.AllBlockColor.push({ clearStatus:false,color: target.colorPickerValue,breathing:false,choosing: false,coordinateData:[]})
             target.BreathTempArray.push({ color: target.colorPickerValue})
             }
         }
-        this.Built_inSelected=JSON.parse(JSON.stringify(this.ListData[0]));
+        this.Built_inSelected=JSON.parse(JSON.stringify(this.lightListData[0]));
         
     }
     getTarget() {
-        if(this.ListData[this.currentModeIndex]===undefined){
+        if(this.lightListData[this.currentModeIndex]===undefined){
         console.log("getTarget fail", this.currentModeIndex);
         return;
         }
-        return this.ListData[this.currentModeIndex];
-        //return this.ListData[0];
+        return this.lightListData[this.currentModeIndex];
+        //return this.lightListData[0];
     }
     switchBuilt_ineffect(index){
         this.currentModeIndex=index;
@@ -226,7 +228,7 @@ export class Built_ineffect {
         this.Built_inSelected.colors[this.Built_inSelected.colorCardSelectionLocation]=colorRGBA;
     }
     resetAllData(){
-        this.ListData = [
+        this.lightListData = [
             new Red(),
             new Yellow(),
             new Green(),

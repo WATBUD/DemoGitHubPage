@@ -34,6 +34,11 @@ export class HttpService {
         //return this.http.get(URL);
     }
 
+    noOptionToGetURL(URL) {
+        var NoOptionToGetURL=this.http.get(URL);
+        console.log('%c NoOptionToGetURL', 'color:rgb(255,75,255,1)', NoOptionToGetURL);
+        return NoOptionToGetURL;  
+    }
     getData(URL) { 
         this.http.get(URL).subscribe(x=> console.log(x)) ;
     }

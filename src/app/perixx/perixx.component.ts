@@ -26,9 +26,7 @@ export class PerixxComponent implements OnInit {
   currentPage = "";
   macroContentInEdit=false;
   softwareSettingCurrentPage="About"//About/Update/Help
-
   verticalAnimationLineValue="28";
-
   ImgPath=ImgPathList.getInstance();
   i18nManager=i18nManager.getInstance();
   macroOnEdit=false;
@@ -45,11 +43,6 @@ export class PerixxComponent implements OnInit {
   BoxSelectionArea=new BoxSelectionArea("KeyBoard_Block");
   EM=new EventManager();
   ColorWheelModule=new ColorModule("Circle_Animation");
-
-  //quicklySelectTheBlockFunctionOntheLightingEffectPage
-
-
-
   theColorWheelISBeingClicked=false;
   currentTouchButtons="";
   settingsOption=[
@@ -98,9 +91,12 @@ export class PerixxComponent implements OnInit {
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
     this.setPageIndex('Lighting_Nav');
-    var ssss="https://whatismyipaddress.com/ds3?token=4e597c7f0683735321f498c9091ba2b1&v=6";
-    this.httpService.getURL(ssss).subscribe(x=> {
-      console.log('%c zzzzzzzzzzz', 'color:rgb(255,75,255,1)', x)
+    //var ssss="/upload/prime/version.json";//Remove the primary domain Set the primary domain from the proxy.conf file
+    //var ssss="?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
+    var ssss="http://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
+    //var ssss="https://app.fusebox.fm/api/players/track/32XDRaOgO0/44/";
+    this.httpService.noOptionToGetURL(ssss).subscribe((res:any)=>{
+      console.log('%c noOptionToGetURL', 'color:rgb(255,75,255,1)', res)
 
     }) ;
   }
@@ -281,7 +277,7 @@ export class PerixxComponent implements OnInit {
         exoprtData=this.MacroManager.getExoprtData();
         break
       case "Lighting_Nav":
-        //exoprtData=this.Built_ineffect.ListData;
+        //exoprtData=this.Built_ineffect.lightListData;
         var testIndexList=[];
         var target=this.Built_ineffect.Built_inSelected.AllBlockColor;
         for (let index = 0; index < target.length; index++) {

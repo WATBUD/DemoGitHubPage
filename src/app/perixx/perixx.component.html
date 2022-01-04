@@ -389,20 +389,18 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Lighting
       </div>
 
-      <div *ngFor="let item of Built_ineffect.ListData ;let i = index"
-      class="Lighting_OptionItem"
-      [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'"
-      [style.marginTop.px]="item.translate=='Breathing'?'15':'0'"
-      (click)="Built_ineffect.switchBuilt_ineffect(i)"
-      >
-      {{i18nManager.getTarget(item.translate)}}
+      <div *ngFor="let item of Built_ineffect.lightListData ;let i = index" class="Lighting_OptionItem"
+        [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'"
+        [style.marginTop.px]="item.PointEffectName=='Breathing Per Key'?'15':'0'"
+        (click)="Built_ineffect.switchBuilt_ineffect(i)">
+        {{item.translate}}
       </div>
       <div id="Built_ineffectLines" style="position: absolute;
-      width: 85%;
-      height: 1px;
-      background: rgb(29 52 96);
-      top: 237px;
-      margin-left: 5%;" >
+            width: 85%;
+            height: 1px;
+            background: rgb(29 52 96);
+            top: 264px;
+            margin-left: 5%;">
       </div>
 
 

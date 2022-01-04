@@ -61,7 +61,6 @@ export class HTTPRequestComponent implements OnInit {
           'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
           'Access-Control-Allow-Headers': 'Access-Control-Allow-Origin, Content-Type, Accept, Accept-Language, Origin, User-Agent',
           "Access-Control-Max-Age": "86400",
-          
       })
   };
 

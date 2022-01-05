@@ -15,9 +15,9 @@ export class KeyBoardManager {
     constructor(inputmax=1,quantity=0) {
         this.maxKayCapNumber = inputmax;
         for (let index = 0; index < quantity; index++) {
-            this.KeyBoardArray.push(new KeyBoard("硬體配置" + index, inputmax));
+            this.KeyBoardArray.push(new KeyBoard("Template_" + index, inputmax));
         }
-        this.keyBoardTemp=new KeyBoard("Template", inputmax);
+        this.keyBoardTemp=new KeyBoard("Template_", inputmax);
     }
     hasKeyBoard() {
         if (this.KeyBoardArray.length > 0) {
@@ -37,6 +37,9 @@ export class KeyBoardManager {
     create_KeyBoard(name = "Template") {
         var index = "_"+this.KeyBoardArray.length;
         this.KeyBoardArray.push(new KeyBoard(name + index, this.maxKayCapNumber));
+    }
+    getTheLastObject(){
+        return this.KeyBoardArray[this.KeyBoardArray.length-1];
     }
     copyFolderFile(){
         if (this.hasKeyBoard()) {
@@ -151,7 +154,10 @@ export class KeyBoard {
     defaultName = "";
     projectName="";
     projectCode="";
-    lightData
+    layoutMode="Default";
+    lightData={
+        brightness:100
+    }
     recordAssignBtnIndex: any = 0;
     assignText: any = "設定按鍵:Y";
     maxKayCapNumber;
@@ -178,16 +184,17 @@ export class KeyBoard {
 
     }
 
-  /**
-     * setTargetDefaultKeyArray
-     * @param data array:KeyBoardDefaultArray
-    */
-   setTargetDefaultKeyArray(data) {
-    //console.log('setTargetDefaultKeyArray',AllFunctionMapping);
-    for (let index = 0; index < data.length; index++) {
+    /**
+       * setTargetDefaultKeyArray
+       * @param data array:KeyBoardDefaultArray
+      */
+    setTargetDefaultKeyArray(data) {
+        //console.log('setTargetDefaultKeyArray',AllFunctionMapping);
+        for (let index = 0; index < data.length; index++) {
+            this.getNowModeKeyMatrix()[index].defaultValue = data[index];
             this.getNowModeKeyMatrix()[index].recordBindCodeName = data[index];
+        }
     }
-}
 
     getHibernateStepTime() {
         //console.log("getHibernateStepTime",this.hibernateTimeArr,this.hibernateTime);
@@ -196,22 +203,6 @@ export class KeyBoard {
     updeteProjectName(newName=""){
       this.projectName=newName;
     }
-    clearAllKMacro() {
-        for (let index = 0; index < this.assignedKeyboardKeys.length; index++) {
-
-            for (let index2 = 0; index2 < this.maxKayCapNumber; index2++) {
-
-                var target = this.assignedKeyboardKeys[index];
-                if (target[index2].keyAssignType[2] == "KMacro") {
-                    target[index2].keyAssignType[2] = this.defaultName;
-                    target[index2].value = this.defaultName;
-                    target[index2].macroOptionNumber = 65536;
-                    target[index2].macroCode = 0;
-                }
-            }
-        }
-    }
-
 
     ImportClassData(inputData) {
         var InputData=JSON.parse(JSON.stringify(inputData));

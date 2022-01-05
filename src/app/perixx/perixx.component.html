@@ -47,8 +47,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   <div *ngIf="this.currentPage!='ConnectedPage'" id="Nav_Project">
     <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
       (click)="project_select($event,i)"
-      [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
-      [ngStyle]="{'border':KeyBoardManager.keyboardOfChoice ==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}">
+      [style.color]="keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
+      [ngStyle]="{'border':keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}">
       M{{i+1}}
     </div>
   </div>
@@ -152,8 +152,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </section>
             <section class="ParallelTextString">
               <input type="radio" name="Layout"
-              (change)="StartupChange();"
-              [(ngModel)]="SettingManager.layoutMode"
+              (change)="settingLayoutChoice();"
+              [(ngModel)]="KeyBoardManager.getTarget().layoutMode"
               [value]="'Default'">
               <div style="position: absolute;
               right: 73%;
@@ -163,8 +163,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </section>
             <section class="ParallelTextString">
               <input type="radio" name="Layout"
-              (change)="StartupChange();"
-              [(ngModel)]="SettingManager.layoutMode"
+              (change)="settingLayoutChoice();"
+              [(ngModel)]="KeyBoardManager.getTarget().layoutMode"
               [value]="'Custom'">
 
 
@@ -193,13 +193,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           height: 24px;
           margin-top: 33px;" class="ParallelTextString">
                 <input  id="rangeUI" max="100" min="0" style="width: 272px;" type="range"  
-                [(ngModel)]="SettingManager.brightness">
-                <div [style.marginLeft.px]="SettingManager.brightness*272/100-20" style="text-align: center;
+                [(ngModel)]="KeyBoardManager.getTarget().lightData.brightness">
+                <div [style.marginLeft.px]="KeyBoardManager.getTarget().lightData.brightness*272/100-20" style="text-align: center;
                 width: 7%;
                 margin-top: 15px;
                 color: rgb(18, 64, 162);
                 margin-left: 252px;
-                color: rgb(18,64,162);">{{SettingManager.brightness}}%</div>
+                color: rgb(18,64,162);">{{KeyBoardManager.getTarget().lightData.brightness}}%</div>
                       
           </section>
 
@@ -211,7 +211,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Macro
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.macroEnable' (ngModelChange)="StartupChange()">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.macroEnable' (ngModelChange)="settingLayoutChoice()">
 
               <div style="position: absolute;
               right: 73%;
@@ -227,7 +227,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Auto Sleep
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.autoSleepEnable' (ngModelChange)="StartupChange()">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.autoSleepEnable' (ngModelChange)="settingLayoutChoice()">
 
               <div style="position: absolute;
               right: 73%;
@@ -239,7 +239,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             height: 24px;
             margin-top: 33px;" class="ParallelTextString">
                   <input  id="rangeUI" max="60" min="0" style="width: 272px;" type="range"  
-                  [(ngModel)]='SettingManager.autoSleepValue' (ngModelChange)="StartupChange()">
+                  [(ngModel)]='SettingManager.autoSleepValue' (ngModelChange)="settingLayoutChoice()">
                   <div [style.marginLeft.px]="SettingManager.autoSleepValue*272/60-20" style="text-align: center;
                   width: 7%;
                   margin-top: 15px;
@@ -485,11 +485,11 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           <section  style="position: absolute;right: 44px;margin-top: 406px;">
             <div  style="position: absolute;right: 11px;width: 20%;color: rgb(18,64,162);"> Brightness </div>
             <input  id="rangeUI" max="100" min="0" style="margin-top: 35px;width: 272px;" type="range"  
-            [(ngModel)]="SettingManager.brightness">
-            <div [style.marginLeft.px]="SettingManager.brightness*272/100-20" style="position: absolute;text-align: center;
+            [(ngModel)]="KeyBoardManager.getTarget().lightData.brightness">
+            <div [style.marginLeft.px]="KeyBoardManager.getTarget().lightData.brightness*272/100-20" style="position: absolute;text-align: center;
             width: 20%;
             margin-top: 15px;
-            color: rgb(18,64,162);">{{SettingManager.brightness}}%</div>
+            color: rgb(18,64,162);">{{KeyBoardManager.getTarget().lightData.brightness}}%</div>
           </section>
 
 
@@ -569,7 +569,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
       <img src="image/Perixx_Project/Share/AddIcon.png" style="position: absolute;
       right: 7%;
-      margin-top: 15%;" (click)="KeyBoardLibray.create_KeyBoard()">
+      margin-top: 15%;" (click)="keyboardRMenu('m_Create')">
       <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
             right:20%;
             margin-top: 15%;" >
@@ -577,7 +577,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <div id="SharedSelectList" style="margin-left: 0%;margin-top: 30%;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
           (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
-          [style.color]="KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          [style.color]="keyboardColorHintMode=='KeyBoardLibray'&&KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <input class="KeyBoardLibrayName" [attr.data-mindex]="i" type="text" placeholder="" style="width: 70%;
             position: absolute;
             margin-left: 8%;" maxlength="15"
@@ -634,7 +634,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           </div>
 
           <div class="ApplyBtn"
-          (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Apply 
+          (click)="loadTemporaryKeyboardData()"> Apply 
           </div>
 
     </div>

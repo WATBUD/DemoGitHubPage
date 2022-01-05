@@ -44,6 +44,7 @@ export class PerixxComponent implements OnInit {
   ColorWheelModule=new ColorModule("Circle_Animation");
   theColorWheelISBeingClicked=false;
   currentTouchButtons="";
+  keyboardColorHintMode="KeyBoardManager"//KeyBoardManager,KeyBoardLibray
   settingsOption=[
     {'name':'Information'
     },
@@ -186,10 +187,7 @@ export class PerixxComponent implements OnInit {
     //console.log('%c backgroundColor', 'background: black; color: white', backgroundColor)
 
   }
-  StartupChange(){
-
-
-
+  settingLayoutChoice(){
   };
 
 
@@ -203,12 +201,7 @@ export class PerixxComponent implements OnInit {
 
         break;
       case "Keyboard_Nav":
-        
-        setTimeout(() => {
-          var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
-          this.KeyBoardStyle.applyStyles(Keyboard_NavList);
-          this.KeyBoardManager.refreshKeyBoardTemp();
-        }, 50);
+        this.keyboardPageInitial();
         break;
       case "Lighting_Nav":
         this.HSLColorPickerFN[0]=((oEvent: MouseEvent) => {
@@ -262,13 +255,6 @@ export class PerixxComponent implements OnInit {
         break;
     }
 
-  }
-  project_select(event,index){
-    console.log("project_select: ", event, index);
-    if (this.KeyBoardManager.keyboardOfChoice  != index) {
-        this.KeyBoardManager.keyboardOfChoice  = index;
-        this.KeyBoardManager.refreshKeyBoardTemp();
-    }
   }
   downloadExportData() {
     var defaultName = "";
@@ -574,11 +560,24 @@ renameMacroFile(event) {
 
 
 //--------------------------------------------------Keyboard_Nav---------------------------------------------//
+keyboardPageInitial(FNname = "") {
+    this.keyboardColorHintMode = 'KeyBoardManager';
+    setTimeout(() => {
+      var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
+      this.KeyBoardStyle.applyStyles(Keyboard_NavList);
+      this.KeyBoardManager.refreshKeyBoardTemp();
+    }, 50);
+  }
 
 keyboardRMenu(FNname="") {
   this.operationMenuFlag=false;
   console.log('%c keyboardRMenu','color:rgb(255,77,255)',this.operationMenuFlag);
   switch (FNname) {
+      case "m_Create":
+      this.KeyBoardLibray.create_KeyBoard();
+      var targetGTLO=this.KeyBoardLibray.getTheLastObject();
+      targetGTLO.setTargetDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
+      break;
       case "m_Rename":
         this.KeyBoardLibray.editingName = true;
         this.KeyBoardLibray.updatenameBeingEdited();
@@ -606,26 +605,47 @@ keyboardRMenu(FNname="") {
           alert("keyboardRMenu_Error");
           return;
   }
-
-
-
-
 }
-setKeyBindingData(dataValue="") {
-  //if(dataValue!=""){
-    var target=this.KeyBoardManager.keyBoardTemp;           
-    //target.recordAssignBtnIndex=index;
-    var targetMatrixKey=target.getNowModeTargetMatrixKey();
+loadTemporaryKeyboardData(){
+  this.KeyBoardManager.loadTemporaryKeyboardData();
+  this.KeyBoardManager.getTarget().layoutMode = "Custom";
+
+  if (this.keyboardColorHintMode == 'KeyBoardManager') {
+  }
+}
+setKeyBindingData(dataValue = "") {
+    //if(dataValue!=""){
+    var target = this.KeyBoardManager.keyBoardTemp;
+    var targetMatrixKey = target.getNowModeTargetMatrixKey();
     //var KeyMatrix=target.getNowModeKeyMatrix();
     targetMatrixKey.recordBindCodeType = "GeneralBinding";
     targetMatrixKey.recordBindCodeName = dataValue;
-  //}
+    if (this.keyboardColorHintMode == 'KeyBoardLibray') {
+      this.KeyBoardLibray.getTarget().ImportClassData(this.KeyBoardManager.keyBoardTemp);
+    }
+    //}
 }
 getKeyBindingIcon(index){
   var target=this.KeyBoardManager.keyBoardTemp;           
   var KeyMatrix=target.getNowModeKeyMatrix();
   var targetMatrixKey=KeyMatrix[index];
-  var path =this.ImgPath.getThePicture(targetMatrixKey.recordBindCodeName);
+  var path
+  if(this.keyboardColorHintMode=='KeyBoardManager'){
+    var layoutMode=this.KeyBoardManager.getTarget().layoutMode;
+    console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);
+
+    if(layoutMode=="Default"){
+      path =this.ImgPath.getThePicture(targetMatrixKey.defaultValue);//defaultValue recordBindCodeName
+    }
+    else if(layoutMode=="Custom"){
+      path =this.ImgPath.getThePicture(targetMatrixKey.recordBindCodeName);
+    }
+  }
+  else if(this.keyboardColorHintMode=='KeyBoardLibray'){
+      path =this.ImgPath.getThePicture(targetMatrixKey.recordBindCodeName);//defaultValue recordBindCodeName
+  }
+
+
   //this.ImgPath[targetMatrixKey.recordBindCodeName];
   if(path!=undefined) {
     return path[2];
@@ -640,9 +660,22 @@ renameKeyboard(event) {
   this.KeyBoardLibray.updeteProjectName(regex);
   //this.setDBDataToServer('MacroManager');
 }
-keyboardLeftClick(index){
+ 
+project_select(event,index){
+  console.log("project_select: ", event, index);
+  this.keyboardColorHintMode='KeyBoardManager';
+
+  //if (this.KeyBoardManager.keyboardOfChoice != index) {
+      this.KeyBoardManager.keyboardOfChoice  = index;
+      this.KeyBoardManager.refreshKeyBoardTemp();
+  //}
+}
+keyboardLeftClick(index){ 
+  this.keyboardColorHintMode='KeyBoardLibray';
   this.KeyBoardLibray.keyboardOfChoice=index;
-  this.KeyBoardManager.keyBoardTemp=this.KeyBoardLibray.getTarget();
+  //this.KeyBoardManager.keyBoardTemp=this.KeyBoardLibray.getTarget();
+  this.KeyBoardManager.keyBoardTemp.ImportClassData(this.KeyBoardLibray.getTarget());
+
 }
 keyboardRightClick(i,Event){
   this.KeyBoardLibray.keyboardOfChoice=i;

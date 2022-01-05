@@ -108,7 +108,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     width: 100%;">
 
 
-      <section *ngIf="settingLocation!='FirmwareUpgrade'">
+      <section [style.display]="settingLocation!='FirmwareUpgrade'?'block': 'none'">
         <div id="SettingTitle" style="color: rgb(45 47 52);
         height: auto;
         width: 100%;

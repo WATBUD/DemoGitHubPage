@@ -301,10 +301,10 @@ export class PerixxComponent implements OnInit {
   //--------------------------------------------------Lighting_Nav---------------------------------------------//
 
     lighting_RClick(i, Event) {
-    if(this.Built_ineffect.editingNumber==i){
-       return;
-    }
     this.Built_ineffect.switchBuilt_ineffect(i);
+    if(this.Built_ineffect.editingNumber==i||this.Built_ineffect.Built_inSelected.hasSingleKeyLighting==false){
+      return;
+    }
     this.operationMenuFlag = true;
     var Built_ineffectRMenu = document.getElementById("Built_ineffectRMenu") as HTMLDivElement;
     Built_ineffectRMenu.style.left = Event.layerX + "px";

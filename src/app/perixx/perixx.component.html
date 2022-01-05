@@ -432,7 +432,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     align-items: center;
     height: 100%;
     width: 656px;">
-    <section id="quicklySelectTheBlock" style="    position: absolute;
+    <section *ngIf="this.Built_ineffect.Built_inSelected.hasSingleKeyLighting" id="quicklySelectTheBlock" style="    position: absolute;
     width: 92%;
     top: 25%;
     display: flex;
@@ -1025,7 +1025,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
           [style.background-color]="MacroManager.getClass().currentChooseMacro==i?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
           [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
-          <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]">
+          <!-- <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]"> -->
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
             position: absolute;
             margin-left: 8%;" maxlength="15"

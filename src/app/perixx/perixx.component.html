@@ -211,7 +211,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Macro
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.macroEnable' (ngModelChange)="settingLayoutChoice()">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='KeyBoardManager.getTarget().macroEnable' (ngModelChange)="settingLayoutChoice()">
 
               <div style="position: absolute;
               right: 73%;
@@ -227,7 +227,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Auto Sleep
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='SettingManager.autoSleepEnable' (ngModelChange)="settingLayoutChoice()">
+              <input type="checkbox" style="margin: 1px;" [(ngModel)]='KeyBoardManager.getTarget().autoSleepEnable' (ngModelChange)="settingLayoutChoice()">
 
               <div style="position: absolute;
               right: 73%;
@@ -239,14 +239,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             height: 24px;
             margin-top: 33px;" class="ParallelTextString">
                   <input  id="rangeUI" max="60" min="0" style="width: 272px;" type="range"  
-                  [(ngModel)]='SettingManager.autoSleepValue' (ngModelChange)="settingLayoutChoice()">
-                  <div [style.marginLeft.px]="SettingManager.autoSleepValue*272/60-20" style="text-align: center;
+                  [(ngModel)]='KeyBoardManager.getTarget().autoSleepValue' (ngModelChange)="settingLayoutChoice()">
+                  <div [style.marginLeft.px]="KeyBoardManager.getTarget().autoSleepValue*272/60-20" style="text-align: center;
                   width: 7%;
                   margin-top: 15px;
                   color: rgb(18, 64, 162);
                   margin-left: 252px;
                       white-space: nowrap;
-                  color: rgb(18,64,162);">{{SettingManager.autoSleepValue}} mins</div>
+                  color: rgb(18,64,162);">{{KeyBoardManager.getTarget().autoSleepValue}} mins</div>
                         
             </section>
           </div>

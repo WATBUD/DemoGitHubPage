@@ -148,9 +148,11 @@ export class KeyBoard {
     hibernate: any = true;
     winLock: any = false;
     directionSwitch: any = false;
-    hibernateTimeArr: any = [1, 3, 5, 10];
     reportRateIndex: any = 0;
-    hibernateTime: any = 3;
+    hibernateTime = 3;
+    macroEnable=false;
+    autoSleepEnable=false;
+    autoSleepValue=60;
     defaultName = "";
     projectName="";
     projectCode="";
@@ -194,11 +196,6 @@ export class KeyBoard {
             this.getNowModeKeyMatrix()[index].defaultValue = data[index];
             this.getNowModeKeyMatrix()[index].recordBindCodeName = data[index];
         }
-    }
-
-    getHibernateStepTime() {
-        //console.log("getHibernateStepTime",this.hibernateTimeArr,this.hibernateTime);
-        return this.hibernateTimeArr[this.hibernateTime];
     }
     updeteProjectName(newName=""){
       this.projectName=newName;

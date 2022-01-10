@@ -36,8 +36,50 @@ export class KeyBoardManager {
     }
     create_KeyBoard(name = "Template") {
         var index = "_"+this.KeyBoardArray.length;
-        this.KeyBoardArray.push(new KeyBoard(name + index, this.maxKayCapNumber));
+
+        this.KeyBoardArray.push(new KeyBoard(this.getNotRepeatName(name + index), this.maxKayCapNumber));
     }
+
+    getNotRepeatName(inputName) {
+        console.log('%c getNotRepeatName','color:rgb(255,77,255)',  inputName);
+        var pass = true;
+        var Num = 0;
+        var Tname=inputName;
+        while (pass) {
+            var checkName;
+            if(Num>0){
+                checkName=Tname + Num;
+            }
+            else{
+                checkName=Tname;
+            }
+            if (this.checkforDuplicateFileNames(checkName)) {
+                Num += 1;
+                //console.log("createMacroTname=");
+            }
+            else {
+                pass = false;
+                Tname = checkName;
+            }
+        }
+        console.log('%c Tname','color:rgb(255,77,255)',  Tname);
+        return Tname;
+    }
+
+    checkforDuplicateFileNames(targetName) {
+        for (let index = 0; index < this.KeyBoardArray.length; index++) {
+            const element =  this.KeyBoardArray[index];
+                if (targetName == element.projectName) {
+                    return true;//Duplicate
+            }
+        }
+        return false;
+    }
+
+
+
+
+
     getTheLastObject(){
         return this.KeyBoardArray[this.KeyBoardArray.length-1];
     }
@@ -145,9 +187,7 @@ export class KeyBoardManager {
 }
 
 export class KeyBoard {
-    hibernate: any = true;
     winLock: any = false;
-    directionSwitch: any = false;
     reportRateIndex: any = 0;
     hibernateTime = 3;
     macroEnable=false;
@@ -157,6 +197,8 @@ export class KeyBoard {
     projectName="";
     projectCode="";
     layoutMode="Default";
+    macroFiletItem=[];
+    currentChooseMacro = 0;
     lightData={
         brightness:100
     }
@@ -164,26 +206,21 @@ export class KeyBoard {
     assignText: any = "設定按鍵:Y";
     maxKayCapNumber;
     assignedKeyboardKeys = [];
-    fnModeMartrix: any = [false, false, false];
+    fnModeMartrix: any = [false];
     fnModeindex: any = 0;
-    fiveRecordIndex: any = 0;
     constructor(name = "", inputMax) {
         this.maxKayCapNumber = inputMax;
         this.projectName = name;
         this.projectCode=this.projectName+new Date().getTime();
         console.log("%c Inpunt_KeyBoard", "color:red", inputMax, this.maxKayCapNumber);
 
-        for (let index = 0; index < 3; index++) {
+        for (let index = 0; index < this.fnModeMartrix.length; index++) {
             var tempArr=[];
             for (let i2 = 0; i2 < this.maxKayCapNumber; i2++) {
                 tempArr.push(this.defaultModule());
             }
             this.assignedKeyboardKeys.push(tempArr);
         }
-
-
-
-
     }
 
     /**
@@ -253,17 +290,7 @@ export class KeyBoard {
 
     }
 
-    //"設定按鍵:"
-    get_assign_promptText(Type) {
-        switch (Type) {
-            case 'LongTimePressValue':
-                return this.getNowModeTargetMatrixKey().LongTimePressValue;
-            case 'InstantPressValue':
-                return this.getNowModeTargetMatrixKey().InstantPressValue;
-            case 'NormalKeyPress':
-                return this.getNowModeTargetMatrixKey().value;
-        }
-    }
+
     checkFnSetOnlyData(inputValue) {
         console.log("clearLostMacro_MCIarr");
         var V1 = this.getNowModeKeyMatrix();
@@ -275,21 +302,7 @@ export class KeyBoard {
             }
         }
     }
-    set_assign_Text_Value(type_Code = "", inputValue, OptionNumber = 65536, IndexCode = 0) {
-
-        console.log("set_assign_Text_ValueTypeName", type_Code);
-        console.log("set_assign_Text_ValueIndexCode", IndexCode);
-        console.log("FNMode_TextAndValue");
-        var T = this.getNowModeTargetMatrixKey();
-        T.macroOptionNumber = OptionNumber;
-        T.macroCode = IndexCode;
-
-    }
     
-    reset_assign_default(type = "") {
-       
-
-    }
     theBindingCategoryIsMacro(index) {
         if (this.getNowModeKeyMatrix()[index].recordBindCodeType == "MacroFunction") {
             return true;

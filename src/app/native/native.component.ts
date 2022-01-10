@@ -130,6 +130,11 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Input/Input_Range_Customized.html',
       Name: 'Input_Range_Customized',
     },
+    {
+      URL: './DemoUI/Input/Input_Type_File.html',
+      Name: 'Input_Type_File',
+    },
+
   ];
 
   eventRegister = [];

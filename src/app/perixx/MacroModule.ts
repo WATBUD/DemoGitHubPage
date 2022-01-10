@@ -205,7 +205,7 @@ export class MacroManager {
 
     }
     /**
-     * Find the specified IndexCode Macro
+     * Find the specified selectedMacroCode Macro
      */
     find_Macro(value) {
         for (let MClass2 = 0; MClass2 < this.macroClassItem.length; MClass2++) {
@@ -214,7 +214,7 @@ export class MacroManager {
             //this.createMacroClass(targetClass.className);
             for (let Mindex = 0; Mindex < targetClass.MacroFiletItem.length; Mindex++) {
                 var macroContent = targetClass.MacroFiletItem[Mindex];
-                if (macroContent.IndexCode == value) {
+                if (macroContent.selectedMacroCode == value) {
                     return macroContent;
                 }
             }
@@ -230,7 +230,7 @@ export class MacroManager {
             var reformattedArray = this.macroClassItem[index].MacroFiletItem.map(function (obj) {
                 console.log("getAllMacroFileData", obj);
                 Tdata.push({
-                    IndexCode: obj.IndexCode,
+                    selectedMacroCode: obj.selectedMacroCode,
                     name: obj.name,
                 });
             });
@@ -405,7 +405,7 @@ export class MacroClass {
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = InputData[arr[index]];
         }
-        TData.IndexCode = new Date().getTime();
+        TData.selectedMacroCode = new Date().getTime();
         this.MacroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
     }
@@ -432,7 +432,7 @@ export class MacroClass {
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = nowCopyTarget[arr[index]];
         }
-        TData.IndexCode = new Date().getTime();
+        TData.selectedMacroCode = new Date().getTime();
         TData.name = copyName;
         this.MacroFiletItem.push(TData);
         console.log("copyMacroFile", TData, typeof TData);
@@ -490,7 +490,7 @@ export class MacroScriptContent {
     selectAllDataFlag=false;
     indexPosition = 0;
     name: any = "新檔案";
-    IndexCode = new Date().getTime();
+    selectedMacroCode = new Date().getTime();
     Data: any = [
         // byKeyCode: "error",
         // byStartTime: 0,
@@ -500,8 +500,10 @@ export class MacroScriptContent {
     ]
     constructor(InputclassName = "未命名") {
         this.name = InputclassName;
+        
         this.Data.push(this.getDefault());
     }
+    
     move_up_row() {
 
         if (this.Data.length == 0) { return }

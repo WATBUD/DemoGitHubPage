@@ -166,11 +166,11 @@ export class M_NumpadSelectComponent implements OnInit,ControlValueAccessor{
     }
 
     public writeValue(obj: any): void {
-        console.log('writeValue',obj)
+        //console.log('writeValue',obj)
         if(obj != null && obj != undefined){
             this.nowSelectedDataIndex=obj.value;
-            console.log('writeValue_nowSelectedData', this.nowSelectedDataIndex)
-            console.log('%c writeValue_inputoption', 'color:red', this.inputoption);
+            //console.log('writeValue_nowSelectedData', this.nowSelectedDataIndex)
+            //console.log('%c writeValue_inputoption', 'color:red', this.inputoption);
         }
     }
     public registerOnChange(fn: any): void {

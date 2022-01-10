@@ -226,7 +226,9 @@
                     PERKEY
                 </div>
             </div>
-            <div id="PRESETSAreaUI" *ngIf="lightingPage == 'PRESETS'">
+            <!-- *ngIf="lightingPage == 'PRESETS'" -->
+            <div id="PRESETSAreaUI" *ngIf="lightingPage == 'PRESETS'"
+            >
                 <div data-code="Syncacrosskeyboard" class="list">
                     <div class="sub-list" >
                         Indicate Num Lock on with blinking side lights
@@ -306,8 +308,7 @@
                             <!-- <img src="image/lighting/BrightnessIcon.png" draggable="false" /> -->
                             Separate Wired / Wireless Brightness
                             <label>
-                                <input type="checkbox" [(ngModel)]="BrightnessFlag"
-                                    (ngModelChange)="SyncCrossKeyboardCheckChange()" />
+                                <input type="checkbox" [(ngModel)]="BrightnessFlag"  />
                                 <span></span>
                             </label>
                         </div>
@@ -335,13 +336,19 @@
                     </div>
     
                 </div>
-                <!-- [style.display]="this.Built_ineffect.Built_inSelected.color_Enable? 'flex' : 'none'" -->
-                <div *ngIf="this.Built_ineffect.Built_inSelected.color_Enable" id="ColorContent" class="list"
+                <!-- [style.display]="this.Built_ineffect.Built_inSelected.color_Enable? 'flex' : 'none'" 
+                
+                *ngIf="this.Built_ineffect.Built_inSelected.color_Enable"-->
+                <div  
+                [ngStyle]="{ visibility:this.Built_ineffect.Built_inSelected.color_Enable? 'visible': 'hidden'}"
+                id="ColorContent" class="list"
                     style="font-family: MM, serif">
                     color
                     <div class="sub-list">
-                        <ng-color-box class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
-                            (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor"></ng-color-box>
+                        <ng-color-box class="colorpicker" id="mouse-colorpicker" [(ngModel)]="PRESETS_colordata" 
+                        [startHex]="PRESETS_ColorWheltHex"
+                        [codeNumber]="2"
+                            (ngModelChange)="colorPickerChange($event)" ></ng-color-box>
                         <div class="color-content">
                             <div class="color-detail">
                                 <div class="color-title">
@@ -371,6 +378,7 @@
                     </div>
                 </div>
             </div>
+            <!--  [style.display]="lightingPage == 'PERKEY'? 'block' : 'none'"-->
             <div id="PERKEYAreaUI" *ngIf="lightingPage == 'PERKEY'">
                 <!-- <div (mouseover)="QuestionMarkStatus='PERKEYAreaTip'" (mouseleave)="QuestionMarkStatus=''"
                     class="QuestionMark" *ngIf="this.getAppService.getAppSetting().tooltip"
@@ -420,8 +428,7 @@
                                 margin-left: -10px;
                                 font-family: MM, serif;
                                 letter-spacing: 0px;
-                                font-size: 13px;
-                                z-index: 30;" class="PERKEYA_EffectSelect" [componentId]="'PERKEYA_EffectSelect'"
+                                font-size: 13px;" class="PERKEYA_EffectSelect" [componentId]="'PERKEYA_EffectSelect'"
                         [i18nManager]="this.i18nManager" [inputoption]="lighting_PERKEY_Effect"
                         [(ngModel)]="lighting_PERKEY_SelectEffect" (ngModelChange)="PERKEY_SelectChange()">
                     </app-M_NumpadSelect>
@@ -438,7 +445,6 @@
                                     letter-spacing: 0px;
                                     height: 32px;
                                     margin-left: -8px;
-                                    z-index: 30;
                                     ">
                     </app-M_NumpadSelect>
                 </div>
@@ -479,8 +485,9 @@
                 <div id="ColorContent" class="list" style="font-family: MM, serif">
                     color
                     <div class="sub-list">
-                        <ng-color-box class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
-                            (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor"></ng-color-box>
+                        <ng-color-box class="colorpicker" [(ngModel)]="PERKEY_colordata" [codeNumber]="2"
+                        [startHex]="PERKEY_ColorWheltHex"
+                            (ngModelChange)="colorPickerChange($event)" ></ng-color-box>
                         <div class="color-content">
                             <div class="color-detail">
                                 <div class="color-title">
@@ -540,9 +547,11 @@
                 </div>
                 <div class="list" style=" width: 85%; margin-left: 7.5%">
                     <div class="KeybindingClassArea_item">
-                        <div class="sub-list-item" [style.borderBottom]="
+                        <div *ngIf="!getNowKeyBindClassUI('NumLock')"
+                        class="sub-list-item" [style.borderBottom]="
                             KeyAssignManager.recordBindCodeType == 'MacroFunction' ? '1px #313131 solid' : ''
-                        " (click)="SetGroupFunction('MacroFunction','MacroFunction')">
+                        " 
+                        (click)="SetGroupFunction('MacroFunction','MacroFunction')">
                             MACRO
                         </div>
                         <div class="sub-list-item" [style.borderBottom]="
@@ -614,14 +623,14 @@
                 </div>
                 <div class="list" style="width: 85%; margin-left: 7.5%">
                     <div class="KeybindingClassArea_item">
-                        <div class="sub-list-item" [style.borderBottom]="
+                        <!-- <div class="sub-list-item" [style.borderBottom]="
                                 KeyAssignManager.recordBindCodeType == 'MacroFunction' ? '1px #313131 solid' : ''
                             " (click)="SetGroupFunction('MacroFunction','MacroFunction')"
                             [ngStyle]="{
                                 'pointer-events': 'auto'
                             }">
                             MACRO 
-                        </div>
+                        </div> -->
                         <div class="sub-list-item" [style.borderBottom]="
                                 KeyAssignManager.recordBindCodeType == 'Multimedia' ? '1px #313131 solid' : ''
                             " (click)="SetGroupFunction('Multimedia','Multimedia_Fun_0')">
@@ -1152,7 +1161,9 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="KeyAssignManager.recordBindCodeType == 'SOUND CONTROL'">
+            <!-- *ngIf="KeyAssignManager.recordBindCodeType == 'SOUND CONTROL'" -->
+            <div *ngIf="KeyAssignManager.recordBindCodeType == 'SOUND CONTROL'"
+            [ngStyle]="{visibility: KeyAssignManager.recordBindCodeType == 'SOUND CONTROL' ? 'visible': 'hidden'}">
                 <div class="list" style="margin-top: 20px;width: fit-content;">
                     <div style="border: 1px solid rgb(253, 186, 59);
                                     width: auto;
@@ -1220,6 +1231,7 @@
                                         ">
                     </app-M_NumpadSelect> -->
                 </div>
+                
                 <div id="SoundVolume_lightData">         
                     <div class="list">
                         Source Volume
@@ -1280,13 +1292,20 @@
                             </div>
                         </div>
                     </div>
-                
-                    <div [ngStyle]="{display: this.M_SoundVolume.lightData.clearStatus ? 'block' : 'none'}" id="ColorContent"
+                    <!-- *ngIf="this.M_SoundVolume.lightData.clearStatus" -->
+                    <div 
+                    [ngStyle]="{ visibility:this.M_SoundVolume.lightData.clearStatus? 'visible': 'hidden'}" 
+                    id="ColorContent"
                         class="list" style="font-family: MM, serif">
                         color
                         <div class="sub-list">
-                            <ng-color-box class="colorpicker" id="mouse-colorpicker" [(ngModel)]="colordata"
-                                (ngModelChange)="colorPickerChange($event)" [startHex]="startcolor"></ng-color-box>
+                            <ng-color-box class="colorpicker" 
+                            [(ngModel)]="SoundVolume_colordata" 
+                            [startHex]="SoundVolume_ColorWheltHex"                            
+                            [codeNumber]="2"
+
+
+                                (ngModelChange)="colorPickerChange($event)" ></ng-color-box>
                             <div class="color-content">
                                 <div class="color-detail">
                                     <div class="color-title">

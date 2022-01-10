@@ -67,10 +67,9 @@ input.KeyAssignUIStyle:focus {
 }
 
 .KeyAssignHasValue {
-    background: red;
-    
+    background: #fdba3b;
     width: 60%;
-    height: 15%;
+    height: 7px;
     margin-bottom: 10px;
     pointer-events: none;
 }

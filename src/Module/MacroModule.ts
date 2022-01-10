@@ -197,12 +197,12 @@ export class MacroManager {
                 var reformattedArray = this.macroClassItem[index].MacroFiletItem.map(function (obj) {
                     console.log("getAllMacroFileData", obj);
                     // var rObj = {
-                    //     IndexCode:obj.IndexCode,
+                    //     selectedMacroCode:obj.selectedMacroCode,
                     //     name:obj.name,
                     // }
                     // return rObj;
                     Tdata.push({
-                        IndexCode: obj.IndexCode,
+                        selectedMacroCode: obj.selectedMacroCode,
                         name: obj.name,
 
 
@@ -404,7 +404,7 @@ export class MacroClass {
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = InputData[arr[index]];
         }
-        TData.IndexCode = new Date().getTime();
+        TData.selectedMacroCode = new Date().getTime();
         this.MacroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
 
@@ -485,7 +485,7 @@ export class MacroScriptContent {
 
     indexPosition = 0;
     name: any = "新檔案";
-    IndexCode = new Date().getTime();
+    selectedMacroCode = new Date().getTime();
     Data: any = [
         // {
         //     type:2,

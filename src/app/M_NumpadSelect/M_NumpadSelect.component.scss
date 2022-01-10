@@ -2,6 +2,7 @@
 /*#region Select*/
 .SelectTemplate {
     position: absolute;
+    z-index: 8888;
     height: 68vh;
     overflow-y: overlay;
     margin-top: 14.5vh;

@@ -267,7 +267,7 @@ export class KeyBoard {
         function checkExist(array, findTarget1, findTarget2) {
             for (let index = 0; index < array.length; index++) {
                 const element = array[index];
-                if (element.IndexCode == findTarget1 && element.name == findTarget2) {
+                if (element.selectedMacroCode == findTarget1 && element.name == findTarget2) {
                     console.log("存在值", element, findTarget1, findTarget2);
                     return true;
                 }
@@ -533,14 +533,14 @@ export class KeyBoard {
             }
         }
     }
-    set_assign_Text_Value(type_Code = "", inputValue, OptionNumber = 65536, IndexCode = 0) {
+    set_assign_Text_Value(type_Code = "", inputValue, OptionNumber = 65536, selectedMacroCode = 0) {
 
         console.log("set_assign_Text_ValueTypeName", type_Code);
-        console.log("set_assign_Text_ValueIndexCode", IndexCode);
+        console.log("set_assign_Text_ValueselectedMacroCode", selectedMacroCode);
         console.log("FNMode_TextAndValue");
         var T = this.getNowModeTargetMatrixKey();
         T.macroOptionNumber = OptionNumber;
-        T.macroCode = IndexCode;     
+        T.macroCode = selectedMacroCode;     
         switch (this.getNowModeTargetKeyPressStatus()) {
             case 'LongTimePress':
                 T.keyAssignType[0] = type_Code;

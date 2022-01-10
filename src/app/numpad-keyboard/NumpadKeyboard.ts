@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import {
   ColorModule
 } from '../../Module/TSImportManager';
@@ -17,6 +17,9 @@ import { M_Light_Numpad } from './M_Light_Numpad';
 import { KeyAssignManager } from './KeyAssignManager';
 import { M_SoundVolume } from './M_SoundVolume';
 import {CentralControl} from '../../Module/CentralControl';
+
+import { BoxColorPickerComponent } from '../ngcolor/box-color-picker/box-color-picker.component';
+
 declare var require: any;
 import { KeyMapping,AllFunctionMapping,Shortcuts_WindowsMapping } from './SupportData'
 @Component({
@@ -25,6 +28,8 @@ import { KeyMapping,AllFunctionMapping,Shortcuts_WindowsMapping } from './Suppor
   styleUrls: ['./NumpadKeyboard.css', './KeyBoardStyle.scss', './Keybinding.scss', 'LightIngStyle.scss','./DropListStyle.scss']
 })
 export class NumpadKeyboardComponent implements OnInit {
+  //@ViewChild(BoxColorPickerComponent) BoxColorPickerComponent: BoxColorPickerComponent;
+  @ViewChildren(BoxColorPickerComponent) BoxColorPickerList: QueryList<BoxColorPickerComponent>;
   CentralControl=CentralControl.getInstance();
   KeyBoardStyle = new KeyBoardStyle();
   KeyAssignManager = new KeyAssignManager();
@@ -35,6 +40,14 @@ export class NumpadKeyboardComponent implements OnInit {
   Built_ineffect = new Built_ineffect();
   KeyBoardManager = new KeyBoardManager(83);
   LayoutManager = LayoutManager.getInstance();
+
+  PRESETS_ColorWheltHex="000000";
+  PERKEY_ColorWheltHex="000000";
+  SoundVolume_ColorWheltHex="000000";
+  PRESETS_colordata:ColorOutput;
+  PERKEY_colordata:ColorOutput;
+  SoundVolume_colordata:ColorOutput;
+
   deviceService;
   QuestionMarkStatus = ""
   PerKeyArea = "";
@@ -42,9 +55,7 @@ export class NumpadKeyboardComponent implements OnInit {
   PerKey_NUMBERS_Visible = true;
   BrightnessFlag: any
   selectionStatus = true;
-  startcolor: any;
   ColorModule = new ColorModule();
-  colordata: ColorOutput;
   getAppService = new GetAppService();
   PERKEY_lightData=this.default_LightData();
   lightingPage = 'PRESETS';
@@ -86,6 +97,7 @@ export class NumpadKeyboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    console.log('%c BoxColorPickerList', 'color:rgb(255,75,255,1)', this.BoxColorPickerList);
 
     var T_length = this.KeyBoardStyle.getTarget().keyMapping.length;
     this.M_Light_PRESETS = new M_Light_Numpad(T_length);
@@ -139,7 +151,6 @@ export class NumpadKeyboardComponent implements OnInit {
       this.setPassiveEffect(obj);
 
       //this.KeyBoardStyle.sss();
-      //this.startcolor="FF0000";
 
     });
   }
@@ -216,10 +227,11 @@ export class NumpadKeyboardComponent implements OnInit {
         }
 
         this.cdr.detectChanges();
+
         this.KeyAssignManager.updateVariable(target);
         this.M_SoundVolume.bindTarget=target.d_SoundVolume.bindTarget;
         this.M_SoundVolume.lightData=target.d_SoundVolume.lightData;
-        this.setRGBcolor();
+        this.setRGBcolor();//KeyAssignUIStyle
         if (target.recordBindCodeType == "MacroFunction") {
             this.macroService.setMacroTypeValue(target.macro_RepeatType);
             this.macroService.setMacroSelectValue(target.macro_Data.value);
@@ -268,7 +280,9 @@ export class NumpadKeyboardComponent implements OnInit {
 */
   SetLightingGroup(pageName) {
     this.lightingPage = pageName;
-    this.setRGBcolor();//by SetLightingGroup
+    setTimeout(() => {
+      this.setRGBcolor();//by SetLightingGroup
+    }, 50);
   }
   /**
    * switchSelectionStatust
@@ -360,7 +374,6 @@ export class NumpadKeyboardComponent implements OnInit {
           target.colorHex = this.M_Light_Keybinding.rgbToHex(target[0], target[1], target[2]);
           this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey().d_SoundVolume.lightData.colorPickerValue = JSON.parse(JSON.stringify(RGB_Arr));
           this.SoundVolume_AreaCick(this.KeyBoardManager.getTarget().recordAssignBtnIndex);
-          this.setRGBcolor();//by keybind_colorPickerChange;
       }
       else{
           if(this.lightingflag){
@@ -379,7 +392,12 @@ export class NumpadKeyboardComponent implements OnInit {
                   this.PerKeyAreaCick(this.PerKeyArea);
               }
           }
-      }
+    }
+
+
+
+
+    
   }
 
   /**
@@ -425,60 +443,72 @@ export class NumpadKeyboardComponent implements OnInit {
     * RGB input
     */
   setRGBcolor() {
-    console.log('setRGBcolor', this.lightingflag, this.lightingPage);
-    var target = undefined;
-
-    if (this.lightingflag) {
-      if (this.lightingPage == 'PRESETS') {
-        target = this.Built_ineffect.Built_inSelected;
-      }
-      if (this.lightingPage == 'PERKEY') {
-        target = this.PERKEY_lightData;
-      }
-    }
-    else if (this.keybindingflag) {
-      target = this.M_SoundVolume.lightData;
-    }
-    if (target == undefined) {
-      return;
-    }
-    var rgbArr = target.colorPickerValue;
-    console.log('setRGBcolor_Target', JSON.parse(JSON.stringify(target)), this.M_SoundVolume.lightData);
-    for (let index = 0; index < 3; index++) {
-
-      if (isNaN(parseInt(rgbArr[index])) == true) {
-        console.log('setRGBcolor_isNaN_0');
-        rgbArr[index] = 0;
-      }
-      else {
-        rgbArr[index] = parseInt(rgbArr[index]);
-      }
-    }
-    if (rgbArr[0] > 255) rgbArr[0] = 255;
-    if (rgbArr[1] > 255) rgbArr[1] = 255;
-    if (rgbArr[2] > 255) rgbArr[2] = 255;
-    if (rgbArr[0] < 0) rgbArr[0] = 0;
-    if (rgbArr[1] < 0) rgbArr[1] = 0;
-    if (rgbArr[2] < 0) rgbArr[2] = 0;
-    console.log('setRGBcolor', rgbArr);
-    let ColortObj = this.ColorModule.rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2]);
-    target.colorHex = ColortObj,
-      // this.startcolor = 'FFFFFF';
-      // this.cdr.detectChanges();
-      this.startcolor = ColortObj.split('#')[1]//#0000=>00000
-    console.log('ColortObj', ColortObj, this.startcolor);
-    if (this.lightingflag) {
-      if (this.lightingPage == 'PERKEY') {
-        this.PerKeyAreaCick(this.PerKeyArea);
-      }
-      if (this.lightingPage == 'PRESETS') {
-        this.PRESETS_SelectedChange();//by setRGBcolor();
-      }
-    }
     this.cdr.detectChanges();
+      console.log('setRGBcolor', this.lightingflag);
+      var target = undefined;
 
+      if (this.lightingflag) {
+        if (this.lightingPage == 'PRESETS') {
+          target = this.Built_ineffect.Built_inSelected;
+        }
+        if (this.lightingPage == 'PERKEY') {
+          target = this.PERKEY_lightData;
+        }
+      }
+      else if (this.keybindingflag) {
+        target = this.M_SoundVolume.lightData;
+      }
+      if (target == undefined) {
+        return;
+      }
+      var rgbArr = target.colorPickerValue;
+      console.log('setRGBcolor_Target', JSON.parse(JSON.stringify(target)));
+      for (let index = 0; index < 3; index++) {
 
+        if (isNaN(parseInt(rgbArr[index])) == true) {
+          console.log('setRGBcolor_isNaN_0');
+          rgbArr[index] = 0;
+        }
+        else {
+          rgbArr[index] = parseInt(rgbArr[index]);
+        }
+      }
+      if (rgbArr[0] > 255) rgbArr[0] = 255;
+      if (rgbArr[1] > 255) rgbArr[1] = 255;
+      if (rgbArr[2] > 255) rgbArr[2] = 255;
+      if (rgbArr[0] < 0) rgbArr[0] = 0;
+      if (rgbArr[1] < 0) rgbArr[1] = 0;
+      if (rgbArr[2] < 0) rgbArr[2] = 0;
+      console.log('setRGBcolor', rgbArr);
+      let ColortObj = this.ColorModule.rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2]);
+      target.colorHex = ColortObj
+      // // this.cdr.detectChanges();
+      //this.BoxColorPickerComponent.forceCalculateColor(ColortObj.split('#')[1]);
+      if (this.lightingflag) {
+        if (this.lightingPage == 'PERKEY') {
+          this.PERKEY_ColorWheltHex=ColortObj.split('#')[1];
+          this.PerKeyAreaCick(this.PerKeyArea);
+          console.log('this.PERKEY_ColorWheltHex', this.PERKEY_ColorWheltHex);
+
+        }
+        if (this.lightingPage == 'PRESETS') {
+          this.PRESETS_ColorWheltHex=ColortObj.split('#')[1];
+          this.PRESETS_SelectedChange();//by setRGBcolor();
+          console.log('this.PRESETS_ColorWheltHex', this.PRESETS_ColorWheltHex);
+        }
+      }
+      else if (this.keybindingflag) {
+        this.SoundVolume_ColorWheltHex=ColortObj.split('#')[1];
+        console.log('this.SoundVolume_ColorWheltHex', this.SoundVolume_ColorWheltHex);
+      }
   }
+
+
+
+
+
+
+
   /**
    * Select Lighting Effect
    */
@@ -582,11 +612,11 @@ export class NumpadKeyboardComponent implements OnInit {
   if(this.KeyBoardManager.notClickedYet==true){
     return;
   }
-  console.log('%c SoundVolume_AreaCick', 'background: blue; color: red', index);
   var setArr=[];
   setArr.push(index);
  // var flag = this.PerKeyArea;
   var target = this.M_SoundVolume.lightData;
+  console.log('%c SoundVolume_AreaCick', 'background: blue; color: red', index,target.clearStatus);
     // if (flag == "PerKey_ALL" || flag == "PerKey_SIDELIGHT") {
     //   target.sideLightSync = true;
     //   target.sideLightColor = JSON.parse(JSON.stringify(target.colorPickerValue));
@@ -792,6 +822,13 @@ export class NumpadKeyboardComponent implements OnInit {
 
         }
       }
+      switch (target.recordBindCodeType) {
+        case 'SOUND CONTROL':
+            //this.cdr.detectChanges();
+            this.setRGBcolor();//target.recordBindCodeType
+            break; 
+      }
+      
 
     } catch (e) {
       console.error('SetGroupFunction error', e)
@@ -842,6 +879,8 @@ export class NumpadKeyboardComponent implements OnInit {
               break;
       }
       //this.Reinit()//from changeKeyboardTopbar
+      console.log('%c BoxColorPickerList', 'color:rgb(255,75,255,1)', this.BoxColorPickerList);
+
       this.reloadProfileData();//from changeKeyboardTopbar
       this.keyboardrightTitleStatus()
   }
@@ -956,18 +995,18 @@ light_Keybinding_Show(){
  * process keyBindSave Event
 */
 keyBindSave() {
-  // if (this.lightingflag) {
-  //     //if(this.lightingPage == 'PRESETS'){
-  //     console.log('%c KB_ProfileImport', 'color:yellow', this.Built_ineffect.Built_inSelected);
-  //     this.KeyBoardManager.getTarget().light_PRESETS_Data = JSON.parse(JSON.stringify(this.Built_ineffect.Built_inSelected));
-  //     //}
-  //     //if(this.lightingPage == 'PERKEY'){
-  //     this.PerKeyAreaCick(this.PerKeyArea);
-  //     console.log('%c M_Light_PERKEY.AllBlockColor', 'color:rgb(255,75,255,1)', this.M_Light_PERKEY.AllBlockColor);
-  //     this.LayoutManager.updateContentToDB(this.M_Light_PERKEY.AllBlockColor, this.PERKEY_lightData);
-  //     this.KeyBoardManager.getTarget().light_PERKEY_Data.value = this.LayoutManager.getMacroFromIdentifier().value;
-  //     //}
-  // }
+  if (this.lightingflag) {
+      //if(this.lightingPage == 'PRESETS'){
+      console.log('%c KB_ProfileImport', 'color:yellow', this.Built_ineffect.Built_inSelected);
+      this.KeyBoardManager.getTarget().light_PRESETS_Data = JSON.parse(JSON.stringify(this.Built_ineffect.Built_inSelected));
+      //}
+      //if(this.lightingPage == 'PERKEY'){
+      this.PerKeyAreaCick(this.PerKeyArea);
+      console.log('%c M_Light_PERKEY.AllBlockColor', 'color:rgb(255,75,255,1)', this.M_Light_PERKEY.AllBlockColor);
+      this.LayoutManager.updateContentToDB(this.M_Light_PERKEY.AllBlockColor, this.PERKEY_lightData);
+      this.KeyBoardManager.getTarget().light_PERKEY_Data.value = this.LayoutManager.getMacroFromIdentifier().value;
+      //}
+  }
   if (this.keybindingflag) {
     if (this.KeyAssignManager.recordBindCodeType != '') {
       if (this.KeyAssignManager.recordBindCodeType == "MacroFunction") {
@@ -977,6 +1016,8 @@ keyBindSave() {
       }
       if (this.KeyAssignManager.recordBindCodeType == "SOUND CONTROL") {
         this.KeyAssignManager.d_SoundVolume = JSON.parse(JSON.stringify(this.M_SoundVolume.getSetValueData()));
+        this.KeyAssignManager.recordBindCodeName = this.M_SoundVolume.getBindTarget().filename;
+        this.SoundVolume_AreaCick(this.KeyBoardManager.getTarget().recordAssignBtnIndex);
         
       }
       this.KeyBoardManager.getTarget().setAssignTargetData(this.KeyAssignManager);
@@ -994,7 +1035,8 @@ keyBindSave() {
    * process NowKeyBindClassUI
   */
  getNowKeyBindClassUI(searchName = "") {
-  var defaultValue = this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey().defaultValue;
+  //var defaultValue = this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey().defaultValue;
+  var defaultValue = this.KeyBoardStyle.getTarget().keyMapping[this.KeyBoardManager.getTarget().recordAssignBtnIndex];
   //console.log('%c getNowKeyBindClassUI_searchName','background: blue; color: red',defaultValue)
   if (defaultValue == searchName) {
     return true;

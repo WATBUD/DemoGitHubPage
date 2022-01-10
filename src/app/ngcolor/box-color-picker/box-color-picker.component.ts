@@ -21,12 +21,12 @@ import { SaturationLightness } from '../shared/hsl/saturation-lightness';
 })
 export class BoxColorPickerComponent implements ControlValueAccessor, OnInit {
     @Input() public startHex: string;
+    @Input() public codeNumber: Number;
     public hue: number;
     public resultHue:any;
     public saturationLightness: SaturationLightness;
     private onTouchedCallback: () => void;
     private onChangeCallback: (_: ColorOutput) => void;
-
     constructor(private colorUtility: ColorUtilityService) {
         this.saturationLightness = {
             saturation: 0,
@@ -38,24 +38,49 @@ export class BoxColorPickerComponent implements ControlValueAccessor, OnInit {
     }
 
     public ngOnInit(): void {
-        console.log('%c ngOnInit', 'color:rgb(255,75,255,1)');
-
-        const hsl = this.colorUtility.calculateHslFromHex(this.startHex || 'ff0000');
-        this.setHsl(hsl);
-        this.calculateColor(0);
+        console.log('%c BoxColor_ngOnInit', 'color:rgb(255,75,255,1)');
+    }
+    ngAfterViewInit(){
+        console.log('%c BoxColor_ngAfterViewInit', 'color:rgb(255,75,255,1)');
+        setTimeout(() => {
+            const hsl = this.colorUtility.calculateHslFromHex(this.startHex || 'ff0000');
+            this.setHsl(hsl);
+            this.calculateColor(0);
+        }, 50);
     }
 
     public calculateColor(i): void {
+        console.log('%c calculateColor', 'color:rgb(255,75,255,1)');
+
         const colorOutput = this.colorUtility.createColorOutput(
             this.hue * 360,
             this.saturationLightness.saturation * 100,
             this.saturationLightness.lightness * 100,
         );
+        
         if(i == 0){
             this.onChangeCallback(colorOutput);
             this.onTouchedCallback();
         }
     }
+
+    public forceCalculateColor(Hex): void {
+
+        const hsl = this.colorUtility.calculateHslFromHex(Hex || 'ff0000');
+        this.setHsl(hsl);
+        const colorOutput = this.colorUtility.createColorOutput(
+            this.hue * 360,
+            this.saturationLightness.saturation * 100,
+            this.saturationLightness.lightness * 100,
+        );
+        console.log('%c forceCalculateColor', 'color:rgb(255,75,255,1)',colorOutput);
+
+        // this.onChangeCallback(colorOutput);
+        // this.onTouchedCallback();
+        //this.calculateColor(0);
+    }
+
+
 
     //當從前方將startHex改變時 同步將畫面的點移到相對的位置
     public ngOnChanges(){ 
@@ -63,13 +88,18 @@ export class BoxColorPickerComponent implements ControlValueAccessor, OnInit {
         // if(this.startHex.includes('rgb'))
         //      rgb
         // )
-        console.log('%c ngOnChanges', 'color:rgb(255,75,255,1)');
+        console.log('%c ngOnChanges', 'color:rgb(255,75,255,1)',this.startHex,this.codeNumber);
 
         const hsl = this.colorUtility.calculateHslFromHex(this.startHex || 'ff0000');
+        console.log('%c hsl', 'color:rgb(255,75,255,1)',hsl);
+
         this.resultHue = hsl.hue;
         this.setHsl(hsl);
         this.calculateColor(1)
     }
+
+
+
 
     public writeValue(obj: ColorOutput): void {
         console.log('%c writeValue', 'color:rgb(255,75,255,1)');

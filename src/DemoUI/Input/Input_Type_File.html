@@ -1,0 +1,107 @@
+<html>
+<title> Input_Type_File </title>
+<meta charset="utf-8">
+
+<head>
+
+</head>
+
+<body>
+    <input type="file" id="fileUploader" name="fileUploader" accept=".Perixx" />
+
+    <!-- <input id="fileExport" type="button" class="ButtonStyle" value="openInput">openInput</button> -->
+    <input id="ExampleJSONFile" type="button" class="ButtonStyle" value="ExampleJSONFile">ExampleJSONFile</button>
+    <button type="button" onclick="copyEvent('jsonObject')" class="ButtonStyle">Copy</button>
+    </br></br>
+    <label id="jsonObject"> </label>
+</body>
+<script>
+    var exoprtData = {
+        "members": [
+            {
+                "name": "Molecule Man",
+                "age": 29,
+                "secretIdentity": "Dan Jukes",
+                "powers": [
+                    "Radiation resistance",
+                    "Turning tiny",
+                    "Radiation blast"
+                ]
+            },
+        ]
+    }
+    
+    var ExampleJSONFile = document.getElementById("ExampleJSONFile");
+        ExampleJSONFile.addEventListener("click", function (evt) {
+            var stringifyExoprtData = JSON.stringify(exoprtData);
+
+            if (exoprtData != undefined) {
+                //download(stringifyExoprtData, this.currentPage+'_Data.txt', 'text/plain');
+                download(stringifyExoprtData, "json" + '_Data.Perixx', 'text/plain');
+            }
+    });
+
+    // var fileExport = document.getElementById("fileExport");
+    // fileExport.addEventListener("click", function (evt) {
+    //     document.getElementById('fileUploader').click();
+
+    // });
+
+  
+    function download(content, fileName, contentType) {
+        var a = document.createElement("a");
+        var file = new Blob([content], { type: contentType });
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+    }
+
+
+    function fileUploader() {
+        var fileUploader = document.getElementById("fileUploader");
+        fileUploader.addEventListener("change", function (evt) {
+            console.log('%c fileUploader', 'color:rgb(255,77,255)', evt);
+            var selectedFile = evt.target.files[0];
+            console.log('%c selectedFile', 'color:rgb(255,77,255)', selectedFile);
+            //reader.readAsBinaryString(selectedFile);
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                console.log('%c event.target.result', 'color:rgb(255,77,255)', event.target.result);
+                var data = event.target.result;
+
+                console.log('%c JSON.stringify(data)', 'color:rgb(255,77,255)', JSON.parse(data));
+
+                try {
+                    var try_Data = JSON.parse(JSON.stringify(data));
+                    // try_Data = try_Data.replaceAll("\\n\\s*\\n", "\n");  //remove empty lines
+                    // try_Data = try_Data.replaceAll("\\s*", "");  //remove whitespaces
+                    //try_Data=try_Data.replace(/\\"/g, '"');
+                    document.getElementById("jsonObject").innerText = try_Data;
+                } catch (error) {
+                    console.log('%c JSON.stringify(data)', 'color:rgb(255,77,255)', data);
+
+                }
+
+
+                reader.onerror = function (event) {
+                    console.error("File could not be read! Code " + event.target.error.code);
+                };
+                // 讀取上傳文件為二進制
+            }
+
+            reader.readAsText(selectedFile, "utf-8");
+
+        });
+    }
+    fileUploader();
+    window.onload = function () {
+    };
+
+
+    function copyEvent(id) {
+        var str = document.getElementById(id);
+        window.getSelection().selectAllChildren(str);
+        document.execCommand("Copy");
+    }
+
+</script>

@@ -33,6 +33,7 @@ export class PerixxComponent implements OnInit {
   startTimeEditing=false;
   SettingManager=new SettingManager();
   Built_ineffect=new Built_ineffect(1);
+  selectedMacroCode="";
   KeyBoardManager = new KeyBoardManager(1,3);
   KeyBoardLibray = new KeyBoardManager(1,3);
   MacroManager=new MacroManager();
@@ -98,7 +99,7 @@ export class PerixxComponent implements OnInit {
     });
     this.MacroManager.createFolderFile();
        //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-    this.setPageIndex('Lighting_Nav');
+    this.setPageIndex('Macro_Nav');
     //var ssss="/upload/prime/version.json";//Remove the primary domain Set the primary domain from the proxy.conf file
     //var ssss="?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
     var ssss="https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
@@ -263,7 +264,7 @@ export class PerixxComponent implements OnInit {
     var exoprtData=undefined;
     switch (this.currentPage) {
       case "Keyboard_Nav":
-        exoprtData=this.MacroManager.getExoprtData();
+        exoprtData=this.KeyBoardLibray.getTarget();
         break
       case "Macro_Nav":
         exoprtData=this.MacroManager.getExoprtData();
@@ -294,7 +295,9 @@ export class PerixxComponent implements OnInit {
     var stringifyExoprtData=JSON.stringify(exoprtData);
 
     if(exoprtData!=undefined){
-      download(stringifyExoprtData, this.currentPage+'_Data.txt', 'text/plain');
+      //download(stringifyExoprtData, this.currentPage+'_Data.txt', 'text/plain');
+      download(stringifyExoprtData, this.currentPage+'_Data.Perixx', 'text/plain');
+
     }
   }
 
@@ -510,6 +513,7 @@ export class PerixxComponent implements OnInit {
 }
 macroFileRightClick(i,Event){
   this.MacroManager.getClass().currentChooseMacro=i;
+  //this.selectedMacroCode=this.MacroManager.getClass().getTarget().code
   this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
   this.operationMenuFlag=true;
   var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
@@ -632,7 +636,7 @@ getKeyBindingIcon(index){
   var path
   if(this.keyboardColorHintMode=='KeyBoardManager'){
     var layoutMode=this.KeyBoardManager.getTarget().layoutMode;
-    console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);
+    //console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);
 
     if(layoutMode=="Default"){
       path =this.ImgPath.getThePicture(targetMatrixKey.defaultValue);//defaultValue recordBindCodeName

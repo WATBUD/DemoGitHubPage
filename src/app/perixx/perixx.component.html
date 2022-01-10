@@ -379,7 +379,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           right:20%;
           margin-top: 15%;" 
           (click)="downloadExportData();" (contextmenu)="downloadExportData();"> -->
-      <div id="SettingTitle" style="color: rgb(45 47 52);
+
+      <div  id="Area_label" style="color: rgb(45 47 52);
       height: auto;
       width: 100%;
       font-weight: bold;
@@ -388,6 +389,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     margin-top: 14%;">
         Lighting
       </div>
+      
       <!-- [style.background-color]="Built_ineffect.currentModeIndex==i?'blue':'transparent'" -->
       <div *ngFor="let item of Built_ineffect.lightListData ;let i = index" class="Lighting_OptionItem"
         [style.marginTop.px]="item.PointEffectName=='Breathing Per Key'?'15':'0'"
@@ -1004,6 +1006,30 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     width: 240px;">
       <!-- [style.background-color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'"
       [style.color]="KeyBoardManager.keyboardOfChoice ==i?'rgb(255, 255, 255)':'rgb(159, 163, 170)'" -->
+      <div id="Area_label" style="color: rgb(45 47 52);
+      height: auto;
+      width: 100%;
+      font-weight: bold;
+      margin-left: 12px;
+    margin-bottom: 2%;
+    margin-top: 14%;">
+        Profile
+      </div>
+      <div id="MacroFileSelectList" style="position:relative;transition: all 4s linear;margin-top: 0%;height: auto;">
+        <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.getTarget().MacroFiletItem;let i = index"
+          (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
+          [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
+          [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
+                        position: absolute;
+                        margin-left: 8%;" maxlength="15"
+            [style.visibility]="selectedMacroCode==item.selectedMacroCode&&macroOnEdit?'visible': 'hidden'"
+            [(ngModel)]="MacroManager.onEditMacroName" (blur)="renameMacroFile($event);macroOnEdit=false;"
+            (keyup)="renameMacroFile($event);">
+          &nbsp;&nbsp;&nbsp;{{item.name}}
+        </div>
+      
+      </div>
       <div id="SettingTitle" style="color: rgb(45 47 52);
             height: auto;
             width: 100%; 
@@ -1023,13 +1049,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
         <div class="Shard_OptionItem" *ngFor="let item of MacroManager.getClass().MacroFiletItem;let i = index"
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
-          [style.background-color]="MacroManager.getClass().currentChooseMacro==i?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
-          [style.color]="MacroManager.getClass().currentChooseMacro==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
-          <!-- <img [src]="MacroManager.getClass().currentChooseMacro==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]"> -->
+          [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
+          [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          <!-- <img [src]="KeyBoardManager.getTarget()==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]"> -->
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
             position: absolute;
             margin-left: 8%;" maxlength="15"
-            [style.visibility]="MacroManager.getClass().currentChooseMacro==i&&macroOnEdit?'visible': 'hidden'"
+            [style.visibility]="selectedMacroCode==item.selectedMacroCode&&macroOnEdit?'visible': 'hidden'"
             [(ngModel)]="MacroManager.onEditMacroName" (blur)="renameMacroFile($event);macroOnEdit=false;"
             (keyup)="renameMacroFile($event);">
           &nbsp;&nbsp;&nbsp;{{item.name}}

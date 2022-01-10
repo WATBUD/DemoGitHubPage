@@ -269,18 +269,18 @@ export class PerixxComponent implements OnInit {
       case "Macro_Nav":
         exoprtData=this.MacroManager.getExoprtData();
         break
-      case "Lighting_Nav":
-        //exoprtData=this.Built_ineffect.lightListData;
-        var testIndexList=[];
-        var target=this.Built_ineffect.Built_inSelected.AllBlockColor;
-        for (let index = 0; index < target.length; index++) {
-          const element = target[index];
-          if(element.choosing==true){
-            testIndexList.push(index);
-          }
-        }
-        exoprtData=testIndexList;
-        break;
+      // case "Lighting_Nav":
+      //   exoprtData=this.Built_ineffect.Built_inSelected;
+      //   // var testIndexList=[];
+      //   // var target=this.Built_ineffect.Built_inSelected.AllBlockColor;
+      //   // for (let index = 0; index < target.length; index++) {
+      //   //   const element = target[index];
+      //   //   if(element.choosing==true){
+      //   //     testIndexList.push(index);
+      //   //   }
+      //   // }
+      //   // exoprtData=testIndexList;
+      //   break;
     }
     function download(content, fileName, contentType) {
       var a = document.createElement("a");
@@ -297,7 +297,6 @@ export class PerixxComponent implements OnInit {
     if(exoprtData!=undefined){
       //download(stringifyExoprtData, this.currentPage+'_Data.txt', 'text/plain');
       download(stringifyExoprtData, this.currentPage+'_Data.Perixx', 'text/plain');
-
     }
   }
 

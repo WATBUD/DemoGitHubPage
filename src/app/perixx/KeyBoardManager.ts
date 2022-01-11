@@ -176,10 +176,6 @@ export class KeyBoardManager {
     refreshKeyBoardTemp(){
         this.keyBoardTemp.ImportClassData(this.getTarget());
     }
-    keyBoardTempR(){
-
-
-    }
     getAssignTarget(index) {
         return this.KeyBoardArray[index];
     }
@@ -222,7 +218,7 @@ export class KeyBoard {
             this.assignedKeyboardKeys.push(tempArr);
         }
     }
-    
+
 
     /**
        * setTargetDefaultKeyArray
@@ -304,6 +300,25 @@ export class KeyBoard {
         }
     }
     
+    setTargetMacro(data, index) {
+        var inputData = JSON.parse(JSON.stringify(data));
+        console.log("%c setTargetMacro", "color:red", data, index);
+        inputData.selectedMacroCode += "1";
+
+        var KeyMatrix = this.getNowModeKeyMatrix();
+        KeyMatrix[index].recordBindCodeType = "MacroFunction";
+        KeyMatrix[index].macro_Data.selectedMacroCode = inputData.selectedMacroCode;
+        var target = this.macroFiletItem.find((x) => x.selectedMacroCode == inputData.selectedMacroCode)
+        if (target != undefined) {
+
+        }
+        else {
+            this.macroFiletItem.push(inputData));
+        }
+
+
+    }
+
     theBindingCategoryIsMacro(index) {
         if (this.getNowModeKeyMatrix()[index].recordBindCodeType == "MacroFunction") {
             return true;

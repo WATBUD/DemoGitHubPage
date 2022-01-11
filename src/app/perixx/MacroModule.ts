@@ -133,9 +133,9 @@ export class MacroManager {
             console.log('MacroObj:', MacroObj.macroClassItem, MClass2);
             var targetClass = MacroObj.macroClassItem[MClass2];
             this.createMacroClass(targetClass.className);
-            for (let Mindex = 0; Mindex < targetClass.MacroFiletItem.length; Mindex++) {
-                //console.log('MacroFiletItem:', MacroObj[MClass2].MacroFiletItem[Mindex]);                            
-                this.macroClassItem[MClass2].ReadFileCreateData(targetClass.MacroFiletItem[Mindex]);
+            for (let Mindex = 0; Mindex < targetClass.macroFiletItem.length; Mindex++) {
+                //console.log('macroFiletItem:', MacroObj[MClass2].macroFiletItem[Mindex]);                            
+                this.macroClassItem[MClass2].ReadFileCreateData(targetClass.macroFiletItem[Mindex]);
             }
         }
     }
@@ -212,8 +212,8 @@ export class MacroManager {
             //console.log('MacroObj:',MacroObj.macroClassItem,MClass2);
             var targetClass = this.macroClassItem[MClass2];
             //this.createMacroClass(targetClass.className);
-            for (let Mindex = 0; Mindex < targetClass.MacroFiletItem.length; Mindex++) {
-                var macroContent = targetClass.MacroFiletItem[Mindex];
+            for (let Mindex = 0; Mindex < targetClass.macroFiletItem.length; Mindex++) {
+                var macroContent = targetClass.macroFiletItem[Mindex];
                 if (macroContent.selectedMacroCode == value) {
                     return macroContent;
                 }
@@ -227,7 +227,7 @@ export class MacroManager {
     getAllMacroFileData() {
         var Tdata: any = [];
         for (let index = 0; index < this.macroClassItem.length; index++) {
-            var reformattedArray = this.macroClassItem[index].MacroFiletItem.map(function (obj) {
+            var reformattedArray = this.macroClassItem[index].macroFiletItem.map(function (obj) {
                 console.log("getAllMacroFileData", obj);
                 Tdata.push({
                     selectedMacroCode: obj.selectedMacroCode,
@@ -295,9 +295,9 @@ export class MacroManager {
     checkforDuplicateFileNames(targetName) {
         for (let index = 0; index < this.macroClassItem.length; index++) {
             const element = this.macroClassItem[index];
-            for (let index2 = 0; index2 < element.MacroFiletItem.length; index2++) {
-                console.log('%c checkforDuplicateFileNames','color:rgb(255,77,255)',  element.MacroFiletItem[index2].name);
-                if (targetName == element.MacroFiletItem[index2].name) {
+            for (let index2 = 0; index2 < element.macroFiletItem.length; index2++) {
+                console.log('%c checkforDuplicateFileNames','color:rgb(255,77,255)',  element.macroFiletItem[index2].name);
+                if (targetName == element.macroFiletItem[index2].name) {
                     return true;
                 }
             }
@@ -385,7 +385,7 @@ export class MacroManager {
     }
 }
 export class MacroClass {
-    MacroFiletItem: any = [
+    macroFiletItem: any = [
     ]
     currentChooseMacro = 0;
     className: any = "未命名";
@@ -405,8 +405,8 @@ export class MacroClass {
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = InputData[arr[index]];
         }
-        TData.selectedMacroCode = new Date().getTime();
-        this.MacroFiletItem.push(TData);
+        TData.selectedMacroCode = new Date().getTime().toString();
+        this.macroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
     }
 
@@ -419,11 +419,11 @@ export class MacroClass {
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = InputData[arr[index]];
         }
-        this.MacroFiletItem.push(TData);
+        this.macroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
     }
     copyMacroFile(copyName = "Error") {
-        if (this.MacroFiletItem.length > 50) {
+        if (this.macroFiletItem.length > 50) {
             return;
         }
         var TData = new MacroScriptContent();
@@ -432,20 +432,20 @@ export class MacroClass {
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = nowCopyTarget[arr[index]];
         }
-        TData.selectedMacroCode = new Date().getTime();
+        TData.selectedMacroCode = new Date().getTime().toString();
         TData.name = copyName;
-        this.MacroFiletItem.push(TData);
+        this.macroFiletItem.push(TData);
         console.log("copyMacroFile", TData, typeof TData);
     }
     getTarget() {
         // console.log("this.currentMacroClass",this.currentMacroClass,this.macroClassItem.length);
-        return this.MacroFiletItem[this.currentChooseMacro];
+        return this.macroFiletItem[this.currentChooseMacro];
     }
     getCopyTarget() {
         return JSON.parse(JSON.stringify(this.getTarget()));
     }
     hasFile() {
-        if (this.MacroFiletItem.length > 0) {
+        if (this.macroFiletItem.length > 0) {
             return true;
         }
         else {
@@ -454,7 +454,7 @@ export class MacroClass {
     }
     createMacro(Tname = "宏檔案") {
         console.log("createMacro創造檔案checkNamePass");
-        this.MacroFiletItem.push(new MacroScriptContent(Tname));
+        this.macroFiletItem.push(new MacroScriptContent(Tname));
 
     }
     updeteMacroName(NewName){
@@ -468,10 +468,10 @@ export class MacroClass {
             if (this.currentChooseMacro > 0) {
                 var T = this.currentChooseMacro;
                 this.currentChooseMacro -= 1;
-                this.MacroFiletItem.splice(T, 1);
+                this.macroFiletItem.splice(T, 1);
             }
             else if (this.currentChooseMacro == 0) {
-                this.MacroFiletItem.splice(this.currentChooseMacro, 1);
+                this.macroFiletItem.splice(this.currentChooseMacro, 1);
             }
         }
     }
@@ -490,7 +490,7 @@ export class MacroScriptContent {
     selectAllDataFlag=false;
     indexPosition = 0;
     name: any = "新檔案";
-    selectedMacroCode = new Date().getTime();
+    selectedMacroCode = new Date().getTime().toString();
     Data: any = [
         // byKeyCode: "error",
         // byStartTime: 0,

@@ -106,9 +106,9 @@ export class MacroManager {
             console.log('MacroObj:',MacroObj.macroClassItem,MClass2);
             var targetClass=  MacroObj.macroClassItem[MClass2];  
             this.createMacroClass(targetClass.className);                                    
-            for (let Mindex = 0; Mindex <targetClass.MacroFiletItem.length; Mindex++) {
-                //console.log('MacroFiletItem:', MacroObj[MClass2].MacroFiletItem[Mindex]);                            
-                this.macroClassItem[MClass2].ReadFileCreateData(targetClass.MacroFiletItem[Mindex]);
+            for (let Mindex = 0; Mindex <targetClass.macroFiletItem.length; Mindex++) {
+                //console.log('macroFiletItem:', MacroObj[MClass2].macroFiletItem[Mindex]);                            
+                this.macroClassItem[MClass2].ReadFileCreateData(targetClass.macroFiletItem[Mindex]);
                 
             }
         }
@@ -194,7 +194,7 @@ export class MacroManager {
     getAllMacroFileData() {
         var Tdata: any = [];
             for (let index = 0; index < this.macroClassItem.length; index++) {
-                var reformattedArray = this.macroClassItem[index].MacroFiletItem.map(function (obj) {
+                var reformattedArray = this.macroClassItem[index].macroFiletItem.map(function (obj) {
                     console.log("getAllMacroFileData", obj);
                     // var rObj = {
                     //     selectedMacroCode:obj.selectedMacroCode,
@@ -219,7 +219,7 @@ export class MacroManager {
         return this.macroClassItem[this.currentMacroClass];
     }
     createClassMacroFile(name = "宏類別") {
-        if(this.getClass().MacroFiletItem.length>50){
+        if(this.getClass().macroFiletItem.length>50){
             return;
         }
         console.log("createClassMacroFile_log",name);
@@ -237,7 +237,7 @@ export class MacroManager {
                 pass = false;
             }
         }
-        this.getClass().MacroFiletItem.push(new MacroScriptContent(Tname));
+        this.getClass().macroFiletItem.push(new MacroScriptContent(Tname));
         this.updeteEditName();
         this.tempMacroContent=this.getClass().getTarget();
     }
@@ -313,8 +313,8 @@ export class MacroManager {
     checkNameIsRepeat(targetName) {
         for (let index = 0; index < this.macroClassItem.length; index++) {
             const element = this.macroClassItem[index];
-            for (let index2 = 0; index2 < element.MacroFiletItem.length; index2++) {
-                if (targetName == element.MacroFiletItem[index2].name) {
+            for (let index2 = 0; index2 < element.macroFiletItem.length; index2++) {
+                if (targetName == element.macroFiletItem[index2].name) {
                     return true;
                 }
             }
@@ -327,7 +327,7 @@ export class MacroManager {
 
 
     copyFolderFile() {
-        if(this.getClass().MacroFiletItem.length>50){
+        if(this.getClass().macroFiletItem.length>50){
             return;
         }
         if (this.macroClassItem.length>0) {
@@ -347,7 +347,7 @@ export class MacroManager {
                     }
                 }
                 clone.name = Tname;
-                this.getClass().MacroFiletItem.push(clone);
+                this.getClass().macroFiletItem.push(clone);
             }
         }
     }
@@ -382,7 +382,7 @@ export class MacroManager {
     }
 }
 export class MacroClass {
-    MacroFiletItem: any = [
+    macroFiletItem: any = [
     ]
     currentChooseMacro = 0;
     className: any = "未命名";
@@ -405,7 +405,7 @@ export class MacroClass {
             TData[arr[index]] = InputData[arr[index]];
         }
         TData.selectedMacroCode = new Date().getTime();
-        this.MacroFiletItem.push(TData);
+        this.macroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
 
     }
@@ -419,16 +419,16 @@ export class MacroClass {
         for (let index = 0; index < arr.length; index++) {
             TData[arr[index]] = InputData[arr[index]];
         }
-        this.MacroFiletItem.push(TData);
+        this.macroFiletItem.push(TData);
         console.log("ImportFileCreateData_PushData", TData, typeof InputData);
     }
 
     getTarget() {
         // console.log("this.currentMacroClass",this.currentMacroClass,this.macroClassItem.length);
-        return this.MacroFiletItem[this.currentChooseMacro];
+        return this.macroFiletItem[this.currentChooseMacro];
     }
     hasFile() {
-        if (this.MacroFiletItem.length > 0) {
+        if (this.macroFiletItem.length > 0) {
             return true;
         }
         else {
@@ -449,13 +449,13 @@ export class MacroClass {
             }
         }
         console.log("createMacro創造檔案checkNamePass");
-        this.MacroFiletItem.push(new MacroScriptContent(Tname));
+        this.macroFiletItem.push(new MacroScriptContent(Tname));
 
     }
 
     checkNameIsRepeat(targetName) {
-        for (let index2 = 0; index2 < this.MacroFiletItem.length; index2++) {
-            if (this.MacroFiletItem[index2].name == targetName) {
+        for (let index2 = 0; index2 < this.macroFiletItem.length; index2++) {
+            if (this.macroFiletItem[index2].name == targetName) {
                 return true;
             }
         }
@@ -466,10 +466,10 @@ export class MacroClass {
             if (this.currentChooseMacro > 0) {
                 var T = this.currentChooseMacro;
                 this.currentChooseMacro -= 1;
-                this.MacroFiletItem.splice(T, 1);
+                this.macroFiletItem.splice(T, 1);
             }
             else if (this.currentChooseMacro == 0) {
-                this.MacroFiletItem.splice(this.currentChooseMacro, 1);
+                this.macroFiletItem.splice(this.currentChooseMacro, 1);
             }
         }
     }

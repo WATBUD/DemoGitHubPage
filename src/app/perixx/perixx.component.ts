@@ -395,8 +395,9 @@ export class PerixxComponent implements OnInit {
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
     var KeyMatrix = target.getNowModeKeyMatrix();
     if (bool) {
-      KeyMatrix[index].recordBindCodeType = "MacroFunction";
-      KeyMatrix[index].macro_Data.selectedMacroCode = this.MacroManager.tempMacroContent.selectedMacroCode;
+      // KeyMatrix[index].recordBindCodeType = "MacroFunction";
+      // KeyMatrix[index].macro_Data.selectedMacroCode = this.MacroManager.tempMacroContent.selectedMacroCode;
+      target.setTargetMacro(this.MacroManager.tempMacroContent,index);
     }
     else {
       if (KeyMatrix[index].recordBindCodeType == "MacroFunction") {

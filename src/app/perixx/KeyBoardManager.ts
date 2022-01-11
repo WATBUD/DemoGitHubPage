@@ -313,7 +313,7 @@ export class KeyBoard {
 
         }
         else {
-            this.macroFiletItem.push(inputData));
+            this.macroFiletItem.push(inputData);
         }
 
 

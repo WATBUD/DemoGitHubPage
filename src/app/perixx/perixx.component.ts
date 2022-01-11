@@ -510,6 +510,27 @@ export class PerixxComponent implements OnInit {
         return;
     }
   }
+
+  macroProfileFileRightClick(i, Event) {
+    this.MacroManager.getClass().currentChooseMacro = i;
+    //this.selectedMacroCode=this.MacroManager.getClass().getTarget().code
+    this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+    this.operationMenuFlag = true;
+    var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
+    macroFileOptions.style.left = Event.layerX + "px";
+    //Event.clientX  + "px";
+    macroFileOptions.style.top = Event.layerY + 80 + "px";
+    //Event.clientY + "px";
+    console.log('%c macroFileRightClick', 'color:rgb(255,77,255)', Event);
+  }
+  macroProfileFileLeftClick(selectedMacroCode="") {
+    this.selectedMacroCode=selectedMacroCode;
+    //this.MacroManager.getClass().currentChooseMacro = index;
+    //this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
+    //this.KeyBoardManager.getTarget();
+    // this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+  }
+
   macroFileRightClick(i, Event) {
     this.MacroManager.getClass().currentChooseMacro = i;
     //this.selectedMacroCode=this.MacroManager.getClass().getTarget().code

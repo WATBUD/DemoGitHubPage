@@ -1017,7 +1017,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
       <div id="MacroFileSelectList" style="position:relative;transition: all 4s linear;margin-top: 0%;height: auto;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.getTarget().macroFiletItem;let i = index"
-          (click)="selectedMacroCode=item.selectedMacroCode" (contextmenu)="selectedMacroCode=item.selectedMacroCode"
+          (click)="macroProfileFileLeftClick(item.selectedMacroCode)" (contextmenu)="macroProfileFileLeftClick(item.selectedMacroCode)"
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
           [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;

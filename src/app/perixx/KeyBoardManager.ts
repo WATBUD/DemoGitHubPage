@@ -222,6 +222,7 @@ export class KeyBoard {
             this.assignedKeyboardKeys.push(tempArr);
         }
     }
+    
 
     /**
        * setTargetDefaultKeyArray
@@ -331,7 +332,11 @@ export class KeyBoard {
     defaultModule(type = "") {
         var T = {
             macro_RepeatType: 0,
-            macro_Data: {},
+            macro_Data: {
+                name:"",
+                tranlate:"",
+                selectedMacroCode:"",
+            },
             assignValue: '',
             defaultValue: 'Default',
             profileName: '',

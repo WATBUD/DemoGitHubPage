@@ -611,12 +611,11 @@ keyboardRMenu(FNname="") {
 }
 loadTemporaryKeyboardData(){
   this.KeyBoardManager.loadTemporaryKeyboardData();
-  this.KeyBoardManager.getTarget().layoutMode = "Custom";
 
   if (this.keyboardColorHintMode == 'KeyBoardManager') {
   }
 }
-setKeyBindingData(dataValue = "") {
+  setKeyBindingData(dataValue = "") {
     //if(dataValue!=""){
     var target = this.KeyBoardManager.keyBoardTemp;
     var targetMatrixKey = target.getNowModeTargetMatrixKey();
@@ -626,7 +625,11 @@ setKeyBindingData(dataValue = "") {
     if (this.keyboardColorHintMode == 'KeyBoardLibray') {
       this.KeyBoardLibray.getTarget().ImportClassData(this.KeyBoardManager.keyBoardTemp);
     }
-    //}
+    else if (this.keyboardColorHintMode == 'KeyBoardManager') {
+      target.layoutMode = "Custom";
+      //this.loadTemporaryKeyboardData();
+    }
+  
 }
 getKeyBindingIcon(index){
   var target=this.KeyBoardManager.keyBoardTemp;           
@@ -634,7 +637,7 @@ getKeyBindingIcon(index){
   var targetMatrixKey=KeyMatrix[index];
   var path
   if(this.keyboardColorHintMode=='KeyBoardManager'){
-    var layoutMode=this.KeyBoardManager.getTarget().layoutMode;
+    var layoutMode=target.layoutMode//this.KeyBoardManager.getTarget().layoutMode;
     //console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);
 
     if(layoutMode=="Default"){

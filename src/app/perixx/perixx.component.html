@@ -108,7 +108,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     width: 100%;">
 
 
-      <section [style.display]="settingLocation!='FirmwareUpgrade'?'block': 'none'">
+      <section [style.display]="settingLocation!='FirmwareUpgrade'?'block': 'none'" >
         <div id="SettingTitle" style="color: rgb(45 47 52);
         height: auto;
         width: 100%;
@@ -118,8 +118,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           Settings
         </div>
         <div id="SharedSelectList" style="margin-left: 0px;
-          background: rgb(87 136 77 / 0%);    margin-top: 2%;
-        height: 90%;">
+          background: rgb(87 136 77 / 0%);    margin-top: 22px;
+        height: 90%;" (scroll)="triggeredWhenTheScrollBarSlides($event)">
           <div id="Information">
           </div>
           <div id="InformationArea" style="margin-left: 23px;margin-top: 23px;">
@@ -238,7 +238,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <section style="    flex-direction: column;
             height: 24px;
             margin-top: 33px;" class="ParallelTextString">
-                  <input  id="rangeUI" max="60" min="0" style="width: 272px;" type="range"  
+                  <input  id="rangeUI" max="60" min="1" style="width: 272px;" type="range"  
                   [(ngModel)]='KeyBoardManager.getTarget().autoSleepValue' (ngModelChange)="settingLayoutChoice()">
                   <div [style.marginLeft.px]="KeyBoardManager.getTarget().autoSleepValue*272/60-20" style="text-align: center;
                   width: 7%;
@@ -266,7 +266,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               display: flex;
               justify-content: center;
               align-items: center;
-              color: rgb(245,245,247);">
+              color: rgb(245,245,247);" >
               Clear
               </div>
             </section>
@@ -279,7 +279,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </section>
             <section class="ParallelTextString">
               Restore factory settings
-              <div style="position: absolute;
+              <div (click)="restoreFactorySettings();" style="position: absolute;
               right: 26%;
               width: 52px;
               height: 23px;
@@ -298,7 +298,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
           
-          <div style="height: 150%;" >
+          <div style="height: 88%;" >
           </div>
 
         </div>
@@ -315,7 +315,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
         <div id="SharedSelectList" style="margin-left: 0px;
         background: rgb(87 136 77 / 0%);    margin-top: 2%;
-      height: 90%;">
+      height: 90%;" >
         <div id="Current VersionArea" style="margin-left: 23px;margin-top: 23px;">
           <section style="color: rgb(18,64,162);" class="ParallelTextString">
             Information 

@@ -128,7 +128,9 @@ export class PerixxComponent implements OnInit {
 
     this.keyboardLeftClick(0);
   }
-
+  restoreFactorySettings(){
+     this.initialzeTheDevice();
+  }
   scrollMoveToTheSpecifiedlocation(areaName = "") {
     console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName, this);
 
@@ -140,6 +142,16 @@ export class PerixxComponent implements OnInit {
     );
 
   }
+
+  triggeredWhenTheScrollBarSlides(event){
+
+    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event);
+
+    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);
+
+
+  }
+
 
   linkToTheDesignatedWebsite(weburl = "") {
     window.open(weburl, "_blank");

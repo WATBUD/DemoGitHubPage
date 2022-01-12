@@ -47,28 +47,41 @@ export class PerixxComponent implements OnInit {
   currentTouchButtons = "";
   keyboardColorHintMode = "KeyBoardManager"//KeyBoardManager,KeyBoardLibray
   checkForPassableKey = ["Custom_Fnkey", "FunctionLock", "WinLock"]
-
   settingsOption = [
     {
-      'name': 'Information'
+      'name': 'Information',
+      'min':0,
+      'max':164,
     },
     {
-      'name': 'Layout'
+      'name': 'Layout',
+      'min':164,
+      'max':261,
     },
     {
-      'name': 'Lighting'
+      'name': 'Lighting',
+      'min':262,
+      'max':393,
     },
     {
-      'name': 'Macro'
+      'name': 'Macro',
+      'min':393,
+      'max':477,
     },
     {
-      'name': 'Auto Sleep'
+      'name': 'Auto Sleep',
+      'min':477,
+      'max':620,
     },
     {
-      'name': 'Bluetooth'
+      'name': 'Bluetooth',
+      'min':620,
+      'max':710,
     },
     {
-      'name': 'Reset'
+      'name': 'Reset',
+      'min':710,
+      'max':900,
     },
   ]
   DefaultColorList = [
@@ -143,13 +156,16 @@ export class PerixxComponent implements OnInit {
 
   }
 
-  triggeredWhenTheScrollBarSlides(event){
-
+  triggeredWhenTheScrollBarSlides(event) {
     console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event);
-
-    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);
-
-
+    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);7
+    var compareValue = event.target.scrollTop;
+    for (let index = 0; index < this.settingsOption.length; index++) {
+      const element = this.settingsOption[index];
+      if (compareValue < element.max && compareValue > element.min) {
+        this.settingLocation = element.name;
+      }
+    }
   }
 
 

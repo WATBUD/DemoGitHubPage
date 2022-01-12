@@ -302,9 +302,8 @@ export class KeyBoard {
     
     setTargetMacro(data, index) {
         var inputData = JSON.parse(JSON.stringify(data));
-        console.log("%c setTargetMacro", "color:red", data, index);
         inputData.selectedMacroCode += "1";
-
+        console.log("%c setTargetMacro", "color:red", data, index);
         var KeyMatrix = this.getNowModeKeyMatrix();
         KeyMatrix[index].recordBindCodeType = "MacroFunction";
         KeyMatrix[index].macro_Data.selectedMacroCode = inputData.selectedMacroCode;
@@ -325,6 +324,7 @@ export class KeyBoard {
         }
         return false;
     }
+
     resetTheSpecifiedKeyBindData(index) {
         this.getNowModeKeyMatrix()[index].recordBindCodeType=""
         this.getNowModeKeyMatrix()[index].recordBindCodeName=""

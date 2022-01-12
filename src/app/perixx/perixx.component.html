@@ -192,7 +192,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           <section style="    flex-direction: column;
           height: 24px;
           margin-top: 33px;" class="ParallelTextString">
-                <input  id="rangeUI" max="100" min="0" style="width: 272px;" type="range"  
+                <input  id="rangeUI" max="100" min="0" step="10" style="width: 272px;" type="range"  
                 [(ngModel)]="KeyBoardManager.getTarget().lightData.brightness">
                 <div [style.marginLeft.px]="KeyBoardManager.getTarget().lightData.brightness*272/100-20" style="text-align: center;
                 width: 7%;
@@ -629,7 +629,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               data-KB_Block="5" class="KeyBoard_Block" 
               [attr.data-index]="i"
               [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
-              (click)="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex=i"
+              (click)="clickTheKeyBindButton(i)"
               (contextmenu)="KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)">
               <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)" >
             </div>
@@ -1192,7 +1192,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       (click)="MacroManager.tempMacroContent.sortData();"> Refresh 
       </div>
       <div class="ApplyBtn" style="position: absolute;bottom: 24px;z-index: 9998;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
-      (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Apply 
+      (click)="this.KeyBoardManager.loadTemporaryMacroData()"> Apply 
       </div>
 
 

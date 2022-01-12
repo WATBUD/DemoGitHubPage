@@ -46,6 +46,8 @@ export class PerixxComponent implements OnInit {
   theColorWheelISBeingClicked = false;
   currentTouchButtons = "";
   keyboardColorHintMode = "KeyBoardManager"//KeyBoardManager,KeyBoardLibray
+  checkForPassableKey = ["Custom_Fnkey", "FunctionLock", "WinLock"]
+
   settingsOption = [
     {
       'name': 'Information'
@@ -387,26 +389,48 @@ export class PerixxComponent implements OnInit {
   //#endregion Lighting_Nav 
 
   //#region Macro_Nav
-
-  clickMacroInTheAreaOfTheKeyboard(index, bool = false) {
-    //var target=this.KeyBoardManager.getTarget();
+  loadTemporaryMacroData() {
     var target = this.KeyBoardManager.keyBoardTemp;
-    // target.recordAssignBtnIndex=index;
+    // var inputData = JSON.parse(JSON.stringify(this.MacroManager.tempMacroContent));
+    // this.selectedMacroCode= inputData.selectedMacroCode;
+    // target.setTargetMacro(inputData,index);
+
+    this.KeyBoardManager.loadTemporaryKeyboardData();
+    //this.KeyBoardManager.getTarget().set
+    // for
+    // if (this.keyboardColorHintMode == 'KeyBoardManager') {
+
+    // }
+  }
+  clickMacroInTheAreaOfTheKeyboard(index, bool = false) {
+    var target = this.KeyBoardManager.keyBoardTemp;
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
-    var KeyMatrix = target.getNowModeKeyMatrix();
+    var keyMatrix = target.getNowModeKeyMatrix();
+    var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[index].defaultValue);
+    console.log('%c  keyMatrix[i].defaultValue', 'color:rgb(255,77,255)', keyMatrix[index].defaultValue, keyIsExist);
+    if (keyIsExist != undefined) {
+      return;
+    }
+
+
     if (bool) {
       // KeyMatrix[index].recordBindCodeType = "MacroFunction";
       // KeyMatrix[index].macro_Data.selectedMacroCode = this.MacroManager.tempMacroContent.selectedMacroCode;
-      target.setTargetMacro(this.MacroManager.tempMacroContent,index);
+
+
+      this.clickTheKeyBindButton(index);
+      var inputData = JSON.parse(JSON.stringify(this.MacroManager.tempMacroContent));
+      this.selectedMacroCode= inputData.selectedMacroCode;
+      target.setTargetMacro(inputData,index);
     }
     else {
-      if (KeyMatrix[index].recordBindCodeType == "MacroFunction") {
-        KeyMatrix[index].recordBindCodeType = "";
+      if (keyMatrix[index].recordBindCodeType == "MacroFunction") {
+        keyMatrix[index].recordBindCodeType = "";
       }
     }
     //this.changeDetectorRef.detectChanges();
     //console.log('%c clickMacroInTheAreaOfTheKeyboard','color:rgb(255,77,255)',  targetMatrixKey,target);
-    console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', KeyMatrix);
+    console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', keyMatrix);
 
 
   }
@@ -513,7 +537,7 @@ export class PerixxComponent implements OnInit {
 
   macroProfileFileRightClick(i, Event) {
     this.MacroManager.getClass().currentChooseMacro = i;
-    //this.selectedMacroCode=this.MacroManager.getClass().getTarget().code
+    //this.selectedMacroCode=this.MacroManager.getClass( ).getTarget().code
     this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
     this.operationMenuFlag = true;
     var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
@@ -580,6 +604,17 @@ export class PerixxComponent implements OnInit {
  //#endregion Macro_Nav
 
   //#region Keyboard_Nav
+  clickTheKeyBindButton(i) {
+    var keyMatrix = this.KeyBoardManager.keyBoardTemp.getNowModeKeyMatrix();
+
+
+    var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[i].defaultValue);
+    console.log('%c  keyMatrix[i].defaultValue', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist);
+
+    if (keyIsExist == undefined) {
+      this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = i;
+    }
+  }
   keyboardPageInitial(FNname = "") {
     this.keyboardColorHintMode = 'KeyBoardManager';
     setTimeout(() => {
@@ -639,11 +674,12 @@ export class PerixxComponent implements OnInit {
     //var KeyMatrix=target.getNowModeKeyMatrix();
     targetMatrixKey.recordBindCodeType = "GeneralBinding";
     targetMatrixKey.recordBindCodeName = dataValue;
+    target.layoutMode = "Custom";
+
     if (this.keyboardColorHintMode == 'KeyBoardLibray') {
       this.KeyBoardLibray.getTarget().ImportClassData(this.KeyBoardManager.keyBoardTemp);
     }
     else if (this.keyboardColorHintMode == 'KeyBoardManager') {
-      target.layoutMode = "Custom";
       //this.loadTemporaryKeyboardData();
     }
 

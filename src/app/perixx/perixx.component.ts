@@ -141,66 +141,6 @@ export class PerixxComponent implements OnInit {
 
     this.keyboardLeftClick(0);
   }
-  restoreFactorySettings(){
-     this.initialzeTheDevice();
-  }
-  scrollMoveToTheSpecifiedlocation(areaName = "") {
-    console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName, this);
-
-    this.settingLocation = areaName;
-    document.getElementById(areaName).scrollIntoView(
-      {
-        behavior: 'smooth', block: 'start', inline: 'nearest'
-      }
-    );
-
-  }
-
-  triggeredWhenTheScrollBarSlides(event) {
-    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event);
-    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);7
-    var compareValue = event.target.scrollTop;
-    for (let index = 0; index < this.settingsOption.length; index++) {
-      const element = this.settingsOption[index];
-      if (compareValue < element.max && compareValue > element.min) {
-        this.settingLocation = element.name;
-      }
-    }
-  }
-
-
-  linkToTheDesignatedWebsite(weburl = "") {
-    window.open(weburl, "_blank");
-    // function aaa() { 
-    //   window.open( 
-    //     "https://www.yourURL.com", "_blank");
-    // }
-  }
-  //#region ColorWheel 
-  HSLColorPickerFN = [];
-  updateColorWheel(event) {
-    console.log('%c updateColorWheel', 'background: black; color: white', event);
-    let backgroundColor = event.target.style.backgroundColor;
-    this.ColorWheelModule.onclickColorDefault(event.target, 0);
-    //this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
-    this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
-    console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
-  }
-
-  updateCustomColorList(index) {
-    console.log('%c updateCustomColorList', 'background: black; color: white', event);
-    this.CustomColorList[index] = this.ColorWheelModule.getRGB();
-    // let backgroundColor = event.target.style.backgroundColor;
-    // this.ColorWheelModule.onclickColorDefault(event.target,0);
-    // this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
-    //console.log('%c backgroundColor', 'background: black; color: white', backgroundColor)
-
-  }
-  //#endregion ColorWheel
-
-  settingLayoutChoice() {
-  };
-
   setPageIndex(pageName = "") {
     if (this.currentPage != pageName)
       this.currentPage = pageName;
@@ -308,6 +248,68 @@ export class PerixxComponent implements OnInit {
       download(stringifyExoprtData, this.currentPage + '_Data.Perixx', 'text/plain');
     }
   }
+
+  settingLayoutChoice() {
+  };
+  //#region Home_Nav 
+
+  restoreFactorySettings(){
+     this.initialzeTheDevice();
+  }
+  scrollMoveToTheSpecifiedlocation(areaName = "") {
+    console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName, this);
+
+    this.settingLocation = areaName;
+    document.getElementById(areaName).scrollIntoView(
+      {
+        behavior: 'smooth', block: 'start', inline: 'nearest'
+      }
+    );
+
+  }
+  triggeredWhenTheScrollBarSlides(event) {
+    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event);
+    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);7
+    var compareValue = event.target.scrollTop;
+    for (let index = 0; index < this.settingsOption.length; index++) {
+      const element = this.settingsOption[index];
+      if (compareValue < element.max && compareValue > element.min) {
+        this.settingLocation = element.name;
+      }
+    }
+  }
+  linkToTheDesignatedWebsite(weburl = "") {
+    window.open(weburl, "_blank");
+    // function aaa() { 
+    //   window.open( 
+    //     "https://www.yourURL.com", "_blank");
+    // }
+  }
+    //#endregion Home_Nav 
+
+  //#region ColorWheel 
+  HSLColorPickerFN = [];
+  updateColorWheel(event) {
+    console.log('%c updateColorWheel', 'background: black; color: white', event);
+    let backgroundColor = event.target.style.backgroundColor;
+    this.ColorWheelModule.onclickColorDefault(event.target, 0);
+    //this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+    this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
+    console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
+  }
+
+  updateCustomColorList(index) {
+    console.log('%c updateCustomColorList', 'background: black; color: white', event);
+    this.CustomColorList[index] = this.ColorWheelModule.getRGB();
+    // let backgroundColor = event.target.style.backgroundColor;
+    // this.ColorWheelModule.onclickColorDefault(event.target,0);
+    // this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
+    //console.log('%c backgroundColor', 'background: black; color: white', backgroundColor)
+
+  }
+  //#endregion ColorWheel
+
+
 
   //#region Lighting_Nav 
   lighting_RClick(i, Event) {

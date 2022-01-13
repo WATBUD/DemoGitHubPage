@@ -472,9 +472,24 @@ export class PerixxComponent implements OnInit {
       return;
     }
     this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = index;
-    if (keyMatrix[index].macro_SelectedMacroCode != "") {
-      this.selectedMacroCode = keyMatrix[index].macro_SelectedMacroCode;
+        //if(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode)!=undefined){
+
+
+    var mainMacroCode=keyMatrix[index].macro_SelectedMacroCode;
+    if (mainMacroCode != "") {
+      this.selectedMacroCode = mainMacroCode;
+      if (this.KeyBoardManager.getTarget().getTargetMacro(mainMacroCode) != undefined) {
+        this.lastSelectedMacroListCategory = "Profile";
+        var scriptContent = new MacroScriptContent();
+        scriptContent.importMacroData(this.KeyBoardManager.getTarget().getTargetMacro(mainMacroCode));
+        this.MacroManager.tempMacroContent = scriptContent;
+      }
     }
+    
+ 
+
+
+  
     console.log('%c keyMatrix[index].macro_SelectedMacroCode', 'color:rgb(255,77,255)', keyMatrix[index].macro_SelectedMacroCode);
     //this.changeDetectorRef.detectChanges();
     console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', this.selectedMacroCode, this.lastSelectedMacroListCategory);
@@ -616,11 +631,11 @@ export class PerixxComponent implements OnInit {
   macroProfileFileLeftClick(data) {
     this.selectedMacroCode=data.selectedMacroCode;
     this.lastSelectedMacroListCategory = "Profile";
-    if(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode)!=undefined){
+    //if(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode)!=undefined){
       var scriptContent=new MacroScriptContent();
-      scriptContent.importMacroData(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode))
+      scriptContent.importMacroData(data);
       this.MacroManager.tempMacroContent=scriptContent;
-    }
+    //}
     console.log('%c macroProfileFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,this.lastSelectedMacroListCategory);
   }
 
@@ -639,12 +654,12 @@ export class PerixxComponent implements OnInit {
     console.log('%c macroFileRightClick', 'color:rgb(255,77,255)', Event);
   }
   
-macroFileLeftClick(index) {
+  macroFileLeftClick(index) {
     this.MacroManager.getClass().currentChooseMacro = index;
     this.lastSelectedMacroListCategory = "Macro";
     this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
-    this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
-    console.log('%c macroFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,this.lastSelectedMacroListCategory);
+    this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+    console.log('%c macroFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode, this.lastSelectedMacroListCategory);
   }
 
   onRecordClick() {

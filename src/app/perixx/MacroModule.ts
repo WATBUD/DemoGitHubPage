@@ -140,43 +140,6 @@ export class MacroManager {
         }
     }
 
-    /**
-       * 0:Down
-       * 1:Time
-       * 2:Up
-       * //keydownStatus:0 up, 1 down
-    */
-    addMacroRadioOptions(keyCode, keydownStatus) {
-        console.log('%c allRecordKeys', 'background: blue; color: red;', this.allRecordKeys)
-        
-        if (this.tempMacroContent.Data.length >= 80) {
-            this.onRecord = false;
-            return;
-        }
-        switch (this.radioOptions) {
-            case 0:
-                if(keydownStatus==1){
-                    var diffTime = new Date().getTime() - this.startTime;
-                    this.startTime = new Date().getTime();
-                    if (this.tempMacroContent.Data.length < 1) {
-                        diffTime = 0;
-                        this.totalRecordTime=new Date().getTime();
-                        this.tempMacroContent.createRow(keyCode, 0, 0);
-                    }
-                    else{
-                        this.tempMacroContent.createRow(keyCode, new Date().getTime() - this.totalRecordTime, 0);
-                    }
-                }
-                else if(keydownStatus==0){
-                    //this.tempMacroContent.createRow(keyCode, this.totalRecordTime, diffTime);
-                }
-              
-                console.log('%c addMacroRadioOptions', 'background: black; color: white', this.tempMacroContent.Data);
-
-                break;
-        }
-
-    }
 
     addMacroEvent() {
 
@@ -307,7 +270,7 @@ export class MacroManager {
     createFolderFile(name = "Macro") {
         if (this.getClass() != undefined) {
             this.getClass().createMacro(this.getNotRepeatName(name));
-            this.tempMacroContent=this.getClass().getTarget();
+            this.tempMacroContent.importMacroData(this.getClass().getTarget());
         }
     }
     copyFolderFile() {
@@ -523,13 +486,12 @@ export class MacroScriptContent {
             this.indexPosition += 1;
         }
     }
-    ImportMacroData(InputData) {
-        console.log("ImportMacroData", InputData);
-        var arr = Object.keys(this);
-        for (let index = 0; index < arr.length; index++) {
-            //const element = InputData[index];
-            for (let index = 0; index < arr.length; index++) {
-                this[arr[index]] = InputData[arr[index]];
+    importMacroData(InputData) {
+        console.log("importMacroData", InputData);
+        var propetyList = Object.keys(InputData);
+        for (let index = 0; index < propetyList.length; index++) {
+            if(this[propetyList[index]]!=undefined){
+                this[propetyList[index]] = InputData[propetyList[index]];
             }
         }
     }

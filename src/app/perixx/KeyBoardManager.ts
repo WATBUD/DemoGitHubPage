@@ -184,7 +184,6 @@ export class KeyBoardManager {
 
 export class KeyBoard {
     winLock: any = false;
-    reportRateIndex: any = 0;
     hibernateTime = 3;
     macroEnable=false;
     autoSleepEnable=false;
@@ -302,11 +301,11 @@ export class KeyBoard {
     
     setTargetMacro(data, index) {
         var inputData = JSON.parse(JSON.stringify(data));
-        inputData.selectedMacroCode += "1";
+        //inputData.selectedMacroCode += "1";
         console.log("%c setTargetMacro", "color:red", data, index);
         var KeyMatrix = this.getNowModeKeyMatrix();
         KeyMatrix[index].recordBindCodeType = "MacroFunction";
-        KeyMatrix[index].macro_Data.selectedMacroCode = inputData.selectedMacroCode;
+        KeyMatrix[index].macro_SelectedMacroCode = inputData.selectedMacroCode;
         var target = this.macroFiletItem.find((x) => x.selectedMacroCode == inputData.selectedMacroCode)
         if (target != undefined) {
 
@@ -317,7 +316,18 @@ export class KeyBoard {
 
 
     }
+    getTargetMacro(selectedMacroCode=""){
+        //var KeyMatrixkey = this.getNowModeTargetMatrixKey();
+        var target = this.macroFiletItem.find((x) => x.selectedMacroCode ==selectedMacroCode)
+        console.log("%c getTargetMacro", "color:red", this.macroFiletItem,selectedMacroCode,target);
 
+        if (target != undefined) {
+            return target;
+        }
+        else {
+            return undefined;
+        }
+    }
     theBindingCategoryIsMacro(index) {
         if (this.getNowModeKeyMatrix()[index].recordBindCodeType == "MacroFunction") {
             return true;
@@ -347,11 +357,7 @@ export class KeyBoard {
     defaultModule(type = "") {
         var T = {
             macro_RepeatType: 0,
-            macro_Data: {
-                name:"",
-                tranlate:"",
-                selectedMacroCode:"",
-            },
+            macro_SelectedMacroCode:0,
             assignValue: '',
             defaultValue: 'Default',
             profileName: '',

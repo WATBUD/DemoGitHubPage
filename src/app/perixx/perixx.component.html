@@ -1015,11 +1015,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     margin-top: 14%;">
         Profile
       </div>
+
       <div id="MacroFileSelectList" style="position:relative;transition: all 4s linear;margin-top: 0%;height: auto;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.getTarget().macroFiletItem;let i = index"
-          (click)="macroProfileFileLeftClick(item.selectedMacroCode)" (contextmenu)="macroProfileFileLeftClick(item.selectedMacroCode)"
+          (click)="macroProfileFileLeftClick(item)" (contextmenu)="macroProfileFileLeftClick(item)"
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
-          [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
+          >
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
                         position: absolute;
                         margin-left: 8%;" maxlength="15"
@@ -1027,7 +1029,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             [(ngModel)]="MacroManager.onEditMacroName" (blur)="renameMacroFile($event);macroOnEdit=false;"
             (keyup)="renameMacroFile($event);">
           &nbsp;&nbsp;&nbsp;{{item.name}}
-        </div>
+      </div>
       
       </div>
       <div id="SettingTitle" style="color: rgb(45 47 52);
@@ -1046,7 +1048,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             margin-top: 15%;" >
 
       <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
-      <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList">
+      <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList" style="height: 70%;">
         <div class="Shard_OptionItem" *ngFor="let item of MacroManager.getClass().macroFiletItem;let i = index"
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
@@ -1062,7 +1064,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
 
       </div>
-      <div id="macroFileOptions"  [style.display]="operationMenuFlag?'block': 'none'"
+      <div id="macroFileOptions" [style.display]="operationMenuFlag?'block': 'none'"
       class="CenterAlignment" data-identity="operationList">
         <div id="m_Rename" data-identity="m_Rename" (click)="macroOperationOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
           {{this.i18nManager.getTarget('Rename')}}
@@ -1091,9 +1093,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
         <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
           [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'rgb(255, 0, 0)':'rgba(0, 0, 0,0)'"
-          data-Macro_Block="5" style="border-style: unset;" class="KeyBoard_Block" 
-          (click)="clickMacroInTheAreaOfTheKeyboard(i,true)"
-          (contextmenu)="clickMacroInTheAreaOfTheKeyboard(i,false)"
+          data-Macro_Block="5" class="KeyBoard_Block"
+          [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'" 
+          (click)="clickMacroInTheAreaOfTheKeyboard(i)"
+          (contextmenu)="rightClickOnTheMacroBindKey(i)"
           [attr.data-index]="i"
           >
              <img class="KeyBoardBindImg" [src]="getKeyBindingIcon(i)">
@@ -1154,7 +1157,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Duration
       </div>
 
-      <div *ngIf="MacroManager.getClass().hasFile();" id="MactoContentList" style="    position: absolute;
+      <div id="MactoContentList" style="    position: absolute;
                   top: 0px;
                   width: 92%;
                   margin-top: 106px;
@@ -1162,7 +1165,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                   height: 436px;
                   overflow-y: auto;
                   border-bottom: rgb(159,163,170) solid 1px;">
-        <div class="MactoContentItem" *ngFor="let item of MacroManager.getClass().getTarget().Data;let i = index"
+        <div class="MactoContentItem" *ngFor="let item of MacroManager.tempMacroContent.Data;let i = index"
         [style.color]="MacroManager.tempMacroContent.indexPosition==i?'rgb(159, 163, 170)':'rgb(159, 163, 170)'"
         (click)="MacroManager.tempMacroContent.indexPosition=i;"
         (dblclick)="selectMacroSubContent($event,i);">
@@ -1192,7 +1195,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       (click)="MacroManager.tempMacroContent.sortData();"> Refresh 
       </div>
       <div class="ApplyBtn" style="position: absolute;bottom: 24px;z-index: 9998;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
-      (click)="this.KeyBoardManager.loadTemporaryMacroData()"> Apply 
+      (click)="this.loadTemporaryMacroData()"> Apply 
       </div>
 
 

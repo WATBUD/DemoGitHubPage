@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ImgPathList } from './ImgPath';
 import { KeyBoardManager } from './KeyBoardManager';
-import { MacroManager } from './MacroModule';
+import { MacroManager,MacroScriptContent } from './MacroModule';
 import { i18nManager } from './i18n';
 import { EventManager } from './EventManager';
 import { KeyBoardStyle } from './KeyBoardStyle';
@@ -29,11 +29,15 @@ export class PerixxComponent implements OnInit {
   ImgPath = ImgPathList.getInstance();
   i18nManager = i18nManager.getInstance();
   macroOnEdit = false;
-  softwareSettingPage = true;
+  softwareSettingPage = false;
   startTimeEditing = false;
   SettingManager = new SettingManager();
   Built_ineffect = new Built_ineffect(1);
   selectedMacroCode = "";
+  lastSelectedMacroListCategory = "Macro";//Profile //Macro
+  slidingTimer;
+  activelyClickOnTheTitleToSlide=false;
+
   KeyBoardManager = new KeyBoardManager(1, 3);
   KeyBoardLibray = new KeyBoardManager(1, 3);
   MacroManager = new MacroManager();
@@ -51,36 +55,36 @@ export class PerixxComponent implements OnInit {
     {
       'name': 'Information',
       'min':0,
-      'max':164,
+      'max':123,
     },
     {
       'name': 'Layout',
-      'min':164,
-      'max':261,
+      'min':123,
+      'max':247,
     },
     {
       'name': 'Lighting',
-      'min':262,
-      'max':393,
+      'min':247,
+      'max':380,
     },
     {
       'name': 'Macro',
-      'min':393,
-      'max':477,
+      'min':380,
+      'max':471,
     },
     {
       'name': 'Auto Sleep',
-      'min':477,
-      'max':620,
+      'min':471,
+      'max':619,
     },
     {
       'name': 'Bluetooth',
-      'min':620,
-      'max':710,
+      'min':619,
+      'max':700,
     },
     {
       'name': 'Reset',
-      'min':710,
+      'min':700,
       'max':900,
     },
   ]
@@ -95,10 +99,8 @@ export class PerixxComponent implements OnInit {
   settingLocation = "Information";
   constructor(private changeDetectorRef: ChangeDetectorRef, private httpService: HttpService) { }
   ngOnInit() {
-    //this.MacroManager.getClass().add
     this.initialzeTheDevice();
   }
-
   ngAfterViewInit() {
     document.addEventListener('click', (e: any) => {
       var identity = e.target.dataset.identity
@@ -138,8 +140,7 @@ export class PerixxComponent implements OnInit {
     this.M_Light_Perixx = new M_Light_CS(KeyBoardLength);
     this.KeyBoardManager.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
     this.KeyBoardLibray.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
-
-    this.keyboardLeftClick(0);
+    this.project_select(event,0);
   }
   setPageIndex(pageName = "") {
     if (this.currentPage != pageName)
@@ -151,7 +152,10 @@ export class PerixxComponent implements OnInit {
 
         break;
       case "Keyboard_Nav":
-        this.keyboardPageInitial();
+        setTimeout(() => {
+          var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
+          this.KeyBoardStyle.applyStyles(Keyboard_NavList);
+        }, 50);
         break;
       case "Lighting_Nav":
         this.HSLColorPickerFN[0] = ((oEvent: MouseEvent) => {
@@ -174,7 +178,6 @@ export class PerixxComponent implements OnInit {
         setTimeout(() => {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
-          this.KeyBoardManager.refreshKeyBoardTemp();
           var dataCCP = document.querySelector("[data-CCP]");
           if (dataCCP != undefined) {
             dataCCP.removeEventListener("mousedown", this.HSLColorPickerFN[0]);
@@ -185,20 +188,14 @@ export class PerixxComponent implements OnInit {
             dataCCP.addEventListener("mouseup", this.HSLColorPickerFN[2]);
           }
 
-
-
         }, 50);
         break;
       case "Macro_Nav":
-        //this.changeDetectorRef.checkNoChanges();
         setTimeout(() => {
-          //..KeyBoard_Block
           var Macro_BlockList = document.querySelectorAll("[data-Macro_Block]");
           this.KeyBoardStyle.applyStyles(Macro_BlockList);
-          this.KeyBoardManager.refreshKeyBoardTemp();
+          this.macroFileLeftClick(0);
         }, 50);
-
-
         //this.changeDetectorRef.detectChanges();
         break;
       default:
@@ -249,6 +246,15 @@ export class PerixxComponent implements OnInit {
     }
   }
 
+  project_select(event, index) {
+    console.log("project_select: ", event, index);
+    this.keyboardColorHintMode = 'KeyBoardManager';
+    //if (this.KeyBoardManager.keyboardOfChoice != index) {
+    this.KeyBoardManager.keyboardOfChoice = index;
+    this.KeyBoardManager.refreshKeyBoardTemp();
+    //}
+  }
+
   settingLayoutChoice() {
   };
   //#region Home_Nav 
@@ -260,23 +266,41 @@ export class PerixxComponent implements OnInit {
     console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName, this);
 
     this.settingLocation = areaName;
+    // document.getElementById(areaName).scrollIntoView(
+    //   {
+    //     behavior: 'smooth', block: 'start', inline: 'nearest'
+    //   }
+    // );
+    // document.getElementById(areaName).scrollIntoView({ behavior: 'smooth', block: 'start', 
+    // callback: scrollEvent => {
+    //   console.log('The browser has finished scrolling')
+    // }})
+    clearTimeout(this.slidingTimer);
+    this.activelyClickOnTheTitleToSlide = true;
+    this.slidingTimer = setTimeout(() => {
+      this.activelyClickOnTheTitleToSlide = false;
+    }, 500);
     document.getElementById(areaName).scrollIntoView(
       {
         behavior: 'smooth', block: 'start', inline: 'nearest'
       }
     );
-
   }
   triggeredWhenTheScrollBarSlides(event) {
+    //event.preventDefault();
+    
+    //event.isTrusted=false;
     console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event);
-    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);7
-    var compareValue = event.target.scrollTop;
-    for (let index = 0; index < this.settingsOption.length; index++) {
-      const element = this.settingsOption[index];
-      if (compareValue < element.max && compareValue > element.min) {
-        this.settingLocation = element.name;
-      }
-    }
+    console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);
+    // var compareValue = event.target.scrollTop;
+    // if(!this.activelyClickOnTheTitleToSlide){
+    //   for (let index = 0; index < this.settingsOption.length; index++) {
+    //     const element = this.settingsOption[index];
+    //     if (compareValue < element.max && compareValue > element.min) {
+    //       this.settingLocation = element.name;
+    //     }
+    //   }
+    // }
   }
   linkToTheDesignatedWebsite(weburl = "") {
     window.open(weburl, "_blank");
@@ -308,8 +332,6 @@ export class PerixxComponent implements OnInit {
 
   }
   //#endregion ColorWheel
-
-
 
   //#region Lighting_Nav 
   lighting_RClick(i, Event) {
@@ -421,50 +443,73 @@ export class PerixxComponent implements OnInit {
   //#region Macro_Nav
   loadTemporaryMacroData() {
     var target = this.KeyBoardManager.keyBoardTemp;
-    // var inputData = JSON.parse(JSON.stringify(this.MacroManager.tempMacroContent));
-    // this.selectedMacroCode= inputData.selectedMacroCode;
-    // target.setTargetMacro(inputData,index);
+    var keyMatrix = target.getNowModeKeyMatrix();
 
+    if (this.lastSelectedMacroListCategory == "Profile") {
+
+    }
+    else if (this.lastSelectedMacroListCategory == "Macro") {
+      for (let index = 0; index < keyMatrix.length; index++) {
+        const element = keyMatrix[index];
+        if(element.recordBindCodeType == "MacroFunction")
+        element.macro_SelectedMacroCode+="_profile";
+      }
+  
+      for (let index = 0; index < target.macroFiletItem.length; index++) {
+        const element = target.macroFiletItem[index];
+        element.selectedMacroCode+="_profile";
+      }
+    }
     this.KeyBoardManager.loadTemporaryKeyboardData();
-    //this.KeyBoardManager.getTarget().set
-    // for
-    // if (this.keyboardColorHintMode == 'KeyBoardManager') {
-
-    // }
   }
-  clickMacroInTheAreaOfTheKeyboard(index, bool = false) {
+  clickMacroInTheAreaOfTheKeyboard(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
     var keyMatrix = target.getNowModeKeyMatrix();
     var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[index].defaultValue);
-    console.log('%c  keyMatrix[i].defaultValue', 'color:rgb(255,77,255)', keyMatrix[index].defaultValue, keyIsExist);
+    //console.log('%c  keyMatrix[i].defaultValue', 'color:rgb(255,77,255)', keyMatrix[index].defaultValue, keyIsExist);
     if (keyIsExist != undefined) {
       return;
     }
-
-
-    if (bool) {
-      // KeyMatrix[index].recordBindCodeType = "MacroFunction";
-      // KeyMatrix[index].macro_Data.selectedMacroCode = this.MacroManager.tempMacroContent.selectedMacroCode;
-
-
-      this.clickTheKeyBindButton(index);
-      var inputData = JSON.parse(JSON.stringify(this.MacroManager.tempMacroContent));
-      this.selectedMacroCode= inputData.selectedMacroCode;
-      target.setTargetMacro(inputData,index);
+    this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = index;
+    if (keyMatrix[index].macro_SelectedMacroCode != "") {
+      this.selectedMacroCode = keyMatrix[index].macro_SelectedMacroCode;
     }
-    else {
-      if (keyMatrix[index].recordBindCodeType == "MacroFunction") {
-        keyMatrix[index].recordBindCodeType = "";
-      }
-    }
+    console.log('%c keyMatrix[index].macro_SelectedMacroCode', 'color:rgb(255,77,255)', keyMatrix[index].macro_SelectedMacroCode);
     //this.changeDetectorRef.detectChanges();
-    //console.log('%c clickMacroInTheAreaOfTheKeyboard','color:rgb(255,77,255)',  targetMatrixKey,target);
+    console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', this.selectedMacroCode, this.lastSelectedMacroListCategory);
     console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', keyMatrix);
-
-
   }
+  rightClickOnTheMacroBindKey(index) {
+    var target = this.KeyBoardManager.keyBoardTemp;
+    // var targetMatrixKey=target.getNowModeTargetMatrixKey();
+    var keyMatrix = target.getNowModeKeyMatrix();
+    var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[index].defaultValue);
+    //console.log('%c  keyMatrix[i].defaultValue', 'color:rgb(255,77,255)', keyMatrix[index].defaultValue, keyIsExist);
+    if (keyIsExist != undefined) {
+      return;
+    }
+    
+    if (keyMatrix[index].recordBindCodeType != "MacroFunction") {
+      keyMatrix[index].recordBindCodeType = "MacroFunction";
+        if (this.lastSelectedMacroListCategory == "Profile") {
+          keyMatrix[index].macro_SelectedMacroCode = this.selectedMacroCode;
 
+        }
+        else if (this.lastSelectedMacroListCategory == "Macro") {
+          var inputData = JSON.parse(JSON.stringify(this.MacroManager.tempMacroContent));
+          this.selectedMacroCode = inputData.selectedMacroCode;
+          target.setTargetMacro(inputData, index);
+
+        }
+
+    }
+    else if (keyMatrix[index].recordBindCodeType == "MacroFunction") {
+      keyMatrix[index].recordBindCodeType = "";
+      keyMatrix[index].macro_SelectedMacroCode = "";
+    }
+    console.log('%c rightClickOnTheMacroBindKey', 'color:rgb(255,77,255)', this.selectedMacroCode, this.lastSelectedMacroListCategory);
+  }
   macroEditkeyCode(keyCode, index, event) {
     console.log("macroEditkeyCode=" + keyCode, this.MacroManager.tempMacroContent.Data);
     //event.preventDefault();
@@ -566,46 +611,46 @@ export class PerixxComponent implements OnInit {
   }
 
   macroProfileFileRightClick(i, Event) {
-    this.MacroManager.getClass().currentChooseMacro = i;
-    //this.selectedMacroCode=this.MacroManager.getClass( ).getTarget().code
-    this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
-    this.operationMenuFlag = true;
-    var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
-    macroFileOptions.style.left = Event.layerX + "px";
-    //Event.clientX  + "px";
-    macroFileOptions.style.top = Event.layerY + 80 + "px";
-    //Event.clientY + "px";
-    console.log('%c macroFileRightClick', 'color:rgb(255,77,255)', Event);
+
   }
-  macroProfileFileLeftClick(selectedMacroCode="") {
-    this.selectedMacroCode=selectedMacroCode;
-    //this.MacroManager.getClass().currentChooseMacro = index;
-    //this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
-    //this.KeyBoardManager.getTarget();
-    // this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+  macroProfileFileLeftClick(data) {
+    this.selectedMacroCode=data.selectedMacroCode;
+    this.lastSelectedMacroListCategory = "Profile";
+    if(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode)!=undefined){
+      var scriptContent=new MacroScriptContent();
+      scriptContent.importMacroData(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode))
+      this.MacroManager.tempMacroContent=scriptContent;
+    }
+    console.log('%c macroProfileFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,this.lastSelectedMacroListCategory);
   }
 
   macroFileRightClick(i, Event) {
     this.MacroManager.getClass().currentChooseMacro = i;
-    //this.selectedMacroCode=this.MacroManager.getClass().getTarget().code
-    this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
-    this.operationMenuFlag = true;
+    this.lastSelectedMacroListCategory = "Macro";
+    this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
+    this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
+    
+    this.operationMenuFlag=true;
     var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
     macroFileOptions.style.left = Event.layerX + "px";
     //Event.clientX  + "px";
-    macroFileOptions.style.top = Event.layerY + 80 + "px";
+    macroFileOptions.style.top = Event.layerY +123 +"px";
     //Event.clientY + "px";
     console.log('%c macroFileRightClick', 'color:rgb(255,77,255)', Event);
   }
-  macroFileLeftClick(index) {
+  
+macroFileLeftClick(index) {
     this.MacroManager.getClass().currentChooseMacro = index;
+    this.lastSelectedMacroListCategory = "Macro";
     this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
-    this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+    this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
+    console.log('%c macroFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,this.lastSelectedMacroListCategory);
   }
+
   onRecordClick() {
     this.MacroManager.onRecord = true;
     this.MacroManager.allRecordKeys = [];
-    this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+    //this.MacroManager.tempMacroContent.importMacroData(this.MacroManager.getClass().getTarget());
     this.MacroManager.tempMacroContent.resetDefaultData();
     this.MacroManager.addMacroEvent();
   }
@@ -645,15 +690,6 @@ export class PerixxComponent implements OnInit {
       this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = i;
     }
   }
-  keyboardPageInitial(FNname = "") {
-    this.keyboardColorHintMode = 'KeyBoardManager';
-    setTimeout(() => {
-      var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
-      this.KeyBoardStyle.applyStyles(Keyboard_NavList);
-      this.KeyBoardManager.refreshKeyBoardTemp();
-    }, 50);
-  }
-
   keyboardRMenu(FNname = "") {
     this.operationMenuFlag = false;
     console.log('%c keyboardRMenu', 'color:rgb(255,77,255)', this.operationMenuFlag);
@@ -748,16 +784,6 @@ export class PerixxComponent implements OnInit {
     var regex = event.target.value.replace(/[^\a-\z\A-\Z^0-9\u4E00-\u9FA5]/g, '');
     this.KeyBoardLibray.updeteProjectName(regex);
     //this.setDBDataToServer('MacroManager');
-  }
-
-  project_select(event, index) {
-    console.log("project_select: ", event, index);
-    this.keyboardColorHintMode = 'KeyBoardManager';
-
-    //if (this.KeyBoardManager.keyboardOfChoice != index) {
-    this.KeyBoardManager.keyboardOfChoice = index;
-    this.KeyBoardManager.refreshKeyBoardTemp();
-    //}
   }
   keyboardLeftClick(index) {
     this.keyboardColorHintMode = 'KeyBoardLibray';

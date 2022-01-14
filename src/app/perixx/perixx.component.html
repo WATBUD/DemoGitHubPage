@@ -1016,7 +1016,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Profile
       </div>
 
-      <div id="MacroFileSelectList" style="position:relative;transition: all 4s linear;margin-top: 0%;height: auto;">
+      <div id="MacroFileSelectList" style="position:relative;transition: all 4s linear;margin-top: 0%;height: auto;max-height: 130px;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.getTarget().macroFiletItem;let i = index"
           (click)="macroProfileFileLeftClick(item)" (contextmenu)="macroProfileFileLeftClick(item)"
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
@@ -1048,7 +1048,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             margin-top: 15%;" >
 
       <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
-      <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList" style="height: 70%;">
+      <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList" style="height: 55%;">
         <div class="Shard_OptionItem" *ngFor="let item of MacroManager.getClass().macroFiletItem;let i = index"
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"

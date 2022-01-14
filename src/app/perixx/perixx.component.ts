@@ -120,7 +120,7 @@ export class PerixxComponent implements OnInit {
     });
     this.MacroManager.createFolderFile();
     //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-    //this.setPageIndex('Keyboard_Nav');
+    this.setPageIndex('Macro_Nav');
     //var ssss="/upload/prime/version.json";//Remove the primary domain Set the primary domain from the proxy.conf file
     //var ssss="?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
     var ssss = "https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
@@ -488,6 +488,12 @@ export class PerixxComponent implements OnInit {
         scriptContent.importMacroData(this.KeyBoardManager.getTarget().getTargetMacro(mainMacroCode));
         this.MacroManager.tempMacroContent = scriptContent;
       }
+      else if (this.MacroManager.getClass().getTargetMacro(mainMacroCode) != undefined) {
+        this.lastSelectedMacroListCategory = "Macro";
+        // var scriptContent = new MacroScriptContent();
+        // scriptContent.importMacroData(this.MacroManager.getClass().getTargetMacro(mainMacroCode));
+        this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTargetMacro(mainMacroCode);
+      }
     }
     
  
@@ -500,6 +506,7 @@ export class PerixxComponent implements OnInit {
     console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', keyMatrix);
   }
   rightClickOnTheMacroBindKey(index) {
+    
     var target = this.KeyBoardManager.keyBoardTemp;
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
     var keyMatrix = target.getNowModeKeyMatrix();
@@ -508,7 +515,8 @@ export class PerixxComponent implements OnInit {
     if (keyIsExist != undefined) {
       return;
     }
-    
+    this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = index;
+
     if (keyMatrix[index].recordBindCodeType != "MacroFunction") {
       keyMatrix[index].recordBindCodeType = "MacroFunction";
         if (this.lastSelectedMacroListCategory == "Profile") {

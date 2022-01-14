@@ -438,7 +438,18 @@ export class MacroClass {
             }
         }
     }
+    getTargetMacro(selectedMacroCode=""){
+        //var KeyMatrixkey = this.getNowModeTargetMatrixKey();
+        var target = this.macroFiletItem.find((x) => x.selectedMacroCode ==selectedMacroCode)
+        console.log("%c getTargetMacro", "color:red", this.macroFiletItem,selectedMacroCode,target);
 
+        if (target != undefined) {
+            return target;
+        }
+        else {
+            return undefined;
+        }
+    }
     setDefault() {
 
 

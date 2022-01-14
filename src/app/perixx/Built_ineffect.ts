@@ -44,6 +44,14 @@ export class ModeParameter {
         //this.translate=theArgs.translate;
     }
 }
+class White extends ModeParameter{
+    constructor (){
+        super();
+        this.translate='White';
+        this.PointEffectName='White';
+        this.colorPickerValue=[255,255,255,1];
+    }
+};
 export class Red extends ModeParameter{
     constructor (){
         super();
@@ -56,6 +64,7 @@ export class Red extends ModeParameter{
         this.Multicolor_Enable=false;
     }
 };
+
 class Yellow extends ModeParameter{
     constructor (){
         super();
@@ -168,6 +177,7 @@ export class Built_ineffect {
     maxkaycapNumber=0;
     editingName=false;
     lightListData = [
+        new White(),
         new Red(),
         new Yellow(),
         new Green(),
@@ -185,7 +195,7 @@ export class Built_ineffect {
     ];
     Built_inSelected=new Red();
     choosingList=[];
-    currentModeIndex=-1;
+    currentModeIndex=0;
     editingNumber=-5;
     constructor(inputMax) {
         console.log("Built_ineffect","color:red",this.lightListData);
@@ -247,6 +257,7 @@ export class Built_ineffect {
     }
     defaultLightListData() {
         return [
+            new White(),
             new Red(),
             new Yellow(),
             new Green(),

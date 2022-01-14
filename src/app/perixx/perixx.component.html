@@ -17,6 +17,10 @@
           {{this.i18nManager.getTarget('Delete')}}
         </div>
 </div>
+
+
+
+
 <div id="HeaderColumn" style="position: relative;height: 3%;z-index: 9999;width: 100%;background: #1D3460;">
 
 
@@ -421,7 +425,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             width: 85%;
             height: 1px;
             background: rgb(29 52 96);
-            top: 264px;
+            top: 294px;
             margin-left: 5%;">
       </div>
       <div id="Built_ineffectRMenu"   [style.display]="operationMenuFlag?'block': 'none'"
@@ -1062,7 +1066,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             right:20%;
             margin-top: 15%;" >
 
-      <!-- (click)="currentPage='Macro_Nav'" &&macroOnEdit-->
+      <!-- (click)="currentPage='Macro_Nav'" -->
       <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList" style="height: 55%;">
         <div class="Shard_OptionItem" *ngFor="let item of MacroManager.getClass().macroFiletItem;let i = index"
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"

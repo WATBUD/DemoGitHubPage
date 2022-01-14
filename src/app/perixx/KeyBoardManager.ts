@@ -305,7 +305,7 @@ export class KeyBoard {
         console.log("%c setTargetMacro", "color:red", data, index);
         var KeyMatrix = this.getNowModeKeyMatrix();
         KeyMatrix[index].recordBindCodeType = "MacroFunction";
-        KeyMatrix[index].macro_SelectedMacroCode = inputData.selectedMacroCode;
+        KeyMatrix[index].selectedMacroCode = inputData.selectedMacroCode;
         var target = this.macroFiletItem.find((x) => x.selectedMacroCode == inputData.selectedMacroCode)
         if (target != undefined) {
 
@@ -357,7 +357,7 @@ export class KeyBoard {
     defaultModule(type = "") {
         var T = {
             macro_RepeatType: 0,
-            macro_SelectedMacroCode:0,
+            selectedMacroCode:0,
             assignValue: '',
             defaultValue: 'Default',
             profileName: '',

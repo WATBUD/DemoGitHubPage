@@ -37,7 +37,6 @@ export class PerixxComponent implements OnInit {
   lastSelectedMacroListCategory = "Macro";//Profile //Macro
   slidingTimer;
   activelyClickOnTheTitleToSlide=false;
-
   KeyBoardManager = new KeyBoardManager(1, 3);
   KeyBoardLibray = new KeyBoardManager(1, 3);
   MacroManager = new MacroManager();
@@ -260,7 +259,12 @@ export class PerixxComponent implements OnInit {
   //#region Home_Nav 
 
   restoreFactorySettings(){
-     this.initialzeTheDevice();
+    var KeyBoardLength = this.KeyBoardStyle.getTarget().keyMapping.length;
+    this.KeyBoardManager = new KeyBoardManager(KeyBoardLength, 3);
+    this.Built_ineffect = new Built_ineffect(KeyBoardLength);
+    this.M_Light_Perixx = new M_Light_CS(KeyBoardLength);
+    this.KeyBoardManager.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
+    this.project_select(event,0);
   }
   scrollMoveToTheSpecifiedlocation(areaName = "") {
     console.log('%c scrollMoveToTheSpecifiedlocation', 'background: black; color: white', areaName, this);

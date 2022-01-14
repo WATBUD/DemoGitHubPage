@@ -41,6 +41,8 @@ export class PerixxComponent implements OnInit {
   KeyBoardLibray = new KeyBoardManager(1, 3);
   MacroManager = new MacroManager();
   operationMenuFlag = false;
+  macroFileRightClickMenu = false;
+  
   KeyBoardStyle = new KeyBoardStyle();
   M_Light_Perixx = new M_Light_CS(80);
   BoxSelectionArea = new BoxSelectionArea("KeyBoard_Block");
@@ -108,6 +110,8 @@ export class PerixxComponent implements OnInit {
       if (identity == undefined) {
         this.operationMenuFlag = false;
         this.startTimeEditing = false;
+        this.macroFileRightClickMenu = false;
+
       }
       else {
         console.log('%c document_e.target', 'color:rgb(255,77,255)', identity);
@@ -618,7 +622,7 @@ export class PerixxComponent implements OnInit {
   }
 
   macroOperationOption(FNname = "") {
-    this.operationMenuFlag = false;
+    this.macroFileRightClickMenu = false;
     //var typeName="";
     console.log('%c macroOperationOption', 'color:rgb(255,77,255)', this.operationMenuFlag);
     switch (FNname) {
@@ -651,19 +655,19 @@ export class PerixxComponent implements OnInit {
     console.log('%c macroProfileFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,this.lastSelectedMacroListCategory);
   }
 
-  macroFileRightClick(i, Event) {
+  macroFileRightClick(i, event) {
     this.MacroManager.getClass().currentChooseMacro = i;
     this.lastSelectedMacroListCategory = "Macro";
     this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
     this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
     
-    this.operationMenuFlag=true;
+    this.macroFileRightClickMenu=true;
     var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
-    macroFileOptions.style.left = Event.layerX + "px";
-    //Event.clientX  + "px";
-    macroFileOptions.style.top = Event.layerY +123 +"px";
-    //Event.clientY + "px";
-    console.log('%c macroFileRightClick', 'color:rgb(255,77,255)', Event);
+    macroFileOptions.style.left = event.pageX + "px";
+    //event.clientX  + "px";
+    macroFileOptions.style.top = event.pageY  -25+"px";
+    //event.clientY + "px";
+    console.log('%c macroFileRightClick', 'color:rgb(255,77,255)', event);
   }
   
   macroFileLeftClick(index) {

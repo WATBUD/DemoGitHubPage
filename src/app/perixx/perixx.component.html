@@ -1,7 +1,22 @@
 <!-- <p>
   perixx works!
 </p> -->
-
+<div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileOptions" style="z-index: 9998;" [style.display]="macroFileRightClickMenu?'block': 'none'"
+      class="CenterAlignment" data-identity="operationList">
+        <div id="m_Rename" data-identity="m_Rename" (click)="macroOperationOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
+          {{this.i18nManager.getTarget('Rename')}}
+        </div>
+        <div id="m_Copy" (click)="macroOperationOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
+          {{this.i18nManager.getTarget('Copy')}}
+        </div>
+        <div id="m_Export" (click)="downloadExportData();" (contextmenu)="downloadExportData();">
+          {{this.i18nManager.getTarget('Export')}}
+        </div>
+        <div id="m_Delete" *ngIf="MacroManager.getClass().macroFiletItem.length>1"
+        (click)="macroOperationOption('deleteMacroFile');"(contextmenu)="macroOperationOption('deleteMacroFile');">
+          {{this.i18nManager.getTarget('Delete')}}
+        </div>
+</div>
 <div id="HeaderColumn" style="position: relative;height: 3%;z-index: 9999;width: 100%;background: #1D3460;">
 
 
@@ -1064,22 +1079,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
 
       </div>
-      <div id="macroFileOptions" [style.display]="operationMenuFlag?'block': 'none'"
-      class="CenterAlignment" data-identity="operationList">
-        <div id="m_Rename" data-identity="m_Rename" (click)="macroOperationOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
-          {{this.i18nManager.getTarget('Rename')}}
-        </div>
-        <div id="m_Copy" (click)="macroOperationOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
-          {{this.i18nManager.getTarget('Copy')}}
-        </div>
-        <div id="m_Export" (click)="downloadExportData();" (contextmenu)="downloadExportData();">
-          {{this.i18nManager.getTarget('Export')}}
-        </div>
-        <div id="m_Delete" *ngIf="MacroManager.getClass().macroFiletItem.length>1"
-        (click)="macroOperationOption('deleteMacroFile');"(contextmenu)="macroOperationOption('deleteMacroFile');">
-          {{this.i18nManager.getTarget('Delete')}}
-        </div>
-      </div>
+      
     </section>
     <div id="MiddlePanel" style="
         position: absolute;

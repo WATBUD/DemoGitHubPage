@@ -197,6 +197,7 @@ export class PerixxComponent implements OnInit {
         setTimeout(() => {
           var Macro_BlockList = document.querySelectorAll("[data-Macro_Block]");
           this.KeyBoardStyle.applyStyles(Macro_BlockList);
+          //this.refreshTheSoftwareMacroCode();
           this.macroFileLeftClick(0);
         }, 50);
         //this.changeDetectorRef.detectChanges();
@@ -454,35 +455,52 @@ export class PerixxComponent implements OnInit {
   //#endregion Lighting_Nav 
 
   //#region Macro_Nav
+  
+
   loadTemporaryMacroData() {
     var target = this.KeyBoardManager.keyBoardTemp;
     var keyMatrix = target.getNowModeKeyMatrix();
-
     for (let index = 0; index < keyMatrix.length; index++) {
       const element = keyMatrix[index];
-      if(element.recordBindCodeType == "MacroFunction"){
-        if(!(String(element.selectedMacroCode).includes("_profile"))){
-          var newMacroCode=element.selectedMacroCode+"_profile";
-          var macroFile = target.macroFiletItem.find((x) => x.selectedMacroCode == newMacroCode);
-          if(macroFile==undefined){
+      //if(!(String(element.selectedMacroCode).includes("_profile"))){
+          var macroFile = target.macroFiletItem.find((x) => x.selectedMacroCode == element.selectedMacroCode);
+          if(macroFile==undefined)//repeated
+          {
             var keyMacro=this.MacroManager.getClass().getTargetMacro(element.selectedMacroCode);
             if(keyMacro!=undefined){
+              var  newMacroCode=target.getNotRepeatMacroCode(element.selectedMacroCode+"_p");
               keyMacro=JSON.parse(JSON.stringify(keyMacro));
-              keyMacro.selectedMacroCode=newMacroCode;
-              element.selectedMacroCode=newMacroCode;
+              // element.selectedMacroCode=newMacroCode;
+              // keyMacro.selectedMacroCode=newMacroCode;
               target.macroFiletItem.push(keyMacro);
             }
-
           }
+      //}
+    }
+
+    //-------------------Delete macros that do not exist------------------//
+    var newMacroFiletItem=[];
+    for (let m_Index = 0; m_Index < target.macroFiletItem.length; m_Index++) {
+      const macroData = target.macroFiletItem[m_Index];
+      var statusThatNeedsToBeRemoved=true;
+      for (let k_Index = 0; k_Index < keyMatrix.length; k_Index++) {
+        const keyData = keyMatrix[k_Index];
+        if(keyData.selectedMacroCode==macroData.selectedMacroCode){
+          statusThatNeedsToBeRemoved=false;
         }
       }
+      if(statusThatNeedsToBeRemoved==false){
+        newMacroFiletItem.push(target.macroFiletItem[m_Index]);
+      }
     }
-    if (this.lastSelectedMacroListCategory == "Profile") {
+    target.macroFiletItem=newMacroFiletItem;
 
-    }
-    else if (this.lastSelectedMacroListCategory == "Macro") {
-    }
     this.KeyBoardManager.loadTemporaryKeyboardData();
+    this.refreshTheSoftwareMacroCode();
+    console.log('%c refreshTheSoftwareMacroCode_this.MacroManager.getClass()', 'color:rgb(255,77,255)', this.MacroManager.getClass().macroFiletItem);
+
+    console.log('%c refreshTheSoftwareMacroCode_keyBoardTemp', 'color:rgb(255,77,255)', this.KeyBoardManager.keyBoardTemp.macroFiletItem);
+
   }
   clickMacroInTheAreaOfTheKeyboard(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
@@ -513,18 +531,31 @@ export class PerixxComponent implements OnInit {
         this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTargetMacro(mainMacroCode);
       }
     }
-    
- 
-
-
-  
     console.log('%c keyMatrix[index].selectedMacroCode', 'color:rgb(255,77,255)', keyMatrix[index].selectedMacroCode);
     //this.changeDetectorRef.detectChanges();
     console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', this.selectedMacroCode, this.lastSelectedMacroListCategory);
     console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', keyMatrix);
   }
+  refreshTheSoftwareMacroCode(){
+    var target = this.KeyBoardManager.keyBoardTemp;
+    var keyMatrix = target.getNowModeKeyMatrix();
+    for (let m_Index = 0; m_Index < this.MacroManager.getClass().macroFiletItem.length; m_Index++) {
+      var macroData = this.MacroManager.getClass().macroFiletItem[m_Index];
+      for (let k_Index = 0; k_Index < keyMatrix.length; k_Index++) {
+        var keyData = keyMatrix[k_Index];
+        if(keyData.selectedMacroCode==macroData.selectedMacroCode){
+          var newKeyMacroName=this.KeyBoardManager.keyBoardTemp.getNotRepeatMacroCode(macroData.selectedMacroCode);
+          macroData.selectedMacroCode=this.MacroManager.getClass().getNotRepeatMacroCode(newKeyMacroName);
+        }
+      }
+    }
+    console.log('%c refreshTheSoftwareMacroCode_this.MacroManager.getClass()', 'color:rgb(255,77,255)', this.MacroManager.getClass().macroFiletItem);
+
+    console.log('%c refreshTheSoftwareMacroCode_keyBoardTemp', 'color:rgb(255,77,255)', this.KeyBoardManager.keyBoardTemp.macroFiletItem);
+
+
+  }
   rightClickOnTheMacroBindKey(index) {
-    
     var target = this.KeyBoardManager.keyBoardTemp;
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
     var keyMatrix = target.getNowModeKeyMatrix();
@@ -536,13 +567,27 @@ export class PerixxComponent implements OnInit {
     this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = index;
 
     if (keyMatrix[index].recordBindCodeType != "MacroFunction") {
-      keyMatrix[index].recordBindCodeType = "MacroFunction";
-      keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
-
-        // if (this.lastSelectedMacroListCategory == "Profile") {
-        // else if (this.lastSelectedMacroListCategory == "Macro") {
-        // }
-
+      //keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
+      //keyMatrix[index].selectedMacroCode = this.KeyBoardManager.getTarget().getNotRepeatMacroCode(this.selectedMacroCode);
+      var macroManagerTarget=this.MacroManager.getClass().getTargetMacro(this.selectedMacroCode);
+        if (this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode) != undefined) {
+          this.lastSelectedMacroListCategory = "Profile";
+          keyMatrix[index].recordBindCodeType = "MacroFunction";
+          keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
+          var scriptContent = new MacroScriptContent();
+          scriptContent.importMacroData(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode));
+          this.MacroManager.tempMacroContent = scriptContent;
+        }
+        else if (macroManagerTarget != undefined) {
+          this.lastSelectedMacroListCategory = "Macro";
+          keyMatrix[index].recordBindCodeType = "MacroFunction";
+          keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
+          //keyMatrix[index].isTheNewlyDesignatedMacro=true;
+          // var  newMacroCode=this.KeyBoardManager.keyBoardTemp.getNotRepeatMacroCode(this.selectedMacroCode);
+          // macroManagerTarget.selectedMacroCode=newMacroCode;
+          // keyMatrix[index].selectedMacroCode = newMacroCode;
+          this.MacroManager.tempMacroContent = macroManagerTarget;
+        }
     }
     else if (keyMatrix[index].recordBindCodeType == "MacroFunction") {
       keyMatrix[index].recordBindCodeType = "";

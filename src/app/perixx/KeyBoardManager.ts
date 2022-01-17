@@ -328,6 +328,41 @@ export class KeyBoard {
             return undefined;
         }
     }
+    getNotRepeatMacroCode(code="") {
+        console.log('%c getNotRepeatMacroCode','color:rgb(255,77,255)',  code);
+        var pass = true;
+        var Num = 0;
+        var Tname=code;
+        while (pass) {
+            var checkName;
+            if(Num>0){
+                checkName=Tname + String(Num);
+            }
+            else{
+                checkName=Tname;
+            }
+            var target = this.macroFiletItem.find((x) => x.selectedMacroCode == checkName)
+            if (target != undefined) {
+                Num += 1;
+                //console.log("createMacroTname=");
+            }
+            else {
+                pass = false;
+                Tname = checkName;
+            }
+        }
+        return Tname;
+    }
+    checkforDuplicateFileNames(compareValue) {
+        for (let index = 0; index < this.macroFiletItem.length; index++) {
+            const element = this.macroFiletItem[index];
+                if (element.selectedMacroCode==compareValue) {
+                    return true;
+                }
+        }
+        return false;
+    }
+
     theBindingCategoryIsMacro(index) {
         if (this.getNowModeKeyMatrix()[index].recordBindCodeType == "MacroFunction") {
             return true;
@@ -356,6 +391,7 @@ export class KeyBoard {
        */
     defaultModule(type = "") {
         var T = {
+            isTheNewlyDesignatedMacro:false,
             macro_RepeatType: 0,
             selectedMacroCode:0,
             assignValue: '',

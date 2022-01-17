@@ -197,7 +197,7 @@ export class PerixxComponent implements OnInit {
         setTimeout(() => {
           var Macro_BlockList = document.querySelectorAll("[data-Macro_Block]");
           this.KeyBoardStyle.applyStyles(Macro_BlockList);
-          //this.refreshTheSoftwareMacroCode();
+          this.refreshTheSoftwareMacroCode();
           this.macroFileLeftClick(0);
         }, 50);
         //this.changeDetectorRef.detectChanges();
@@ -497,10 +497,6 @@ export class PerixxComponent implements OnInit {
 
     this.KeyBoardManager.loadTemporaryKeyboardData();
     this.refreshTheSoftwareMacroCode();
-    console.log('%c refreshTheSoftwareMacroCode_this.MacroManager.getClass()', 'color:rgb(255,77,255)', this.MacroManager.getClass().macroFiletItem);
-
-    console.log('%c refreshTheSoftwareMacroCode_keyBoardTemp', 'color:rgb(255,77,255)', this.KeyBoardManager.keyBoardTemp.macroFiletItem);
-
   }
   clickMacroInTheAreaOfTheKeyboard(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
@@ -549,9 +545,9 @@ export class PerixxComponent implements OnInit {
         }
       }
     }
-    console.log('%c refreshTheSoftwareMacroCode_this.MacroManager.getClass()', 'color:rgb(255,77,255)', this.MacroManager.getClass().macroFiletItem);
+    // console.log('%c refreshTheSoftwareMacroCode_this.MacroManager.getClass()', 'color:rgb(255,77,255)', this.MacroManager.getClass().macroFiletItem);
 
-    console.log('%c refreshTheSoftwareMacroCode_keyBoardTemp', 'color:rgb(255,77,255)', this.KeyBoardManager.keyBoardTemp.macroFiletItem);
+    // console.log('%c refreshTheSoftwareMacroCode_keyBoardTemp', 'color:rgb(255,77,255)', this.KeyBoardManager.keyBoardTemp.macroFiletItem);
 
 
   }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { KB61Prohibit } from './KeyBoardData';
+import { parse } from 'url';
 
 
 
@@ -315,6 +316,33 @@ export class KeyBoard {
         }
 
 
+    }
+    
+    copyFolderFile(selectedMacroCode="") {
+        var target=this.getTargetMacro(selectedMacroCode);
+        if (target!=undefined) {
+            var target=JSON.parse(JSON.stringify(this.getTargetMacro(selectedMacroCode)));
+            
+            this.macroFiletItem.push(target);
+        }
+    }
+    deleteMacroFile(selectedMacroCode = "") {
+        var targetIndex = this.macroFiletItem.findIndex((x) => x.selectedMacroCode == selectedMacroCode)
+        if (targetIndex != -1) {
+            var macroFile=this.macroFiletItem[targetIndex];
+            var keyMatrix = this.getNowModeKeyMatrix();
+            for (let index = 0; index < keyMatrix.length; index++) {
+                const element = keyMatrix[index];
+                if(element.selectedMacroCode==selectedMacroCode){
+                    keyMatrix[index].recordBindCodeType="";
+                    keyMatrix[index].recordBindCodeName="";
+                    keyMatrix[index].selectedMacroCode="";
+                }
+            }
+            this.macroFiletItem.splice(targetIndex, 1);
+
+
+        }
     }
     getTargetMacro(selectedMacroCode=""){
         //var KeyMatrixkey = this.getNowModeTargetMatrixKey();

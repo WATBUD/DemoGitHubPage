@@ -1,7 +1,7 @@
 <!-- <p>
   perixx works!
 </p> -->
-<div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileOptions" style="z-index: 9998;" [style.display]="macroFileRightClickMenu?'block': 'none'"
+<div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileOptions" style="z-index: 9998;" [style.display]="macroRightClick?'block': 'none'"
       class="CenterAlignment" data-identity="operationList">
         <div id="m_Rename" data-identity="m_Rename" (click)="macroOperationOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
           {{this.i18nManager.getTarget('Rename')}}
@@ -17,7 +17,22 @@
           {{this.i18nManager.getTarget('Delete')}}
         </div>
 </div>
-
+<div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileProfileOptions" style="z-index: 9998;" [style.display]="macro_ProfileRightClick?'block': 'none'"
+      class="CenterAlignment" data-identity="operationList">
+        <!-- <div id="m_Rename" data-identity="m_Rename" (click)="macroBindKeyOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
+          {{this.i18nManager.getTarget('Rename')}}
+        </div>
+        <div id="m_Copy" (click)="macroBindKeyOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
+          {{this.i18nManager.getTarget('Copy')}}
+        </div>
+        <div id="m_Export" (click)="downloadExportData();" (contextmenu)="downloadExportData();">
+          {{this.i18nManager.getTarget('Export')}}
+        </div> -->
+        <div id="m_Delete" 
+        (click)="macroBindKeyOption('deleteMacroFile');"(contextmenu)="macroBindKeyOption('deleteMacroFile');">
+          {{this.i18nManager.getTarget('Delete')}}
+        </div>
+</div>
 
 
 
@@ -438,12 +453,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           {{this.i18nManager.getTarget('Reset')}}
         </div>
       </div>
-
-
-
-
-
-
     </section>
 
     <div id="MiddlePanel" style="
@@ -1036,8 +1045,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
 
       <div id="MacroFileSelectList" style="position:relative;transition: all 4s linear;margin-top: 0%;height: auto;max-height: 130px;">
-        <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.getTarget().macroFiletItem;let i = index"
-          (click)="macroProfileFileLeftClick(item)" (contextmenu)="macroProfileFileLeftClick(item)"
+        <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.keyBoardTemp.macroFiletItem;let i = index"
+          (click)="macroProfileFileLeftClick(item)" (contextmenu)="macroProfileFileRightClick(item,$event)"
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
           [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
           >

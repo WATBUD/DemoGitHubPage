@@ -41,8 +41,8 @@ export class PerixxComponent implements OnInit {
   KeyBoardLibray = new KeyBoardManager(1, 3);
   MacroManager = new MacroManager();
   operationMenuFlag = false;
-  macroFileRightClickMenu = false;
-  
+  macroRightClick = false;
+  macro_ProfileRightClick= false;
   KeyBoardStyle = new KeyBoardStyle();
   M_Light_Perixx = new M_Light_CS(80);
   BoxSelectionArea = new BoxSelectionArea("KeyBoard_Block");
@@ -98,6 +98,7 @@ export class PerixxComponent implements OnInit {
     [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],
   ]
   settingLocation = "Information";
+  //#region General software functions
   constructor(private changeDetectorRef: ChangeDetectorRef, private httpService: HttpService) { }
   ngOnInit() {
     this.initialzeTheDevice();
@@ -110,7 +111,8 @@ export class PerixxComponent implements OnInit {
       if (identity == undefined) {
         this.operationMenuFlag = false;
         this.startTimeEditing = false;
-        this.macroFileRightClickMenu = false;
+        this.macroRightClick = false;
+        this.macro_ProfileRightClick=false;
       }
       else {
         console.log('%c document_e.target', 'color:rgb(255,77,255)', identity);
@@ -261,6 +263,8 @@ export class PerixxComponent implements OnInit {
 
   settingLayoutChoice() {
   };
+  //#endregion General software functions
+
   //#region Home_Nav 
 
   restoreFactorySettings(){
@@ -318,7 +322,7 @@ export class PerixxComponent implements OnInit {
     //     "https://www.yourURL.com", "_blank");
     // }
   }
-    //#endregion Home_Nav 
+  //#endregion Home_Nav 
 
   //#region ColorWheel 
   HSLColorPickerFN = [];
@@ -455,7 +459,6 @@ export class PerixxComponent implements OnInit {
   //#endregion Lighting_Nav 
 
   //#region Macro_Nav
-  
 
   loadTemporaryMacroData() {
     var target = this.KeyBoardManager.keyBoardTemp;
@@ -478,7 +481,7 @@ export class PerixxComponent implements OnInit {
       //}
     }
 
-    //-------------------Delete macros that do not exist------------------//
+    //-------------------delete macros that does not exist------------------//
     var newMacroFiletItem=[];
     for (let m_Index = 0; m_Index < target.macroFiletItem.length; m_Index++) {
       const macroData = target.macroFiletItem[m_Index];
@@ -498,6 +501,7 @@ export class PerixxComponent implements OnInit {
     this.KeyBoardManager.loadTemporaryKeyboardData();
     this.refreshTheSoftwareMacroCode();
   }
+
   clickMacroInTheAreaOfTheKeyboard(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
@@ -670,9 +674,8 @@ export class PerixxComponent implements OnInit {
     }
 
   }
-
   macroOperationOption(FNname = "") {
-    this.macroFileRightClickMenu = false;
+    this.macroRightClick = false;
     //var typeName="";
     console.log('%c macroOperationOption', 'color:rgb(255,77,255)', this.operationMenuFlag);
     switch (FNname) {
@@ -690,19 +693,69 @@ export class PerixxComponent implements OnInit {
         return;
     }
   }
+  macroBindKeyOption(FNname = "") {
+    this.macroRightClick = false;
+    //var typeName="";
+    console.log('%c macroBindKeyOption', 'color:rgb(255,77,255)', this.operationMenuFlag);
+    switch (FNname) {
+      case "startRenameMacroFile":
+        this.bindKeyMacroFileRename();
+        break;
+      case "copyFolderFile":
+        this.KeyBoardManager.keyBoardTemp.copyFolderFile();
+        break;
+      case "deleteMacroFile":
+        this.KeyBoardManager.keyBoardTemp.deleteMacroFile(this.selectedMacroCode);
+        break;
+      default:
+        alert("macroBindKeyOption_Error");
+        return;
+    }
+  }
+  bindKeyMacroFileRename() {
+    this.macro_ProfileRightClick = false;
+    this.macroOnEdit = true;
+    this.MacroManager.editMacroFileName();
+    this.changeDetectorRef.detectChanges();
+    var m_list = document.querySelectorAll<HTMLElement>('.MacroFileName');
+    var target = m_list[this.MacroManager.getClass().currentChooseMacro];
+    console.log('%c m_list.target', 'color:rgb(255,77,255)', m_list, target);
 
-  macroProfileFileRightClick(i, Event) {
+    if (target != undefined) {
+      console.log('%c focus', 'color:rgb(255,77,255)', 'focus');
+      target.focus();
+    }
+  }
 
+
+
+
+  macroProfileFileRightClick(data, event) {
+    this.macro_ProfileRightClick=true;
+    this.selectedMacroCode = data.selectedMacroCode;
+    this.lastSelectedMacroListCategory = "Profile";
+    this.macroRightClick = false;
+    var keyMacro=this.MacroManager.getClass().getTargetMacro(data.selectedMacroCode);
+    if(keyMacro!=undefined){
+      this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+    }
+
+    var macroFileOptions = document.getElementById("macroFileProfileOptions") as HTMLDivElement;
+    macroFileOptions.style.left = event.pageX + "px";
+    //event.clientX  + "px";
+    macroFileOptions.style.top = event.pageY  -25+"px";
+    //event.clientY + "px";
+    console.log('%c macroProfileFileRightClick', 'color:rgb(255,77,255)', event);
   }
   macroProfileFileLeftClick(data) {
-    this.selectedMacroCode=data.selectedMacroCode;
+    this.macro_ProfileRightClick = false;
+    this.selectedMacroCode = data.selectedMacroCode;
     this.lastSelectedMacroListCategory = "Profile";
-    this.macroFileRightClickMenu=false;
-    //if(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode)!=undefined){
-      var scriptContent=new MacroScriptContent();
-      scriptContent.importMacroData(data);
-      this.MacroManager.tempMacroContent=scriptContent;
-    //}
+    this.macroRightClick = false;
+    var keyMacro=this.MacroManager.getClass().getTargetMacro(data.selectedMacroCode);
+    if(keyMacro!=undefined){
+      this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+    }
     console.log('%c macroProfileFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,this.lastSelectedMacroListCategory);
   }
 
@@ -712,7 +765,7 @@ export class PerixxComponent implements OnInit {
     this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
     this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
     
-    this.macroFileRightClickMenu=true;
+    this.macroRightClick=true;
     var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
     macroFileOptions.style.left = event.pageX + "px";
     //event.clientX  + "px";
@@ -722,6 +775,8 @@ export class PerixxComponent implements OnInit {
   }
   
   macroFileLeftClick(index) {
+    this.macroRightClick = false;
+    this.macro_ProfileRightClick = false;
     this.MacroManager.getClass().currentChooseMacro = index;
     this.lastSelectedMacroListCategory = "Macro";
     this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;

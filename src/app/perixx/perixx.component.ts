@@ -710,7 +710,7 @@ export class PerixxComponent implements OnInit {
     }
   }
   macroBindKeyOption(FNname = "") {
-    this.macroRightClick = false;
+    this.macro_ProfileRightClick = false;
     //var typeName="";
     console.log('%c macroBindKeyOption', 'color:rgb(255,77,255)', this.operationMenuFlag);
     switch (FNname) {
@@ -788,11 +788,12 @@ export class PerixxComponent implements OnInit {
   }
 
   macroFileRightClick(i, event) {
+    this.macro_ProfileRightClick = false;
     this.MacroManager.getClass().currentChooseMacro = i;
     this.lastSelectedMacroListCategory = "Macro";
     this.selectedMacroCode = this.MacroManager.getClass().getTarget().selectedMacroCode;
     this.MacroManager.tempMacroContent=this.MacroManager.getClass().getTarget();
-    
+
     this.macroRightClick=true;
     var macroFileOptions = document.getElementById("macroFileOptions") as HTMLDivElement;
     macroFileOptions.style.left = event.pageX + "px";

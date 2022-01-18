@@ -848,21 +848,12 @@ export class PerixxComponent implements OnInit {
   clickTheKeyBindButton(i) {
     var keyMatrix = this.KeyBoardManager.keyBoardTemp.getNowModeKeyMatrix();
     var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[i].defaultValue);
-    console.log('%c  clickTheKeyBindButton', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist?"CanBeAssigned":"NotAssignable");
+    console.log('%c  clickTheKeyBindButton', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist?"NotAssignable":"CanBeAssigned");
     if (keyIsExist == undefined) {
       this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = i;
+      console.log('%c  clickTheKeyBindButton', 'color:rgb(255,77,255)', keyMatrix[i]);
     }
   }
-  resetTheSpecifiedKeyBindData(i) {
-    var keyMatrix = this.KeyBoardManager.keyBoardTemp.getNowModeKeyMatrix();
-    var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[i].defaultValue);
-    console.log('%c  resetTheSpecifiedKeyBindData', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist?"CanBeAssigned":"NotAssignable");
-    if (keyIsExist == undefined) {
-      this.KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)
-    }
-  }
-
-
   keyboardRMenu(FNname = "") {
     this.operationMenuFlag = false;
     console.log('%c keyboardRMenu', 'color:rgb(255,77,255)', this.operationMenuFlag);
@@ -923,6 +914,21 @@ export class PerixxComponent implements OnInit {
     }
 
   }
+  resetTheSpecifiedKeyBindData(i) {
+
+    var keyMatrix = this.KeyBoardManager.keyBoardTemp.getNowModeKeyMatrix();
+    var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[i].defaultValue);
+    console.log('%c  resetTheSpecifiedKeyBindData', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist?"NotAssignable":"CanBeAssigned");
+    if (keyIsExist == undefined) {
+      this.KeyBoardManager.keyBoardTemp.layoutMode = "Custom";
+      this.KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)
+    }
+  }
+
+
+
+
+
   getKeyBindingIcon(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
     var KeyMatrix = target.getNowModeKeyMatrix();

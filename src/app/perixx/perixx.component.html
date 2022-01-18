@@ -483,7 +483,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               (contextmenu)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
               data-KB_Block="i" class="KeyBoard_Block" 
               [attr.data-index]="i">
-                 <img class="KeyBoardBindImg" [src]="getKeyBindingIcon(i)">
+                 <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)">
             </div>
           </div>
           <!-- (click)="Built_ineffect.setColorCardSelectionLocation(i)" -->
@@ -656,7 +656,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               [attr.data-index]="i"
               [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
               (click)="clickTheKeyBindButton(i)"
-              (contextmenu)="KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)">
+              (contextmenu)="resetTheSpecifiedKeyBindData(i)">
               <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)" >
             </div>
           </div>
@@ -1110,7 +1110,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           (contextmenu)="rightClickOnTheMacroBindKey(i)"
           [attr.data-index]="i"
           >
-             <img class="KeyBoardBindImg" [src]="getKeyBindingIcon(i)">
+             <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)">
         </div>
       </div>
     </div>

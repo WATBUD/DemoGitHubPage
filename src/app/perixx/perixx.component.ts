@@ -847,15 +847,22 @@ export class PerixxComponent implements OnInit {
   //#region Keyboard_Nav
   clickTheKeyBindButton(i) {
     var keyMatrix = this.KeyBoardManager.keyBoardTemp.getNowModeKeyMatrix();
-
-
     var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[i].defaultValue);
-    console.log('%c  keyMatrix[i].defaultValue', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist);
-
+    console.log('%c  clickTheKeyBindButton', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist?"CanBeAssigned":"NotAssignable");
     if (keyIsExist == undefined) {
       this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = i;
     }
   }
+  resetTheSpecifiedKeyBindData(i) {
+    var keyMatrix = this.KeyBoardManager.keyBoardTemp.getNowModeKeyMatrix();
+    var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[i].defaultValue);
+    console.log('%c  resetTheSpecifiedKeyBindData', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist?"CanBeAssigned":"NotAssignable");
+    if (keyIsExist == undefined) {
+      this.KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)
+    }
+  }
+
+
   keyboardRMenu(FNname = "") {
     this.operationMenuFlag = false;
     console.log('%c keyboardRMenu', 'color:rgb(255,77,255)', this.operationMenuFlag);
@@ -954,13 +961,14 @@ export class PerixxComponent implements OnInit {
   keyboardLeftClick(index) {
     this.keyboardColorHintMode = 'KeyBoardLibray';
     this.KeyBoardLibray.keyboardOfChoice = index;
-    //this.KeyBoardManager.keyBoardTemp=this.KeyBoardLibray.getTarget();
-    this.KeyBoardManager.keyBoardTemp.ImportClassData(this.KeyBoardLibray.getTarget());
+    this.KeyBoardManager.keyBoardTemp=this.KeyBoardLibray.getTarget();
+    //this.KeyBoardManager.keyBoardTemp.ImportClassData(this.KeyBoardLibray.getTarget());
 
   }
   keyboardRightClick(i, Event) {
     this.KeyBoardLibray.keyboardOfChoice = i;
-    this.KeyBoardManager.keyBoardTemp.ImportClassData(this.KeyBoardLibray.getTarget());
+    this.KeyBoardManager.keyBoardTemp=this.KeyBoardLibray.getTarget();
+    //this.KeyBoardManager.keyBoardTemp.ImportClassData(this.KeyBoardLibray.getTarget());
     this.operationMenuFlag = true;
     var KeyBoardLibrayOptions = document.getElementById("KeyBoardLibrayOptions") as HTMLDivElement;
     KeyBoardLibrayOptions.style.left = Event.layerX + "px";

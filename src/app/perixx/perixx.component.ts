@@ -915,7 +915,6 @@ export class PerixxComponent implements OnInit {
 
   }
   resetTheSpecifiedKeyBindData(i) {
-
     var keyMatrix = this.KeyBoardManager.keyBoardTemp.getNowModeKeyMatrix();
     var keyIsExist = this.checkForPassableKey.find((x) => x == keyMatrix[i].defaultValue);
     console.log('%c  resetTheSpecifiedKeyBindData', 'color:rgb(255,77,255)', keyMatrix[i].defaultValue, keyIsExist?"NotAssignable":"CanBeAssigned");

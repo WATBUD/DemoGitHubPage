@@ -125,7 +125,7 @@ export class PerixxComponent implements OnInit {
     });
     this.MacroManager.createFolderFile();
     //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-    this.setPageIndex('Macro_Nav');
+    //this.setPageIndex('Macro_Nav');
     //var ssss="/upload/prime/version.json";//Remove the primary domain Set the primary domain from the proxy.conf file
     //var ssss="?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
     var ssss = "https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file

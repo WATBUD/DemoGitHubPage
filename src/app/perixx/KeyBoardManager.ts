@@ -1,9 +1,4 @@
 import { Injectable } from '@angular/core';
-import { KB61Prohibit } from './KeyBoardData';
-import { parse } from 'url';
-
-
-
 @Injectable()
 export class KeyBoardManager {
     defaultName = "未配置"

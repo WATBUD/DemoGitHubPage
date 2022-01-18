@@ -472,14 +472,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction(item.name)">
         {{this.i18nManager.getTarget(item.name)}}
       </div>
-      <!-- <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('F Keys')"> F Keys </div>
-      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Numerals')"> Numerals </div>
-      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Big Keys')"> Big Keys </div>
-      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Block 1')"> Block 1 </div>
-      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Block 2')"> Block 2 </div>
-      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Block 3')"> Block 3 </div>
-      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('All Keys')"> All Keys </div>
-      <div class="QuicklySelectBlockItem" (click)="quicklySelectTheBlockFunction('Characters')"> Characters </div> -->
     </section>
           <div id="mainKeyboardBlock" class="KeyBoardAreaStyle">
             <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
@@ -936,12 +928,12 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <img class="KeyBindStyle" [src]="currentTouchButtons=='CapsLock'? ImgPath.getThePicture('CapsLock')[1]:ImgPath.getThePicture('CapsLock')[0]"
             (mouseover)="currentTouchButtons='CapsLock'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('CapsLock')">
-            <img class="KeyBindStyle" [src]="currentTouchButtons=='WinLock'? ImgPath.getThePicture('WinLock')[1]:ImgPath.getThePicture('WinLock')[0]"
+            <!-- <img class="KeyBindStyle" [src]="currentTouchButtons=='WinLock'? ImgPath.getThePicture('WinLock')[1]:ImgPath.getThePicture('WinLock')[0]"
             (mouseover)="currentTouchButtons='WinLock'" (mouseleave)="currentTouchButtons=''"
-            (click)="setKeyBindingData('WinLock')">
-            <img class="KeyBindStyle" [src]="currentTouchButtons=='FunctionLock'? ImgPath.getThePicture('FunctionLock')[1]:ImgPath.getThePicture('FunctionLock')[0]"
+            (click)="setKeyBindingData('WinLock')"> -->
+            <!-- <img class="KeyBindStyle" [src]="currentTouchButtons=='FunctionLock'? ImgPath.getThePicture('FunctionLock')[1]:ImgPath.getThePicture('FunctionLock')[0]"
             (mouseover)="currentTouchButtons='FunctionLock'" (mouseleave)="currentTouchButtons=''"
-            (click)="setKeyBindingData('FunctionLock')">
+            (click)="setKeyBindingData('FunctionLock')"> -->
             <img class="KeyBindStyle" [src]="currentTouchButtons=='PrintScreen'? ImgPath.getThePicture('PrintScreen')[1]:ImgPath.getThePicture('PrintScreen')[0]"
             (mouseover)="currentTouchButtons='PrintScreen'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('PrintScreen')">

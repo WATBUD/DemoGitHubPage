@@ -199,6 +199,7 @@ export class PerixxComponent implements OnInit {
         setTimeout(() => {
           var Macro_BlockList = document.querySelectorAll("[data-Macro_Block]");
           this.KeyBoardStyle.applyStyles(Macro_BlockList);
+          this.KeyBoardManager.refreshKeyBoardTemp();
           this.refreshTheSoftwareMacroCode();
           this.macroFileLeftClick(0);
         }, 50);

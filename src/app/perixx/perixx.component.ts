@@ -735,9 +735,9 @@ export class PerixxComponent implements OnInit {
     this.selectedMacroCode = data.selectedMacroCode;
     this.lastSelectedMacroListCategory = "Profile";
     this.macroRightClick = false;
-    var keyMacro=this.MacroManager.getClass().getTargetMacro(data.selectedMacroCode);
+    var keyMacro=this.KeyBoardManager.keyBoardTemp.getTargetMacro(data.selectedMacroCode);
     if(keyMacro!=undefined){
-      this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+      this.MacroManager.tempMacroContent =keyMacro;
     }
 
     var macroFileOptions = document.getElementById("macroFileProfileOptions") as HTMLDivElement;
@@ -748,15 +748,22 @@ export class PerixxComponent implements OnInit {
     console.log('%c macroProfileFileRightClick', 'color:rgb(255,77,255)', event);
   }
   macroProfileFileLeftClick(data) {
+
     this.macro_ProfileRightClick = false;
     this.selectedMacroCode = data.selectedMacroCode;
     this.lastSelectedMacroListCategory = "Profile";
     this.macroRightClick = false;
-    var keyMacro=this.MacroManager.getClass().getTargetMacro(data.selectedMacroCode);
-    if(keyMacro!=undefined){
-      this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTarget();
+    //var keyMacro=this.KeyBoardManager.keyBoardTemp.getTargetMacro(data.selectedMacroCode);
+    var targetIndex = this.KeyBoardManager.keyBoardTemp.macroFiletItem.findIndex((x) => x.selectedMacroCode == data.selectedMacroCode)
+    if (targetIndex != -1) {
+      var keyMacro=this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
+      var scriptContent = new MacroScriptContent();
+      scriptContent.importMacroData(keyMacro);
+      this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex]=scriptContent;
+      this.MacroManager.tempMacroContent = scriptContent;
+      
     }
-    console.log('%c macroProfileFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,this.lastSelectedMacroListCategory);
+    console.log('%c macroProfileFileLeftClick', 'color:rgb(255,77,255)', this.selectedMacroCode,keyMacro);
   }
 
   macroFileRightClick(i, event) {

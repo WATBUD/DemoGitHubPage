@@ -558,6 +558,12 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         (click)="updateColorWheel($event)" id="colorBase{{i}}"
         [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
      </div>
+     <div class="DefaultColorItem" style="background-image: url(./image/Perixx_Project/Share/BlackColorChart.png);
+     background-size: 100% 100%;"
+        (click)="updateColorWheel($event,true)" id="ColorChart"
+        >
+     </div>
+
      <div id="CustomColorList" style="    position: absolute;
      background: rgb(255 0 0,0);
      width: 192px;

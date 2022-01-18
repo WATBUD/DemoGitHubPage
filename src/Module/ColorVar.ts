@@ -281,15 +281,18 @@ export class ColorModule {
         this.SetRGB(styleColor);
         //this.customlog('onclickColorTicket',styleColor.style.backgroundColor);
     }
-    onclickColorDefault(styleColor, index) {
+    onclickColorDefault(rgbValue, index) {
         this.currentRecordIndex = index;
         //styleColor=$event.target.style.backgroundColor
-        var rgbArr = this.cssRgbToNumberArray(styleColor.style.backgroundColor);
-        this.SetRGB(rgbArr);
+        this.SetRGB(rgbValue);
         this.callBackColorWheelValue();
-        this.customlog('onclickColorDefault', styleColor.style.backgroundColor);
+        this.customlog('onclickColorDefault', rgbValue);
         this.updateCircleDivPos();
     }
+
+
+
+    
     updateCircleDivPos() {
         // try {
         //     var circleDiv = document.getElementById(this.name+'Circle');

@@ -91,7 +91,7 @@ export class PerixxComponent implements OnInit {
   ]
   DefaultColorList = [
     [255, 0, 0], [255, 128, 0], [255, 255, 0], [128, 255, 0], [0, 255, 0], [0, 255, 128], [0, 255, 255], [0, 128, 255],
-    [0, 0, 255], [128, 0, 255], [255, 0, 255], [255, 0, 128], [0, 0, 0], [255, 255, 255], [255, 152, 0], [0, 183, 195],
+    [0, 0, 255], [128, 0, 255], [255, 0, 255], [255, 0, 128], [255, 255, 255], [255, 152, 0], [0, 183, 195],
   ]
   CustomColorList = [
     [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255],
@@ -326,14 +326,25 @@ export class PerixxComponent implements OnInit {
 
   //#region ColorWheel 
   HSLColorPickerFN = [];
-  updateColorWheel(event) {
+  updateColorWheel(event,blackColorChart=false) {
     console.log('%c updateColorWheel', 'background: black; color: white', event);
     let backgroundColor = event.target.style.backgroundColor;
-    this.ColorWheelModule.onclickColorDefault(event.target, 0);
+    var rgbValue=[255,0,0];
+
+    if(blackColorChart){
+      rgbValue=[0,0,0];
+
+    }
+    else{
+      rgbValue=this.ColorWheelModule.cssRgbToNumberArray(backgroundColor);
+    }
+    
+    this.ColorWheelModule.onclickColorDefault(rgbValue, 0);
     //this.M_Light_Perixx.getNowBlock().color=this.ColorWheelModule.getRGBA();
     this.Built_ineffect.setGroupArrayColor(this.ColorWheelModule.getRGBA());
     console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
   }
+
 
   updateCustomColorList(index) {
     console.log('%c updateCustomColorList', 'background: black; color: white', event);

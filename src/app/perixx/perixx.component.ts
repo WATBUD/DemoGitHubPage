@@ -471,7 +471,25 @@ export class PerixxComponent implements OnInit {
   //#endregion Lighting_Nav 
 
   //#region Macro_Nav
+  refreshTheSoftwareMacroCode(){
+    var target = this.KeyBoardManager.keyBoardTemp;
+    var keyMatrix = target.getNowModeKeyMatrix();
+    for (let m_Index = 0; m_Index < this.MacroManager.getClass().macroFiletItem.length; m_Index++) {
+      var macroData = this.MacroManager.getClass().macroFiletItem[m_Index];
+      for (let k_Index = 0; k_Index < keyMatrix.length; k_Index++) {
+        var keyData = keyMatrix[k_Index];
+        if(keyData.selectedMacroCode==macroData.selectedMacroCode){
+          var newKeyMacroName=this.KeyBoardManager.keyBoardTemp.getNotRepeatMacroCode(macroData.selectedMacroCode);
+          macroData.selectedMacroCode=this.MacroManager.getClass().getNotRepeatMacroCode(newKeyMacroName);
+        }
+      }
+    }
+    // console.log('%c refreshTheSoftwareMacroCode_this.MacroManager.getClass()', 'color:rgb(255,77,255)', this.MacroManager.getClass().macroFiletItem);
 
+    // console.log('%c refreshTheSoftwareMacroCode_keyBoardTemp', 'color:rgb(255,77,255)', this.KeyBoardManager.keyBoardTemp.macroFiletItem);
+
+
+  }
   loadTemporaryMacroData() {
     var target = this.KeyBoardManager.keyBoardTemp;
     var keyMatrix = target.getNowModeKeyMatrix();
@@ -530,43 +548,30 @@ export class PerixxComponent implements OnInit {
     var mainMacroCode=keyMatrix[index].selectedMacroCode;
     if (mainMacroCode != "") {
       this.selectedMacroCode = mainMacroCode;
-      if (this.KeyBoardManager.getTarget().getTargetMacro(mainMacroCode) != undefined) {
+      var targetIndex = this.KeyBoardManager.keyBoardTemp.macroFiletItem.findIndex((x) => x.selectedMacroCode == this.selectedMacroCode)
+      if (targetIndex != -1) {
         this.lastSelectedMacroListCategory = "Profile";
+        var keyMacro=this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
         var scriptContent = new MacroScriptContent();
-        scriptContent.importMacroData(this.KeyBoardManager.getTarget().getTargetMacro(mainMacroCode));
+        scriptContent.importMacroData(keyMacro);
+        keyMacro=scriptContent;
         this.MacroManager.tempMacroContent = scriptContent;
       }
       else if (this.MacroManager.getClass().getTargetMacro(mainMacroCode) != undefined) {
         this.lastSelectedMacroListCategory = "Macro";
-        // var scriptContent = new MacroScriptContent();
-        // scriptContent.importMacroData(this.MacroManager.getClass().getTargetMacro(mainMacroCode));
         this.MacroManager.tempMacroContent = this.MacroManager.getClass().getTargetMacro(mainMacroCode);
       }
     }
-    console.log('%c keyMatrix[index].selectedMacroCode', 'color:rgb(255,77,255)', keyMatrix[index].selectedMacroCode);
+    console.log('%c keyMatrix[index]', 'color:rgb(255,77,255)', keyMatrix[index]);
     //this.changeDetectorRef.detectChanges();
     console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', this.selectedMacroCode, this.lastSelectedMacroListCategory);
-    console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', keyMatrix);
   }
-  refreshTheSoftwareMacroCode(){
-    var target = this.KeyBoardManager.keyBoardTemp;
-    var keyMatrix = target.getNowModeKeyMatrix();
-    for (let m_Index = 0; m_Index < this.MacroManager.getClass().macroFiletItem.length; m_Index++) {
-      var macroData = this.MacroManager.getClass().macroFiletItem[m_Index];
-      for (let k_Index = 0; k_Index < keyMatrix.length; k_Index++) {
-        var keyData = keyMatrix[k_Index];
-        if(keyData.selectedMacroCode==macroData.selectedMacroCode){
-          var newKeyMacroName=this.KeyBoardManager.keyBoardTemp.getNotRepeatMacroCode(macroData.selectedMacroCode);
-          macroData.selectedMacroCode=this.MacroManager.getClass().getNotRepeatMacroCode(newKeyMacroName);
-        }
-      }
-    }
-    // console.log('%c refreshTheSoftwareMacroCode_this.MacroManager.getClass()', 'color:rgb(255,77,255)', this.MacroManager.getClass().macroFiletItem);
-
-    // console.log('%c refreshTheSoftwareMacroCode_keyBoardTemp', 'color:rgb(255,77,255)', this.KeyBoardManager.keyBoardTemp.macroFiletItem);
+  
 
 
-  }
+
+
+
   rightClickOnTheMacroBindKey(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
@@ -579,27 +584,26 @@ export class PerixxComponent implements OnInit {
     this.KeyBoardManager.keyBoardTemp.recordAssignBtnIndex = index;
 
     if (keyMatrix[index].recordBindCodeType != "MacroFunction") {
-      //keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
-      //keyMatrix[index].selectedMacroCode = this.KeyBoardManager.getTarget().getNotRepeatMacroCode(this.selectedMacroCode);
-      var macroManagerTarget=this.MacroManager.getClass().getTargetMacro(this.selectedMacroCode);
-        if (this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode) != undefined) {
-          this.lastSelectedMacroListCategory = "Profile";
-          keyMatrix[index].recordBindCodeType = "MacroFunction";
-          keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
-          var scriptContent = new MacroScriptContent();
-          scriptContent.importMacroData(this.KeyBoardManager.getTarget().getTargetMacro(this.selectedMacroCode));
-          this.MacroManager.tempMacroContent = scriptContent;
-        }
-        else if (macroManagerTarget != undefined) {
-          this.lastSelectedMacroListCategory = "Macro";
-          keyMatrix[index].recordBindCodeType = "MacroFunction";
-          keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
-          //keyMatrix[index].isTheNewlyDesignatedMacro=true;
-          // var  newMacroCode=this.KeyBoardManager.keyBoardTemp.getNotRepeatMacroCode(this.selectedMacroCode);
-          // macroManagerTarget.selectedMacroCode=newMacroCode;
-          // keyMatrix[index].selectedMacroCode = newMacroCode;
-          this.MacroManager.tempMacroContent = macroManagerTarget;
-        }
+      var macroManagerTarget = this.MacroManager.getClass().getTargetMacro(this.selectedMacroCode);
+      var targetIndex = this.KeyBoardManager.keyBoardTemp.macroFiletItem.findIndex((x) => x.selectedMacroCode == this.selectedMacroCode);
+
+
+      if (targetIndex != -1) {
+        this.lastSelectedMacroListCategory = "Profile";
+        keyMatrix[index].recordBindCodeType = "MacroFunction";
+        keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
+        var keyMacro = this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
+        var scriptContent = new MacroScriptContent();
+        scriptContent.importMacroData(keyMacro);
+        keyMacro = scriptContent;
+        this.MacroManager.tempMacroContent = scriptContent;
+      }
+      else if (macroManagerTarget != undefined) {
+        this.lastSelectedMacroListCategory = "Macro";
+        keyMatrix[index].recordBindCodeType = "MacroFunction";
+        keyMatrix[index].selectedMacroCode = this.selectedMacroCode;
+        this.MacroManager.tempMacroContent = macroManagerTarget;
+      }
     }
     else if (keyMatrix[index].recordBindCodeType == "MacroFunction") {
       keyMatrix[index].recordBindCodeType = "";
@@ -747,9 +751,14 @@ export class PerixxComponent implements OnInit {
     this.selectedMacroCode = data.selectedMacroCode;
     this.lastSelectedMacroListCategory = "Profile";
     this.macroRightClick = false;
-    var keyMacro=this.KeyBoardManager.keyBoardTemp.getTargetMacro(data.selectedMacroCode);
-    if(keyMacro!=undefined){
-      this.MacroManager.tempMacroContent =keyMacro;
+    var targetIndex = this.KeyBoardManager.keyBoardTemp.macroFiletItem.findIndex((x) => x.selectedMacroCode == data.selectedMacroCode)
+    if (targetIndex != -1) {
+      var keyMacro=this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
+      var scriptContent = new MacroScriptContent();
+      scriptContent.importMacroData(keyMacro);
+      keyMacro=scriptContent;
+      this.MacroManager.tempMacroContent = scriptContent;
+      
     }
 
     var macroFileOptions = document.getElementById("macroFileProfileOptions") as HTMLDivElement;
@@ -771,7 +780,7 @@ export class PerixxComponent implements OnInit {
       var keyMacro=this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
       var scriptContent = new MacroScriptContent();
       scriptContent.importMacroData(keyMacro);
-      this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex]=scriptContent;
+      keyMacro=scriptContent;
       this.MacroManager.tempMacroContent = scriptContent;
       
     }

@@ -554,7 +554,7 @@ export class PerixxComponent implements OnInit {
         var keyMacro=this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
         var scriptContent = new MacroScriptContent();
         scriptContent.importMacroData(keyMacro);
-        keyMacro=scriptContent;
+        this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex]=scriptContent;
         this.MacroManager.tempMacroContent = scriptContent;
       }
       else if (this.MacroManager.getClass().getTargetMacro(mainMacroCode) != undefined) {
@@ -567,11 +567,6 @@ export class PerixxComponent implements OnInit {
     console.log('%c clickMacroInTheAreaOfTheKeyboard', 'color:rgb(255,77,255)', this.selectedMacroCode, this.lastSelectedMacroListCategory);
   }
   
-
-
-
-
-
   rightClickOnTheMacroBindKey(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
     // var targetMatrixKey=target.getNowModeTargetMatrixKey();
@@ -595,7 +590,7 @@ export class PerixxComponent implements OnInit {
         var keyMacro = this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
         var scriptContent = new MacroScriptContent();
         scriptContent.importMacroData(keyMacro);
-        keyMacro = scriptContent;
+        this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex]=scriptContent;
         this.MacroManager.tempMacroContent = scriptContent;
       }
       else if (macroManagerTarget != undefined) {
@@ -756,7 +751,7 @@ export class PerixxComponent implements OnInit {
       var keyMacro=this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
       var scriptContent = new MacroScriptContent();
       scriptContent.importMacroData(keyMacro);
-      keyMacro=scriptContent;
+      this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex]=scriptContent;
       this.MacroManager.tempMacroContent = scriptContent;
       
     }
@@ -780,7 +775,7 @@ export class PerixxComponent implements OnInit {
       var keyMacro=this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex];
       var scriptContent = new MacroScriptContent();
       scriptContent.importMacroData(keyMacro);
-      keyMacro=scriptContent;
+      this.KeyBoardManager.keyBoardTemp.macroFiletItem[targetIndex]=scriptContent;
       this.MacroManager.tempMacroContent = scriptContent;
       
     }

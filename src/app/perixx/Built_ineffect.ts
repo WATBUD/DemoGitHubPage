@@ -49,7 +49,7 @@ class White extends ModeParameter{
         super();
         this.translate='White';
         this.PointEffectName='White';
-        this.colorPickerValue=[255,255,255,1];
+        this.colorPickerValue=[217,217,217,1];
     }
 };
 export class Red extends ModeParameter{

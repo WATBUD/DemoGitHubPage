@@ -68,11 +68,11 @@ export class PerixxComponent implements OnInit {
       'min':247,
       'max':380,
     },
-    {
-      'name': 'Macro',
-      'min':380,
-      'max':471,
-    },
+    // {
+    //   'name': 'Macro',
+    //   'min':380,
+    //   'max':471,
+    // },
     {
       'name': 'Auto Sleep',
       'min':471,

@@ -5,7 +5,6 @@ import { MacroManager,MacroScriptContent } from './MacroModule';
 import { i18nManager } from './i18n';
 import { EventManager } from './EventManager';
 import { KeyBoardStyle } from './KeyBoardStyle';
-import { ThrowStmt, CompileShallowModuleMetadata } from '@angular/compiler';
 import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
@@ -19,6 +18,7 @@ import { HttpService } from '../../Module/HttpService';
   styleUrls: ['./NavigationOption.css',
     './LightingPage.scss', './MacroPage.scss', './KeyBoardPage.scss', './Home_Page.scss', './SoftwareSettingPage.scss', './perixx.component.scss',
     './CircleColorPicker.css',
+    './TextEffects1.scss',
   ]
 })
 export class PerixxComponent implements OnInit {

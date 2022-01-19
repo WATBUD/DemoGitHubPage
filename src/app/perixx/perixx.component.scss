@@ -1,5 +1,5 @@
 :host{
-    margin-top: 3vh;
+    margin-top: 29px;
     overflow: hidden;
     height: 720px;width: 1200px;
     user-select: none;
@@ -17,6 +17,7 @@
     45deg, rgb(255,255,255), rgb(104,40,189));
     -webkit-background-clip: text;
     background-clip: text;
+    visibility: hidden;
 }
 .CenterAlignment{
     display: flex;

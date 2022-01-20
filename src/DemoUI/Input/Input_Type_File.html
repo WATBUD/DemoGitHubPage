@@ -30,10 +30,14 @@
             },
         ]
     }
-    
+    console.log('%c exoprtData', 'color:rgb(255,77,255)', JSON.parse(JSON.stringify(exoprtData)));
+
     var ExampleJSONFile = document.getElementById("ExampleJSONFile");
         ExampleJSONFile.addEventListener("click", function (evt) {
+
             var stringifyExoprtData = JSON.stringify(exoprtData);
+                console.log('%c ExampleJSONFile', 'color:rgb(255,77,255)', stringifyExoprtData);
+                console.log('%c ExampleJSONFile', 'color:rgb(255,77,255)',exoprtData);
 
             if (exoprtData != undefined) {
                 //download(stringifyExoprtData, this.currentPage+'_Data.txt', 'text/plain');
@@ -76,6 +80,9 @@
                     // try_Data = try_Data.replaceAll("\\n\\s*\\n", "\n");  //remove empty lines
                     // try_Data = try_Data.replaceAll("\\s*", "");  //remove whitespaces
                     //try_Data=try_Data.replace(/\\"/g, '"');
+                    exoprtData=JSON.parse(data);
+                    console.log('%c exoprtData', 'color:rgb(255,77,255)', exoprtData);
+
                     document.getElementById("jsonObject").innerText = try_Data;
                 } catch (error) {
                     console.log('%c JSON.stringify(data)', 'color:rgb(255,77,255)', data);

@@ -698,6 +698,8 @@ export class PerixxComponent implements OnInit {
         break;
       case "deleteMacroFile":
         this.MacroManager.deleteMacroFile();
+        this.KeyBoardManager.keyBoardTemp.deleteMacroFile(this.selectedMacroCode);
+
         break;
       default:
         alert("macroOperationOption_Error");

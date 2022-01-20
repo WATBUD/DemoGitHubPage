@@ -322,9 +322,6 @@ export class KeyBoard {
         }
     }
     deleteMacroFile(selectedMacroCode = "") {
-        var targetIndex = this.macroFiletItem.findIndex((x) => x.selectedMacroCode == selectedMacroCode)
-        if (targetIndex != -1) {
-            var macroFile=this.macroFiletItem[targetIndex];
             var keyMatrix = this.getNowModeKeyMatrix();
             for (let index = 0; index < keyMatrix.length; index++) {
                 const element = keyMatrix[index];
@@ -334,11 +331,12 @@ export class KeyBoard {
                     keyMatrix[index].selectedMacroCode="";
                 }
             }
+        var targetIndex = this.macroFiletItem.findIndex((x) => x.selectedMacroCode == selectedMacroCode)
+        if (targetIndex != -1) {
             this.macroFiletItem.splice(targetIndex, 1);
-
-
         }
     }
+
     getTargetMacro(selectedMacroCode=""){
         //var KeyMatrixkey = this.getNowModeTargetMatrixKey();
         var target = this.macroFiletItem.find((x) => x.selectedMacroCode ==selectedMacroCode)

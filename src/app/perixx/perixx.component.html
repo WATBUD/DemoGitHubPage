@@ -90,9 +90,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   
   </div>
 
-
-
-
   <div *ngIf="this.currentPage!='ConnectedPage'" id="Nav_Project">
     <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
       (click)="project_select($event,i)"

@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+    var RegularExpressions_backslash = "C:\\Users\\stemp\\index.html";
+    console.log("%c RegularExpressions_backslash", "color:red", RegularExpressions_backslash);
+
+    RegularExpressions_backslash = RegularExpressions_backslash.replace(/\\/g, "\\\\");
+    console.log("%c RegularExpressions_backslash", "color:red", RegularExpressions_backslash);
+
+    RegularExpressions_backslash = JSON.stringify(RegularExpressions_backslash);
+    console.log("%c RegularExpressions_backslash", "color:red", RegularExpressions_backslash);
+
+    RegularExpressions_backslash_parse = JSON.parse(RegularExpressions_backslash);
+    console.log("%c RegularExpressions_backslash", "color:red", RegularExpressions_backslash_parse);
+
+</script>

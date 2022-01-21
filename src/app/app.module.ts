@@ -1,13 +1,9 @@
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 import { AppComponent } from './KeyBoard_RGBFolder/KeyBoard_RGB';
 import { ColorPickerDemo1Component } from './ColorPickerUI/ColorPickerDemo1';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes  } from '@angular/router';
-
-
 //----------------httpImport--------------//
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';

@@ -7,6 +7,14 @@
 <p id="unixTimestamp"></p>
 
 <script type="text/javascript">
+
+var ddddddddd="C:\Users\stemp\index.html";
+
+//var aaaa="C:\\Users\\stemp\\index.html"; 
+ddddddddd = ddddddddd.replace(/\\/g, "\\\\"); 
+console.log("%c aaaasadad", "color:red",String(ddddddddd));
+// background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+
     function showtosystemTime() {
         var systemTime = new Date();
         alert("今年月日是" + systemTime.getFullYear() + "年" + (systemTime.getMonth() + 1) + "月" + systemTime.getDate() + "日");

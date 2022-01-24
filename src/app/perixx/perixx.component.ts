@@ -20,7 +20,6 @@ import { Electron_Service } from '../../Module/Electron_Service';
     './LightingPage.scss', './MacroPage.scss', './KeyBoardPage.scss', './Home_Page.scss', './SoftwareSettingPage.scss', './perixx.component.scss',
     './CircleColorPicker.css',
     './TextEffects1.scss',
-  ]
   ],
   providers: []
 })

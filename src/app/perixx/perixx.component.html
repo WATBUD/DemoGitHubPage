@@ -51,7 +51,7 @@ z-index: 9999;" class="text-effect">
 
 
 
-<div id="HeaderColumn" style="position: relative;height: 3%;z-index: 1112;width: 100%;background: #1D3460;">
+<div id="HeaderColumn" style="position: relative;height: 3%;z-index: 1112;width: 100%;background: #1D3460;-webkit-app-region: drag;">
 
 
 </div>
@@ -236,7 +236,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               </div>
             </section>
           <section style="    flex-direction: column;
-          height: 24px;
           margin-top: 33px;" class="ParallelTextString">
                 <input  id="rangeUI" max="100" min="0" step="10" style="width: 272px;" type="range"  
                 [(ngModel)]="KeyBoardManager.getTarget().lightData.brightness">
@@ -282,7 +281,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               </div>
             </section>
             <section style="    flex-direction: column;
-            height: 24px;
             margin-top: 33px;" class="ParallelTextString">
                   <input  id="rangeUI" max="60" min="1" style="width: 272px;" type="range"  
                   [(ngModel)]='KeyBoardManager.getTarget().autoSleepValue' (ngModelChange)="settingLayoutChoice()">

@@ -10,16 +10,19 @@ import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
 import { Built_ineffect } from './Built_ineffect';
 import { ColorModule } from '../../Module/TSImportManager';
-import { HttpService } from '../../Module/HttpService';
-
+import { Electron_Service } from '../../Module/Electron_Service';
+//import { HttpService } from '../../Module/HttpService';
 @Component({
   selector: 'app-perixx',
+  moduleId: module.id,
   templateUrl: './perixx.component.html',
   styleUrls: ['./NavigationOption.css',
     './LightingPage.scss', './MacroPage.scss', './KeyBoardPage.scss', './Home_Page.scss', './SoftwareSettingPage.scss', './perixx.component.scss',
     './CircleColorPicker.css',
     './TextEffects1.scss',
   ]
+  ],
+  providers: []
 })
 export class PerixxComponent implements OnInit {
   currentPage = "ConnectedPage";
@@ -47,6 +50,7 @@ export class PerixxComponent implements OnInit {
   M_Light_Perixx = new M_Light_CS(80);
   BoxSelectionArea = new BoxSelectionArea("KeyBoard_Block");
   EM = new EventManager();
+  Electron_Service=new Electron_Service();
   ColorWheelModule = new ColorModule("Circle_Animation");
   theColorWheelISBeingClicked = false;
   currentTouchButtons = "";
@@ -99,7 +103,8 @@ export class PerixxComponent implements OnInit {
   ]
   settingLocation = "Information";
   //#region General software functions
-  constructor(private changeDetectorRef: ChangeDetectorRef, private httpService: HttpService) { }
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
   ngOnInit() {
     this.initialzeTheDevice();
   }
@@ -121,7 +126,6 @@ export class PerixxComponent implements OnInit {
         this.operationMenuFlag = false;
         //this.Built_ineffect.editingNumber = -5;
       }
-
     });
     this.MacroManager.createFolderFile();
     //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
@@ -130,10 +134,11 @@ export class PerixxComponent implements OnInit {
     //var ssss="?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
     var ssss = "https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
     //var ssss="https://app.fusebox.fm/api/players/track/32XDRaOgO0/44/";
-    this.httpService.noOptionToGetURL(ssss).subscribe((res: any) => {
-      console.log('%c noOptionToGetURL', 'color:rgb(255,75,255,1)', res)
+    // this.httpService.noOptionToGetURL(ssss).subscribe((res: any) => {
+    //   console.log('%c noOptionToGetURL', 'color:rgb(255,75,255,1)', res)
 
-    });
+    // });
+
   }
 
   initialzeTheDevice() {
@@ -259,6 +264,7 @@ export class PerixxComponent implements OnInit {
     //if (this.KeyBoardManager.keyboardOfChoice != index) {
     this.KeyBoardManager.keyboardOfChoice = index;
     this.KeyBoardManager.refreshKeyBoardTemp();
+    this.Electron_Service.browserWindowHide();
     //}
   }
 

@@ -10,7 +10,7 @@
     font-size: 21px;
     position: absolute;
     top: 0;
-    right: 1%;
+    left: 1%;
     z-index: 9999;
     font-style: oblique;
     background: linear-gradient(
@@ -123,7 +123,12 @@
     line-height: 25px;
 }
 .ApplyBtn{
-    position: absolute;bottom: 24px;z-index: 9998;width: 153px;display: flex;height: 38px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);
+    position: absolute;z-index: 9998;width: 153px;
+    display: flex;height: 38px;
+    justify-content: center;
+    align-items: center;
+    color: rgb(18,64,162);
+    border: 1px solid rgb(18,64,162);
 
 }
 

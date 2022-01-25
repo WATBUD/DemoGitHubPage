@@ -48,10 +48,24 @@ z-index: 9999;" class="text-effect">
 
 
 
-<div id="HeaderColumn" style="position: relative;height: 3%;z-index: 1112;width: 100%;background: #1D3460;-webkit-app-region: drag;">
-
-
+<div id="HeaderColumn"
+  style="position: relative;height: 3%;z-index: 1112;width: 100%;background: #1D3460;-webkit-app-region: drag;">
+  <div id="MinimizeIcon" style="position: absolute;
+  background-image: url(./image/Perixx_Project/Share/MinimizeIcon.png);    
+  height: 21px;width: 21px;right: 2.7%;background-repeat: no-repeat;background-position: center;"
+    (click)="Electron_Service.zoomApplication()">
+  </div>
+  <div id="ExitApplication" style="    position: absolute;
+  background-image: url(./image/Perixx_Project/Share/ExitApplication.png);height: 21px;
+  width: 21px;right: 0.7%;background-repeat: no-repeat;background-position: center;"
+    (click)="Electron_Service.quitApplication()">
+  </div>
 </div>
+
+
+
+
+
 <div id="DeviceContentPage" style="
 position: relative;
 height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
@@ -63,6 +77,35 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <!-- <img src="./image/Share/Loading.gif" alt="Loading.gif" style="height: 92PX;
       width: 92PX;" /> -->
   </div>
+  <div [style.display]="askIfYouAreSureToReset?'flex':'none'" id="AskIfYouAreSureToReset" class="CenterAlignment"
+    style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
+    <div style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+      <div style="height: 38px;
+      color: rgb(45,47,52);
+      width: 304px;
+      position: absolute;
+      left: 18%;
+      top: 19%;
+        "> Are you sure to reset the settings of the current profile?
+      </div>
+      <img src="image/Perixx_Project/Share/ExclamationMark.png" style="position: absolute;
+          top: 20%;
+    left: 9%;">
+      <div class="ApplyBtn" style="    height: 38px;
+        width: 153px;
+        position: absolute;
+        bottom: 23px;
+        left: 30%;" (click)="askIfYouAreSureToReset=false;">Cancel
+      </div>
+      <div class="ApplyBtn" style="    height: 38px;
+        width: 153px;
+        position: absolute;
+        bottom: 23px;
+        left: 65%;" (click)="restoreFactorySettings();askIfYouAreSureToReset=false;"> Yes
+      </div>
+    </div>
+  </div>
+
   <div *ngIf="this.currentPage=='ConnectedPage'"
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;" id="Content">
     <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
@@ -320,7 +363,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </section>
             <section class="ParallelTextString">
               Restore factory settings
-              <div (click)="restoreFactorySettings();" style="position: absolute;
+              <div (click)="askIfYouAreSureToReset=true;" style="position: absolute;
               right: 26%;
               width: 52px;
               height: 23px;
@@ -524,7 +567,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
           
-          <div class="ApplyBtn" 
+          <div class="ApplyBtn" style="bottom: 24px;" 
           (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Apply 
           </div>
 
@@ -668,7 +711,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </div>
           </div>
 
-          <div class="ApplyBtn"
+          <div class="ApplyBtn" style="bottom: 24px;" 
           (click)="loadTemporaryKeyboardData()"> Apply 
           </div>
 

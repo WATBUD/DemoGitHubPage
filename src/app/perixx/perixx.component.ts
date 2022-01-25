@@ -14,7 +14,6 @@ import { Electron_Service } from '../../Module/Electron_Service';
 //import { HttpService } from '../../Module/HttpService';
 @Component({
   selector: 'app-perixx',
-  moduleId: module.id,
   templateUrl: './perixx.component.html',
   styleUrls: ['./NavigationOption.css',
     './LightingPage.scss', './MacroPage.scss', './KeyBoardPage.scss', './Home_Page.scss', './SoftwareSettingPage.scss', './perixx.component.scss',
@@ -38,6 +37,7 @@ export class PerixxComponent implements OnInit {
   selectedMacroCode = "";
   lastSelectedMacroListCategory = "Macro";//Profile //Macro
   slidingTimer;
+  askIfYouAreSureToReset=true;
   activelyClickOnTheTitleToSlide=false;
   KeyBoardManager = new KeyBoardManager(1, 3);
   KeyBoardLibray = new KeyBoardManager(1, 3);
@@ -263,8 +263,10 @@ export class PerixxComponent implements OnInit {
     //if (this.KeyBoardManager.keyboardOfChoice != index) {
     this.KeyBoardManager.keyboardOfChoice = index;
     this.KeyBoardManager.refreshKeyBoardTemp();
-    this.Electron_Service.browserWindowHide();
-    //}
+    this.Electron_Service.quitApplication();
+    // this.Electron_Service.browserWindowHide().then((data) => {//=>to AppProtocol=>electron.js
+    //   console.log('%c project_select', 'color:rgb(255,77,255)', data);
+    // });
   }
 
   settingLayoutChoice() {

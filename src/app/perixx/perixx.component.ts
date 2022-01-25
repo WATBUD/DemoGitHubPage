@@ -37,7 +37,7 @@ export class PerixxComponent implements OnInit {
   selectedMacroCode = "";
   lastSelectedMacroListCategory = "Macro";//Profile //Macro
   slidingTimer;
-  askIfYouAreSureToReset=true;
+  askIfYouAreSureToReset=false;
   activelyClickOnTheTitleToSlide=false;
   KeyBoardManager = new KeyBoardManager(1, 3);
   KeyBoardLibray = new KeyBoardManager(1, 3);
@@ -818,11 +818,12 @@ export class PerixxComponent implements OnInit {
   }
 
   onRecordClick() {
-    this.MacroManager.onRecord = true;
-    this.MacroManager.allRecordKeys = [];
-    //this.MacroManager.tempMacroContent.importMacroData(this.MacroManager.getClass().getTarget());
-    this.MacroManager.tempMacroContent.resetDefaultData();
-    this.MacroManager.addMacroEvent();
+    this.MacroManager.onRecord = !this.MacroManager.onRecord;
+    if(this.MacroManager.onRecord){
+      this.MacroManager.allRecordKeys = [];
+      this.MacroManager.tempMacroContent.resetDefaultData();
+      this.MacroManager.addMacroEvent();
+    }
   }
 
   startRenameMacroFile() {

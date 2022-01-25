@@ -1174,29 +1174,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
       <ng-container *ngIf="MacroManager.getClass().hasFile();">
         <!-- [style.background-color]="MacroManager.onRecord?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'" -->
-        <div id="Record" style="    position: absolute;
-        margin-left: 14px;
-        margin-top: 60px;
-        z-index: 1111;color: rgb(29, 52, 96);" 
+        <img id="RecordIcon" style="position: absolute;
+        top: 47px;
+        left: 11px;z-index: 1112;" 
+        [src]="this.MacroManager.onRecord? ImgPath.Recording[1]:ImgPath.Recording[0]"
         (click)="onRecordClick()" data-identity="startRecord"
-        class="CenterAlignment">
-        <img id="SettingIcon" style="margin-right: 6px;" src="image/Perixx_Project/MacroPage/Record.png">
-          Record
-        </div>
-        <div id="Stop" style="    position: absolute;
-        margin-left: 39%;
-        margin-top: 60px;
-        z-index: 1111;color: rgb(29, 52, 96);" 
-        (click)="this.MacroManager.onRecord=false" data-identity="startRecord"
-        class="CenterAlignment">
-        <img id="SettingIcon" style="margin-right: 6px;" src="image/Perixx_Project/MacroPage/Stop.png">
 
-          Stop
-        </div>
-        
+        >
         <div id="Delete" style="position: absolute;
-        margin-left: 66%;
-        margin-top: 60px;color: rgb(29, 52, 96);" 
+        margin-left: 57%;
+        margin-top: 58px;color: rgb(29, 52, 96);" 
         (click)="MacroManager.tempMacroContent.deleteSelectMacro()"
         class="CenterAlignment">
         <img id="SettingIcon" style="margin-right: 6px;" src="image/Perixx_Project/MacroPage/Delete.png">

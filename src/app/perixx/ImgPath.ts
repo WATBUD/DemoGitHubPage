@@ -21,8 +21,10 @@ export class ImgPathList{
         "url('./image/Share/ExitApplication.png')",
         "url('./image/Share/KeyDownIcon.png')",
     ]
-
-
+    Recording = [
+        "./image/Perixx_Project/MacroPage/Off/Record.png",
+        "./image/Perixx_Project/MacroPage/On/Record.png",
+    ]
 
 
     Macro_Linking: any = [

@@ -263,7 +263,6 @@ export class PerixxComponent implements OnInit {
     //if (this.KeyBoardManager.keyboardOfChoice != index) {
     this.KeyBoardManager.keyboardOfChoice = index;
     this.KeyBoardManager.refreshKeyBoardTemp();
-    this.Electron_Service.quitApplication();
     // this.Electron_Service.browserWindowHide().then((data) => {//=>to AppProtocol=>electron.js
     //   console.log('%c project_select', 'color:rgb(255,77,255)', data);
     // });
@@ -309,19 +308,18 @@ export class PerixxComponent implements OnInit {
   }
   triggeredWhenTheScrollBarSlides(event) {
     //event.preventDefault();
-    
     //event.isTrusted=false;
     console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event);
     console.log('%c triggeredWhenTheScrollBarSlides', 'color:rgb(255,75,255,1)', event.target.scrollTop);
-    // var compareValue = event.target.scrollTop;
-    // if(!this.activelyClickOnTheTitleToSlide){
-    //   for (let index = 0; index < this.settingsOption.length; index++) {
-    //     const element = this.settingsOption[index];
-    //     if (compareValue < element.max && compareValue > element.min) {
-    //       this.settingLocation = element.name;
-    //     }
-    //   }
-    // }
+    var compareValue = event.target.scrollTop;
+    if(!this.activelyClickOnTheTitleToSlide){
+      for (let index = 0; index < this.settingsOption.length; index++) {
+        const element = this.settingsOption[index];
+        if (compareValue < element.max && compareValue > element.min) {
+          this.settingLocation = element.name;
+        }
+      }
+    }
   }
   linkToTheDesignatedWebsite(weburl = "") {
     window.open(weburl, "_blank");

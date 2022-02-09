@@ -672,10 +672,11 @@
 
 
 .audioSouceItem{
-    display: flex;
-    width: 119px;
+    width: 195px;
     height: 32px;
     white-space: nowrap;
     margin-left: 10%;
     line-height: 23px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

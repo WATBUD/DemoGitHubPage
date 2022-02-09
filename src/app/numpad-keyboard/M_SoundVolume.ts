@@ -37,7 +37,7 @@ export class M_SoundVolume {
   * process default_LightData
   * * @param defaultcolor array:defaultcolor
   */
-    default_lightData(defaultcolor = [255, 0, 0, 1]) {
+    default_lightData(defaultcolor = [255, 172, 42, 1]) {
         var T = {
             speed: 50,
             brightness: 50,

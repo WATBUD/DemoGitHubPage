@@ -174,7 +174,7 @@ export class KeyBoard {
     lockSidelightsFlag=false;
     batteryLevelIndicator=false;
     recordAssignBtnIndex: any = 1;
-    assignText: any = '設定按鍵:Y'
+    assignText: any = 'defaultKey'
     maxKayCapNumber: any
     assignedKeyboardKeys: any = [[]] //61KEY
     assignedFnKeyboardKeys = [] //61KEY
@@ -405,7 +405,7 @@ export class KeyBoard {
             recordBindCodeType: '',
             recordBindCodeName: this.defaultName,
             shortcutsWindowsEnable: false,
-            sensitivity:0,
+            sensitivity:2,
             d_SoundVolume: {
                 bindTarget: {
                     filename: "default",
@@ -418,7 +418,7 @@ export class KeyBoard {
                     brightness: 50,
                     clearStatus: false,
                     colorHex: '#0000',
-                    colorPickerValue: [0, 0, 0, 1],
+                    colorPickerValue: [255, 172, 42, 1],
                     breathing: false,
                     brightness_Enable: false,
                     rate_Enable: false,

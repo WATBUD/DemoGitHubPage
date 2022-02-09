@@ -474,11 +474,11 @@
                         </div>
                         <div class="sub-list">
                             <input id="PERKEY_BrightnessSlider" type="range" min="0" max="100" class="slider" step="5"
-                                [(ngModel)]="this.PERKEY_lightData.brightness" (mouseup)="sliderChange()"
+                                [(ngModel)]="this.M_Light_PERKEY.lightData.brightness" (mouseup)="sliderChange()"
                                 [ngStyle]="{'background': PERKEY_BrightnessSlider_Background()}"
                                 (ngModelChange)="lightSliderMove('PERKEY_BrightnessSlider')"
                                 onkeydown="event.preventDefault()" />
-                            <div>{{ this.PERKEY_lightData.brightness }}%</div>
+                            <div>{{ this.M_Light_PERKEY.lightData.brightness }}%</div>
                         </div>
                     </div>
                 </div>

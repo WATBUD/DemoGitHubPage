@@ -969,7 +969,7 @@ light_Keybinding_Show(){
    * process PERKEY_BrightnessSlider Event
   */
  PERKEY_BrightnessSlider_Background() {
-  var value = this.PERKEY_lightData.brightness;
+  var value = this.M_Light_PERKEY.lightData.brightness;
   return '-webkit-linear-gradient(left ,#FDBA3B 0%,#FDBA3B ' + value + '%,#313131 ' + value + '%, #313131 100%)';
 }
 
@@ -984,7 +984,7 @@ light_Keybinding_Show(){
 
     if (target != undefined) {
       this.M_Light_PERKEY.replaceAllBlockColor(target.AllBlockColor);
-      this.PERKEY_lightData = target.lightData;
+      this.M_Light_PERKEY.lightData = target.lightData;
       this.setRGBcolor();//by onLayoutSelectChange
     }
   }

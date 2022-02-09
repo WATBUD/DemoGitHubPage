@@ -4280,15 +4280,17 @@ export class M_Light_Numpad {
 
     }
     getIndexRGBPerkeyCss(i) {
-        //console.log('getIndexRGBCss', i)
+        //console.log('getIndexRGBPerkeyCss', this.lightData.brightness)
         var target = this.BreathTempArray;
         if (target[i].color != undefined) {
-            return this.toCssRGB(target[i].color);
+            return this.toCssRGB(this.getBrightnessRatio(target[i].color));
         }
     }
 
 
+
     
+
     getRandom(min,max){
         return Math.floor(Math.random()*(max-min+1))+min;
     };

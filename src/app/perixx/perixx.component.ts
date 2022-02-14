@@ -9,16 +9,17 @@ import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
 import { Built_ineffect } from './Built_ineffect';
+import { FirewareManager } from './FirewareManager';
 import { ColorModule } from '../../Module/TSImportManager';
 import { Electron_Service } from '../../Module/Electron_Service';
 //import { HttpService } from '../../Module/HttpService';
 @Component({
   selector: 'app-perixx',
+  moduleId: module.id,
   templateUrl: './perixx.component.html',
-  styleUrls: ['./NavigationOption.css',
-    './LightingPage.scss', './MacroPage.scss', './KeyBoardPage.scss', './Home_Page.scss', './SoftwareSettingPage.scss', './perixx.component.scss',
-    './CircleColorPicker.css',
-    './TextEffects1.scss',
+  styleUrls: ['./css/NavigationOption.css',
+    './css/LightingPage.css', './css/MacroPage.css', './css/KeyBoardPage.css', './css/Home_Page.css', './css/SoftwareSettingPage.css', './css/perixx.component.css',
+    './css/CircleColorPicker.css',
   ],
   providers: []
 })
@@ -34,11 +35,17 @@ export class PerixxComponent implements OnInit {
   startTimeEditing = false;
   SettingManager = new SettingManager();
   Built_ineffect = new Built_ineffect(1);
+  FWManager= new FirewareManager();
+
   selectedMacroCode = "";
   lastSelectedMacroListCategory = "Macro";//Profile //Macro
   slidingTimer;
   askIfYouAreSureToReset=false;
+  theScreenThatPopsUpWhenTheUpdateFails=false;
+  newUpdateDetected=false;
   activelyClickOnTheTitleToSlide=false;
+  
+  batteryvalue=0;
   KeyBoardManager = new KeyBoardManager(1, 3);
   KeyBoardLibray = new KeyBoardManager(1, 3);
   MacroManager = new MacroManager();
@@ -106,6 +113,8 @@ export class PerixxComponent implements OnInit {
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
   ngOnInit() {
     this.initialzeTheDevice();
+    //this.batteryvalue=this.getRandom(1,100);
+
   }
   ngAfterViewInit() {
     document.addEventListener('click', (e: any) => {
@@ -137,6 +146,14 @@ export class PerixxComponent implements OnInit {
     //   console.log('%c noOptionToGetURL', 'color:rgb(255,75,255,1)', res)
 
     // });
+    setInterval(() => {
+      var aaa=this.batteryvalue;
+      aaa+=26;
+      if(aaa>100){
+        aaa=0;
+      }
+      this.batteryvalue=aaa;
+    }, 500);
 
   }
 
@@ -267,6 +284,30 @@ export class PerixxComponent implements OnInit {
     //   console.log('%c project_select', 'color:rgb(255,77,255)', data);
     // });
   }
+
+  /**
+       * batterystatus 1:charge
+       * batterystatus 0:Not charging
+  */
+  getbatteryShowImage() {
+    //console.log('%c getbatteryShowImage', 'background: black; color: white', this.batteryvalue);
+
+    switch (true) {
+      case (this.batteryvalue > 75 && this.batteryvalue <= 100):
+        return "image/Perixx_Project/Share/battery4.png";
+      case (this.batteryvalue > 50 && this.batteryvalue <= 75):
+        return "image/Perixx_Project/Share/battery3.png";
+      case (this.batteryvalue > 25 && this.batteryvalue <= 50):
+        return "image/Perixx_Project/Share/battery2.png";
+      case (this.batteryvalue > -1 && this.batteryvalue <= 25):
+        return "image/Perixx_Project/Share/battery1.png";
+      default:
+        return "image/Perixx_Project/Share/battery1.png";
+    }
+  }
+  getRandom(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+  };
 
   settingLayoutChoice() {
   };
@@ -496,6 +537,7 @@ export class PerixxComponent implements OnInit {
 
   }
   loadTemporaryMacroData() {
+    this.theScreenThatPopsUpWhenTheUpdateFails=true;
     var target = this.KeyBoardManager.keyBoardTemp;
     var keyMatrix = target.getNowModeKeyMatrix();
     for (let index = 0; index < keyMatrix.length; index++) {
@@ -896,6 +938,7 @@ export class PerixxComponent implements OnInit {
   }
   loadTemporaryKeyboardData() {
     this.KeyBoardManager.loadTemporaryKeyboardData();
+    this.theScreenThatPopsUpWhenTheUpdateFails=true;
     if (this.keyboardColorHintMode == 'KeyBoardManager') {
 
     }

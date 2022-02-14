@@ -1,0 +1,229 @@
+/* margin-top: 29px;
+ */
+ :host {
+    overflow: hidden;
+    height: 720px;
+    width: 1200px;
+    user-select: none;
+    position: absolute;
+}
+#UpdateProgressVersion {
+    color: rgba(255, 0, 0, 0);
+    font-size: 21px;
+    position: absolute;
+    top: 0;
+    left: 1%;
+    z-index: 9999;
+    font-style: oblique;
+    background: linear-gradient(45deg, #fff, #6828bd);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.CenterAlignment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.RightPanal::before {
+    content: "";
+    position: absolute;
+    height: 94%;
+    width: 2px;
+    margin-top: 18%;
+    background-color: #a2aa9f;
+}
+.KeyBoardAreaStyle {
+    height: 287px;
+    width: 100%;
+    box-sizing: border-box;
+    transform: scale(1);
+   /* background: rgb(255 0 0);
+    */
+}
+.KeyBoardGraphsStyle {
+    position: absolute;
+    height: 252px;
+    width: 596px;
+    margin-left: 28px;
+}
+.KeyBoard_Block {
+    display: flex;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin-left: 48px;
+    margin-top: 11px;
+    border-style: solid;
+   /* border-color: rgb(255,87,0);
+    */
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12%;
+}
+.KeyBoardBindImg {
+    pointer-events: none;
+}
+#SharedPageContent {
+    margin-left: 305px;
+    position: absolute;
+    height: 100%;
+    width: 895px;
+    background: #edeef0;
+}
+#SharedSelectList {
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 90%;
+    position: absolute;
+}
+#SharedSelectList::-webkit-scrollbar-track {
+    background-repeat: no-repeat;
+}
+#SharedSelectList::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+   /* border: 1px solid yellow;
+    */
+    background-repeat: no-repeat;
+    background-color: rgba(42, 42, 42, 0);
+}
+#SharedSelectList::-webkit-scrollbar {
+    width: 16px;
+}
+.Shard_OptionItem {
+    color: #9fa3aa;
+    height: auto;
+    width: 100%;
+    line-height: 25px;
+}
+.ApplyBtn {
+    position: absolute;
+    width: 153px;
+    display: flex;
+    height: 38px;
+    justify-content: center;
+    align-items: center;
+    color: #1240a2;
+    border: 1px solid #1240a2;
+}
+input[type=radio] {
+    margin: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #1d3460;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+}
+input[type=radio]:checked {
+    background: #1d3460;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+   /* background: -webkit-linear-gradient(#2e9cfb, #2e9cfb) no-repeat, #606060;
+    background-size: 0 100%;
+    */
+    background: #1d3460;
+    width: 200px;
+    height: 7px;
+    border-radius: 15px;
+}
+input[type="range"]:focus {
+    outline: none;
+}
+/* input[type="range"]::-webkit-slider-runnable-track {
+    height: 7px;
+    background: rgb(29, 52, 96);
+    border-radius: 15px;
+}
+*/
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 6px;
+    height: 26px;
+    background: #1240a2;
+    border-radius: 15px;
+}
+.CommonRightClickMenuItems {
+    width: fit-content;
+    margin-top: 6px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.CommonRightClickMenu {
+    display: block;
+    border-radius: 8%;
+    font-size: 10px;
+    background: #9fa3aa;
+}
+
+
+
+
+.container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border: 1px solid rgb(29, 52, 96);
+    /* background-color: #eee; */
+  }
+  
+  /* On mouse-over, add a grey background color */
+  /* .container:hover input ~ .checkmark {
+     background-color: red; 
+  } */
+  
+  /* When the checkbox is checked, add a blue background */
+  /* .input:checked ~ .checkmark {
+     background-color: #2196F3; 
+  } */
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    width: 5px;
+    height: 10px;
+    border: solid rgb(29, 52, 96);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin-left: 3px;
+    margin-top: -2px;
+  }

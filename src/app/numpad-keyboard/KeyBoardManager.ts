@@ -174,7 +174,7 @@ export class KeyBoard {
     lockSidelightsFlag=false;
     batteryLevelIndicator=false;
     recordAssignBtnIndex: any = 1;
-    assignText: any = 'defaultKey'
+    assignText: any = '設定按鍵:Y'
     maxKayCapNumber: any
     assignedKeyboardKeys: any = [[]] //61KEY
     assignedFnKeyboardKeys = [] //61KEY

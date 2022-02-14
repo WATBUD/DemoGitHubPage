@@ -1,0 +1,116 @@
+#MacroFileSelectList {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 30%;
+    height: 90%;
+    width: 90%;
+    position: relative;
+    margin-left: 5%;
+}
+#MacroFileSelectList::-webkit-scrollbar-track {
+    background-repeat: no-repeat;
+}
+#MacroFileSelectList::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+   /* border: 1px solid yellow;
+    */
+    background-repeat: no-repeat;
+    background-color: #9fa3aa;
+}
+#MacroFileSelectList::-webkit-scrollbar {
+    width: 6px;
+}
+#MactoContentList {
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 30%;
+    width: 90%;
+    position: absolute;
+    margin-left: 5%;
+}
+#MactoContentList::-webkit-scrollbar-track {
+    background-repeat: no-repeat;
+}
+#MactoContentList::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+   /* border: 1px solid yellow;
+    */
+    background-repeat: no-repeat;
+    background-color: #2a2a2a;
+}
+#MactoContentList::-webkit-scrollbar {
+    width: 0px;
+}
+#MacroPageContent {
+    margin-left: 305px;
+    position: absolute;
+    height: 100%;
+    width: 895px;
+    background: #edeef0;
+}
+.MactoContentItem {
+    top: 0px;
+    width: 100%;
+    margin-top: 4%;
+    height: 4%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+.MactoContentItem .KeyCodeText {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    display: inline-block;
+    line-height: 18px;
+    width: 27%;
+    margin-left: 1.7%;
+    color: #9fa3aa;
+    text-align: center;
+    font-size: 11px;
+}
+.MactoContentItem .StartTimeText {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    display: inline-block;
+    line-height: 18px;
+    width: 24%;
+    margin-right: 9%;
+    color: #9fa3aa;
+    text-align: center;
+    font-size: 11px;
+}
+.MactoContentItem .durationText {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    display: inline-block;
+    line-height: 18px;
+    width: 21%;
+    color: #9fa3aa;
+    text-align: center;
+    font-size: 11px;
+}
+.MactoContentItem input:focus {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+[data-identity="operationList"] {
+    background: #707070;
+    color: #fff;
+    position: absolute;
+    flex-direction: column;
+    left: 104px;
+}

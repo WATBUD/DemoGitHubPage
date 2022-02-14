@@ -1,0 +1,63 @@
+.NavigationOption{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 50%;
+}
+
+.Nav_ProjectItem{
+    border: 2px solid rgb(18 64 162);
+    color: rgb(18 64 162);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 49%;
+    width: 9%;
+    border-radius: 8px;
+    font-size: 9px;
+    margin-left: 4%;
+    font-weight: bold;
+}
+
+#NavigationBar{
+  margin-top: 55px;
+  position: absolute;
+  background: #F5F5F7;
+  height: calc(100% - 55px);
+  width: 65px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#NavigationBar::before{
+    content: "";
+    position: absolute;
+    right: 0%;
+    width: 2px;
+    height: 92%;
+    top: 4%;
+    background-color: #9FA3AA;
+}
+
+
+#Nav_Project{
+    position: absolute;
+  height: 55px;
+  width: 305px;
+  display: flex;
+  align-items: center;
+  background: #F5F5F7;
+}
+
+#Nav_Project::before{
+    content: "";
+    position: absolute;
+    bottom: 0%;
+    height: 2px;
+    width: 92%;
+    margin-left: 4%;
+    background-color: rgb(159 163 170);
+}
+
+
+

@@ -11,54 +11,55 @@ z-index: 9999;" class="text-effect">
 </div> -->
 
 <div id="UpdateProgressVersion"  data-identity="m_Rename" >
-  Beta Version_1.27
+  Beta Version_1.33
 </div>
 <div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileOptions" style="z-index: 1111;" [style.display]="macroRightClick?'block': 'none'"
-      class="CenterAlignment" data-identity="operationList">
-        <div id="m_Rename" data-identity="m_Rename" (click)="macroOperationOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
+      class="CenterAlignment CommonRightClickMenu" data-identity="operationList">
+        <div class="CommonRightClickMenuItems"  id="m_Rename" data-identity="m_Rename" (click)="macroOperationOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
           {{this.i18nManager.getTarget('Rename')}}
         </div>
-        <div id="m_Copy" (click)="macroOperationOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
+        <div class="CommonRightClickMenuItems"  id="m_Copy" (click)="macroOperationOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
           {{this.i18nManager.getTarget('Copy')}}
         </div>
-        <div id="m_Export" (click)="downloadExportData();" (contextmenu)="downloadExportData();">
+        <div class="CommonRightClickMenuItems"  id="m_Export" (click)="downloadExportData();" (contextmenu)="downloadExportData();">
           {{this.i18nManager.getTarget('Export')}}
         </div>
-        <div id="m_Delete" *ngIf="MacroManager.getClass().macroFiletItem.length>1"
+        <div class="CommonRightClickMenuItems" id="m_Delete" *ngIf="MacroManager.getClass().macroFiletItem.length>1"
         (click)="macroOperationOption('deleteMacroFile');"(contextmenu)="macroOperationOption('deleteMacroFile');">
           {{this.i18nManager.getTarget('Delete')}}
         </div>
+        <div style="margin-bottom: 6px;"> </div>
+        
+
 </div>
 <div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileProfileOptions" style="z-index: 1111;" [style.display]="macro_ProfileRightClick?'block': 'none'"
-      class="CenterAlignment" data-identity="operationList">
-        <!-- <div id="m_Rename" data-identity="m_Rename" (click)="macroBindKeyOption('startRenameMacroFile');"(contextmenu)="macroOperationOption('startRenameMacroFile');">
-          {{this.i18nManager.getTarget('Rename')}}
-        </div>
-        <div id="m_Copy" (click)="macroBindKeyOption('copyFolderFile');" (contextmenu)="macroOperationOption('copyFolderFile');">
-          {{this.i18nManager.getTarget('Copy')}}
-        </div>
-        <div id="m_Export" (click)="downloadExportData();" (contextmenu)="downloadExportData();">
-          {{this.i18nManager.getTarget('Export')}}
-        </div> -->
-        <div id="m_Delete" 
+      class="CenterAlignment CommonRightClickMenu" data-identity="operationList">
+        <div id="m_Delete" class="CommonRightClickMenuItems"
         (click)="macroBindKeyOption('deleteMacroFile');"(contextmenu)="macroBindKeyOption('deleteMacroFile');">
           {{this.i18nManager.getTarget('Delete')}}
         </div>
+        <div style="margin-bottom: 6px;"> </div>
 </div>
 
 
 
 <div id="HeaderColumn"
-  style="position: relative;height: 3%;z-index: 1112;width: 100%;background: #1D3460;-webkit-app-region: drag;">
+  style="position: relative;height: 3%;z-index: 1112;width: 100%;background: #1D3460;">
+  <div id="app-region"
+    style="    position: absolute;
+    height: 100%;
+    width: 93%;
+    -webkit-app-region: drag;">
+  </div>
   <div id="MinimizeIcon" style="position: absolute;
   background-image: url(./image/Perixx_Project/Share/MinimizeIcon.png);    
   height: 21px;width: 21px;right: 2.7%;background-repeat: no-repeat;background-position: center;"
-    (click)="Electron_Service.zoomApplication()">
+    (click)="Electron_Service.specifyTheDesiredFunction('zoomApplication')">
   </div>
   <div id="ExitApplication" style="    position: absolute;
   background-image: url(./image/Perixx_Project/Share/ExitApplication.png);height: 21px;
   width: 21px;right: 0.7%;background-repeat: no-repeat;background-position: center;"
-    (click)="Electron_Service.quitApplication()">
+    (click)="Electron_Service.specifyTheDesiredFunction('quitApplication')">
   </div>
 </div>
 
@@ -81,35 +82,152 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
     <div style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
       <div style="height: 38px;
-      color: rgb(45,47,52);
-      width: 304px;
-      position: absolute;
-      left: 18%;
-      top: 19%;
-        "> Are you sure to reset the settings of the current profile?
+          color: rgb(45,47,52);
+          width: 304px;
+          position: absolute;
+          left: 18%;
+          top: 46px;
+            "> Are you sure to reset the settings of the current profile?
       </div>
       <img src="image/Perixx_Project/Share/ExclamationMark.png" style="position: absolute;
-          top: 20%;
-    left: 9%;">
+               top: 46px;
+        left: 9%;">
       <div class="ApplyBtn" style="    height: 38px;
-        width: 153px;
-        position: absolute;
-        bottom: 23px;
-        left: 30%;" (click)="askIfYouAreSureToReset=false;">Cancel
+            width: 153px;
+            position: absolute;
+            bottom: 23px;
+            right: 196px;" (click)="askIfYouAreSureToReset=false;">Cancel
       </div>
       <div class="ApplyBtn" style="    height: 38px;
-        width: 153px;
-        position: absolute;
-        bottom: 23px;
-        left: 65%;" (click)="restoreFactorySettings();askIfYouAreSureToReset=false;"> Yes
+            width: 153px;
+            position: absolute;
+            bottom: 23px;
+            right: 33px;" (click)="restoreFactorySettings();askIfYouAreSureToReset=false;"> Yes
       </div>
     </div>
   </div>
 
+  <div [style.display]="theScreenThatPopsUpWhenTheUpdateFails?'flex':'none'" id="theScreenThatPopsUpWhenTheUpdateFails"
+    class="CenterAlignment" style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
+    <div style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+      <img src="image/Perixx_Project/Share/UpdatesFailedIcon.png" style="position: absolute;top: 58px;left: 32px;">
+      <img src="image/Perixx_Project/Share/UpdatesFailedCrossX.png" style="position: absolute;top: 16px;right: 18px;"
+      (click)="theScreenThatPopsUpWhenTheUpdateFails=false;">
+
+      <div style="
+      color: rgb(45,47,52);
+      position: absolute;
+      left: 65px;
+      top: 58px;
+      font-weight:bold;
+      font-size:18px;"> Updates failed
+      </div>
+      <div style="color: rgb(45,47,52);
+      position: absolute;
+      left: 65px;
+      top: 92px;
+      font-size: 14px;
+      width: 361px;
+      line-height: 23px;
+        "> We couldn’t complete the updates. Please reconnect the
+        keyboard to your computer and apply settings again.
+      </div>
+  
+    </div>
+  </div>
+
+  <div [style.display]="newUpdateDetected?'flex':'none'" id="newUpdateDetected" class="CenterAlignment"
+    style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
+    <div style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+      <div style="height: 38px;
+          color: rgb(45,47,52);
+          width: 304px;
+          position: absolute;
+          left: 18%;
+          top: 46px;
+            "> Are you sure to reset the settings of the current profile?
+      </div>
+      <img src="image/Perixx_Project/Share/newUpdateDetected.png" style="position: absolute;
+               top: 46px;
+        left: 9%;">
+      <div class="ApplyBtn" style="    height: 38px;
+            width: 153px;
+            position: absolute;
+            bottom: 23px;
+            right: 196px;" (click)="newUpdateDetected=false;">Cancel
+      </div>
+      <div class="ApplyBtn" style="    height: 38px;
+            width: 153px;
+            position: absolute;
+            bottom: 23px;
+            right: 33px;" (click)="newUpdateDetected=false;settingLocation='FirmwareUpgrade'"> Show Details
+      </div>
+    </div>
+  </div>
+
+  <div [style.display]="FWManager.updatingStatus!=''?'flex':'none'" id="updatingFirmwareStatus" class="CenterAlignment"
+    style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
+    <div [style.display]="FWManager.updatingStatus=='updating'?'flex':'none'"
+      style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+      <div style="height: 38px;
+          color: rgb(45,47,52);
+          width: 304px;
+          position: absolute;
+          left: 18%;
+          top: 48px;
+            "> Firmware
+      </div>
+      <div id="ProgressDivBackground" style="position:absolute;
+         left: 18%;top: 98px;width: 340px;height: 10px;
+         background: rgb(159 163 170);border-radius: 11px;">
+        <div id="percentage" style="position: absolute;
+         right: -46px;
+         margin-top: -4px;
+         color: rgb(45,47,52);">{{FWManager.updatingPercentage}}%
+        </div>
+        <div id="ProgressBar" style="width: 0px;
+          background:  rgb(45,47,52);
+          height: inherit;
+          border-radius: inherit;" [style.width.px]="FWManager.updatingPercentage*340/100">
+        </div>
+      </div>
+      <div style="height: 38px;
+              color: rgb(45,47,52);
+              width: 304px;
+              position: absolute;
+              left: 18%;
+              top: 118px;
+                "> Writing data to the processor…
+      </div>
+  
+    </div>
+    <div [style.display]="FWManager.updatingStatus=='updateCompleted'?'flex':'none'" id="UpdateCompleted"
+      style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+      <div style="color: rgb(45,47,52);
+      position: absolute;
+      left: 18%;
+      top: 49px;
+              "> The firmware has been updated successfully. ?
+      </div>
+      <img src="image/Perixx_Project/Share/UpdateCompleted.png" style="position: absolute;
+                 top: 46px;
+          left: 9%;">
+      <div class="ApplyBtn" style="    height: 38px;
+              width: 153px;
+              position: absolute;
+              bottom: 23px;
+              right: 33px;" (click)="FWManager.updatingStatus=''"> OK
+      </div>
+    </div>
+  </div>
+
+
+
+
   <div *ngIf="this.currentPage=='ConnectedPage'"
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;" id="Content">
     <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
-  
+
     <div id="Content" style="position: absolute;
     left: 35%;
     margin-top: 25px;">
@@ -124,7 +242,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     border: 2px solid rgb(255, 255, 255);
     display: flex;
     justify-content: center;
-    align-items: center;"   (click)="this.setPageIndex('Home_Nav');">
+    align-items: center;"   (click)="this.setPageIndex('Home_Nav');newUpdateDetected=true;">
       Enter
     </div>
   
@@ -222,11 +340,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             </section>
             <section class="ParallelTextString">
               Battery
-              <div style="position: absolute;
-              right: 12%;
-              width: 20%;">
-                Periboard-XXX 
-              </div>
+              <!-- <div style="position: absolute;
+                          right: 12%;
+                          width: 20%;">
+                Periboard-XXX
+              </div> -->
+              <img [src]="getbatteryShowImage()" style="position: absolute;
+              right: 28%;">
             </section>
 
           </div>
@@ -236,26 +356,30 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Layout
             </section>
-            <section class="ParallelTextString">
+            <section class="ParallelTextString" style="margin-top: 25px;
+            align-items: center;
+            font-size: 16px;">
               <input type="radio" name="Layout"
               (change)="settingLayoutChoice();"
               [(ngModel)]="KeyBoardManager.getTarget().layoutMode"
               [value]="'Default'">
-              <div style="position: absolute;
-              right: 73%;
+              <div style="    position: absolute;
+              left: 6%;
               width: 20%;">
               Default           
               </div>
             </section>
-            <section class="ParallelTextString">
+            <section class="ParallelTextString" style="margin-top: 25px;
+            align-items: center;
+            font-size: 16px;">
               <input type="radio" name="Layout"
               (change)="settingLayoutChoice();"
               [(ngModel)]="KeyBoardManager.getTarget().layoutMode"
               [value]="'Custom'">
 
 
-              <div style="position: absolute;
-              right: 73%;
+              <div style="    position: absolute;
+              left: 6%;
               width: 20%;">
               Custom 
               </div>
@@ -312,13 +436,20 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Auto Sleep
             </section>
             <section class="ParallelTextString">
-              <input type="checkbox" style="margin: 1px;" [(ngModel)]='KeyBoardManager.getTarget().autoSleepEnable' (ngModelChange)="settingLayoutChoice()">
+              <label class="container">
+                <input  type="checkbox" >
+                <span class="checkmark"></span>
+                <div style="margin-left: 26px;">Enable</div>
+              </label>
 
-              <div style="position: absolute;
+              <!-- <input id="cbG02" type="checkbox" style="margin: 1px;" [(ngModel)]='KeyBoardManager.getTarget().autoSleepEnable' (ngModelChange)="settingLayoutChoice()">
+              <label for="cbG02" class="css-label cb0">Enable</label> -->
+
+              <!-- <div style="position: absolute;
               right: 73%;
               width: 20%;">
               Enable 
-              </div>
+              </div> -->
             </section>
             <section style="    flex-direction: column;
             margin-top: 33px;" class="ParallelTextString">
@@ -435,8 +566,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           </section>
         </div>
-        <div class="ApplyBtn" style="margin-left: 23px;"
-        (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Upgrade 
+        <div class="ApplyBtn" style="margin-left: 23px;bottom: 71px;"
+        (click)="FWManager.startUpdateFirmwareData();"> Upgrade 
         </div>
 
 
@@ -494,14 +625,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             margin-left: 5%;">
       </div>
       <div id="Built_ineffectRMenu"   [style.display]="operationMenuFlag?'block': 'none'"
-      class="CenterAlignment" data-identity="operationList">
-        <div id="m_Rename" (click)="lighting_MenuFn('m_Rename');"(contextmenu)="lighting_MenuFn('m_Rename');">
+      class="CenterAlignment CommonRightClickMenu" data-identity="operationList">
+        <div id="m_Rename" class="CommonRightClickMenuItems" (click)="lighting_MenuFn('m_Rename');"(contextmenu)="lighting_MenuFn('m_Rename');">
           {{this.i18nManager.getTarget('Rename')}}
         </div>
-        <div id="m_Delete" 
+        <div id="m_Delete" class="CommonRightClickMenuItems"
           (click)="lighting_MenuFn('m_Reset');"(contextmenu)="lighting_MenuFn('m_Reset');">
           {{this.i18nManager.getTarget('Reset')}}
         </div>
+        <div style="margin-bottom: 6px;"> </div>
+
       </div>
     </section>
 
@@ -568,26 +701,62 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
           
           <div class="ApplyBtn" style="bottom: 24px;" 
-          (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Apply 
+          (click)="loadTemporaryKeyboardData()"> Apply 
           </div>
 
 
     </div>
-    <div [style.display]="Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" class="RightPanal" style="position: absolute;
+  <div [style.display]="Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" class="RightPanal" style="position: absolute;
         height: 100%;
         width: 26.8%;
         right: 0px;">
       <div id="AreaTitle" style="position: absolute;
-                 top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
+                top: 13px;margin-left: 15px;color: rgb(45, 47, 52);
+                font-size: 16px;
+                font-weight: bold;">
         Color Palette
       </div>
+      <div id="divider1" style="position: absolute;
+      top: 270px;
+      width: 243px;
+      height: 1px;
+      background: rgb(159, 163, 170);">
+      </div>
+      <div id="AreaTitle" style="position: absolute;
+            top: 280px;
+            margin-left: 26px;
+            color: rgb(18, 64, 162);
+            font-size: 16px;
+            font-weight: bold;">
+        Default
+      </div>
+
+      <div id="divider2" style="position: absolute;
+      top: 394px;
+      width: 243px;
+      height: 1px;
+      background: rgb(159, 163, 170);">
+      </div>
+      
+      <div id="AreaTitle" style="position: absolute;
+      top: 406px;
+      margin-left: 26px;
+      color: rgb(18, 64, 162);
+      font-size: 16px;
+      font-weight: bold;">
+        Custom
+      </div>
+      
+
+
+
       <div data-CCP="5" style="width: 200px;
-      height: 200px;
-      margin-top: 58px;
-      margin-left: 8%;">
+            height: 200px;
+            margin-top: 58px;
+            margin-left: 8%;">
         <div id="coordinateCircle" style="margin-left: calc(50% - 5px);margin-top: calc(50% - 5px);">
         </div>
-     </div>
+      </div>
      <div id="DefaultColorList" style="    position: absolute;
      background: rgb(255 0 0,0);
      width: 192px;
@@ -610,7 +779,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
      background: rgb(255 0 0,0);
      width: 192px;
      height: 49px;
-     margin-top: 100px;
+     margin-top: 123px;
      display: flex;
      flex-wrap: wrap;">
      <div *ngFor="let item of CustomColorList;let i = index" class="DefaultColorItem"
@@ -671,24 +840,25 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
       </div>
       <div id="KeyBoardLibrayOptions"  [style.display]="operationMenuFlag?'block': 'none'"
-      class="CenterAlignment" data-identity="operationList">
-        <div id="m_Rename" data-identity="m_Rename" (click)="keyboardRMenu('m_Rename');"(contextmenu)="keyboardRMenu('m_Rename');">
+      class="CenterAlignment CommonRightClickMenu" data-identity="operationList">
+        <div id="m_Rename" class="CommonRightClickMenuItems" data-identity="m_Rename" (click)="keyboardRMenu('m_Rename');"(contextmenu)="keyboardRMenu('m_Rename');">
           {{this.i18nManager.getTarget('Rename')}}
         </div>
-        <div id="m_Copy" (click)="keyboardRMenu('m_Copy');" (contextmenu)="keyboardRMenu('m_Copy');">
+        <div id="m_Copy" class="CommonRightClickMenuItems" (click)="keyboardRMenu('m_Copy');" (contextmenu)="keyboardRMenu('m_Copy');">
           {{this.i18nManager.getTarget('Copy')}}
         </div>
-        <div id="m_Export" (click)="downloadExportData();"(contextmenu)="downloadExportData();">
+        <div id="m_Export" class="CommonRightClickMenuItems" (click)="downloadExportData();"(contextmenu)="downloadExportData();">
           {{this.i18nManager.getTarget('Export')}}
         </div>
-        <div *ngIf="KeyBoardLibray.KeyBoardArray.length>1" id="m_Delete" 
+        <div class="CommonRightClickMenuItems" (click)="keyboardRMenu('m_Reset');"(contextmenu)="keyboardRMenu('m_Reset');">
+          {{this.i18nManager.getTarget('Reset')}}
+        </div>
+        <div *ngIf="KeyBoardLibray.KeyBoardArray.length>1" id="m_Delete" class="CommonRightClickMenuItems"
         (click)="keyboardRMenu('m_Delete');"(contextmenu)="keyboardRMenu('m_Delete');">
           {{this.i18nManager.getTarget('Delete')}}
         </div>
-        <div id="m_Delete" 
-          (click)="keyboardRMenu('m_Reset');"(contextmenu)="keyboardRMenu('m_Reset');">
-          {{this.i18nManager.getTarget('Reset')}}
-        </div>
+        <div style="margin-bottom: 6px;"> </div>
+
       </div>
     </section>
     <div id="MiddlePanel" style="
@@ -1015,6 +1185,61 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
         </div>
+        <div id="Numpad" class="KeyBindClass">
+          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Numpad</div>
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad1'? ImgPath.getThePicture('Numpad1')[1]:ImgPath.getThePicture('Numpad1')[0]"
+          (mouseover)="currentTouchButtons='Numpad1'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad1')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad2'? ImgPath.getThePicture('Numpad2')[1]:ImgPath.getThePicture('Numpad2')[0]"
+          (mouseover)="currentTouchButtons='Numpad2'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad2')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad3'? ImgPath.getThePicture('Numpad3')[1]:ImgPath.getThePicture('Numpad3')[0]"
+          (mouseover)="currentTouchButtons='Numpad3'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad3')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad4'? ImgPath.getThePicture('Numpad4')[1]:ImgPath.getThePicture('Numpad4')[0]"
+          (mouseover)="currentTouchButtons='Numpad4'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad4')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad5'? ImgPath.getThePicture('Numpad5')[1]:ImgPath.getThePicture('Numpad5')[0]"
+          (mouseover)="currentTouchButtons='Numpad5'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad5')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad6'? ImgPath.getThePicture('Numpad6')[1]:ImgPath.getThePicture('Numpad6')[0]"
+          (mouseover)="currentTouchButtons='Numpad6'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad6')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad7'? ImgPath.getThePicture('Numpad7')[1]:ImgPath.getThePicture('Numpad7')[0]"
+          (mouseover)="currentTouchButtons='Numpad7'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad7')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad8'? ImgPath.getThePicture('Numpad8')[1]:ImgPath.getThePicture('Numpad8')[0]"
+          (mouseover)="currentTouchButtons='Numpad8'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad8')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad9'? ImgPath.getThePicture('Numpad9')[1]:ImgPath.getThePicture('Numpad9')[0]"
+          (mouseover)="currentTouchButtons='Numpad9'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad9')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='Numpad0'? ImgPath.getThePicture('Numpad0')[1]:ImgPath.getThePicture('Numpad0')[0]"
+          (mouseover)="currentTouchButtons='Numpad0'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('Numpad0')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='NumpadAdd'? ImgPath.getThePicture('NumpadAdd')[1]:ImgPath.getThePicture('NumpadAdd')[0]"
+          (mouseover)="currentTouchButtons='NumpadAdd'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('NumpadAdd')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='NumpadSubtract'? ImgPath.getThePicture('NumpadSubtract')[1]:ImgPath.getThePicture('NumpadSubtract')[0]"
+          (mouseover)="currentTouchButtons='NumpadSubtract'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('NumpadSubtract')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='NumpadMultiply'? ImgPath.getThePicture('NumpadMultiply')[1]:ImgPath.getThePicture('NumpadMultiply')[0]"
+          (mouseover)="currentTouchButtons='NumpadMultiply'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('NumpadMultiply')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='NumpadDivide'? ImgPath.getThePicture('NumpadDivide')[1]:ImgPath.getThePicture('NumpadDivide')[0]"
+          (mouseover)="currentTouchButtons='NumpadDivide'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('NumpadDivide')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='NumpadDecimal'? ImgPath.getThePicture('NumpadDecimal')[1]:ImgPath.getThePicture('NumpadDecimal')[0]"
+          (mouseover)="currentTouchButtons='NumpadDecimal'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('NumpadDecimal')">
+          <br>
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='NumpadEnter'? ImgPath.getThePicture('NumpadEnter')[1]:ImgPath.getThePicture('NumpadEnter')[0]"
+          (mouseover)="currentTouchButtons='NumpadEnter'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('NumpadEnter')">
+          <img class="KeyBindStyle" [src]="currentTouchButtons=='NumLock'? ImgPath.getThePicture('NumLock')[1]:ImgPath.getThePicture('NumLock')[0]"
+          (mouseover)="currentTouchButtons='NumLock'" (mouseleave)="currentTouchButtons=''"
+          (click)="setKeyBindingData('NumLock')">
+        </div>
 
         <div id="Mouse" class="KeyBindClass">
           <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Mouse</div>
@@ -1193,7 +1418,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <!-- *ngIf="MacroManager.getClass().hasFile();" 
           (mouseup)="macroEditkeyCode($event.button,i,$event);" -->
       <input *ngIf="MacroManager.getClass().hasFile();" type="checkbox" style="position: absolute;
-      margin-left: 13px;
+      margin-left: 13.5px;
       margin-top: 94px;" [checked]="MacroManager.tempMacroContent.selectAllDataFlag" 
       (change)="MacroManager.tempMacroContent.switchSelectAllFlag()">
       <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
@@ -1375,15 +1600,15 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <section *ngIf="softwareSettingCurrentPage=='Help'" id="Help">
           <p style="margin-left: 36%;top: 16%;position: absolute;    font-weight: bold;">User Manual
           </p>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> English
+          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" (click)="loadTemporaryKeyboardData()"> English
           </div>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" (click)="this.KeyBoardManager.loadTemporaryKeyboardData()"> Deutsch
+          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" (click)="loadTemporaryKeyboardData()"> Deutsch
           </div>
         </section>
       </section>
       
       
-      </div>
+    </div>
   </div>
 
   <img (click)="softwareSettingPage=true" id="SettingIcon" src="image/Perixx_Project/PageConnected/SettingIcon.png"
@@ -1394,10 +1619,4 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 <!-- <div id="DeviceContentPage" style="
 position: relative;
 height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
-
-
-
-
-
-
 </div> -->

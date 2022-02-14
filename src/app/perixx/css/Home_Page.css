@@ -1,0 +1,8 @@
+#Home_NavOptions{
+    margin-left: -240px;
+    margin-top: 55px;
+    position: absolute;
+    background: rgb(245,245,247);
+    height: calc(100% - 55px);
+    width: 240px;
+}

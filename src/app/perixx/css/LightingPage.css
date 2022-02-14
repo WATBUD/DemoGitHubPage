@@ -1,0 +1,64 @@
+.Lighting_NavOptions {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 50%;
+}
+.Lighting_OptionItem {
+    color: #9fa3aa;
+    height: auto;
+    width: 88%;
+    line-height: 25px;
+   /* background: rgb(255 0 0);
+    */
+    margin-left: 5%;
+}
+.Lighting_OptionItem input:focus {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.Lighting_OptionItem .lightingNameField {
+    border: none;
+    background: transparent;
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+    height: 20px;
+    color: #9fa3aa;
+    font-size: 11px;
+    padding: 0px;
+}
+.Lighting_OptionItem .lightingNameField:focus {
+    border: none;
+    background: #fff;
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+    height: 20px;
+    color: #9fa3aa;
+    font-size: 11px;
+    padding: 0px;
+}
+.QuicklySelectBlockItem {
+    color: #9fa3aa;
+    font-size: 15px;
+    margin-right: 1%;
+    border-bottom: 2px solid #123ea2;
+}
+.colorBase {
+    width: 1.2vw;
+    height: 1.2vw;
+    transform: skewX(-30deg);
+    border-color: white;
+    border-style: solid;
+}
+.colorBaseList {
+    right: 6%;
+    width: 14vw;
+    height: 6vh;
+    position: absolute;
+    display: flex;
+    bottom: 23%;
+    align-items: center;
+}

@@ -17,6 +17,7 @@ export class ModeParameter {
     brightness_Enable=true;
     color_Enable=true;
     rate_Enable=true;
+    brightnessFlag=false;
     PointEffectName;
     wirelessBrightness=0;
 
@@ -256,18 +257,31 @@ export class Built_ineffect {
      * update Effect Data
      * @param obj obj:EffectData
     */
-    updateEffectData(obj){
-        console.log('%c updateEffectData','background: blue; color: red',obj);
+    updateEffectData(inputData){
+        console.log('%c updateEffectData','background: blue; color: red',inputData);
          for (let index = 0; index <  this.ListData.length; index++) {
              var element = this.ListData[index];
-             if(element.translate==obj.translate){
-                console.log('%c updateEffectData_translate','background: blue; color: red',element);
-                element=JSON.parse(JSON.stringify(obj));
-                console.log('%c updateEffectData_translateChange','background: blue; color: red',element);
-
+             if(element.translate==inputData.translate){
+                console.log('ImportClassData', inputData)
+                var tempData=JSON.parse(JSON.stringify(inputData));
+                var excludeVar = ['backup']
+                var arr = Object.keys(element)
+                for (let index = 0; index < arr.length; index++) {
+                    if (excludeVar.find((x) => x == arr[index])){
+                    }
+                    else {
+                        if(element[arr[index]]!=undefined){
+                            element[arr[index]]= tempData[arr[index]];
+                        }
+                    }
+                }
              }
          }
     }
+
+
+
+
 
     /**
      * reset All EffectData

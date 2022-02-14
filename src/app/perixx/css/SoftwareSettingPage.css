@@ -1,0 +1,21 @@
+.ToolbarOptions{
+    height: 100%;
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+
+
+.LanguageBtn{
+    width: 153px;
+    display: flex;
+    height: 38px;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255,255,255);
+    border: 1px solid rgb(255,255,255);
+    position: absolute;
+    font-size: 15px;
+}

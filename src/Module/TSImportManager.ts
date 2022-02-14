@@ -2,7 +2,6 @@
 export { ColorModule } from './ColorVar';
 export { Wave} from './APModeModule';
 export { MacroScriptContent,MacroManager  } from './MacroModule';
-export { LedChainFramesManager } from './CustomLedChainFrames';
 export { KeyBoardManager } from './KeyBoardManager';
 export { KeyBoardStyle } from './KeyBoardStyle';
 export { M_Built_ineffect } from './M_Built_ineffect';

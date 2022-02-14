@@ -1,21 +1,28 @@
 declare var System;
-// let remote = window['System']._nodeRequire('electron').remote;
-// const {ipcRenderer} = System._nodeRequire('electron');
-// let evtVar = System._nodeRequire('./backend/others/EventVariable');
-// let funcVar = System._nodeRequire('./backend/others/FunctionVariable');
-// let env = System._nodeRequire('./backend/others/env');
-import { Component } from '@angular/core';
-// @Component({
-//     selector: 'sm-app',
-//     templateUrl : './components/app.component.html',
-//     styleUrls: [],
-//     providers: [protocolService]
-// })
+let remote;
+let evtVar;
+let funcVar;
+let env;
+try {
+    remote = window['System']._nodeRequire('electron').remote;
+    const { ipcRenderer } = System._nodeRequire('electron');
+    evtVar = System._nodeRequire('./backend/others/EventVariable');
+    funcVar= System._nodeRequire('./backend/others/FunctionVariable');
+    env = System._nodeRequire('./backend/others/env');
+}
+catch (error) {
+    //console.log('%c _nodeRequire_err','background: red; color: white',error);
+}
 export class Electron_Service{
     protocol: any;
     static instance=undefined;
     constructor() {
-        //this.protocol = remote.getGlobal('AppProtocol');
+        try {
+            this.protocol = remote.getGlobal('AppProtocol');
+        } 
+        catch (error) {
+            console.log('%c protocol','background: red; color: white',this.protocol);
+        }
 
         Electron_Service.instance=this;
     }
@@ -26,29 +33,34 @@ export class Electron_Service{
             console.log('%c GetAppService_err','background: red; color: white');
         }
     }
-    zoomApplication() {
-        // var window = remote.BrowserWindow.getFocusedWindow();
-        // window.unmaximize();
-        // console.log('zoomApplication:');
+    
+    specifyTheDesiredFunction(fNname=""){
+        console.log('%c specifyTheDesiredFunction','background: red; color: white',fNname);
+        if(this.protocol!=undefined){
+            this[fNname]();
+        }
+    }
 
+    zoomApplication() {
+        var window = remote.BrowserWindow.getFocusedWindow();
+        window.minimize();
     }
     quitApplication() {
-        // var window = remote.BrowserWindow.getFocusedWindow();
-        // window.hide();
-        // console.log('quitApplication:');
+        var window = remote.BrowserWindow.getFocusedWindow();
+        window.hide();
     }
 
     public RunSetFunction(obj: any) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-           //var Obj1 = { Type: obj.Type, Func: obj.Func, Param: obj.Param , SN: obj.SN};
-           //return _this.protocol.RunFunction(Obj1, (err, data) => { 
+           var Obj1 = { Type: obj.Type, Func: obj.Func, Param: obj.Param , SN: obj.SN};
+           return _this.protocol.RunFunction(Obj1, (err, data) => { 
               //callback(err); 
-              resolve();
+              resolve(err);
               // console.log('RunSetFunction2',obj);
               // console.log('RunSetFunction2',err);
               // console.log('RunSetFunction2',data);
-           //});
+           });
         });
      }
   

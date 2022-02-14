@@ -17,8 +17,8 @@ export class ModeParameter {
     brightness_Enable=true;
     color_Enable=true;
     rate_Enable=true;
-    brightnessFlag=false;
     PointEffectName;
+    brightnessFlag=false;
     wirelessBrightness=0;
 
     colors= ["#ff0000","#ff8000","#80ff00","#00ff00","#00ffff","#0000ff","#8000ff","#ff00ff","#ff0080","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"];
@@ -257,31 +257,27 @@ export class Built_ineffect {
      * update Effect Data
      * @param obj obj:EffectData
     */
-    updateEffectData(inputData){
-        console.log('%c updateEffectData','background: blue; color: red',inputData);
-         for (let index = 0; index <  this.ListData.length; index++) {
-             var element = this.ListData[index];
-             if(element.translate==inputData.translate){
-                console.log('ImportClassData', inputData)
-                var tempData=JSON.parse(JSON.stringify(inputData));
-                var excludeVar = ['backup']
-                var arr = Object.keys(element)
-                for (let index = 0; index < arr.length; index++) {
-                    if (excludeVar.find((x) => x == arr[index])){
-                    }
-                    else {
-                        if(element[arr[index]]!=undefined){
-                            element[arr[index]]= tempData[arr[index]];
-                        }
+   updateEffectData(inputData){
+    console.log('%c updateEffectData','background: blue; color: red',inputData);
+     for (let index = 0; index <  this.ListData.length; index++) {
+         var element = this.ListData[index];
+         if(element.translate==inputData.translate){
+            console.log('ImportClassData', inputData)
+            var tempData=JSON.parse(JSON.stringify(inputData));
+            var excludeVar = ['backup']
+            var arr = Object.keys(element)
+            for (let index = 0; index < arr.length; index++) {
+                if (excludeVar.find((x) => x == arr[index])){
+                }
+                else {
+                    if(element[arr[index]]!==undefined){
+                        element[arr[index]]= tempData[arr[index]];
                     }
                 }
-             }
+            }
          }
-    }
-
-
-
-
+     }
+}
 
     /**
      * reset All EffectData

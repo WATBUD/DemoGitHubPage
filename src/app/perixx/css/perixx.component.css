@@ -6,6 +6,7 @@
     width: 1200px;
     user-select: none;
     position: absolute;
+    margin-top: 29px;
 }
 #UpdateProgressVersion {
     color: rgba(255, 0, 0, 0);

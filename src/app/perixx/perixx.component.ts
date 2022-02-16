@@ -12,6 +12,7 @@ import { Built_ineffect } from './Built_ineffect';
 import { FirewareManager } from './FirewareManager';
 import { ColorModule } from '../../Module/TSImportManager';
 import { Electron_Service } from '../../Module/Electron_Service';
+import { DeviceService } from './DeviceService';
 //import { HttpService } from '../../Module/HttpService';
 @Component({
   selector: 'app-perixx',
@@ -36,15 +37,15 @@ export class PerixxComponent implements OnInit {
   SettingManager = new SettingManager();
   Built_ineffect = new Built_ineffect(1);
   FWManager= new FirewareManager();
-
+  DeviceService= new DeviceService();
   selectedMacroCode = "";
   lastSelectedMacroListCategory = "Macro";//Profile //Macro
   slidingTimer;
+  onLoading=false;
   askIfYouAreSureToReset=false;
   theScreenThatPopsUpWhenTheUpdateFails=false;
   newUpdateDetected=false;
   activelyClickOnTheTitleToSlide=false;
-  
   batteryvalue=0;
   KeyBoardManager = new KeyBoardManager(1, 3);
   KeyBoardLibray = new KeyBoardManager(1, 3);
@@ -108,13 +109,14 @@ export class PerixxComponent implements OnInit {
     [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217],
   ]
   settingLocation = "Information";
+  dbService;
+
   //#region General software functions
 
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
   ngOnInit() {
     this.initialzeTheDevice();
     //this.batteryvalue=this.getRandom(1,100);
-
   }
   ngAfterViewInit() {
     document.addEventListener('click', (e: any) => {
@@ -166,6 +168,14 @@ export class PerixxComponent implements OnInit {
     this.KeyBoardManager.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
     this.KeyBoardLibray.setALLDefaultKeyArray(this.KeyBoardStyle.getTargetDefaultKeyArray());
     this.project_select(event,0);
+    if(this.Electron_Service.inTheElecctronFramework()){
+      this.dbService= this.Electron_Service.get_NeDB();
+      this.DeviceService.getDevice().then(() => {
+        this.readDBDataFromServer();
+        console.log('%c pluginDeviceData','background: red; color: white', this.DeviceService.pluginDeviceData);
+      });
+    }
+
   }
   setPageIndex(pageName = "") {
     if (this.currentPage != pageName)
@@ -234,7 +244,6 @@ export class PerixxComponent implements OnInit {
   downloadExportData() {
     var defaultName = "";
     //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
-
     var exoprtData = undefined;
     switch (this.currentPage) {
       case "Keyboard_Nav":
@@ -312,6 +321,97 @@ export class PerixxComponent implements OnInit {
   settingLayoutChoice() {
   };
   //#endregion General software functions
+  
+  
+  //#region DataBaseFunction 
+  ReadAllDBPass=[]
+  readDBDataFromServer() {
+    var waitingSynchronization = 1;
+    this.ReadAllDBPass = [];
+    //var getDevice_data = this.dbService.AllDBtempData.pluginDeviceData;
+    console.log('dbService', this.dbService);
+    var getDevice_data = this.DeviceService.pluginDeviceData;
+    console.log('ReadDBDataFromServer_dbService.getDevice_data()', getDevice_data);
+
+    // var Built_ineffectDB_data = JSON.parse(JSON.stringify(this.dbService.AllDBtempData.getBuilt_ineffect))
+    // console.log('ReadDBDataFromServer_dbService.getBuilt_ineffect()', Built_ineffectDB_data);
+    // if (Built_ineffectDB_data.length > 0) {
+    //     var target = Built_ineffectDB_data.find((x) => x.SN == this.DeviceService.getCurrentDevice().SN)
+    //     if (target != undefined) {
+    //         //this.Built_ineffect.lightListData = JSON.parse(JSON.stringify(target.Db_data.ListData))
+    //         //this.Built_ineffect.currentModeIndex = JSON.parse(JSON.stringify(target.Db_data.currentModeIndex))
+    //     }
+    // }
+    var Built_ineffectDB_data = JSON.parse(JSON.stringify(this.dbService.AllDBtempData.getBuilt_ineffect))
+    console.log('ReadDBDataFromServer_dbService.getBuilt_ineffect()', Built_ineffectDB_data);
+    if (Built_ineffectDB_data.length > 0) {
+      var target = Built_ineffectDB_data.find((x) => x.SN == this.DeviceService.getCurrentDevice().SN)
+      if (target != undefined) {
+        //this.Built_ineffect.lightListData = JSON.parse(JSON.stringify(target.Db_data.ListData))
+        //this.Built_ineffect.currentModeIndex = JSON.parse(JSON.stringify(target.Db_data.currentModeIndex))
+      }
+    }
+
+
+
+    // this.setPageIndex('KEYBOARDSETTINGS');
+    // this.onLoading = false;
+    // if (_nodeRequire_fs.existsSync(process.env.APPDATA + "\\Development_SupportDB")) {
+    //     //var data={"devicename":'GMMK Pro'};
+    //     var data = { "devicename": this.DeviceService.getCurrentDevice().devicename };
+    //     console.log('_nodeRequire_fs', _nodeRequire_fs, data);
+    //     var setdata = {
+    //         "defaultProfile": JSON.parse(JSON.stringify(this.KeyBoardManager.KeyBoardArray)),
+    //     }
+    //     this.dbService.Node_NeDB.updateCmd('SupportDevice', data, setdata, function () {
+    //     });
+    // }
+  }
+  setDBDataToServer(sourceName) {
+    //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
+    var devdata = {
+      'SN': this.DeviceService.getCurrentDevice().SN,
+      'devicename': this.DeviceService.getCurrentDevice().devicename,
+      'Db_data': {},
+    };
+    var ToServerFunctionName;
+    switch (sourceName) {
+      
+      case "Keyboard_Nav":
+        ToServerFunctionName = 'ApplyKeyAssign';
+        devdata.Db_data = JSON.parse(JSON.stringify(this.KeyBoardManager))
+        console.log('%c updateKeyboard', 'background: black; color: white', this.KeyBoardManager);
+        break;
+      case "Lighting_Nav":
+        ToServerFunctionName = 'ApplyLighting';
+        devdata.Db_data = JSON.parse(JSON.stringify(this.Built_ineffect))
+        this.dbService.updateBuilt_ineffectDB(devdata).then((data) => {
+          console.log('%c updateBuilt_ineffectDB', 'background: black; color: white', data);
+        });
+        break;
+      case "Macro_Nav":
+        ToServerFunctionName = 'ApplyMacro';
+        devdata.Db_data = JSON.parse(JSON.stringify(this.MacroManager))
+        this.dbService.updateMacro(devdata).then((data) => {
+          //callback(data);
+        });
+        console.log('%c updateMacro', 'background: black; color: white', this.MacroManager);
+        break;
+
+    }
+    var Obj4 = {
+      Type: this.Electron_Service.getFuncVar().FuncType.Device,
+      Func: ToServerFunctionName,
+      Param: devdata.Db_data,
+      SN: this.DeviceService.getCurrentDevice().SN
+    }
+    console.log("ToServerFunctionName", Obj4);
+    this.Electron_Service.RunSetFunction(Obj4).then((data) => {
+    });
+
+  }
+  //#endregion Home_Nav 
+
 
   //#region Home_Nav 
 
@@ -939,9 +1039,12 @@ export class PerixxComponent implements OnInit {
   loadTemporaryKeyboardData() {
     this.KeyBoardManager.loadTemporaryKeyboardData();
     this.theScreenThatPopsUpWhenTheUpdateFails=true;
-    if (this.keyboardColorHintMode == 'KeyBoardManager') {
 
+    if(this.Electron_Service.inTheElecctronFramework()){
+      this.setDBDataToServer(this.currentPage);
     }
+
+
   }
   setKeyBindingData(dataValue = "") {
     //if(dataValue!=""){

@@ -1,14 +1,16 @@
 declare var System;
-let remote;
+let NeDB;
 let evtVar;
 let funcVar;
 let env;
+let electron_Instance;
 try {
-    remote = window['System']._nodeRequire('electron').remote;
+    electron_Instance = window['System']._nodeRequire('electron').remote;
     const { ipcRenderer } = System._nodeRequire('electron');
     evtVar = System._nodeRequire('./backend/others/EventVariable');
     funcVar= System._nodeRequire('./backend/others/FunctionVariable');
     env = System._nodeRequire('./backend/others/env');
+    NeDB = window['System']._nodeRequire('electron').remote.getGlobal('AppProtocol').deviceService.nedbObj; 
 }
 catch (error) {
     //console.log('%c _nodeRequire_err','background: red; color: white',error);
@@ -18,7 +20,7 @@ export class Electron_Service{
     static instance=undefined;
     constructor() {
         try {
-            this.protocol = remote.getGlobal('AppProtocol');
+            this.protocol = electron_Instance.getGlobal('AppProtocol');
         } 
         catch (error) {
             console.log('%c protocol','background: red; color: white',this.protocol);
@@ -42,13 +44,32 @@ export class Electron_Service{
     }
 
     zoomApplication() {
-        var window = remote.BrowserWindow.getFocusedWindow();
+        var window = electron_Instance.BrowserWindow.getFocusedWindow();
         window.minimize();
     }
     quitApplication() {
-        var window = remote.BrowserWindow.getFocusedWindow();
+        var window = electron_Instance.BrowserWindow.getFocusedWindow();
         window.hide();
     }
+
+    getElectron_Instance(){
+        return electron_Instance;
+    }
+    get_NeDB(){
+        return NeDB;
+    }
+    getFuncVar(){
+        return funcVar;
+    }
+    inTheElecctronFramework(){
+        if(this.protocol!=undefined){
+           return true;
+        }
+        else{
+          return false;
+        }
+    }
+
 
     public RunSetFunction(obj: any) {
         var _this = this;

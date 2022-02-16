@@ -11,7 +11,7 @@ z-index: 9999;" class="text-effect">
 </div> -->
 
 <div id="UpdateProgressVersion"  data-identity="m_Rename" >
-  Beta Version_1.33
+  Beta Version_1.34
 </div>
 <div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileOptions" style="z-index: 1111;" [style.display]="macroRightClick?'block': 'none'"
       class="CenterAlignment CommonRightClickMenu" data-identity="operationList">
@@ -40,8 +40,6 @@ z-index: 9999;" class="text-effect">
         </div>
         <div style="margin-bottom: 6px;"> </div>
 </div>
-
-
 
 <div id="HeaderColumn"
   style="position: relative;height: 3%;z-index: 1112;width: 100%;background: #1D3460;">
@@ -204,14 +202,20 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     <div [style.display]="FWManager.updatingStatus=='updateCompleted'?'flex':'none'" id="UpdateCompleted"
       style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
       <div style="color: rgb(45,47,52);
-      position: absolute;
-      left: 18%;
-      top: 49px;
-              "> The firmware has been updated successfully. ?
+      position: absolute;left: 18%;top: 49px;font-size: 18px;font-weight: bold;"
+      >
+      Message
       </div>
+      <div style="color: rgb(45,47,52);
+      position: absolute;left: 18%;top: 77px;"
+      >
+      The firmware has been updated successfully.
+      </div>
+
       <img src="image/Perixx_Project/Share/UpdateCompleted.png" style="position: absolute;
                  top: 46px;
           left: 9%;">
+          
       <div class="ApplyBtn" style="    height: 38px;
               width: 153px;
               position: absolute;
@@ -566,7 +570,9 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           </section>
         </div>
-        <div class="ApplyBtn" style="margin-left: 23px;bottom: 71px;"
+        <div [style.color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'"
+        [style.border-color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'"
+        class="ApplyBtn" style="margin-left: 23px;bottom: 71px;"
         (click)="FWManager.startUpdateFirmwareData();"> Upgrade 
         </div>
 
@@ -824,7 +830,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <div id="SharedSelectList" style="margin-left: 0%;margin-top: 30%;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
           (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
-          [style.color]="keyboardColorHintMode=='KeyBoardLibray'&&KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          [style.color]="KeyBoardLibray.keyboardOfChoice==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
           <input class="KeyBoardLibrayName" [attr.data-mindex]="i" type="text" placeholder="" style="width: 70%;
             position: absolute;
             margin-left: 8%;" maxlength="15"
@@ -1600,9 +1606,9 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <section *ngIf="softwareSettingCurrentPage=='Help'" id="Help">
           <p style="margin-left: 36%;top: 16%;position: absolute;    font-weight: bold;">User Manual
           </p>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" (click)="loadTemporaryKeyboardData()"> English
+          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" (click)="getKeyBindingIcon(1)"> English
           </div>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" (click)="loadTemporaryKeyboardData()"> Deutsch
+          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" (click)="getKeyBindingIcon(2)"> Deutsch
           </div>
         </section>
       </section>

@@ -134,6 +134,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/Input/Input_Type_File.html',
       Name: 'Input_Type_File',
     },
+    {
+      URL: './DemoUI/PracticeExample/LeetCode 1. Two Sum.html',
+      Name: 'LeetCode 1. Two Sum',
+    },
 
   ];
 

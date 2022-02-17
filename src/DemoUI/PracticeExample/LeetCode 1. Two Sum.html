@@ -143,24 +143,33 @@
   //const txtShowStyle = getComputedStyle(textshow);
   //console.log('%c target', 'color:rgb(255,75,255,1)', target);
   //console.log('%c target', 'color:rgb(255,75,255,1)', target.style.cssText);
-  console.log('%c document.styleSheets', 'color:rgb(255,75,255,1)', document.styleSheets);//styleSheets樣式表
   //textshow.innerText = document.getElementById("target").style.cssText;
   // var styleSheetList = document.styleSheets;
   //textshow.innerText = ""
+  /**
+  * @param {number[]} nums
+  * @param {number} target
+  * @return {number[]}
+  */
+  var twoSum = function (nums, target) {
+    var map = {};
+    for (var i = 0; i < nums.length; i++) {
+      var v = nums[i];
+      console.log('%c twoSumCallback', 'color:rgb(255,75,255,1)', v,map);//styleSheets樣式表
+      if (map[target - v] >= 0) {
+        return [map[target - v], i]
+      } else {
 
-  // for (const sheet of document.styleSheets) {
-  //   if (sheet.title == "tempCSS") {
-  //     var CSSRuleList = sheet.cssRules;
-  //     for (const CSSStyleRule of CSSRuleList) {
-  //       if (CSSStyleRule.selectorText == "arrowcs") {
-  //         var targetCss = CSSStyleRule.cssText;
-  //         targetCss = targetCss.replace('{', '{\n');
-  //         textshow.innerText += targetCss.replaceAll(';', ';\n');
-  //       }
-  //     }
-  //   }
-  //   //console.log('%c sheet.title', 'color:rgb(255,75,255,1)', sheet.title);
-  // }
+        map[v] = i;
+      }
+    }
+  };
+  var twoSumCallback = twoSum([2, 7, 11, 15], 9);
+
+  console.log('%c twoSumResult', 'color:rgb(255,75,255,1)', twoSumCallback);//styleSheets樣式表
+
+
+
   function copyEvent(id) {
     var str = document.getElementById(id);
     window.getSelection().selectAllChildren(str);

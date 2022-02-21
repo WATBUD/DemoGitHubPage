@@ -40,6 +40,15 @@ export class DemoListUIComponent implements OnInit {
   ngOnInit() {
   }
   
+  scrollToX(int){
+    window.scrollTo({
+      top: int,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
+
   colorPickerFnArrP1=[];
   ngAfterViewInit(): void {
 

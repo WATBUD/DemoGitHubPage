@@ -171,6 +171,16 @@ export class NativeComponent implements OnInit {
   }
   //this.router.navigate
   setURLContext(URLstring = "") {
+    // document.getElementById('NavArea').scrollIntoView(
+    //   {
+    //     behavior: 'smooth', block: 'start', inline: 'nearest'
+    //   }
+    // );
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     console.log('%c setURLContext', 'background: blue; color: red', URLstring)
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(URLstring);
 

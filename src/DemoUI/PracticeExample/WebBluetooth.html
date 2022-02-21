@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>WebBluetooth</title>
+</head>
+
+<body>
+    <button id="the-button">try pairing bluetooth</button>
+
+</body>
+<script>
+    const button = document.querySelector('#the-button');
+    button.addEventListener('click', function () {
+        navigator.bluetooth.requestDevice({
+            filters: [{
+                services: ['battery_service']
+            }]
+        }).then(device => {
+            console.log('Got device:', device.name);
+            console.log('id:', device.id);
+        });
+    });
+</script>
+
+</html>

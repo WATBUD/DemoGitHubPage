@@ -138,7 +138,10 @@ export class NativeComponent implements OnInit {
       URL: './DemoUI/PracticeExample/LeetCode 1. Two Sum.html',
       Name: 'LeetCode 1. Two Sum',
     },
-
+    {
+      URL: './DemoUI/PracticeExample/WebBluetooth.html',
+      Name: 'WebBluetooth',
+    },
   ];
 
   eventRegister = [];

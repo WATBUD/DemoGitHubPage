@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>LeetCode 1. Two Sum</title>
+</head>
+
+<style title="tempCSS">
+    body {
+        margin: 1;
+        padding: 0;
+    }
+
+    #subject {
+        background-color: rgb(0 0 0);
+        color: rgb(255 255 0);
+        width: 569px;
+        height: 588px;
+        margin-right: 50px;
+    }
+
+    #textshow {
+        background-color: rgb(0 0 0);
+        overflow-y: scroll;
+        color: rgb(255 255 0);
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .ButtonStyle {
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        font-size: 0.8vw;
+        font-weight: bold;
+        text-shadow: 2px 1px 1px #386379;
+        border: 1px solid #3180a7;
+        background: linear-gradient(to bottom, #6dbfe8 0%, #28a1de 50%, #28a1de 50%, #1f8cc2 51%, #1f8cc2 51%, #33a0d6 100%);
+        border-radius: 3px;
+        outline: none;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
+    }
+</style>
+
+<body style="display: flex;">
+    <div style="
+        width: 100%;
+    color: #00f;
+    font-weight: bold;
+">
+        AmazingTalker
+        您好，深感抱歉，本人尚無Vue與React相關經驗，無法在時間內解決2.3題的需求，只能解決第一題，沒有做好準備就點擊面試是重大失職，非常感謝AmazingTalker，提供此次面試的機會，我會找時間在研究Vue精進自身技能，謝謝。
+    </div>
+    <br />
+    <div style="
+   display: flex;
+    position: absolute;
+    margin-top: 3vw;
+">
+        <div id="subject" class="">
+            <p>Given an array `A` of integers and integer `K`.<br />
+                Any interger pair in `A` could be combined as a set.<br /> Find and return
+                all combinations of sets where the sum `S` of elements is the maximum but less than `K` ( a, b are in A
+                and a + b
+                = S
+                &lt; K and S is maximum, return [a, b] ).<br />
+                The answer must exclude duplicates, but it's fine in any order. e.g.
+                [1, 2] or [2, 1] may be treated as the same, no need to return twice in one output. Please answer the
+                time
+                complexity
+                of your program, too.</p>
+            <p>給定一個整數陣列 A 與一個整數 K，陣列 A 任兩個數字可以視為一個組合，找出並回傳所有組合當中的和 S 為最大但必須小於 K ( A 包含 a, b 且 a + b = S &lt; K 且 S
+                為最大，回傳 [a,
+                b])。<br />回傳的答案必須要排除重複的可能性，但是順序不拘（好比 `[1, 2]` 與 `[2, 1]` 視為一樣的答案，在一個回答當中無需回傳兩次）。也請回答你的程式的時間複雜度。</p>
+        </div>
+        <section>
+            <button type="button" style="left: 20vw;" onclick="copyEvent('textshow')" class="ButtonStyle">Copy
+                Answer</button>
+            <div id="textshow">
+                <div>
+                    <div>
+                        <span>function</span><span>&nbsp;</span><span>twoSumLessThan_K</span><span>(</span><span>arr</span><span>,&nbsp;</span><span>k</span><span>)&nbsp;{</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>arr</span><span>.</span><span>sort</span><span>((</span><span>a</span><span>,&nbsp;</span><span>b</span><span>)&nbsp;</span><span>=&gt;</span><span>&nbsp;</span><span>a</span><span>&nbsp;-&nbsp;</span><span>b</span><span>);</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>var</span><span>&nbsp;</span><span>n</span><span>&nbsp;=&nbsp;</span><span>arr</span><span>.</span><span>length</span><span>,&nbsp;</span><span>leftValue</span><span>&nbsp;=&nbsp;</span><span>0</span><span>,&nbsp;</span><span>rightValue</span><span>&nbsp;=&nbsp;</span><span>n</span><span>&nbsp;-&nbsp;</span><span>1</span><span>,&nbsp;</span><span>ans</span><span>&nbsp;=&nbsp;</span><span>0</span><span>;</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>//&nbsp;While&nbsp;l&nbsp;is&nbsp;less&nbsp;than&nbsp;r</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>var</span><span>&nbsp;</span><span>checkArray</span><span>&nbsp;=&nbsp;[];</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>while</span><span>&nbsp;(</span><span>leftValue</span><span>&nbsp;&lt;&nbsp;</span><span>rightValue</span><span>)&nbsp;{</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>if</span><span>&nbsp;(</span><span>arr</span><span>[</span><span>leftValue</span><span>]&nbsp;+&nbsp;</span><span>arr</span><span>[</span><span>rightValue</span><span>]&nbsp;&lt;&nbsp;</span><span>k</span><span>)&nbsp;{</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>ans</span><span>&nbsp;=&nbsp;</span><span>Math</span><span>.</span><span>max</span><span>(</span><span>ans</span><span>,&nbsp;</span><span>arr</span><span>[</span><span>leftValue</span><span>]&nbsp;+&nbsp;</span><span>arr</span><span>[</span><span>rightValue</span><span>]);</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>checkArray</span><span>.</span><span>push</span><span>([</span><span>arr</span><span>[</span><span>leftValue</span><span>],&nbsp;</span><span>arr</span><span>[</span><span>rightValue</span><span>]]);</span>
+                    </div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>leftValue</span><span>++;</span>
+                    </div>
+                    <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+                    <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>else</span><span>&nbsp;{</span></div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>rightValue</span><span>--;</span>
+                    </div>
+                    <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+                    <div><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+                    <div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>return</span><span>&nbsp;</span><span>checkArray</span><span>;</span>
+                    </div>
+                    <div><span>&nbsp;&nbsp;}</span></div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+</body>
+
+<script>
+    // O(n2)
+    var example1_A = [1, 2, 3, 4], example1_K = 4;
+    var example2_A = [1, 2, 3], example2_K = 3;
+    var example3_A = [1, 2, 2, 3, 4], example3_K = 5;
+    function twoSumLessThan_K(arr, k) {
+        arr.sort((a, b) => a - b);
+        var n = arr.length, leftValue = 0, rightValue = n - 1, ans = 0;
+        // While l is less than r
+        var checkArray = [];
+        while (leftValue < rightValue) {
+            if (arr[leftValue] + arr[rightValue] < k) {
+                ans = Math.max(ans, arr[leftValue] + arr[rightValue]);
+                checkArray.push([arr[leftValue], arr[rightValue]]);
+                leftValue++;
+            }
+            else {
+                rightValue--;
+            }
+        }
+        return checkArray;
+    }
+    var anwser = [
+        twoSumLessThan_K(example1_A, example1_K),
+        twoSumLessThan_K(example2_A, example2_K),
+        twoSumLessThan_K(example3_A, example3_K)];
+    console.log('%c example1:', 'color: red', anwser[0]);
+    console.log('%c example2:', 'color: red', anwser[1]);
+    console.log('%c example3:', 'color: red', anwser[2]);
+    var textshow = document.getElementById("textshow");
+    textshow.innerHTML += 'example1:' + JSON.stringify(anwser[0]) + '<br>';
+    textshow.innerHTML += 'example2:' + JSON.stringify(anwser[1]) + '<br>';
+    textshow.innerHTML += 'example3:' + JSON.stringify(anwser[2]) + '<br>';
+    function copyEvent(id) {
+        var str = document.getElementById(id);
+        window.getSelection().selectAllChildren(str);
+        document.execCommand("Copy");
+    }
+</script>
+
+</html>

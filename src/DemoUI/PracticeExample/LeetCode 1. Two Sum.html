@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <title>LeetCode 1. Two Sum</title>
 </head>
+
 <style title="tempCSS">
-  arrowCS {
-    border: solid black;
-    border-width: 0 1px 1px 0;
-    display: inline-block;
-    padding: 3px;
-  }
-
-
+      body {
+        margin: 1;
+        padding: 0;
+    }
   #subject {
     background-color: rgb(0 0 0);
-    overflow-y: scroll;
     color: rgb(255 255 0);
-    width: fit-content;
-    height: fit-content;
+    width: 569px;
+    height: 588px;
+    margin-right: 50px;
   }
 
   #textshow {
@@ -46,134 +42,118 @@
 </style>
 
 <body style="display: flex;">
+<div style="
+        width: 100%;
+    color: #00f;
+    font-weight: bold;
+">
+  AmazingTalker
+  您好，深感抱歉，本人尚無Vue與React相關經驗，無法在時間內解決2.3題的需求，只能解決第一題，沒有做好準備就點擊面試是重大失職，非常感謝AmazingTalker，提供此次面試的機會，我會找時間在研究Vue精進自身技能，謝謝。
+</div>
+  <br />
+<div style="
+   display: flex;
+    position: absolute;
+    margin-top: 3vw;
+">
   <div id="subject" class="">
-    <p>Given an array of integers <code>nums</code>&nbsp;and an integer <code>target</code>, return <em>indices of the
-        two
-        numbers such that they add up to <code>target</code></em>.</p>
-
-    <p>You may assume that each input would have <strong><em>exactly</em> one solution</strong>, and you may not use the
-      <em>same</em> element twice.</p>
-
-    <p>You can return the answer in any order.</p>
-
-    <p>&nbsp;</p>
-    <p><strong>Example 1:</strong></p>
-
-    <pre><strong>Input:</strong> nums = [2,7,11,15], target = 9
-  <strong>Output:</strong> [0,1]
-  <strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].
-  </pre>
-
-    <p><strong>Example 2:</strong></p>
-
-    <pre><strong>Input:</strong> nums = [3,2,4], target = 6
-  <strong>Output:</strong> [1,2]
-  </pre>
-
-    <p><strong>Example 3:</strong></p>
-
-    <pre><strong>Input:</strong> nums = [3,3], target = 6
-  <strong>Output:</strong> [0,1]
-  </pre>
-
-    <p>&nbsp;</p>
-    <p><strong>Constraints:</strong></p>
-    <ul>
-      <li><code>2 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>
-      <li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
-      <li><code>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup></code></li>
-      <li><strong>Only one valid answer exists.</strong></li>
-    </ul>
-    <p>&nbsp;</p>
+    <p>Given an array `A` of integers and integer `K`.<br />
+      Any interger pair in `A` could be combined as a set.<br /> Find and return
+      all combinations of sets where the sum `S` of elements is the maximum but less than `K` ( a, b are in A and a + b
+      = S
+      &lt; K and S is maximum, return [a, b] ).<br />
+      The answer must exclude duplicates, but it's fine in any order. e.g.
+      [1, 2] or [2, 1] may be treated as the same, no need to return twice in one output. Please answer the time
+      complexity
+      of your program, too.</p>
+    <p>給定一個整數陣列 A 與一個整數 K，陣列 A 任兩個數字可以視為一個組合，找出並回傳所有組合當中的和 S 為最大但必須小於 K ( A 包含 a, b 且 a + b = S &lt; K 且 S 為最大，回傳 [a,
+      b])。<br />回傳的答案必須要排除重複的可能性，但是順序不拘（好比 `[1, 2]` 與 `[2, 1]` 視為一樣的答案，在一個回答當中無需回傳兩次）。也請回答你的程式的時間複雜度。</p>
   </div>
   <section>
     <button type="button" style="left: 20vw;" onclick="copyEvent('textshow')" class="ButtonStyle">Copy
-      StyleText</button>
-
+      Answer</button>
     <div id="textshow">
-      <pre style="margin: 0px;">
-      solution 1
-      /**
-      * @param {number[]} nums
-      * @param {number} target
-      * @return {number[]}
-      */
-     var twoSum = function(nums, target) {
-          var map = {};
-         for(var i = 0 ; i < nums.length ; i++){
-             var v = nums[i];
-             if(map[target-v] >= 0){
-                 return [map[target-v],i]
-             } else {
-     
-                 map[v] = i;
-             }
-         }
-     }; 
-      </pre>
-      <pre style="margin: 0px;">
-      solution 2
-      /**
-      * @param {number[]} nums
-      * @param {number} target
-      * @return {number[]}
-      */
-     var twoSum = function(nums, target) {
-          var map = {};
-         for(var i = 0 ; i < nums.length ; i++){
-             var v = nums[i];
-             if(map[target-v] >= 0){
-                 return [map[target-v],i]
-             } else {
-     
-                 map[v] = i;
-             }
-         }
-     }; 
-      </pre>
+<div>
+  <div>
+    <span>function</span><span>&nbsp;</span><span>twoSumLessThan_K</span><span>(</span><span>arr</span><span>,&nbsp;</span><span>k</span><span>)&nbsp;{</span>
+  </div>
+  <div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>arr</span><span>.</span><span>sort</span><span>((</span><span>a</span><span>,&nbsp;</span><span>b</span><span>)&nbsp;</span><span>=&gt;</span><span>&nbsp;</span><span>a</span><span>&nbsp;-&nbsp;</span><span>b</span><span>);</span>
+  </div>
+  <div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>var</span><span>&nbsp;</span><span>n</span><span>&nbsp;=&nbsp;</span><span>arr</span><span>.</span><span>length</span><span>,&nbsp;</span><span>leftValue</span><span>&nbsp;=&nbsp;</span><span>0</span><span>,&nbsp;</span><span>rightValue</span><span>&nbsp;=&nbsp;</span><span>n</span><span>&nbsp;-&nbsp;</span><span>1</span><span>,&nbsp;</span><span>ans</span><span>&nbsp;=&nbsp;</span><span>0</span><span>;</span>
+  </div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>//&nbsp;While&nbsp;l&nbsp;is&nbsp;less&nbsp;than&nbsp;r</span></div>
+  <div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>var</span><span>&nbsp;</span><span>checkArray</span><span>&nbsp;=&nbsp;[];</span>
+  </div>
+  <div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>while</span><span>&nbsp;(</span><span>leftValue</span><span>&nbsp;&lt;&nbsp;</span><span>rightValue</span><span>)&nbsp;{</span>
+  </div>
+  <div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>if</span><span>&nbsp;(</span><span>arr</span><span>[</span><span>leftValue</span><span>]&nbsp;+&nbsp;</span><span>arr</span><span>[</span><span>rightValue</span><span>]&nbsp;&lt;&nbsp;</span><span>k</span><span>)&nbsp;{</span>
+  </div>
+  <div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>ans</span><span>&nbsp;=&nbsp;</span><span>Math</span><span>.</span><span>max</span><span>(</span><span>ans</span><span>,&nbsp;</span><span>arr</span><span>[</span><span>leftValue</span><span>]&nbsp;+&nbsp;</span><span>arr</span><span>[</span><span>rightValue</span><span>]);</span>
+  </div>
+  <div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>checkArray</span><span>.</span><span>push</span><span>([</span><span>arr</span><span>[</span><span>leftValue</span><span>],&nbsp;</span><span>arr</span><span>[</span><span>rightValue</span><span>]]);</span>
+  </div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>leftValue</span><span>++;</span></div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>else</span><span>&nbsp;{</span></div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>rightValue</span><span>--;</span></div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+  <div><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>return</span><span>&nbsp;</span><span>checkArray</span><span>;</span>
+  </div>
+  <div><span>&nbsp;&nbsp;}</span></div>
+</div>
+
     </div>
 
   </section>
-
+</div>
 </body>
-<script>
-  var textshow = document.getElementById("textshow");
-  //const txtShowStyle = getComputedStyle(textshow);
-  //console.log('%c target', 'color:rgb(255,75,255,1)', target);
-  //console.log('%c target', 'color:rgb(255,75,255,1)', target.style.cssText);
-  //textshow.innerText = document.getElementById("target").style.cssText;
-  // var styleSheetList = document.styleSheets;
-  //textshow.innerText = ""
-  /**
-  * @param {number[]} nums
-  * @param {number} target
-  * @return {number[]}
-  */
-  var twoSum = function (nums, target) {
-    var map = {};
-    for (var i = 0; i < nums.length; i++) {
-      var v = nums[i];
-      console.log('%c twoSumCallback', 'color:rgb(255,75,255,1)', v,map);//styleSheets樣式表
-      if (map[target - v] >= 0) {
-        return [map[target - v], i]
-      } else {
 
-        map[v] = i;
+<script>
+  // O(n2)
+  var example1_A = [1, 2, 3, 4], example1_K = 4;
+  var example2_A = [1, 2, 3], example2_K = 3;
+  var example3_A = [1, 2, 2, 3, 4], example3_K = 5;
+  function twoSumLessThan_K(arr, k) {
+    arr.sort((a, b) => a - b);
+    var n = arr.length, leftValue = 0, rightValue = n - 1, ans = 0;
+    // While l is less than r
+    var checkArray = [];
+    while (leftValue < rightValue) {
+      if (arr[leftValue] + arr[rightValue] < k) {
+        ans = Math.max(ans, arr[leftValue] + arr[rightValue]);
+        checkArray.push([arr[leftValue], arr[rightValue]]);
+        leftValue++;
+      }
+      else {
+        rightValue--;
       }
     }
-  };
-  var twoSumCallback = twoSum([3, 2, 4], 9);
-
-  console.log('%c twoSumResult', 'color:rgb(255,75,255,1)', twoSumCallback);//styleSheets樣式表
-
-
-
+    return checkArray;
+  }
+  var anwser = [
+    twoSumLessThan_K(example1_A, example1_K),
+    twoSumLessThan_K(example2_A, example2_K),
+    twoSumLessThan_K(example3_A, example3_K)];
+  console.log('%c example1:', 'color: red', anwser[0]);
+  console.log('%c example2:', 'color: red', anwser[1]);
+  console.log('%c example3:', 'color: red', anwser[2]);
+  var textshow = document.getElementById("textshow");
+  textshow.innerHTML += 'example1:' + JSON.stringify(anwser[0]) + '<br>';
+  textshow.innerHTML += 'example2:' + JSON.stringify(anwser[1]) + '<br>';
+  textshow.innerHTML += 'example3:' + JSON.stringify(anwser[2]) + '<br>';
   function copyEvent(id) {
     var str = document.getElementById(id);
     window.getSelection().selectAllChildren(str);
     document.execCommand("Copy");
   }
-
 </script>
 
 </html>

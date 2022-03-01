@@ -1,60 +1,18 @@
 <template>
   <div class="container">
-    <div class="card" v-if="currentStep === 'language'">
-      <h3>What language do you want to learn ?</h3>
-      <div>
-        <label for="english">
-          <input
-            type="checkbox"
-            id="english"
-            value="English"
-            v-model="languages"
-          />
-          English
-        </label>
-        <label for="chinese">
-          <input
-            type="checkbox"
-            id="chinese"
-            value="Chinese"
-            v-model="languages"
-          />
-          Chinese
-        </label>
-        <label for="korean">
-          <input
-            type="checkbox"
-            id="korean"
-            value="Korean"
-            v-model="languages"
-          />
-          Korean
-        </label>
-        <label for="spanish">
-          <input
-            type="checkbox"
-            id="spanish"
-            value="Spanish"
-            v-model="languages"
-          />
-          Spanish
-        </label>
-        <label for="japanese">
-          <input
-            type="checkbox"
-            id="japanese"
-            value="Japanese"
-            v-model="languages"
-          />
-          Japanese
-        </label>
-      </div>
-      <div class="btn-wrapper">
-        <button @click="onPrev">Prev</button>
-        <button @click="onNext">Next</button>
-      </div>
-    </div>
+    <selectLanguage :inputlanguages="languages" @stepChange="currentStep" 
+    @onPrev="onPrev"
+    @onNext="onNext"
+    @setLanguages="setLanguages"
+    v-if="currentStep === 'language'">
+    </selectLanguage>
+    <selectAge :inputlanguages="languages" @stepChange="currentStep" 
+    @onPrev="onPrev"
+    @onNext="onNext"
+    @setAges="setAges"
 
+    v-if="currentStep === 'language'">
+    </selectAge>
     <div class="card" v-if="currentStep === 'age'">
       <h3>How old are you ?</h3>
       <div>
@@ -88,13 +46,17 @@
         <button @click="onNext">Next</button>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
+import selectLanguage from './selectLanguage.vue';
 export default {
   name: "App",
-  components: {},
+  components: {
+    selectLanguage
+  },
   data: function () {
     return {
       ages: [],
@@ -116,6 +78,13 @@ export default {
     onNext() {
       this.step += 1;
     },
+    setAges(ages=[]) {
+      this.ages=ages;
+    },
+    setLanguages(languages=[]) {
+      this.languages=languages;
+    },
+
   },
 };
 </script>

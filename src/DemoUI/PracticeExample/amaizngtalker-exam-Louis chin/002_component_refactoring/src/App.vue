@@ -6,44 +6,21 @@
     @setLanguages="setLanguages"
     v-if="currentStep === 'language'">
     </selectLanguage>
-    <selectAge :inputlanguages="languages" @stepChange="currentStep" 
+    <selectAge @stepChange="currentStep" 
     @onPrev="onPrev"
     @onNext="onNext"
     @setAges="setAges"
-
-    v-if="currentStep === 'language'">
+    v-if="currentStep === 'age'">
     </selectAge>
-    <div class="card" v-if="currentStep === 'age'">
-      <h3>How old are you ?</h3>
-      <div>
-        <label for="young">
-          <input type="checkbox" id="young" value="young" v-model="ages" />
-          Below 10
-        </label>
-        <label for="middle">
-          <input type="checkbox" id="middle" value="middle" v-model="ages" />
-          11 - 30
-        </label>
-        <label for="old">
-          <input type="checkbox" id="old" value="old" v-model="ages" />
-          Above 31
-        </label>
-      </div>
-      <div class="btn-wrapper">
-        <button @click="onPrev">Prev</button>
-        <button @click="onNext">Next</button>
-      </div>
-    </div>
-
     <div class="card" v-if="currentStep === 'final'">
+      <h4>測驗結果</h4>
       <h4>Ages</h4>
       <div>{{ ages }}</div>
       <hr />
       <h4>Languages</h4>
       <div>{{ languages }}</div>
       <div class="btn-wrapper">
-        <button @click="onPrev">Prev</button>
-        <button @click="onNext">Next</button>
+        <button @click="reloadPage">retest</button>
       </div>
     </div>
 
@@ -52,10 +29,12 @@
 
 <script>
 import selectLanguage from './selectLanguage.vue';
+import selectAge from './selectAge.vue';
 export default {
   name: "App",
   components: {
-    selectLanguage
+    selectLanguage,
+    selectAge
   },
   data: function () {
     return {
@@ -84,6 +63,9 @@ export default {
     setLanguages(languages=[]) {
       this.languages=languages;
     },
+    reloadPage(){
+    location.reload();
+    }
 
   },
 };

@@ -1,50 +1,18 @@
 <template>
     <div class="card">
-       <h3>What language do you want to learn ?</h3>
+      <h3>How old are you ?</h3>
       <div>
-        <label for="english">
-          <input
-            type="checkbox"
-            id="english"
-            value="English"
-            v-model="languages"
-          />
-          English
+        <label for="young">
+          <input type="checkbox" id="young" value="young" v-model="ages" />
+          Below 10
         </label>
-        <label for="chinese">
-          <input
-            type="checkbox"
-            id="chinese"
-            value="Chinese"
-          />
-          Chinese
+        <label for="middle">
+          <input type="checkbox" id="middle" value="middle" v-model="ages" />
+          11 - 30
         </label>
-        <label for="korean">
-          <input
-            type="checkbox"
-            id="korean"
-            value="Korean"
-            v-model="languages"
-          />
-          Korean
-        </label>
-        <label for="spanish">
-          <input
-            type="checkbox"
-            id="spanish"
-            value="Spanish"
-            v-model="languages"
-          />
-          Spanish
-        </label>
-        <label for="japanese">
-          <input
-            type="checkbox"
-            id="japanese"
-            value="Japanese"
-            v-model="languages"
-          />
-          Japanese
+        <label for="old">
+          <input type="checkbox" id="old" value="old" v-model="ages" />
+          Above 31
         </label>
       </div>
       <div class="btn-wrapper">
@@ -56,32 +24,25 @@
 
 <script>
 export default {
-  name: "App",
+  name: "selectAge",
   components: {},
   data: function () {
     return {
-      languages: [],
-      //watchNow: Date.now()
+      ages: [],
     };
   },
-  // props: {
-  //   inputlanguages: {
-  //     type: Array,
-  //     default: null
-  //   }
-  // },
   computed: {
   },
   methods: {
     onPrev() {
-      console.log('onPrev2',this.languages);
+      console.log('onPrev2',this.ages);
       this.$emit('onPrev');
-      this.$emit('setLanguages',this.languages);
+      this.$emit('setAges',this.ages);
     },
     onNext() {
-      console.log('onPrev2',this.languages);
+      console.log('onPrev2',this.ages);
       this.$emit('onNext');
-      this.$emit('setLanguages',this.languages);
+      this.$emit('setAges',this.ages);
     },
 
   },

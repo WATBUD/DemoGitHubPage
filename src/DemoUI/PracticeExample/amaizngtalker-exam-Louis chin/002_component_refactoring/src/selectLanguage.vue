@@ -56,7 +56,7 @@
 
 <script>
 export default {
-  name: "App",
+  name: "selectLanguage",
   components: {},
   data: function () {
     return {

@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import selectLanguage from './selectLanguage.vue';
-import selectAge from './selectAge.vue';
+import selectLanguage from './components/selectLanguage.vue';
+import selectAge from './components/selectAge.vue';
 export default {
   name: "App",
   components: {

@@ -141,6 +141,20 @@ export class M_Light_Numpad {
       
      this.lightData= JSON.parse(JSON.stringify(obj));
     }
+
+    restDataToDeault(){
+        for (let index = 0; index < this.AllBlockColor.length; index++) {
+            var element = this.AllBlockColor[index];
+            element.color=[0,0,0,0];
+            element.clearStatus=false;
+            element.breathing=false;
+            var element2 = this.BreathTempArray[index];
+            element2.color=[0,0,0,0];
+            element2.clearStatus=false;
+            element2.breathing=false;
+        }
+    }
+    
     resetDefault(resetData) {
         this.lightData =resetData;
         var arr = Object.keys(resetData);
@@ -4280,17 +4294,15 @@ export class M_Light_Numpad {
 
     }
     getIndexRGBPerkeyCss(i) {
-        //console.log('getIndexRGBPerkeyCss', this.lightData.brightness)
+        //console.log('getIndexRGBCss', i)
         var target = this.BreathTempArray;
         if (target[i].color != undefined) {
-            return this.toCssRGB(this.getBrightnessRatio(target[i].color));
+            return this.toCssRGB(target[i].color);
         }
     }
 
 
-
     
-
     getRandom(min,max){
         return Math.floor(Math.random()*(max-min+1))+min;
     };

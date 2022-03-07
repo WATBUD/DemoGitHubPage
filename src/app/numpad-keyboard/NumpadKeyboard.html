@@ -1259,7 +1259,7 @@
                         EFFECT
                     </div>
                     <div *ngIf="this.M_SoundVolume.lightData.clearStatus" class="list" style="width: fit-content;flex-direction: row;">
-                        <div (click)="this.M_SoundVolume.lightData.breathing=true;" style="width: fit-content;margin-right: 15px;"
+                        <div (click)="glowTypeChange(0)" style="width: fit-content;margin-right: 15px;"
                             class="">
                             <div [ngStyle]="{ 'border-color': this.M_SoundVolume.lightData.breathing==true ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'}"
                                 style="border: 1px solid;
@@ -1276,7 +1276,7 @@
                                 [ngStyle]="{ 'border': this.M_SoundVolume.lightData.breathing==true ? '1px solid rgb(253, 186, 59)' :'0px solid rgb(49, 49, 49)'}">
                             </div>
                         </div>
-                        <div (click)="this.M_SoundVolume.lightData.breathing=false;" style="width: fit-content;">
+                        <div (click)="glowTypeChange(1)" style="width: fit-content;">
                             <div [ngStyle]="{ 'border-color': this.M_SoundVolume.lightData.breathing==false ? 'rgb(253, 186, 59)' : 'rgb(49, 49, 49)'}"
                                 style="border: 1px solid;
                                         width: auto;

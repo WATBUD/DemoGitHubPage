@@ -44,8 +44,8 @@ export class ColorPickerDemo1Component implements OnInit {
    }
    HSLColorPickerFN :any = [];
    ngAfterViewInit(){
-      //this.addColor_PickerEvent();
-     //coordinateCircle.style.cssText;
+   //this.addColor_PickerEvent();
+   //coordinateCircle.style.cssText;
    //   coordinateCircle.addEventListener("mousedown", (oEvent: MouseEvent) => {
    //    console.log('%c mousedown', 'background: black; color: white', oEvent);
    //   });

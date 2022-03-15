@@ -197,7 +197,7 @@ export class PictureEditor {
         console.log("%c previous_XY:", "color: red", previous_XY);
         console.log("%c gap_XY:", "color: red", gap_XY);
 
-        const  result= [previous_XY[0]+gap_XY[0]/20,previous_XY[1]+gap_XY[1]/20];
+        const  result= [previous_XY[0]+gap_XY[0]/10,previous_XY[1]+gap_XY[1]/10];
 
         const maxBound=[-1000,-750]
         if(result[0]>=maxBound[0]&&result[0]<=maxBound[1]){

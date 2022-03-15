@@ -33,10 +33,8 @@ export class SharesFunction{
     return arr;
     }
     TipUIMessage(setMessage,targetDOM){
-
         var BtnTextTip=document.getElementById("BtnTextTip");
         //console.log("TipUIMessage,targetDOM",targetDOM);
-
         BtnTextTip.children[0].innerHTML="&nbsp;"+setMessage+"&nbsp;"
         BtnTextTip.style.left=
         //this.recordClientX
@@ -44,7 +42,6 @@ export class SharesFunction{
         BtnTextTip.style.top= 
         //this.recordClientY
         targetDOM.clientY+"px";
-       
         BtnTextTip.style.display="block"
         targetDOM.srcElement.addEventListener('mouseleave', e => {
             //console.log("TipUIMessage,targetDOM_mouseleave",targetDOM);

@@ -55,6 +55,7 @@
     <input id="toggle3" class="btn-toggle" type="checkbox" checked>
     <label class="toggleBtn" for="toggle3">Homemade Tools</label>
     <ul>
+      <li routerLink="/PictureEditor_DragCircle" routerLinkActive="active" (click)="scrollToX(0)">PictureEditor_DragCircle</li>
       <li [routerLink]="['/native']" [queryParams]="{ page: 'Convert Excel File To JSON' }">Convert Excel File To JSON
       </li>
       <li [routerLink]="['/native']" [queryParams]="{ page: 'KeyDownArrayGenerator' }">KeyDownArrayGenerator</li>

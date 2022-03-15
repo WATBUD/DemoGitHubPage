@@ -20,6 +20,8 @@ import { NgColorModule } from './ngcolor/color-picker.module';
 import { BlackHoleComponent } from './black-hole/black-hole.component';
 import { HTTPRequestComponent } from './httprequest/httprequest.component';
 import { PerixxComponent } from './perixx/perixx.component';
+import { PictureEditorComponent } from './CanvasPractice/PictureEditor_DragCircle';
+
 // let routerModule = RouterModule.forRoot(routes);
 // routerModule = RouterModule.forRoot(routes, {useHash: true});
 const routes: Routes = [
@@ -40,6 +42,8 @@ const routes: Routes = [
   { path: 'httprequest', component: HTTPRequestComponent },
   { path: 'Line_Graph', component: EchartComponent },
   { path: 'perixx', component: PerixxComponent },  
+  { path: 'PictureEditor_DragCircle', component: PictureEditorComponent},
+
 ];
 @NgModule({
   declarations: [
@@ -55,6 +59,7 @@ const routes: Routes = [
     HTTPRequestComponent,
     EchartComponent,
     PerixxComponent,
+    PictureEditorComponent,
   ],
   imports: [
     BrowserModule,

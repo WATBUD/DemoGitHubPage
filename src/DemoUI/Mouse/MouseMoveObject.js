@@ -142,16 +142,9 @@ class MouseMoveObject {
             //var T1=getMatchedCSS(move_div,"offsetLeft");
             var T2 = getMatchedCSS(this.targetName, "width");
             var T4 = getMatchedCSS(this.targetName, "height");
-
             var T3 = getElementCSS(ScrollContentArea, "width");
             //SharesFn.get_Windows_Vw_Vh()[0]*50;
-            var T5 =
-                //SharesFn.get_Windows_Vw_Vh()[1]*50;
-                getElementCSS(ScrollContentArea, "height");
-
-
-
-
+            var T5 =getElementCSS(ScrollContentArea, "height");
             if (this.isDown) {
                 var ndx = (event.pageX - this.md_x) / this.scaleConfig.scaleMultiple;//獲取新div滑鼠實時座標滑鼠與div=>X偏移量
                 var ndy = (event.pageY - this.md_y) / this.scaleConfig.scaleMultiple;//獲取新div滑鼠實時座標滑鼠與div=>X偏移量

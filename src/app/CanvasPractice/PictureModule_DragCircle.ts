@@ -159,12 +159,10 @@ export class PictureEditor {
     captureFootageMousedown(event: MouseEvent) {
         const page_XY= [event.pageX,event.pageY];
         console.log("%c captureFootageMousedown:", "color: red", page_XY);
-        // if (this.isDragging) {
-        //   return;
-        // }
         this.isDragging=true;
-        this.startX = page_XY[0];
-        this.startY = page_XY[1];
+        const element_mask:any =document.getElementById("mask");
+        this.startX = page_XY[0]-element_mask.offsetLeft;
+        this.startY = page_XY[1]-element_mask.offsetTop;
         event.preventDefault();
         event.stopPropagation();
         // update the starting drag position (== the current mouse position)
@@ -186,27 +184,25 @@ export class PictureEditor {
         event.stopPropagation();
         const element_mask:any = document.getElementById("mask");
         console.log("%c mask.getBoundingClientRect():", "color: red", element_mask.getBoundingClientRect());
+        //console.log("%c  getComputedStyle(element_mask);", "color: red",  getComputedStyle(element_mask));
+        //const computedStyle=getComputedStyle(element_mask);
+
         // console.log("%c mask.offsetLeft():", "color: red", mask.offsetLeft);
         // console.log("%c mask.offsetTop():", "color: red", mask.offsetTop);
         //console.log("%c event.offsetX:", "color: red", event.offsetX);
         //console.log("%c event.offsetY:", "color: red", event.offsetY);
         // console.log("%c event:", "color: red", event);
-        const previous_XY= [element_mask.offsetLeft,element_mask.offsetTop];
+        //const previous_XY= [parseInt(computedStyle.marginLeft),parseInt(computedStyle.marginTop)];
         const gap_XY= [ event.pageX - this.startX,event.pageY - this.startY];
-
-        console.log("%c previous_XY:", "color: red", previous_XY);
         console.log("%c gap_XY:", "color: red", gap_XY);
-
-        const  result= [previous_XY[0]+gap_XY[0]/10,previous_XY[1]+gap_XY[1]/10];
-
         const maxBound=[-1000,-750]
-        if(result[0]>=maxBound[0]&&result[0]<=maxBound[1]){
-            element_mask.style.marginLeft=(result[0])+'px';
+        if(gap_XY[0]>=maxBound[0]&&gap_XY[0]<=maxBound[1]){
+            element_mask.style.marginLeft=(gap_XY[0])+'px';
         }
-        if(result[1]>=maxBound[0]&&result[1]<=maxBound[1]){
-            element_mask.style.marginTop= (result[1])+'px';
+        if(gap_XY[1]>=maxBound[0]&&gap_XY[1]<=maxBound[1]){
+            element_mask.style.marginTop= (gap_XY[1])+'px';
         }
-        console.log("%c this.result:", "color: blue",result);
+        console.log("%c gap_XY:", "color: blue",gap_XY);
         //console.log("%c captureFootageMousemove:", "color: red", event);
     }
 }

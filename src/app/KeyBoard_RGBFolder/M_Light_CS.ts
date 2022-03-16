@@ -1970,7 +1970,6 @@ export class M_Light_CS {
         clearInterval(this.repeater);
         this.currentBlockIndex = 0;
         console.log('%c mode_Starlight', 'color:rgb(255,75,255,1)', colors);
-
         //colors=[[255,0,0,1]];
         var translatecolors = [];
         if (isRainbow) {
@@ -1985,24 +1984,26 @@ export class M_Light_CS {
         var target = this.AllBlockColor;
         this.setAllBlockColor([0, 0, 0, 1]);
         var repeatCountList = [];
-        var RanRange = [1, 200];
+        var RanRange = [0, 2];
         var coordinateAllList=[];
+        var countNumber = 0;
         //RotationMatrixValue: xpos + space+ypos,
         //x' = cos(θ) * x - sin(θ) * y
         //y' = sin(θ) * x + cos(θ) * y
         //var temp_target=JSON.parse(JSON.stringify(this.AllBlockColor));
-        for (let xpos = -350; xpos < this.imageMaxWidth; xpos += this.imageMaxWidth/5 ) {
-            var space = 0;
-            for (let ypos = 0; ypos < this.imageMaxHeight; ypos += this.minKeyHeight) {
+        for (let xpos = -350; xpos < this.imageMaxWidth; xpos += this.minKeyWidth/1.5 ) {
+            countNumber += 1;
+            for (let ypos = 0; ypos < this.imageMaxHeight; ypos += this.minKeyHeight/1.5) {
                 //space += this.minKeyWidth/2;
-                //space += 5;
-                coordinateAllList.push(
+                if(countNumber%3==0){
+                    coordinateAllList.push(
                     {
-                        coordinate: [xpos + space, ypos],
-                        backupPos: [xpos + space, ypos],
-                        RotationMatrixValue: xpos + space+ypos,
-                        isCheck: false,
+                            coordinate: [xpos , ypos],
+                            backupPos: [xpos , ypos],
+                            RotationMatrixValue: xpos +ypos,
+                            isVisible: countNumber%3==0?false:true,
                     });
+                }
             }
         }
         for (let index = 0; index < target.length; index++) {

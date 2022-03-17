@@ -13,133 +13,133 @@ import { Location } from '@angular/common';
 export class NativeComponent implements OnInit {
   customURLList = [
     {
-      URL: './DemoUI/Excel/Convert Excel File To JSON.html',
+      URL: './Native HTML/Excel/Convert Excel File To JSON.html',
       Name: 'Convert Excel File To JSON',
     },
     {
-      URL: './DemoUI/Input/KeyDownArrayGenerator.html',
+      URL: './Native HTML/Input/KeyDownArrayGenerator.html',
       Name: 'KeyDownArrayGenerator',
     },
     {
-      URL: './DemoUI/Input/GeneratorArrayText.html',
+      URL: './Native HTML/Input/GeneratorArrayText.html',
       Name: 'GeneratorArrayText',
     },
     {
-      URL: './DemoUI/ScrollBarDemo/GetScrollEvent.html',
+      URL: './Native HTML/ScrollBarDemo/GetScrollEvent.html',
       Name: 'GetScrollEvent',
     },
     {
-      URL: './DemoUI/Input/CompositionEvents.html',
+      URL: './Native HTML/Input/CompositionEvents.html',
       Name: 'CompositionEvents',
     },
     {
-      URL: './DemoUI/Animate/Shooting Star.html',
+      URL: './Native HTML/Animate/Shooting Star.html',
       Name: 'Shooting Star',
     },
     {
-      URL: './DemoUI/Animate/CircleRorateLoading.html',
+      URL: './Native HTML/Animate/CircleRorateLoading.html',
       Name: 'CircleRorateLoading',
     },
     {
-      URL: './DemoUI/Animate/LoadingAnimation1.html',
+      URL: './Native HTML/Animate/LoadingAnimation1.html',
       Name: 'LoadingAnimation1',
     },
     {
-      URL: './DemoUI/Animate/LoadingAnimation2.html',
+      URL: './Native HTML/Animate/LoadingAnimation2.html',
       Name: 'LoadingAnimation2',
     },
     {
-      URL: './DemoUI/Animate/Progress_Bar_Rectangle.html',
+      URL: './Native HTML/Animate/Progress_Bar_Rectangle.html',
       Name: 'Progress_Bar_Rectangle',
     },
     {
-      URL: './DemoUI/Animate/ButtonRippleEffect.html',
+      URL: './Native HTML/Animate/ButtonRippleEffect.html',
       Name: 'ButtonRippleEffect',
     },
     {
-      URL: './DemoUI/Algorithm/GeneratorSlopeEquation.html',
+      URL: './Native HTML/Algorithm/GeneratorSlopeEquation.html',
       Name: 'GeneratorSlopeEquation',
     },
     {
-      URL: './DemoUI/DynamicallyGenerated/CreateScrollBarListDemo.html',
+      URL: './Native HTML/DynamicallyGenerated/CreateScrollBarListDemo.html',
       Name: 'CreateScrollBarListDemo',
     },
     {
-      URL: './DemoUI/Animate/RainBackgroundEffect.html',
+      URL: './Native HTML/Animate/RainBackgroundEffect.html',
       Name: 'RainBackgroundEffect',
     },
     {
-      URL: './DemoUI/Animate/ShadowCircleAnimation.html',
+      URL: './Native HTML/Animate/ShadowCircleAnimation.html',
       Name: 'ShadowCircleAnimation',
     },
     {
-      URL: './DemoUI/Animate/BorderFillAnimation.html',
+      URL: './Native HTML/Animate/BorderFillAnimation.html',
       Name: 'BorderFillAnimation',
     },
     {
-      URL: './DemoUI/Input/KeyPressInterval.html',
+      URL: './Native HTML/Input/KeyPressInterval.html',
       Name: 'KeyPressInterval',
     },
     {
-      URL: './DemoUI/DynamicallyGenerated/GenerateButton.html',
+      URL: './Native HTML/DynamicallyGenerated/GenerateButton.html',
       Name: 'GenerateButton',
     },
     {
-      URL: './DemoUI/Animate/PolygonAnimation.html',
+      URL: './Native HTML/Animate/PolygonAnimation.html',
       Name: 'PolygonAnimation',
     },
     {
-      URL: './DemoUI/CSSDemo/CSS_ArrowSymbol.html',
+      URL: './Native HTML/CSSDemo/CSS_ArrowSymbol.html',
       Name: 'CSS_ArrowSymbol',
     },
     {
-      URL: './DemoUI/Mouse/ReflectionEventParameter.html',
+      URL: './Native HTML/Mouse/ReflectionEventParameter.html',
       Name: 'ReflectionEventParameter',
     },
     {
-      URL: './DemoUI/CSSDemo/CSSReplaceClass.html',
+      URL: './Native HTML/CSSDemo/CSSReplaceClass.html',
       Name: 'CSSReplaceClass',
     },
     {
-      URL: './DemoUI/Basic/JS_GetTime.html',
+      URL: './Native HTML/Basic/JS_GetTime.html',
       Name: 'JS_GetTime',
     },
     {
-      URL: './DemoUI/ArraySort/BubbleSort.html',
+      URL: './Native HTML/ArraySort/BubbleSort.html',
       Name: 'BubbleSort',
     },
     {
-      URL: './DemoUI/Animate/3DRotationControl.html',
+      URL: './Native HTML/Animate/3DRotationControl.html',
       Name: '3DRotationControl',
     },
 
     {
-      URL: './DemoUI/CSSDemo/CenterAlignment.html',
+      URL: './Native HTML/CSSDemo/CenterAlignment.html',
       Name: 'CenterAlignment',
     }, 
     {
-      URL: './DemoUI/CSSDemo/CustomizeBorderLength.html',
+      URL: './Native HTML/CSSDemo/CustomizeBorderLength.html',
       Name: 'CustomizeBorderLength',
     },
     {
-      URL: './DemoUI/ScrollBarDemo/animateScroll.html',
+      URL: './Native HTML/ScrollBarDemo/animateScroll.html',
       Name: 'animateScroll',
     },
 
     {
-      URL: './DemoUI/Input/Input_Range_Customized.html',
+      URL: './Native HTML/Input/Input_Range_Customized.html',
       Name: 'Input_Range_Customized',
     },
     {
-      URL: './DemoUI/Input/Input_Type_File.html',
+      URL: './Native HTML/Input/Input_Type_File.html',
       Name: 'Input_Type_File',
     },
     {
-      URL: './DemoUI/PracticeExample/LeetCode 1. Two Sum.html',
+      URL: './Native HTML/PracticeExample/LeetCode 1. Two Sum.html',
       Name: 'LeetCode 1. Two Sum',
     },
     {
-      URL: './DemoUI/PracticeExample/WebBluetooth.html',
+      URL: './Native HTML/PracticeExample/WebBluetooth.html',
       Name: 'WebBluetooth',
     },
   ];

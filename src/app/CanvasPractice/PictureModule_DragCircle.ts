@@ -35,15 +35,6 @@ export class PictureEditor {
         context.drawImage(element_Image, 0, 0, 500, 500);
         context.restore();
         //context.globalCompositeOperation='destination-in';
-        // context.beginPath();
-        // context.strokeStyle = "rgb(255 255 255 / 100%)";
-        // context.lineWidth = 1;
-        // const acr_xy=[250+previous_XY[0]+875,250+previous_XY[1]+875];
-        // context.arc(acr_xy[0], acr_xy[1], 125, 0, 2 * Math.PI);
-        // context.clip();
-        // context.stroke();
-        //context.drawImage(element_Image, 0, 0, 500, 500);
-        //context.restore();
     }
     inputImage(event: any) {
         console.log("%c inputImage:", "color: red", event);
@@ -101,18 +92,15 @@ export class PictureEditor {
         const mask = <HTMLImageElement>document.getElementById("mask");
         const previous_XY= [mask.offsetLeft,mask.offsetTop];
         console.log("%c previous_XY:", "color: blue", previous_XY);
-        //context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
-
         //---Circle--//
         console.log("%c _TS.selectAlbumsIndex:", "color: blue", _TS.selectAlbumsIndex);
         const load_img = new Image();
         load_img.src = canvas.toDataURL();
         load_img.onload = function () {
             const context: any = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             context.save();
             //context.drawImage(load_img,0,0, 500, 500);
-            context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             context.beginPath();
             context.strokeStyle = "rgb(255 255 255 / 100%)";
             context.lineWidth = 1;
@@ -120,24 +108,26 @@ export class PictureEditor {
             context.arc(acr_xy[0], acr_xy[1], 125, 0, 2 * Math.PI);
             context.stroke();
             context.clip();
-            context.drawImage(load_img,0,0, 500, 500);
+            context.drawImage(load_img,0,0, canvas.clientWidth, canvas.clientHeight);
             context.restore();
 
-            //context.drawImage(load_img,acr_xy[0]-125,acr_xy[1]-125,250,250,0,0,500,500);
-            //const oldUrl = canvas.toDataURL();
             const originImage = new Image();
             originImage.src = canvas.toDataURL();
+            context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+            // console.log("%c canvas.clientWidth:", "color: blue", canvas.clientWidth);
+            // console.log("%c canvas.clientHeight:", "color: blue", canvas.clientHeight);
             originImage.onload = function () {
-                context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+                console.dir("canvas:", canvas);
                 context.drawImage(originImage,acr_xy[0]-125,acr_xy[1]-125,250,250,0,0,500,500);
-                //const album_img = <HTMLImageElement>document.getElementById("img_" + _TS.selectAlbumsIndex);
-                //album_img.src = canvas.toDataURL();
+                const album_img = <HTMLImageElement>document.getElementById("img_" + _TS.selectAlbumsIndex);
+                album_img.src = canvas.toDataURL();
+                // const imageData = context.getImageData(acr_xy[0]-125,acr_xy[1]-125,250,250);
+                // console.log("%c imageData:", "color: blue", imageData);
+                // context.putImageData(imageData, 0, 0);
                 _TS.albums[_TS.selectAlbumsIndex]=canvas.toDataURL();
-            }            //context.restore();
-
+            }
             //console.log("%c _TS.selectAlbumsIndex:", "color: blue", _TS.selectAlbumsIndex);
             context.restore();
-            
             _TS.imageDataURL = undefined;
             _TS.imageSize = 1;
             element_Image.style.transform ="scale(1, 1)";
@@ -186,7 +176,6 @@ export class PictureEditor {
         console.log("%c mask.getBoundingClientRect():", "color: red", element_mask.getBoundingClientRect());
         //console.log("%c  getComputedStyle(element_mask);", "color: red",  getComputedStyle(element_mask));
         //const computedStyle=getComputedStyle(element_mask);
-
         // console.log("%c mask.offsetLeft():", "color: red", mask.offsetLeft);
         // console.log("%c mask.offsetTop():", "color: red", mask.offsetTop);
         //console.log("%c event.offsetX:", "color: red", event.offsetX);

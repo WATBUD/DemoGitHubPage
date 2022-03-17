@@ -1991,11 +1991,11 @@ export class M_Light_CS {
         //x' = cos(θ) * x - sin(θ) * y
         //y' = sin(θ) * x + cos(θ) * y
         //var temp_target=JSON.parse(JSON.stringify(this.AllBlockColor));
-        for (let xpos = -350; xpos < this.imageMaxWidth; xpos += this.minKeyWidth/1.5 ) {
+        for (let xpos = -350; xpos < this.imageMaxWidth; xpos += 40 ) {
             countNumber += 1;
-            for (let ypos = 0; ypos < this.imageMaxHeight; ypos += this.minKeyHeight/1.5) {
+            for (let ypos = 0; ypos < this.imageMaxHeight; ypos += 40) {
                 //space += this.minKeyWidth/2;
-                if(countNumber%3==0){
+                if(countNumber%3>0){
                     coordinateAllList.push(
                     {
                             coordinate: [xpos , ypos],

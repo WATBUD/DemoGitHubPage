@@ -1,0 +1,19 @@
+<input type="text" id="foo">
+<p id="test"></p>
+
+<script>
+    var user = {
+      get inputValue() { 
+        console.log("%c get", "color: blue");
+        return document.getElementById('foo').value
+      },
+      set inputValue(value) {
+        console.log("%c set", "color: blue", value);
+        document.getElementById('foo').value = value
+        document.getElementById('test').innerHTML = value
+      }
+    }
+    document.getElementById('foo').addEventListener('keyup',function() {
+      document.getElementById('test').innerHTML = user.inputValue
+    })
+</script>

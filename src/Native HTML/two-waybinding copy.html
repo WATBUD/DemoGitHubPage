@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <div id="div1">
+    <input type="text" v-model="name">
+    <br> 姓名：{{name}}
+  </div>
+</body>
+<script>
+  let el = document.getElementById('div1');
+  let template = el.innerHTML;
+  let _data = {
+    name: '_BuzzLy'
+  };
+
+  let data = new Proxy(_data, {
+    set(obj, name, value) {
+      obj[name] = value;
+      console.log("%c obj", "color: blue", obj);
+      console.log("%c name", "color: blue", name);
+      console.log("%c value", "color: blue", value);
+
+      render();
+    }
+  });
+
+  render();
+
+  function render() {
+    el.innerHTML = template.replace(/\{\{\w+\}\}/g, str => {
+      str = str.substring(2, str.length - 2);
+      return _data[str];
+    });
+    console.log("%c render:", "color: blue",  render);
+
+    Array.from(el.getElementsByTagName('input'))
+     .filter(ele => ele.getAttribute('v-model'))
+     .forEach(input => {
+       let name = input.getAttribute('v-model');
+       input.value = _data[name];
+       input.oninput = function () {
+         console.log("%c oninput:", "color: blue",  data,name);
+         data[name] = this.value;
+       };
+    });
+  }
+</script>
+
+</html>

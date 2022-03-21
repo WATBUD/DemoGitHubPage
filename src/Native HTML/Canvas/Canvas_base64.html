@@ -25,7 +25,7 @@
     context.fillRect(0, 0, 500, 500);
     context.fillStyle = "red";
     context.textAlign = "center";
-    context.fillText("Hello World", canvas.width / 2, canvas.height / 2);
+    context.fillText("Louis", canvas.width / 2, canvas.height / 2);
     // context.fillStyle = "yellow";
     // // context.strokeStyle = "blue";
     // // context.lineWidth = 150;
@@ -79,14 +79,15 @@
         //-------------------------------------------------------//
         console.log('%c dataURL', 'background: black; color: yellow', dataURL);
 
-        var z11 = dataURL.split(',');
-        console.log('%c z11', 'background: black; color: yellow', z11);
+        // var z11 = dataURL.split(',');
+        // console.log('%c z11', 'background: black; color: yellow', z11);
 
-        //var base64String = dataURL.replace('data:image/png;base64', '');
-        //console.log('%c base64String', 'background: black; color: yellow', base64String);
-        //b64toBlob(base64String);
-        var zzz = dataURLtoBlob(dataURL);
-        console.log('%c zzz', 'background: black; color: yellow', zzz);
+        var base64String = dataURL.replace('data:image/png;base64,', '');
+        console.log('%c base64String', 'background: black; color: yellow', base64String);
+
+        
+        // var zzz = dataURLtoBlob(dataURL);
+        // console.log('%c zzz', 'background: black; color: yellow', zzz);
 
         // var enc = window.btoa(dataURL);
         // console.log('%c zzz', 'background: black; color: yellow', zzz);

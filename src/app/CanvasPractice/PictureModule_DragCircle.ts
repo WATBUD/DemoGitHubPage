@@ -138,6 +138,23 @@ export class PictureEditor {
 
     }
 
+    ConvertImageTo_A_Base64(src){
+        console.log("%c ConvertImageTo_A_Base64:", "color: red", src);
+
+
+        var base64String = src.replace('data:image/png;base64,', '');
+
+        var textshow=document.getElementById('textshow');
+        textshow.innerHTML=base64String;
+        console.log('%c base64String', 'background: black; color: yellow', base64String);
+    }
+
+
+    copyEvent(id) {
+        var str = document.getElementById(id);
+        window.getSelection().selectAllChildren(str);
+        document.execCommand("Copy");
+    }
     getOffset(el:any) {
         const rect = el.getBoundingClientRect();
         return {

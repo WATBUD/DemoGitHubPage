@@ -1,11 +1,19 @@
 /* margin-top: 29px;
  */
-
+@font-face {
+font-family: 'mywebfont';
+src: url('./Helvetica-Neue-2.ttf');
+}
+* {
+    font-family: 'mywebfont'
+    /* font-family: "Helvetica Neue","Helvetica Neue" */
+    /* font-family: 'HelveticaNeue-Bold' */
+}
 .page_Options{
-    margin-left: -241px;
+    margin-left: 61px;
     margin-top: 55px;
     position: absolute;
-    background: rgb(245,245,247);
+    background: #F5F5F7;
     height: calc(100% - 55px);
     width: 241px;
 }
@@ -38,14 +46,7 @@
     justify-content: center;
     align-items: center;
 }
-.RightPanal::before {
-    content: "";
-    position: absolute;
-    height: 94%;
-    width: 2px;
-    margin-top: 18%;
-    background-color: #a2aa9f;
-}
+
 .KeyBoardAreaStyle {
     height: 287px;
     width: 100%;
@@ -79,12 +80,42 @@
     pointer-events: none;
 }
 #SharedPageContent {
-    margin-left: 302px;
-    position: absolute;
-    height: 100%;
-    width: 898px;
-    background: #edeef0;
+    /* margin-left: 302px; */
+    position: unset;
+    /* height: 100%;
+    width: 100%;
+    background: #edeef0; */
 }
+.MiddlePanel{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 656px;
+    margin-left: 302px;
+    background: rgb(237 238 240);
+}
+
+.RightPanal{
+position: absolute;
+height: 100%;
+width: 243px;
+right: 0px;
+background: rgb(237 238 240);
+
+}
+
+.RightPanal::before {
+    content: "";
+    position: absolute;
+    height: 94%;
+    width: 2px;
+    margin-top: 18%;
+    background-color: #a2aa9f;
+}
+
+
 #SharedSelectList {
     height: 90%;
     overflow-y: scroll;

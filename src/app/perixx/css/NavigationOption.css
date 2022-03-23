@@ -33,8 +33,8 @@
     content: "";
     position: absolute;
     right: 0%;
-    width: 2px;
-    height: 92%;
+    width: 1px;
+    height: 96%;
     top: 4%;
     background-color: #9FA3AA;
 }
@@ -53,7 +53,7 @@
     content: "";
     position: absolute;
     bottom: 0%;
-    height: 2px;
+    height: 1px;
     width: 92%;
     margin-left: 4%;
     background-color: rgb(159 163 170);

@@ -23,7 +23,7 @@
   position: absolute;
   background: #F5F5F7;
   height: calc(100% - 55px);
-  width: 65px;
+  width: 61px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -41,9 +41,9 @@
 
 
 #Nav_Project{
-    position: absolute;
+  position: absolute;
   height: 55px;
-  width: 305px;
+  width: 302px;
   display: flex;
   align-items: center;
   background: #F5F5F7;

@@ -119,12 +119,18 @@ export class PictureEditor {
             originImage.onload = function () {
                 console.dir("canvas:", canvas);
                 context.drawImage(originImage,acr_xy[0]-125,acr_xy[1]-125,250,250,0,0,500,500);
-                const album_img = <HTMLImageElement>document.getElementById("img_" + _TS.selectAlbumsIndex);
-                album_img.src = canvas.toDataURL();
+                //const album_img = <HTMLImageElement>document.getElementById("img_" + _TS.selectAlbumsIndex);
+                const image_base64=canvas.toDataURL();
+                //album_img.src = image_base64;
                 // const imageData = context.getImageData(acr_xy[0]-125,acr_xy[1]-125,250,250);
                 // console.log("%c imageData:", "color: blue", imageData);
                 // context.putImageData(imageData, 0, 0);
-                _TS.albums[_TS.selectAlbumsIndex]=canvas.toDataURL();
+                
+                _TS.albums[_TS.selectAlbumsIndex]=image_base64;
+                var base64String = image_base64.replace('data:image/png;base64,', '');
+                var textshow=document.getElementById('textshow');
+                textshow.innerHTML=base64String;
+
             }
             //console.log("%c _TS.selectAlbumsIndex:", "color: blue", _TS.selectAlbumsIndex);
             context.restore();
@@ -141,9 +147,7 @@ export class PictureEditor {
     ConvertImageTo_A_Base64(src){
         console.log("%c ConvertImageTo_A_Base64:", "color: red", src);
 
-
         var base64String = src.replace('data:image/png;base64,', '');
-
         var textshow=document.getElementById('textshow');
         textshow.innerHTML=base64String;
         console.log('%c base64String', 'background: black; color: yellow', base64String);

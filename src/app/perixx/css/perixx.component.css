@@ -109,7 +109,7 @@ background: rgb(237 238 240);
 .RightPanal::before {
     content: "";
     position: absolute;
-    height: 94%;
+    height: 643px;
     width: 1px;
     margin-top: 18%;
     background-color: #a2aa9f;

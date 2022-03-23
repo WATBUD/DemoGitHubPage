@@ -92,7 +92,7 @@ src: url('./Helvetica-Neue-2.ttf');
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 656px;
+    width: 655px;
     margin-left: 302px;
     background: rgb(237 238 240);
 }
@@ -110,7 +110,7 @@ background: rgb(237 238 240);
     content: "";
     position: absolute;
     height: 94%;
-    width: 2px;
+    width: 1px;
     margin-top: 18%;
     background-color: #a2aa9f;
 }

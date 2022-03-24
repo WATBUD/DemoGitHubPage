@@ -21,15 +21,12 @@
 #KeyAssignSelectList::-webkit-scrollbar {
     width: 6px;
 }
-
-
 .KeyBindClass{
-
     color: rgb(29, 52, 96);
     width: 100%;
     height: auto;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-size: 16px;
 }
 .KeyBindStyle{
     vertical-align: top;

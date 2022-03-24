@@ -52,6 +52,7 @@ src: url('./Helvetica-Neue-2.ttf');
     width: 100%;
     box-sizing: border-box;
     transform: scale(1);
+    margin-left: 26px;
    /* background: rgb(255 0 0);
     */
 }
@@ -59,7 +60,7 @@ src: url('./Helvetica-Neue-2.ttf');
     position: absolute;
     height: 252px;
     width: 596px;
-    margin-left: 26px;
+    margin-left: 0px;
 }
 .KeyBoard_Block {
     display: flex;

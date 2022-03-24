@@ -882,7 +882,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
       <div id="KeyAssignSelectList">
         <div id="Character" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Character</div>
+          <div class="KeyBindClassWord" >Character</div>
           <img class="KeyBindStyle"
             [src]="currentTouchButtons=='KeyA'? ImgPath.getThePicture('KeyA')[1]:ImgPath.getThePicture('KeyA')[0]"
             (mouseover)="currentTouchButtons='KeyA'" (mouseleave)="currentTouchButtons=''"
@@ -1034,7 +1034,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
 
         <div id="Number" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;">Number</div>
+          <div class="KeyBindClassWord">Number</div>
           <img [src]="currentTouchButtons=='Digit1'? ImgPath.Digit1[1]:ImgPath.Digit1[0]"
             (mouseover)="currentTouchButtons='Digit1'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('Digit1')">
@@ -1067,7 +1067,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (click)="setKeyBindingData('Digit0')">
         </div>
         <div id="Modifier-Left" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Modifier-Left</div>
+          <div class="KeyBindClassWord">Modifier-Left</div>
           <img class="KeyBindStyle"
             [src]="currentTouchButtons=='ShiftLeft'? ImgPath.getThePicture('ShiftLeft')[1]:ImgPath.getThePicture('ShiftLeft')[0]"
             (mouseover)="currentTouchButtons='ShiftLeft'" (mouseleave)="currentTouchButtons=''"
@@ -1086,7 +1086,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (click)="setKeyBindingData('AltLeft')">
         </div>
         <div id="Modifier-Right" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Modifier-Right</div>
+          <div class="KeyBindClassWord">Modifier-Right</div>
           <img class="KeyBindStyle"
             [src]="currentTouchButtons=='ShiftRight'? ImgPath.getThePicture('ShiftRight')[1]:ImgPath.getThePicture('ShiftRight')[0]"
             (mouseover)="currentTouchButtons='ShiftRight'" (mouseleave)="currentTouchButtons=''"
@@ -1109,7 +1109,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (click)="setKeyBindingData('AltRight')">
         </div>
         <div id="Arrow" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Arrow</div>
+          <div class="KeyBindClassWord">Arrow</div>
           <img class="KeyBindStyle"
             [src]="currentTouchButtons=='ArrowUp'? ImgPath.getThePicture('ArrowUp')[1]:ImgPath.getThePicture('ArrowUp')[0]"
             (mouseover)="currentTouchButtons='ArrowUp'" (mouseleave)="currentTouchButtons=''"
@@ -1128,7 +1128,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             (click)="setKeyBindingData('ArrowRight')">
         </div>
         <div id="Function" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Function</div>
+          <div class="KeyBindClassWord">Function</div>
           <img class="KeyBindStyle"
             [src]="currentTouchButtons=='F1'? ImgPath.getThePicture('F1')[1]:ImgPath.getThePicture('F1')[0]"
             (mouseover)="currentTouchButtons='F1'" (mouseleave)="currentTouchButtons=''"
@@ -1249,7 +1249,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
         </div>
         <div id="Numpad" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Numpad</div>
+          <div class="KeyBindClassWord">Numpad</div>
           <img class="KeyBindStyle"
             [src]="currentTouchButtons=='Numpad1'? ImgPath.getThePicture('Numpad1')[1]:ImgPath.getThePicture('Numpad1')[0]"
             (mouseover)="currentTouchButtons='Numpad1'" (mouseleave)="currentTouchButtons=''"
@@ -1322,7 +1322,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
 
         <div id="Mouse" class="KeyBindClass">
-          <div style="width: 100%;height: 10%;margin-left: 6%;margin-bottom: 3%;">Mouse</div>
+          <div class="KeyBindClassWord">Mouse</div>
           <img class="KeyBindStyle"
             [src]="currentTouchButtons=='MouseLeft'? ImgPath.getThePicture('MouseLeft')[1]:ImgPath.getThePicture('MouseLeft')[0]"
             (mouseover)="currentTouchButtons='MouseLeft'" (mouseleave)="currentTouchButtons=''"

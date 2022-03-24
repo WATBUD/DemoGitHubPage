@@ -121,7 +121,7 @@ export class PerixxComponent implements OnInit {
   }
   ngAfterViewInit() {
     document.addEventListener('click', (e: any) => {
-      var identity = e.target.dataset.identity
+      var identity = e.target.dataset.identity;
       //console.log('%c document_e.target','color:rgb(255,77,255)',  e.target);
 
       if (identity == undefined) {

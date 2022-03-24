@@ -135,8 +135,8 @@ export class NativeComponent implements OnInit {
       Name: 'Input_Type_File',
     },
     {
-      URL: './Native HTML/PracticeExample/LeetCode 1. Two Sum.html',
-      Name: 'LeetCode 1. Two Sum',
+      URL: './Native HTML/PracticeExample/Two-Sum-Less-Than-K.html',
+      Name: 'Two-Sum-Less-Than-K',
     },
     {
       URL: './Native HTML/PracticeExample/WebBluetooth.html',

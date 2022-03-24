@@ -41,6 +41,7 @@ export class ColorPickerDemo1Component implements OnInit {
     //this.router.navigate(['KeyBoard_RGB'], {});
    }
    ngOnInit() {
+      this.ColorWheelModule.wheelSelectorName="[data-CCPTest]";
    }
    HSLColorPickerFN :any = [];
    ngAfterViewInit(){
@@ -79,13 +80,24 @@ export class ColorPickerDemo1Component implements OnInit {
 
    }
     
-   updateColorWheel(event) {
+
+   updateColorWheel(event,blackColorChart=false) {
       console.log('%c updateColorWheel', 'background: black; color: white', event);
       let backgroundColor = event.target.style.backgroundColor;
-      this.ColorWheelModule.onclickColorDefault(event.target,0);
-      
+      var rgbValue=[255,0,0];
+      if(blackColorChart){
+        rgbValue=[0,0,0];
+      }
+      else{
+        rgbValue=this.ColorWheelModule.cssRgbToNumberArray(backgroundColor);
+      }
+      this.ColorWheelModule.onclickColorDefault(rgbValue, 0);
       console.log('%c backgroundColor', 'background: black; color: white', backgroundColor);
-   }
+    }
+
+
+
+
 
    updateCustomColorList(index){
       console.log('%c updateCustomColorList', 'background: black; color: white', event);

@@ -116,6 +116,7 @@ export class PerixxComponent implements OnInit {
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
   ngOnInit() {
     this.initialzeTheDevice();
+    this.ColorWheelModule.wheelSelectorName="[data-CCP]";
     //this.batteryvalue=this.getRandom(1,100);
   }
   ngAfterViewInit() {

@@ -13,6 +13,7 @@ export class ColorModule {
     RGBA_value = [0, 0, 0, 1];
     SBgColor: any = "";
     VBgColor: any = "";
+    wheelSelectorName="";
     colorTicket = [[255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1], [255, 32, 0, 1]];
     preDefineColor: any = ["#FF2000", "#ff8000", "#80ff00", "#00ff00", "#00ffff", "#0000ff", "#8000ff", "#ff00ff", "#ff0080", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];//RGB
     currentRecordIndex = 0;
@@ -61,7 +62,7 @@ export class ColorModule {
         if(dataCCP==undefined){
             return;
         }
-        //document.querySelector("[data-CCP]") as HTMLElement;
+        //document.querySelector(this.wheelSelectorName) as HTMLElement;
         var coordinateCircle = document.getElementById("coordinateCircle");
         var cooordinate = [event.offsetX - 5, event.offsetY - 5];
         coordinateCircle.style.marginLeft = cooordinate[0] + 'px';
@@ -97,7 +98,7 @@ export class ColorModule {
         //console.log('%c setTheColorWheelValue', 'background: white; color: red', logVar,event);
     }
     callBackColorWheelValue() {
-        var dataCCP = document.querySelector("[data-CCP]") as HTMLElement;
+        var dataCCP = document.querySelector(this.wheelSelectorName) as HTMLElement;
         if (dataCCP != undefined) {
 
 

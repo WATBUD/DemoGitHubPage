@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="" type="image/x-icon" />
+
+    <title>Canvas Fireball Follow Exercise</title>
+    <style>
+        body {
+            background: #0000;
+        }
+
+        canvas {
+            display: block;
+            left: 0%;
+            position: absolute;
+            top: 0%;
+        }
+
+        * {
+            cursor: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="fireGraphic"></canvas>
+
+
+</body>
+
+<script>
+    let fire_canvas = document.getElementById("fireGraphic");
+    let ctx = fire_canvas.getContext("2d");
+    fire_canvas.width = window.innerWidth;
+    fire_canvas.height = window.innerHeight;
+
+
+    const testPosition = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    function rand(min, max) {
+        return Math.floor((Math.random() * (max - min + 1)) + min);
+    };
+
+    //document.addEventListener("mousedown", this.eventArray[0])
+    document.addEventListener("mousemove", (event) => {
+        testPosition.x = event.pageX;
+        testPosition.y = event.pageY;
+        //     console.log("mousemove", mouseOn, e);
+        //     if (!mouseOn) return;
+    });
+    //document.addEventListener("mouseup", this.eventArray[2])
+    function fireBall(position) {
+        console.log('%c fireBall Constructor', 'background: blue; color: red', position, testPosition)//E=number of zeros
+        //this.resetStartPoint(testPosition);
+
+    };
+
+
+    //fireBall instance
+    function fireBall(position) {
+        console.log('%c fireBall Constructor', 'background: blue; color: red', position, testPosition)//E=number of zeros
+        //this.resetStartPoint(testPosition);
+
+    };
+    //console.log('%c 1E3', 'background: blue; color: red', 1E3)//E=number of zeros
+
+    //Frame number animation object
+    window.requestAnimFrame = function () {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (paramter) {
+                console.log('paramter')//E=number of zeros
+
+                window.setTimeout(paramter, 1E3 / 60)//1000/60
+            }
+    }();
+
+    //reset particle state
+    fireBall.prototype.resetStartPoint = function (position = undefined) {
+        console.log('%c position', 'background: blue; color: red', position)//E=number of zeros
+        this._radius = rand(5, 25);//Randomly generated radius
+        this._position = position || { x: testPosition.x, y: testPosition.y };;//初始位置
+        console.log('%c resetStartPoint', 'background: blue; color: red', this._position, position)//E=number of zeros
+        //rgba(255,'+rand(0,165)+','+rand(0,100)+',0.3)
+    }
+    //fire_canvas render
+    fireBall.prototype.render = function () {
+        //console.log('%c fireBall_render', 'background: blue; color: red')//E=number of zeros
+
+        ctx.beginPath();
+        ctx.arc(this._position.x, this._position.y, this._radius, 0, Math.PI * 2, false);
+        ctx.fillStyle = ctx.strokeStyle = 'rgba(0,5,255,1)';//Particle Color
+        ctx.lineWidth = 10;//Particle Boundary Line Width
+        ctx.fill();
+        ctx.stroke();
+    }
+    //Update Particle Status
+    fireBall.prototype.update = function () {
+        if (this._radius > 0 && this._position.y > this._radius) {
+            this._position.x -= rand(-2, 2);
+            this._position.y -= rand(1, 2);
+            //console.log('%c _radius', 'background: blue; color: red',this._radius)//E=number of zeros
+            this._radius -= 0.5;
+            //console.log('%c _radius', 'background: blue; color: red',this._radius)//E=number of zeros
+
+
+        } else {
+            console.log('%c update_resetStartPoint', 'background: blue; color: red')//E=number of zeros
+            this.resetStartPoint();//
+        }
+    }
+
+
+    //generate fireball
+    let fires = [];
+    for (var i = 0; i < 100; i++) {
+        var fireBall_ = new fireBall();
+        fireBall_.resetStartPoint();
+        fires.push(fireBall_);
+
+    }
+    let loop = function () {
+        //loop call
+        requestAnimFrame(loop, fire_canvas)
+        ctx.globalCompositeOperation = "destination-out";
+        //ctx.fillStyle = 'hsla(0, 0%, 0%, 1)';
+        //ctx.fillStyle = 'rgb(0,0,255)';
+
+        //ctx.fillRect(0,0,window.innerWidth/2,window.innerHeight/2);
+        ctx.fillRect(0, 0, fire_canvas.width, fire_canvas.height);
+        ctx.globalCompositeOperation = 'lighter';
+
+        fires.forEach(fire => {
+            fire.render();
+            fire.update();
+        })
+
+    }
+    loop();
+</script>
+
+
+
+</html>

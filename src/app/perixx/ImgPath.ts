@@ -47,11 +47,8 @@ export class ImgPathList{
         "./image/Perixx_Project/NavigationBar/Off/Home_Nav.png",
         "./image/Perixx_Project/NavigationBar/On/Home_Nav.png",
     ]
-    Digit0: any = [
-        "./image/Perixx_Project/KeyIcon/Off/Digit0.png",
-        "./image/Perixx_Project/KeyIcon/On/Digit0.png",
-        "./image/Perixx_Project/KeyIcon/Print/Digit0.png",
-    ]
+
+
     Digit1: any = [
         "./image/Perixx_Project/KeyIcon/Off/Digit1.png",
         "./image/Perixx_Project/KeyIcon/On/Digit1.png",
@@ -102,6 +99,14 @@ export class ImgPathList{
         "url('./image/P7/On/Option.png')",
     ]
  
+
+    SWConfig: any = [
+        "./image/Perixx_Project/PageConnected/SWConfig_OutSide.png",
+        "./image/Perixx_Project/PageConnected/SWConfig_InSide.png",
+    ]
+
+
+
     BellIcon:any = [
         "url('./image/Share/Off/Bell.png')",
         "url('./image/Share/On/Bell.png')",

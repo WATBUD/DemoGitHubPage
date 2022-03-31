@@ -1,11 +1,23 @@
 /* margin-top: 29px;
  */
+
 @font-face {
-font-family: 'mywebfont';
-src: url('./Helvetica-Neue-2.ttf');
+    font-family: 'Inter-Bold';
+    src: url('./Inter-Bold.otf');
 }
+@font-face {
+    font-family: 'Inter-Medium';
+    src: url('./Inter-Medium.otf');
+}
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url('./Inter-Regular.otf');
+}
+
+
 * {
-    font-family: 'mywebfont'
+    font-family: 'Inter-Medium';
+    font-size: 14px;
     /* font-family: "Helvetica Neue","Helvetica Neue" */
     /* font-family: 'HelveticaNeue-Bold' */
 }

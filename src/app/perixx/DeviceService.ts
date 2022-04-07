@@ -8,8 +8,8 @@ let globalDB;
 let electron_Instance; 
 
 try {
-    let globalDB = window['System']._nodeRequire('./backend/dbapi/AppDB.js');
-    let electron_Instance = window['System']._nodeRequire('electron').remote; 
+    globalDB = window['System']._nodeRequire('./backend/dbapi/AppDB.js');
+    electron_Instance = window['System']._nodeRequire('electron').remote; 
 }
 catch (error) {
     //console.log('%c _nodeRequire_err','background: red; color: white',error);
@@ -20,18 +20,14 @@ export class DeviceService{
         language:"en",
         version:"1.0.0"
     }
-    pluginNoDeviceData =[];
-    NoDeviceindex=0;
     pluginDeviceData=[];
     dbServiceBackEnd;
     dbService;
-    // this.dbService.zzzz="zzzzzzzzzzzzzzzzz";
-    // private http:Http;
     nowDeviceName="";
     currentDevice = {
         "DeviceId": 0,
         "ModelType":2,
-        "SN": '0x1EA70x9018',
+        "SN": '0x04F20x2159',
         "StateID": -1,
         "deviceData": {},
         "devicename": "MODEL O WIRELESS",
@@ -51,7 +47,7 @@ export class DeviceService{
             this.dbService= globalDB.getInstance();
         }
         catch (error) {
-            //console.log('%c _nodeRequire_err','background: red; color: white',error);
+            console.log('%c _nodeRequire_err','background: red; color: white',error);
         }
         console.log('%c DeviceService_http','background: red; color: white');
             // this.getAssignURL_json('https://gloriouscore.nyc3.digitaloceanspaces.com/Glorious_Core/Version.json').subscribe((data) => {
@@ -68,15 +64,7 @@ export class DeviceService{
         }
     }
 
-    getDevicePageindex(){
-      //console.log('%c getDevicePageindex','background: red; color: white', this.pluginNoDeviceData[this.NoDeviceindex]);
-      if(this.pluginNoDeviceData.length<1){
-        return [];
-      }
-      else{
-        return this.pluginNoDeviceData[this.NoDeviceindex];
-      }
-    }
+
     getCurrentDevice(){
         var target = this.pluginDeviceData;
         //console.log('DeviceService.getCurrentDevice',target);
@@ -106,19 +94,19 @@ export class DeviceService{
     }
     getDevice() {
         return new Promise((resolve,reject) => {
-            resolve();
-
             let oldPluginDeviceData = JSON.parse(JSON.stringify((this.pluginDeviceData)));
             let AllDeviceData = [];
-            var data=this.dbServiceBackEnd.AllDBtempData.getPluginDevice;
-                console.log('dbservice_getPluginDevice()',data);
-                for(let i of data.Mouse){
+            var pluginDBData=this.dbServiceBackEnd.AllDBtempData.getPluginDevice;
+            //console.log('dbservice_getPluginDevice()',pluginDBData);
+            //var pluginDBData=this.dbService.AllDBtempData.getPluginDevice;
+                console.log('dbservice_getPluginDevice()',pluginDBData);
+                for(let i of pluginDBData.Mouse){
                     AllDeviceData.push(i);
                 }
-                for(let i of data.Keyboard){
+                for(let i of pluginDBData.Keyboard){
                     AllDeviceData.push(i);
                 }
-                for(let i of data.Headset){
+                for(let i of pluginDBData.Headset){
                     AllDeviceData.push(i);  
                 }
                 let count = 1;
@@ -129,24 +117,16 @@ export class DeviceService{
                     //var getAllDeviceData=JSON.parse(JSON.stringify(this.dbService.AllDBtempData.getDevice));
                     console.log('this.dbservice.getAllDevice().then',getAllDeviceData);
 
-
-                    // this.pluginNoDeviceData =[[true,true,true],[true,true,true]];
-                    // for(let i = 0; i < newPluginData.length; i++) {
-                    //     let index = getAllDeviceData.findIndex(x => x.SN == newPluginData[i].SN)
-                    //     let oldDataCheck = oldPluginDeviceData.findIndex(x => x.SN == newPluginData[i].SN)
-                    //     if(index != -1 && oldDataCheck == -1)//舊裝置存在 舊Plugin不存在
-                    //         newPluginData[i].deviceData = getAllDeviceData[index];
-                    //     else if(oldDataCheck != -1){// 舊Plugin存在
-                    //         oldPluginDeviceData[oldDataCheck].version=newPluginData[i].version;
-                    //         newPluginData[i] = oldPluginDeviceData[oldDataCheck];
-                    //     }
-                    //     if(count % 3 == 0) {
-                    //         count=1;
-                    //         tempindex+=1;
-                    //     }
-                    //     this.pluginNoDeviceData[tempindex][count]=false;
-                    //     count++;
-                    // }
+                    for(let i = 0; i < newPluginData.length; i++) {
+                        let index = getAllDeviceData.findIndex(x => x.SN == newPluginData[i].SN)
+                        let oldDataCheck = oldPluginDeviceData.findIndex(x => x.SN == newPluginData[i].SN)
+                        if(index != -1 && oldDataCheck == -1)//舊裝置存在 舊Plugin不存在
+                            newPluginData[i].deviceData = getAllDeviceData[index];
+                        else if(oldDataCheck != -1){// 舊Plugin存在
+                            oldPluginDeviceData[oldDataCheck].version=newPluginData[i].version;
+                            newPluginData[i] = oldPluginDeviceData[oldDataCheck];
+                        }
+                    }
                     this.pluginDeviceData = newPluginData;
                     console.log('%c newPluginData','background: red; color: white', newPluginData);
 

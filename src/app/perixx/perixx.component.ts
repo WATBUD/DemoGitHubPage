@@ -13,9 +13,7 @@ import { FirewareManager } from './FirewareManager';
 import { ColorModule } from '../../Module/TSImportManager';
 import { Electron_Service } from '../../Module/Electron_Service';
 import { DeviceService } from './DeviceService';
-
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
+import { Observable,fromEvent  } from 'rxjs';
 declare var window: any;
 
 //import { HttpService } from '../../Module/HttpService';
@@ -140,7 +138,7 @@ export class PerixxComponent implements OnInit {
     });
   }
   public on(name: string): Observable<any> {
-    return Observable.fromEvent(window, name);
+    return fromEvent(window, name);
   }
   ngOnInit() {
     this.initialzeTheDevice();
@@ -437,6 +435,7 @@ export class PerixxComponent implements OnInit {
     }
     console.log("ToServerFunctionName", Obj4);
     this.Electron_Service.RunSetFunction(Obj4).then((data) => {
+      console.log("setDBDataToServer_callBack", data);
     });
 
   }

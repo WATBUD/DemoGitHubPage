@@ -7,7 +7,7 @@ let electron_Instance;
 try {
     electron_Instance = window['System']._nodeRequire('electron').remote;
     const { ipcRenderer } = System._nodeRequire('electron');
-    evtVar = System._nodeRequire('./backend/others/EventVariable');
+    evtVar = System._nodeRequire('./backend/others/EventVariable').EventTypes;
     funcVar= System._nodeRequire('./backend/others/FunctionVariable');
     env = System._nodeRequire('./backend/others/env');
     NeDB = window['System']._nodeRequire('electron').remote.getGlobal('AppProtocol').deviceService.nedbObj; 
@@ -51,6 +51,19 @@ export class Electron_Service{
         var window = electron_Instance.BrowserWindow.getFocusedWindow();
         window.hide();
     }
+    initializeUIDone(){
+        let DataContent = {
+            Type: funcVar.FuncType.System,
+            Func: funcVar.FuncName.InitializeUIDone,
+            Param: ""
+        }
+        this.RunSetFunction(DataContent).then((data) => {//=>to AppProtocol=>electron.js
+        });
+    }
+
+
+
+
 
     getElectron_Instance(){
         return electron_Instance;
@@ -61,7 +74,10 @@ export class Electron_Service{
     getFuncVar(){
         return funcVar;
     }
-    inTheElecctronFramework(){
+    getEvtVar(){
+        return evtVar;
+    }
+    inTheElectronFramework(){
         if(this.protocol!=undefined){
            return true;
         }

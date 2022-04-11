@@ -84,6 +84,7 @@
     border-style: solid;
    /* border-color: rgb(255,87,0);
     */
+    pointer-events: none;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;

@@ -221,7 +221,7 @@ export class PerixxComponent implements OnInit {
           var Keyboard_Dis_Block = document.querySelectorAll(".KeyBoard_Dis_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_Dis_Block);
 
-        }, 50);
+        }, 10);
         break;
       case "Lighting_Nav":
         this.HSLColorPickerFN[0] = ((oEvent: MouseEvent) => {
@@ -1092,7 +1092,6 @@ export class PerixxComponent implements OnInit {
     //var KeyMatrix=target.getNowModeKeyMatrix();
     if (dataValue == "Disable") {
       targetMatrixKey.recordBindCodeType = "Disable";
-      targetMatrixKey.recordBindCodeName="";
     }
     else if (dataValue == "Default") {
       targetMatrixKey.recordBindCodeType = "";
@@ -1149,6 +1148,34 @@ export class PerixxComponent implements OnInit {
     return "";
 
   }
+  getKeyDisableIcon(index) {
+    var target = this.KeyBoardManager.keyBoardTemp;
+    var KeyMatrix = target.getNowModeKeyMatrix();
+    var targetMatrixKey = KeyMatrix[index];
+    var path
+    if (this.keyboardColorHintMode == 'KeyBoardManager') {
+      var layoutMode = target.layoutMode;
+      //console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);
+      if (layoutMode == "Default") {
+        return path = "";//defaultValue recordBindCodeName
+      }
+      else if (layoutMode == "Custom") {
+        if (targetMatrixKey.recordBindCodeType == "Disable") {
+          path = this.KeyBoardStyle.getTarget().disableImg.path[index];
+        }
+      }
+    }
+    else if (this.keyboardColorHintMode == 'KeyBoardLibray') {
+      if (targetMatrixKey.recordBindCodeType == "Disable") {
+        path = this.KeyBoardStyle.getTarget().disableImg.path[index];
+      }
+    }
+    if (path != undefined) {
+      return path;
+    }
+    return "";
+  }
+
 
   renameKeyboard(event) {
     console.log("event=" + event.target.value);

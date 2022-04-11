@@ -93,7 +93,6 @@ export class KeyAssignManager {
     *@param TData Obj:KeyAssignManager Data
     */
     updateVariable(TData){
-        //var target=this.KeyBoardManager.getTarget().getNowModeTargetMatrixKey();
         var arr = Object.keys(TData);
         for (let index = 0; index < arr.length; index++) {
 

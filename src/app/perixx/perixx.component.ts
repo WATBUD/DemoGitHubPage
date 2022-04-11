@@ -419,10 +419,13 @@ export class PerixxComponent implements OnInit {
         break;
       case "Macro_Nav":
         ToServerFunctionName = 'ApplyMacro';
-        devdata.Db_data = JSON.parse(JSON.stringify(this.MacroManager))
-        this.dbService.updateMacro(devdata).then((data) => {
-          //callback(data);
-        });
+        devdata.Db_data = {
+          Keyboard_Data:JSON.parse(JSON.stringify(this.KeyBoardManager)),
+          Macro_Data:JSON.parse(JSON.stringify(this.MacroManager))
+        }
+        // this.dbService.updateMacro(devdata).then((data) => {
+        //   //callback(data);
+        // });
         console.log('%c updateMacro', 'background: black; color: white', this.MacroManager);
         break;
 
@@ -434,8 +437,12 @@ export class PerixxComponent implements OnInit {
       SN: this.DeviceService.getCurrentDevice().SN
     }
     console.log("ToServerFunctionName", Obj4);
-    this.Electron_Service.RunSetFunction(Obj4).then((data) => {
+    this.Electron_Service.RunSetFunction(Obj4).then((data:any) => {
       console.log("setDBDataToServer_callBack", data);
+      if(data.indexOf('Success')==-1){
+        this.theScreenThatPopsUpWhenTheUpdateFails=true;
+      }
+
     });
 
   }
@@ -1070,8 +1077,6 @@ export class PerixxComponent implements OnInit {
   }
   loadTemporaryKeyboardData() {
     this.KeyBoardManager.loadTemporaryKeyboardData();
-    this.theScreenThatPopsUpWhenTheUpdateFails=true;
-
     if(this.Electron_Service.inTheElectronFramework()){
     this.setDBDataToServer(this.currentPage);
     }
@@ -1079,12 +1084,22 @@ export class PerixxComponent implements OnInit {
 
   }
   setKeyBindingData(dataValue = "") {
-    //if(dataValue!=""){
     var target = this.KeyBoardManager.keyBoardTemp;
     var targetMatrixKey = target.getNowModeTargetMatrixKey();
     //var KeyMatrix=target.getNowModeKeyMatrix();
-    targetMatrixKey.recordBindCodeType = "GeneralBinding";
-    targetMatrixKey.recordBindCodeName = dataValue;
+    if (dataValue == "Disable") {
+      targetMatrixKey.recordBindCodeType = "Disable";
+      targetMatrixKey.recordBindCodeName = dataValue;
+    }
+    else if (dataValue == "Default") {
+      targetMatrixKey.recordBindCodeType = "GeneralBinding";
+      targetMatrixKey.recordBindCodeName=targetMatrixKey.defaultValue;
+    }
+    else {
+      targetMatrixKey.recordBindCodeType = "GeneralBinding";
+      targetMatrixKey.recordBindCodeName="";
+    }
+    
     target.layoutMode = "Custom";
 
     if (this.keyboardColorHintMode == 'KeyBoardLibray') {
@@ -1104,10 +1119,6 @@ export class PerixxComponent implements OnInit {
       this.KeyBoardManager.keyBoardTemp.resetTheSpecifiedKeyBindData(i)
     }
   }
-
-
-
-
 
   getKeyBindingIcon(index) {
     var target = this.KeyBoardManager.keyBoardTemp;

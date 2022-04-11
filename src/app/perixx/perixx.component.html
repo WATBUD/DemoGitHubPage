@@ -880,6 +880,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
       </div>
     </section>
+    <!-- (contextmenu)="resetTheSpecifiedKeyBindData(i)" -->
     <div class="MiddlePanel">
       <div id="mainKeyboardBlock" class="KeyBoardAreaStyle">
         <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
@@ -887,7 +888,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index" data-KB_Block="5"
           class="KeyBoard_Block" [attr.data-index]="i"
           [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
-          (click)="clickTheKeyBindButton(i)" (contextmenu)="resetTheSpecifiedKeyBindData(i)"
+          (click)="clickTheKeyBindButton(i)" 
           (mouseover)="KeyBoardStyle.getTarget().disableImg.visible[i]=false;"
           (mouseleave)="KeyBoardStyle.getTarget().disableImg.visible[i]=true;">
           <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)">

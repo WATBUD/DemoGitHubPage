@@ -218,6 +218,9 @@ export class PerixxComponent implements OnInit {
         setTimeout(() => {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
+          var Keyboard_Dis_Block = document.querySelectorAll(".KeyBoard_Dis_Block");
+          this.KeyBoardStyle.applyStyles(Keyboard_Dis_Block);
+
         }, 50);
         break;
       case "Lighting_Nav":
@@ -1089,19 +1092,17 @@ export class PerixxComponent implements OnInit {
     //var KeyMatrix=target.getNowModeKeyMatrix();
     if (dataValue == "Disable") {
       targetMatrixKey.recordBindCodeType = "Disable";
-      targetMatrixKey.recordBindCodeName = dataValue;
+      targetMatrixKey.recordBindCodeName="";
     }
     else if (dataValue == "Default") {
-      targetMatrixKey.recordBindCodeType = "GeneralBinding";
+      targetMatrixKey.recordBindCodeType = "";
       targetMatrixKey.recordBindCodeName=targetMatrixKey.defaultValue;
     }
     else {
       targetMatrixKey.recordBindCodeType = "GeneralBinding";
-      targetMatrixKey.recordBindCodeName="";
+      targetMatrixKey.recordBindCodeName = dataValue;
     }
-    
     target.layoutMode = "Custom";
-
     if (this.keyboardColorHintMode == 'KeyBoardLibray') {
       this.KeyBoardLibray.getTarget().ImportClassData(this.KeyBoardManager.keyBoardTemp);
     }

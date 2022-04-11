@@ -287,7 +287,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     height: 17px;
     top: 656px;
     text-align: center;
-    font-family: 'Inter-Regular';">
+    font-family: 'Inter-Regular';
+    font-size: 14px;">
       I agree to receive updates from Perixx.
     </div>
   </div>
@@ -889,6 +890,12 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           (click)="clickTheKeyBindButton(i)" (contextmenu)="resetTheSpecifiedKeyBindData(i)">
           <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)">
         </div>
+        <!-- <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index" data-dis_Block="0"
+        class="KeyBoard_Dis_Block"
+        [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
+        (click)="clickTheKeyBindButton(i)" (contextmenu)="resetTheSpecifiedKeyBindData(i)">
+        <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)">
+        </div> -->
       </div>
 
       <div class="ApplyBtn" style="bottom: 24px;" (click)="loadTemporaryKeyboardData()"> Apply

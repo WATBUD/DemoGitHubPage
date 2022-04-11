@@ -115,7 +115,7 @@ export class KeyBoardStyle {
                 "border-width: 0px;margin-left: 300px;margin-top: 146px;transform: rotate(-7deg);",
                 "border-width: 0px;width: 25px;margin-left: 327px;margin-top: 141px;transform: rotate(-7deg);",
                 "border-width: 0px;width: 25px;margin-left: 356px;margin-top: 136px;transform: rotate(-7deg);",
-                "border-width: 2px; width: 32px; margin-left: 386px; margin-top: 131px; transform: rotate(-7deg);",
+                "border-width: 0px; width: 32px; margin-left: 386px; margin-top: 131px; transform: rotate(-7deg);",
                 "border-width: 0px;margin-left: 423px;margin-top: 128px;transform: rotate(0deg);",
                 "border-width: 0px;margin-left: 448px;margin-top: 128px;transform: rotate(0deg);",
                 "border-width: 0px;margin-left: 471px;margin-top: 128px;transform: rotate(0deg);",

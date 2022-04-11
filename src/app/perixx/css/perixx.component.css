@@ -74,6 +74,21 @@
     width: 596px;
     margin-left: 0px;
 }
+.KeyBoard_Dis_Block {
+    display: flex;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin-left: 48px;
+    margin-top: 11px;
+    border-style: solid;
+   /* border-color: rgb(255,87,0);
+    */
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12%;
+}
 .KeyBoard_Block {
     display: flex;
     position: absolute;

@@ -10,7 +10,7 @@ z-index: 9999;" class="text-effect">
   <div class="spotlight"></div>
 </div> -->
 
-<!-- <div id="SnaplLineXY" style="
+<div id="SnaplLineXY" style="
     position: absolute;
     width: 100%;
     height: 100%;
@@ -21,7 +21,7 @@ z-index: 9999;" class="text-effect">
     left: 100px;
     z-index: 9999;
     pointer-events: none;">
-</div> -->
+</div>
 
 
 
@@ -896,7 +896,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index" 
         data-dis_Block="0"
         class="KeyBoard_Dis_Block"
-        [style.visibility]="KeyBoardStyle.getTarget().disableImg.visible[i] ?'visible':'hidden'">
+        [style.visibility]="KeyBoardStyle.getTarget().disableImg.visible[i]?'visible':'hidden'">
         <img class="KeyBoardBindImg" alt="" [src]="getKeyDisableIcon(i)">
         </div>
       </div>
@@ -1448,7 +1448,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
 
       <div id="MacroFileSelectList"
-        style="position:relative;transition: all 4s linear;margin-top: 0%;height: auto;max-height: 130px;">
+        style="position:relative;transition: all 4s linear;margin-top: 0%;height: 130px;max-height: 130px;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.keyBoardTemp.macroFiletItem;let i = index"
           (click)="macroProfileFileLeftClick(item)" (contextmenu)="macroProfileFileRightClick(item,$event)"
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"

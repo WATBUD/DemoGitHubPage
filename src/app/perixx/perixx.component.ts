@@ -219,7 +219,7 @@ export class PerixxComponent implements OnInit {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
           var Keyboard_Dis_Block = document.querySelectorAll(".KeyBoard_Dis_Block");
-          this.KeyBoardStyle.applyStyles(Keyboard_Dis_Block);
+          this.KeyBoardStyle.applyDisableImgStyles(Keyboard_Dis_Block);
 
         }, 10);
         break;
@@ -1153,6 +1153,12 @@ export class PerixxComponent implements OnInit {
     var KeyMatrix = target.getNowModeKeyMatrix();
     var targetMatrixKey = KeyMatrix[index];
     var path
+    
+    var keyIsExist = this.checkForPassableKey.find((x) => x == targetMatrixKey.defaultValue);
+    if (keyIsExist != undefined) {
+    return this.KeyBoardStyle.getTarget().disableImg.path[index];
+    }
+
     if (this.keyboardColorHintMode == 'KeyBoardManager') {
       var layoutMode = target.layoutMode;
       //console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);

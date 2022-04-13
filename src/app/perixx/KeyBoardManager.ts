@@ -11,7 +11,7 @@ export class KeyBoardManager {
     constructor(inputmax=1,quantity=0) {
         this.maxKayCapNumber = inputmax;
         for (let index = 0; index < quantity; index++) {
-            this.KeyBoardArray.push(new KeyBoard("Template_" + index, inputmax));
+            this.KeyBoardArray.push(new KeyBoard("Template_0" + (index+1), inputmax));
         }
         this.keyBoardTemp=new KeyBoard("Template_", inputmax);
     }
@@ -31,9 +31,17 @@ export class KeyBoardManager {
 
     }
     create_KeyBoard(name = "Template") {
-        var index = "_"+this.KeyBoardArray.length;
+        var checkName="";
+        var newIndex=(this.KeyBoardArray.length+1);
+        if(newIndex<10){
+            checkName=name+"-0"+newIndex;
+        }
+        else{
+            checkName=name+"-"+newIndex;
+        }
+        console.log('%c create_KeyBoard_checkName','color:rgb(255,77,255)',  checkName);
 
-        this.KeyBoardArray.push(new KeyBoard(this.getNotRepeatName(name + index), this.maxKayCapNumber));
+        this.KeyBoardArray.push(new KeyBoard(this.getNotRepeatName(checkName), this.maxKayCapNumber));
     }
 
     getNotRepeatName(inputName) {
@@ -44,7 +52,14 @@ export class KeyBoardManager {
         while (pass) {
             var checkName;
             if(Num>0){
-                checkName=Tname + Num;
+                checkName=Tname+Num;
+
+                // if(Num<10){
+                //     checkName=Tname+"0"+Num;
+                // }
+                // else{
+                //     checkName=Tname+Num;
+                // }
             }
             else{
                 checkName=Tname;

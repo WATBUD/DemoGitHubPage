@@ -291,7 +291,7 @@ export class MacroManager {
         while (pass) {
             var checkName;
             if(Num>0){
-                checkName=Tname + Num;
+                checkName=Tname+Num;
             }
             else{
                 checkName=Tname;

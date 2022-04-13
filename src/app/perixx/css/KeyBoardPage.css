@@ -3,9 +3,8 @@
     overflow-y: scroll;
     overflow-x: hidden;
     margin-top: 21%;
-    width: 90%;
+    width: 229px;
     position: absolute;
-    margin-left: 7%;
 }
 #KeyAssignSelectList::-webkit-scrollbar-track {
 
@@ -27,6 +26,7 @@
     height: auto;
     margin-bottom: 21px;
     font-size: 16px;
+    margin-left: 16px;
 }
 .KeyBindClassWord{
    width: 100%;
@@ -40,7 +40,7 @@
 
 .KeyBindStyle{
     vertical-align: top;
-
+    margin-right: 4px;
 }
 .ParallelTextString{
     color: rgb(29,52,96);

@@ -676,7 +676,6 @@ export class PerixxComponent implements OnInit {
 
   }
   loadTemporaryMacroData() {
-    this.theScreenThatPopsUpWhenTheUpdateFails=true;
     var target = this.KeyBoardManager.keyBoardTemp;
     var keyMatrix = target.getNowModeKeyMatrix();
     for (let index = 0; index < keyMatrix.length; index++) {

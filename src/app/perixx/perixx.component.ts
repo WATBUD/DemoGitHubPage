@@ -175,14 +175,14 @@ export class PerixxComponent implements OnInit {
     //   console.log('%c noOptionToGetURL', 'color:rgb(255,75,255,1)', res)
 
     // });
-    setInterval(() => {
-      var aaa=this.batteryvalue;
-      aaa+=26;
-      if(aaa>100){
-        aaa=0;
-      }
-      this.batteryvalue=aaa;
-    }, 500);
+    // setInterval(() => {
+    //   var aaa=this.batteryvalue;
+    //   aaa+=26;
+    //   if(aaa>100){
+    //     aaa=0;
+    //   }
+    //   this.batteryvalue=aaa;
+    // }, 500);
 
   }
 

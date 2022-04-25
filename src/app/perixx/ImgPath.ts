@@ -25,8 +25,6 @@ export class ImgPathList{
         "./image/Perixx_Project/MacroPage/Off/Record.png",
         "./image/Perixx_Project/MacroPage/On/Record.png",
     ]
-
-
     Macro_Linking: any = [
         "./image/Perixx_Project/MacroPage/Off/Linking.png",
         "./image/Perixx_Project/MacroPage/On/Linking.png",
@@ -104,9 +102,6 @@ export class ImgPathList{
         "./image/Perixx_Project/PageConnected/SWConfig_OutSide.png",
         "./image/Perixx_Project/PageConnected/SWConfig_InSide.png",
     ]
-
-
-
     BellIcon:any = [
         "url('./image/Share/Off/Bell.png')",
         "url('./image/Share/On/Bell.png')",
@@ -116,9 +111,20 @@ export class ImgPathList{
         'Icon':"",
     }]
 
-   
+    Boundary=[
+        './image/Perixx_Project/Share/Boundary1.png',
+        './image/Perixx_Project/Share/Boundary1.png',
+        './image/Perixx_Project/Share/Boundary1.png',
+    ]
+    getTheProjectIcon(name="1"){
+        var imagePath=[
+            "./image/Perixx_Project/KeyIcon/Off/M"+name+".png",
+            "./image/Perixx_Project/KeyIcon/On/M"+name+".png",
+        ]
+        //console.log('%c getThePicture', 'background: black; color: white', KeyString,imagePath);
+        return imagePath;
+    }
     getThePicture(KeyString=""){
-
     var imagePath=[
         "./image/Perixx_Project/KeyIcon/Off/"+KeyString+".png",
         "./image/Perixx_Project/KeyIcon/On/"+KeyString+".png",

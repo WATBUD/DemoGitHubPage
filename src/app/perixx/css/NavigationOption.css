@@ -5,17 +5,7 @@
 }
 
 .Nav_ProjectItem{
-    border: 2px solid rgb(18 64 162);
-    color: rgb(18 64 162);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 49%;
-    width: 9%;
-    border-radius: 8px;
-    font-size: 9px;
-    margin-left: 4%;
-    font-weight: bold;
+  margin-left: 16px;
 }
 
 #NavigationBar{

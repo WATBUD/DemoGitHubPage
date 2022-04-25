@@ -294,12 +294,18 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   </div>
 
   <div *ngIf="this.currentPage!='ConnectedPage'" id="Nav_Project">
-    <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
+
+    <!-- <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
       (click)="project_select($event,i)"
       [style.color]="keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
       [ngStyle]="{'border':keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}">
       M{{i+1}}
-    </div>
+    </div> -->
+      <img class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index" 
+      [src]="keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?ImgPath.getTheProjectIcon(i+1)[1]:ImgPath.getTheProjectIcon(i+1)[0]"
+      (click)="project_select($event,i)">
+
+
   </div>
   <div *ngIf="this.currentPage!='ConnectedPage'" id="NavigationBar">
     <img [src]="currentPage=='Home_Nav'? ImgPath.Home_Nav[1]:ImgPath.Home_Nav[0]" (click)="setPageIndex('Home_Nav')"
@@ -330,7 +336,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         (click)="scrollMoveToTheSpecifiedlocation(item.name);"
         [style.color]="item.name==settingLocation?'rgb(255, 255, 255)':'rgb(159, 163, 170)'"
         [style.background-color]="item.name==settingLocation?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'">
-        &nbsp;&nbsp;&nbsp;{{item.name}}
+        &nbsp;&nbsp;{{item.name}}
       </div>
       <div id="Firmware" style="color: rgb(45 47 52);
       height: auto;
@@ -359,46 +365,47 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
       <section [style.display]="settingLocation!='FirmwareUpgrade'?'block': 'none'">
-        <div id="SettingTitle" style="color: rgb(45 47 52);
-        height: auto;
-        width: 100%;
-        font-weight: bold;
-        margin-left: 2.4%;
-        margin-top: 1.6%;">
-          Settings
-        </div>
-        <div id="SharedSelectList" style="margin-left: 0px;
-          background: rgb(87 136 77 / 0%);    margin-top: 22px;
-        height: 90%;" (scroll)="triggeredWhenTheScrollBarSlides($event)">
-          <div id="Information">
+        <div id="ContentHeaderText" >Settings</div>
+        <div id="SharedSelectList" style="    margin-left: 25px;
+          background: rgb(87 136 77 / 0%);    margin-top: 54px;
+        height: 90%;width: 867px;" (scroll)="triggeredWhenTheScrollBarSlides($event)">
+          <div id="Information" >
           </div>
-          <div id="InformationArea" style="margin-left: 23px;margin-top: 23px;">
-            <section style="color: rgb(18,64,162);" class="ParallelTextString">
+          <div id="InformationArea" style="margin-top: 0px;" class="HomePageHeaderText">
+            <section style="margin-top: 0px;color: rgb(18,64,162);" class="ParallelTextString">
               Information
             </section>
             <section class="ParallelTextString">
               Device Model
               <div style="position: absolute;
-              right: 12%;
+              right: 14.1%;
               width: 20%;">
                 Periboard-XXX
               </div>
             </section>
+            <section style="color: rgb(18,64,162);
+            position: absolute;
+            background: rgb(237 238 240 / 65%);
+            height: 50px;
+            width: 100%;
+            z-index: 1110;"></section>
             <section class="ParallelTextString">
               Battery
-              <!-- <div style="position: absolute;
-                          right: 12%;
+              <div style="position: absolute;
+                          right: 14.1%;
                           width: 20%;">
-                Periboard-XXX
-              </div> -->
-              <img [src]="getbatteryShowImage()" style="position: absolute;
-              right: 28%;">
+                     0%
+              </div>
+              <img [src]="getbatteryShowImage()"
+              style="position: absolute;
+              right: 22.5%;
+              margin-top: 1px;">
             </section>
 
           </div>
           <div id="Layout" class="ParallelLines">
           </div>
-          <div id="LayoutArea" style="margin-left: 23px;margin-top: 23px;">
+          <div id="LayoutArea" class="HomePageHeaderText">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Layout
             </section>
@@ -408,7 +415,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               <input type="radio" name="Layout" (change)="settingLayoutChoice();"
                 [(ngModel)]="KeyBoardManager.getTarget().layoutMode" [value]="'Default'">
               <div style="    position: absolute;
-              left: 6%;
+              left: 26px;
               width: 20%;">
                 Default
               </div>
@@ -418,19 +425,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             font-size: 16px;">
               <input type="radio" name="Layout" (change)="settingLayoutChoice();"
                 [(ngModel)]="KeyBoardManager.getTarget().layoutMode" [value]="'Custom'">
-
-
               <div style="    position: absolute;
-              left: 6%;
+              left: 26px;
               width: 20%;">
                 Custom
               </div>
             </section>
-
           </div>
           <div id="Lighting" class="ParallelLines">
           </div>
-          <div id="LightingArea" style="margin-left: 23px;margin-top: 23px;">
+          <div id="LightingArea" class="HomePageHeaderText">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Lighting
             </section>
@@ -457,7 +461,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           </div>
           <!-- <div id="Macro" class="ParallelLines" >
           </div>
-          <div id="MacroArea" style="margin-left: 23px;margin-top: 23px;">
+          <div id="MacroArea" class="HomePageHeaderText">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Macro
             </section>
@@ -473,7 +477,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           </div> -->
           <div id="Auto Sleep" class="ParallelLines">
           </div>
-          <div id="Auto SleepArea" style="margin-left: 23px;margin-top: 23px;">
+          <div id="Auto SleepArea" class="HomePageHeaderText">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Auto Sleep
             </section>
@@ -493,7 +497,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               Enable 
               </div> -->
             </section>
-            <section style="    flex-direction: column;
+            <section style="flex-direction: column;
             margin-top: 33px;" class="ParallelTextString">
               <input id="rangeUI" max="60" min="1" style="width: 272px;" type="range"
                 [(ngModel)]='KeyBoardManager.getTarget().autoSleepValue' (ngModelChange)="settingLayoutChoice()">
@@ -502,21 +506,34 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                   margin-top: 15px;
                   color: rgb(18, 64, 162);
                   margin-left: 252px;
+                  margin-bottom: 1px;
+
                       white-space: nowrap;
                   color: rgb(18,64,162);">{{KeyBoardManager.getTarget().autoSleepValue}} mins</div>
 
             </section>
+            <section style="font-family: 'Inter-Regular';
+            font-size: 14px;" class="ParallelTextString">
+              In wireless mode, keyboard will go into sleep after 60 minutes of idle time.
+            </section>
           </div>
           <div id="Bluetooth" class="ParallelLines">
           </div>
-          <div id="BluetoothArea" style="margin-left: 23px;margin-top: 23px;">
+          <div id="BluetoothArea" class="HomePageHeaderText">
+            <section style="color: rgb(18,64,162);
+            position: absolute;
+            background: rgb(237 238 240 / 65%);
+            height: 97px;
+            margin-top: -23px;
+            width: 100%;
+            z-index: 1110;"> </section>
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Bluetooth
             </section>
             <section class="ParallelTextString">
               Bluetooth Bind
               <div style="position: absolute;
-              right: 26%;
+              right: 237px;
               width: 52px;
               height: 23px;
               background: rgb(29,52,96);
@@ -530,14 +547,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           </div>
           <div id="Reset" class="ParallelLines">
           </div>
-          <div id="ResetArea" style="margin-left: 23px;margin-top: 23px;">
+          <div id="ResetArea" class="HomePageHeaderText">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Reset
             </section>
             <section class="ParallelTextString">
-              Restore factory settings
+              Restore factory settings of the current profile
               <div (click)="askIfYouAreSureToReset=true;" style="position: absolute;
-              right: 26%;
+              right: 237px;
               width: 52px;
               height: 23px;
               background: rgb(29,52,96);
@@ -570,10 +587,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         margin-top: 1.6%;">
           Firmware
         </div>
-        <div id="SharedSelectList" style="margin-left: 0px;
-        background: rgb(87 136 77 / 0%);    margin-top: 2%;
-      height: 90%;">
-          <div id="Current VersionArea" style="margin-left: 23px;margin-top: 23px;">
+        <div id="SharedSelectList" style="    margin-left: 25px;
+        background: rgb(87 136 77 / 0%);    margin-top: 54px;
+      height: 90%;width: 867px;">
+          <div id="Current VersionArea" class="HomePageHeaderText">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Information
             </section>
@@ -592,7 +609,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           </div>
           <div id="Latest Firmware" class="ParallelLines">
           </div>
-          <div id="Latest FirmwareArea" style="margin-left: 23px;margin-top: 23px;">
+          <div id="Latest FirmwareArea" class="HomePageHeaderText">
             <section style="color: rgb(18,64,162);" class="ParallelTextString">
               Latest Firmware
             </section>
@@ -834,11 +851,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
       <img src="image/Perixx_Project/Share/AddIcon.png" style="position: absolute;
       right: 4%;
-      margin-top: 16.5%;" (click)="keyboardRMenu('m_Create')">
+      margin-top: 39px;" (click)="keyboardRMenu('m_Create')">
       <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
             right:20%;
-            margin-top: 15%;">
-
+            margin-top: 36px;">
       <div id="SharedSelectList" style="margin-left: 0%;margin-top: 30%;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
           (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
@@ -882,6 +898,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     </section>
     <!-- (contextmenu)="resetTheSpecifiedKeyBindData(i)" -->
     <div class="MiddlePanel">
+      <div id="ContentHeaderText">Layout</div>
       <div id="mainKeyboardBlock" class="KeyBoardAreaStyle">
         <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
         </div>
@@ -905,11 +922,15 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
 
     </div>
-    <div style="position: absolute;color: #1240A2;margin-left: 751px;margin-top: 474px;">Select Responsive Keys</div>
-
+    <div style="position: absolute;color: #1240A2;
+    margin-left: 765px;margin-top: 474px;font-size: 14px;">Select Responsive Keys</div>
     <div class="RightPanal">
-      <div id="AreaTitle" style="position: absolute;
-            top: 13px;margin-left: 15px;color: rgb(45, 47, 52);">
+      <div id="AreaTitle" style="
+      position: absolute;
+      top: 13px;
+      margin-left: 26px;
+      color: rgb(45, 47, 52);
+      font-family: 'Inter-Bold';">
         Customization
       </div>
       <div id="KeyAssignSelectList">

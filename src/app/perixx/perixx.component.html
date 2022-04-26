@@ -259,7 +259,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   </div>
 
   <div *ngIf="this.currentPage=='ConnectedPage'"
-    style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;" id="Content">
+    style="position: absolute;height: 100%;z-index: 1109;width: 100%;background: #0000008a;" id="Content">
     <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
 
     <div id="Content" style="position: absolute;
@@ -281,14 +281,17 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     align-items: center;" (click)="this.setPageIndex('Home_Nav');newUpdateDetected=true;">
       Enter
     </div>
-    <div id="Content" style="position: absolute;
-    left: 491px;
-    width: 256px;
-    height: 17px;
-    top: 656px;
-    text-align: center;
+    <div class="ParallelTextString" style="    color: rgb(255,255,255);
+    height: 25px;
+    align-items: center;
+    position: absolute;
+    left: 453px;
+    bottom: 29px;
     font-family: 'Inter-Regular';
     font-size: 14px;">
+      <img style="margin-left: 0px;margin-right: 25px;"
+        [src]="SettingManager.agreeToReceiveUpdatesFromPerixx?ImgPath.arrowTick_White[1]:ImgPath.arrowTick_White[0]"
+        (click)="SettingManager.agreeToReceiveUpdatesFromPerixx=!SettingManager.agreeToReceiveUpdatesFromPerixx">
       I agree to receive updates from Perixx.
     </div>
   </div>
@@ -579,14 +582,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </section>
 
       <section id="FirmwareUpgradeArea" *ngIf="settingLocation=='FirmwareUpgrade'">
-        <div id="Title" style="color: rgb(45 47 52);
-        height: auto;
-        width: 100%;
-        font-weight: bold;
-        margin-left: 2.4%;
-        margin-top: 1.6%;">
-          Firmware
-        </div>
+        <div id="ContentHeaderText">Firmware </div>
         <div id="SharedSelectList" style="    margin-left: 25px;
         background: rgb(87 136 77 / 0%);    margin-top: 54px;
       height: 90%;width: 867px;">
@@ -597,15 +593,17 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <section class="ParallelTextString">
               Date:2021/12/21
             </section>
-            <section class="ParallelTextString">
+            <section style="align-items: center;" class="ParallelTextString">
               Version:XXXXXXX
+              <img style="margin-left: 37px;" 
+              [src]="firmwareDetail?ImgPath.storageArrow[1]:ImgPath.storageArrow[0]"
+              (click)="firmwareDetail=!firmwareDetail">
             </section>
-            <section class="ParallelTextString">
+            <section [style.height]="firmwareDetail?'auto':'0px'" class="StorageBoxText">
               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             </section>
-
           </div>
           <div id="Latest Firmware" class="ParallelLines">
           </div>
@@ -616,18 +614,31 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             <section class="ParallelTextString">
               Date:2021/12/21
             </section>
-            <section class="ParallelTextString">
+            <section style="align-items: center;" class="ParallelTextString">
               Version:XXXXXXX
+              <img style="margin-left: 37px;" 
+              [src]="latestFirmwareDetail?ImgPath.storageArrow[1]:ImgPath.storageArrow[0]"
+              (click)="latestFirmwareDetail=!latestFirmwareDetail">
             </section>
-            <section class="ParallelTextString">
-              XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            <section [style.height]="latestFirmwareDetail?'auto':'0px'" class="StorageBoxText">
+              1.keyboard update
               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             </section>
           </div>
+          <div class="ParallelTextString" style="    color: rgb(29, 52, 96);
+          height: 25px;
+          align-items: center;
+          position: absolute;
+          bottom: 149px;">
+            <img style="margin-left: 0px;margin-right: 25px;"
+              [src]="SettingManager.agreeToReceiveUpdatesFromPerixx?ImgPath.arrowTick[1]:ImgPath.arrowTick[0]"
+              (click)="SettingManager.agreeToReceiveUpdatesFromPerixx=!SettingManager.agreeToReceiveUpdatesFromPerixx">
+            I agree to receive updates from Perixx.
+          </div>
           <div [style.color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'"
             [style.border-color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'" class="ApplyBtn"
-            style="margin-left: 23px;bottom: 71px;" (click)="FWManager.startUpdateFirmwareData();"> Upgrade
+            style="bottom: 71px;" (click)="FWManager.startUpdateFirmwareData();"> Upgrade
           </div>
 
 
@@ -1744,7 +1755,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   <img (click)="softwareSettingPage=true" id="SWConfigIcon" 
   [src]="this.currentPage=='ConnectedPage'? ImgPath.SWConfig[0]:ImgPath.SWConfig[1]"
     style="position: absolute;
-    top: 655px;
+    top: 655px;z-index: 1109;
     left: 16px;">
 
 </div>

@@ -62,6 +62,10 @@ export class PerixxComponent implements OnInit {
   EM = new EventManager();
   Electron_Service=new Electron_Service();
   ColorWheelModule = new ColorModule("Circle_Animation");
+
+  firmwareDetail =false;
+  latestFirmwareDetail =false;
+
   theColorWheelISBeingClicked = false;
   currentTouchButtons = "";
   keyboardColorHintMode = "KeyBoardManager"//KeyBoardManager,KeyBoardLibray
@@ -315,9 +319,19 @@ export class PerixxComponent implements OnInit {
   }
 
   project_select(event, index) {
+    if(this.Electron_Service.inTheElectronFramework()){
+      var Obj1 = {
+        Type: this.Electron_Service.getFuncVar().FuncType.Device,
+        Func: "ChangeProfileID",
+        Param: index,
+        SN: this.DeviceService.getCurrentDevice().SN
+      }
+      console.log("ToServerFunctionName", Obj1);
+      this.Electron_Service.RunSetFunction(Obj1).then((data:any) => {
+      });
+    }
     console.log("project_select: ", event, index);
     this.keyboardColorHintMode = 'KeyBoardManager';
-    //if (this.KeyBoardManager.keyboardOfChoice != index) {
     this.KeyBoardManager.keyboardOfChoice = index;
     this.KeyBoardManager.refreshKeyBoardTemp();
     // this.Electron_Service.browserWindowHide().then((data) => {//=>to AppProtocol=>electron.js

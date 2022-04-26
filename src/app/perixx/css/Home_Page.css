@@ -13,3 +13,16 @@
     margin-top: 20px;
     
 }
+
+.StorageBoxText{
+    transition: height 2s;
+    height: auto;
+    overflow: hidden;
+    color: rgb(29,52,96);
+    display: flex;
+    width: 100%;
+    margin-top: 14px;
+}
+
+
+

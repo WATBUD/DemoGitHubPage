@@ -106,15 +106,23 @@ export class ImgPathList{
         "url('./image/Share/Off/Bell.png')",
         "url('./image/Share/On/Bell.png')",
     ]
-    keyBindingIconList=[{
-        'recordBindCodeName':"",
-        'Icon':"",
-    }]
 
+    storageArrow=[
+        './image/Perixx_Project/Share/drop down.png',
+        './image/Perixx_Project/Share/pull up.png',
+    ]
     Boundary=[
         './image/Perixx_Project/Share/Boundary1.png',
         './image/Perixx_Project/Share/Boundary1.png',
         './image/Perixx_Project/Share/Boundary1.png',
+    ]
+    arrowTick=[
+        './image/Perixx_Project/Share/OptionUnchecked.png',
+        './image/Perixx_Project/Share/OptionTicked.png',
+    ]
+    arrowTick_White=[
+        './image/Perixx_Project/Share/OptionUnchecked_White.png',
+        './image/Perixx_Project/Share/OptionTicked_White.png',
     ]
     getTheProjectIcon(name="1"){
         var imagePath=[

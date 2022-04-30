@@ -509,7 +509,7 @@ export class MacroScriptContent {
     constructor(InputclassName = "未命名") {
         this.name = InputclassName;
         
-        this.Data.push(this.getDefault());
+        // this.Data.push(this.getDefault());
     }
     
     move_up_row() {

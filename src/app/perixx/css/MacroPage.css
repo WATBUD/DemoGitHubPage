@@ -1,7 +1,6 @@
 #MacroFileSelectList {
     overflow-y: scroll;
-    overflow-x: clip;    
-    margin-top: 30%;
+    overflow-x: clip;
     height: 90%;
     width: 90%;
     position: relative;
@@ -22,13 +21,15 @@
     width: 6px;
 }
 #MactoContentList {
-    height: 90%;
-    overflow-y: scroll;
-    overflow-x: clip;    
-    margin-top: 30%;
-    width: 90%;
     position: absolute;
-    margin-left: 5%;
+    top: 0px;
+    width: 92%;
+    margin-top: 160px;
+    margin-left: 7px;
+    height: 405px;
+    overflow-y: auto;
+    overflow-x: clip;
+    border-bottom: rgb(159,163,170) solid 1px;
 }
 #MactoContentList::-webkit-scrollbar-track {
     background-repeat: no-repeat;
@@ -62,44 +63,31 @@
     user-select: none;
     display: flex;
     align-items: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    line-height: 18px;
+    padding: 0px;
+
+    background: rgba(0, 0, 0, 0);
+    text-align: center;
 }
 .MactoContentItem .KeyCodeText {
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    background: rgba(0, 0, 0, 0);
-    display: inline-block;
-    line-height: 18px;
-    width: 27%;
-    margin-left: 1.7%;
-    color: #9fa3aa;
-    text-align: center;
-    font-size: 11px;
+    width: 28px;
+    margin-left: 9px;
+    color: rgb(159 163 170);
 }
 .MactoContentItem .StartTimeText {
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    background: rgba(0, 0, 0, 0);
-    display: inline-block;
-    line-height: 18px;
     width: 24%;
     margin-right: 9%;
     color: #9fa3aa;
-    text-align: center;
-    font-size: 11px;
+    
 }
 .MactoContentItem .durationText {
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    background: rgba(0, 0, 0, 0);
-    display: inline-block;
-    line-height: 18px;
     width: 21%;
     color: #9fa3aa;
-    text-align: center;
-    font-size: 11px;
+    
 }
 .MactoContentItem input:focus {
     -webkit-user-select: none;

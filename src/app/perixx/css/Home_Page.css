@@ -1,6 +1,7 @@
 .HomePageHeaderText{
     margin-left: 0px;
     margin-top: 23px;
+    position: relative;
 }
 .HomePageHeaderLine{
     margin-left: 0px;
@@ -25,4 +26,12 @@
 }
 
 
+.GrayMask{
+    color: rgb(18,64,162);
+    position: absolute;
+    background: rgb(237 238 240 / 70%);
+    height: 100%;
+    width: 100%;
+    z-index: 1110;
+}
 

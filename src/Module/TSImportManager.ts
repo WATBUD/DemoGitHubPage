@@ -16,10 +16,7 @@ export { EffectCenter} from './EffectCenter';
 export { KeyShortcut} from './KeyShortcut';
 export { AlertDevice} from './AlertDevice';
 export { EventManager} from './EventManager';
-
 //export { FormControl } from '@angular/forms';
-export { ImgPathList } from './ImgPath';
-export { i18nManager } from './i18n';
 export { M_Light_CS } from './M_Light_CS';
 
 //export { DeviceService } from '../services/device/DeviceService';

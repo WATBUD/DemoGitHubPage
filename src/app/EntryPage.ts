@@ -2,7 +2,6 @@ declare var require: any
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router,ActivatedRoute } from '@angular/router';
 let i18n_File = require("../i18n/i18n_Localization");
-import {i18nManager } from '../Module/TSImportManager';
 import {CentralControl} from '../Module/CentralControl';
 import { Location } from '@angular/common';
 @Component({
@@ -11,7 +10,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./EntryPage.css','./NavUI.css']
 })
 export class EntryPageComponent implements OnInit {
-  i18nManager=i18nManager.getInstance();
   CentralControl=CentralControl.getInstance();
   constructor(private router: Router,private activatedRoute: Router,private location: Location) {
     //this.router.config

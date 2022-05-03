@@ -109,11 +109,11 @@ export class PerixxComponent implements OnInit {
   ]
   DefaultColorList = [
     [255, 0, 0], [255, 128, 0], [255, 255, 0], [128, 255, 0], [0, 255, 0], [0, 255, 128], [0, 255, 255], [0, 128, 255],
-    [0, 0, 255], [128, 0, 255], [255, 0, 255], [255, 0, 128], [217, 217, 217], [255, 152, 0], [0, 183, 195],
+    [0, 0, 255], [128, 0, 255], [255, 0, 255], [255, 0, 128], [237, 238, 240], [255, 152, 0], [0, 183, 195],
   ]
   CustomColorList = [
-    [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217],
-    [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217], [217, 217, 217],
+    [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240],
+    [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240], [237, 238, 240],
   ]
   settingLocation = "Information";
   dbService;
@@ -191,6 +191,7 @@ export class PerixxComponent implements OnInit {
   }
 
   initialzeTheDevice() {
+    this.ColorWheelModule.wheelSelectorName="[data-ColorWheel]";
     var KeyBoardLength = this.KeyBoardStyle.getTarget().keyMapping.length;
     this.KeyBoardManager = new KeyBoardManager(KeyBoardLength, 3);
     this.KeyBoardLibray = new KeyBoardManager(KeyBoardLength, 3);
@@ -225,7 +226,6 @@ export class PerixxComponent implements OnInit {
           var Keyboard_Dis_Block = document.querySelectorAll(".KeyBoard_Dis_Block");
           this.KeyBoardStyle.applyDisableImgStyles(Keyboard_Dis_Block);
           this.KeyBoardManager.refreshKeyBoardTemp();
-
         }, 10);
         break;
       case "Lighting_Nav":
@@ -249,7 +249,7 @@ export class PerixxComponent implements OnInit {
         setTimeout(() => {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
-          var dataCCP = document.querySelector("[data-CCP]");
+          var dataCCP = document.querySelector("[data-ColorWheel]");
           if (dataCCP != undefined) {
             dataCCP.removeEventListener("mousedown", this.HSLColorPickerFN[0]);
             dataCCP.removeEventListener("mousemove", this.HSLColorPickerFN[1]);

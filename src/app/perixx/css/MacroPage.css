@@ -82,9 +82,10 @@
     color: rgb(159 163 170);
 }
 .MactoContentItem .StartTimeText {
-    width: 24%;
-    margin-right: 9%;
-    color: #9fa3aa;
+    width: 71px;
+    margin-right: 14px;
+    margin-left: 3px;
+    color: rgb(159 163 170);
     
 }
 .MactoContentItem .durationText {

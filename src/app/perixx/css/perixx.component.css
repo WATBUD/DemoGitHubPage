@@ -297,6 +297,11 @@ input[type="range"]::-webkit-slider-thumb {
     /* background-color: #eee; */
   }
   
+
+  .SelectResponsiveKeys{
+    position: absolute;color: #1240A2;
+    margin-left: 765px;margin-top: 396px;font-size: 14px;
+  }
   /* On mouse-over, add a grey background color */
   /* .container:hover input ~ .checkmark {
      background-color: red; 

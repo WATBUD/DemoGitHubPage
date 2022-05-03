@@ -25,6 +25,10 @@ export class ImgPathList{
         "./image/Perixx_Project/MacroPage/Off/Record.png",
         "./image/Perixx_Project/MacroPage/On/Record.png",
     ]
+    img_MacroDelete = [
+        "./image/Perixx_Project/MacroPage/Off/Delete.png",
+        "./image/Perixx_Project/MacroPage/On/Delete.png",
+    ]
     Macro_Linking: any = [
         "./image/Perixx_Project/MacroPage/Off/Linking.png",
         "./image/Perixx_Project/MacroPage/On/Linking.png",

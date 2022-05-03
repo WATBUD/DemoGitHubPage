@@ -10,7 +10,7 @@ z-index: 9999;" class="text-effect">
   <div class="spotlight"></div>
 </div> -->
 
-<div id="SnaplLineXY" style="
+<!-- <div id="SnaplLineXY" style="
     position: absolute;
     width: 100%;
     height: 100%;
@@ -22,7 +22,7 @@ z-index: 9999;" class="text-effect">
     top: 0px;
     z-index: 9999;
     pointer-events: none;">
-</div>
+</div> -->
 
 
 
@@ -780,7 +780,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
 
 
-      <div data-CCP="5" style="width: 200px;
+      <div data-ColorWheel="5" style="width: 200px;
             height: 200px;
             margin-top: 58px;
             margin-left: 26px;">
@@ -894,8 +894,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
 
     </div>
-    <div style="position: absolute;color: #1240A2;
-    margin-left: 765px;margin-top: 396px;font-size: 14px;">Select Responsive Keys</div>
+    <div class="SelectResponsiveKeys">Select Responsive Keys</div>
+
     <div class="RightPanal">
       <div id="AreaTitle">
         Customization
@@ -1449,6 +1449,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
 
       </div>
+
+      <div id="divider1" style="position: absolute;
+      top: 154px;
+      width: 216px;
+      margin-left: 16px;
+      height: 1px;
+      background: rgb(159, 163, 170);">
+      </div>
       <div id="page_OptionsTitle" >
         Library
       </div>
@@ -1495,6 +1503,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         </div>
       </div>
     </div>
+    <div class="SelectResponsiveKeys">Select Responsive Keys</div>
     <div class="RightPanal">
       <div id="AreaTitle" >
         Macro Editing
@@ -1502,23 +1511,23 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <ng-container *ngIf="MacroManager.getClass().hasFile();">
         <!-- [style.background-color]="MacroManager.onRecord?'rgb(18, 61, 162)':'rgba(0, 0, 0,0)'" -->
         <img id="RecordIcon" style="position: absolute;
-        top: 47px;
-        left: 11px;z-index: 1112;" [src]="this.MacroManager.onRecord? ImgPath.Recording[1]:ImgPath.Recording[0]"
+        top: 70px;
+        left: 26px;z-index: 1112;" [src]="this.MacroManager.onRecord? ImgPath.Recording[1]:ImgPath.Recording[0]"
           (click)="onRecordClick()" data-identity="startRecord">
-        <div id="Delete" style="position: absolute;
-        margin-left: 57%;
-        margin-top: 58px;color: rgb(29, 52, 96);" (click)="MacroManager.tempMacroContent.deleteSelectMacro()"
-          class="CenterAlignment">
-          <img id="SettingIcon" style="margin-right: 6px;" src="image/Perixx_Project/MacroPage/Delete.png">
-          Delete
-        </div>
+
+          <img id="img_MacroDelete" style="position: absolute;
+          left: 141px;
+          top: 70px;
+          color: rgb(29, 52, 96);" 
+          [src]="ImgPath.img_MacroDelete[0]" (click)="MacroManager.tempMacroContent.deleteSelectMacro()">
+   
       </ng-container>
-      <!-- *ngIf="MacroManager.getClass().hasFile();" 
-          (mouseup)="macroEditkeyCode($event.button,i,$event);" -->
-      <input *ngIf="MacroManager.getClass().hasFile();" type="checkbox" style="position: absolute;
-     margin-left: 7px;
-    margin-top: 139px;" [checked]="MacroManager.tempMacroContent.selectAllDataFlag"
-        (change)="MacroManager.tempMacroContent.switchSelectAllFlag()">
+
+      <img *ngIf="MacroManager.getClass().hasFile();" 
+        style="position: absolute;margin-left: 7px;margin-top: 141px;"
+        [src]="MacroManager.tempMacroContent.selectAllDataFlag?ImgPath.arrowTick[1]:ImgPath.arrowTick[0]"
+        (click)="MacroManager.tempMacroContent.switchSelectAllFlag()">
+
       <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
            top: 0px;margin-left: 30px;
           margin-top: 139px;">
@@ -1539,9 +1548,13 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       <div id="MactoContentList">
         <div class="MactoContentItem" *ngFor="let item of MacroManager.tempMacroContent.Data;let i = index"
           [style.color]="MacroManager.tempMacroContent.indexPosition==i?'rgb(159, 163, 170)':'rgb(159, 163, 170)'"
-          (click)="MacroManager.tempMacroContent.indexPosition=i;" (dblclick)="selectMacroSubContent($event,i);">
-          <input type="checkbox" [(ngModel)]="item.inTheSelectionList"
-            (change)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
+          (click)="selectMacroSubContent($event,i);">
+
+            <img [src]="item.inTheSelectionList?ImgPath.arrowTick[1]:ImgPath.arrowTick[0]"
+            (click)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
+    
+
+
 
           <input type="text" class="KeyCodeText" (keydown)="macroEditkeyCode($event.code,i,$event);"
             (keyup)="macroEditkeyCode($event.code,i,$event);" [value]="EM.getkeyCodeTxt(item.byKeyCode)"

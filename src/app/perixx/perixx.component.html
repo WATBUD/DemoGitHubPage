@@ -1431,12 +1431,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Profile
       </div>
 
-      <div id="MacroFileSelectList" style="margin-top: 70px;"
-        style="position:relative;transition: all 4s linear;margin-top: 0%;height: 130px;max-height: 130px;">
+      <div id="MacroFileSelectList" style="margin-top: 60px;height: 95px;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardManager.keyBoardTemp.macroFiletItem;let i = index"
           (click)="macroProfileFileLeftClick(item)" (contextmenu)="macroProfileFileRightClick(item,$event)"
-          [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
-          [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          [style.background-color]="selectedMacroCode==item.selectedMacroCode?'#1240A2':'transparent'"
+          [style.color]="selectedMacroCode==item.selectedMacroCode?'#F5F5F7':'#9FA3AA'">
+
+
+
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
                         position: absolute;
                         margin-left: 8%;" maxlength="15"
@@ -1459,11 +1461,11 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
             margin-top: 15%;">
 
       <!-- (click)="currentPage='Macro_Nav'" -->
-      <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList" style="height: 55%;">
+      <div *ngIf="MacroManager.getClass().hasFile();" id="MacroFileSelectList" >
         <div class="Shard_OptionItem" *ngFor="let item of MacroManager.getClass().macroFiletItem;let i = index"
           (click)="macroFileLeftClick(i)" (contextmenu)="macroFileRightClick(i,$event)"
-          [style.background-color]="selectedMacroCode==item.selectedMacroCode?'rgb(217, 217, 217)':'rgba(0, 0, 0,0)'"
-          [style.color]="selectedMacroCode==item.selectedMacroCode?'rgb(18, 61, 162)':'rgb(159, 163, 170)'">
+          [style.background-color]="selectedMacroCode==item.selectedMacroCode?'#1240A2':'transparent'"
+          [style.color]="selectedMacroCode==item.selectedMacroCode?'#F5F5F7':'#9FA3AA'">
           <!-- <img [src]="KeyBoardManager.getTarget()==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]"> -->
           <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
             position: absolute;

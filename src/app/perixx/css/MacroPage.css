@@ -1,8 +1,11 @@
 #MacroFileSelectList {
     overflow-y: scroll;
     overflow-x: clip;
-    height: 90%;
+    /* position: absolute; */
+    height: 437px;
+    margin-top: 68px;
     width: 90%;
+    /* background: rgb(255 0 0); */
     position: relative;
     margin-left: 5%;
 }

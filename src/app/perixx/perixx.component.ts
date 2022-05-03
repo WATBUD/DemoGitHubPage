@@ -224,6 +224,7 @@ export class PerixxComponent implements OnInit {
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
           var Keyboard_Dis_Block = document.querySelectorAll(".KeyBoard_Dis_Block");
           this.KeyBoardStyle.applyDisableImgStyles(Keyboard_Dis_Block);
+          this.KeyBoardManager.refreshKeyBoardTemp();
 
         }, 10);
         break;
@@ -1138,6 +1139,10 @@ export class PerixxComponent implements OnInit {
     var KeyMatrix = target.getNowModeKeyMatrix();
     var targetMatrixKey = KeyMatrix[index];
     var path
+    if (targetMatrixKey.recordBindCodeType == "MacroFunction") {
+       return '';
+    }
+
     if (this.keyboardColorHintMode == 'KeyBoardManager') {
       var layoutMode = target.layoutMode//this.KeyBoardManager.getTarget().layoutMode;
       //console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);
@@ -1161,6 +1166,36 @@ export class PerixxComponent implements OnInit {
     return "";
 
   }
+  getLightingPageIcon(index) {
+    var target = this.KeyBoardManager.keyBoardTemp;
+    var KeyMatrix = target.getNowModeKeyMatrix();
+    var targetMatrixKey = KeyMatrix[index];
+    var path
+    if (this.keyboardColorHintMode == 'KeyBoardManager') {
+      var layoutMode = target.layoutMode//this.KeyBoardManager.getTarget().layoutMode;
+      //console.log('%c getKeyBindingIcon_layoutMode','color:rgb(255,77,255)',  layoutMode);
+
+      if (layoutMode == "Default") {
+        path = this.ImgPath.getThePicture(targetMatrixKey.defaultValue);//defaultValue recordBindCodeName
+      }
+      else if (layoutMode == "Custom") {
+        path = this.ImgPath.getThePicture(targetMatrixKey.recordBindCodeName);
+      }
+    }
+    else if (this.keyboardColorHintMode == 'KeyBoardLibray') {
+      path = this.ImgPath.getThePicture(targetMatrixKey.recordBindCodeName);//defaultValue recordBindCodeName
+    }
+
+
+    //this.ImgPath[targetMatrixKey.recordBindCodeName];
+    if (path != undefined) {
+      return path[2];
+    }
+    return "";
+
+  }
+
+
   getKeyDisableIcon(index) {
     var target = this.KeyBoardManager.keyBoardTemp;
     var KeyMatrix = target.getNowModeKeyMatrix();

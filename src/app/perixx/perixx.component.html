@@ -298,18 +298,9 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   </div>
 
   <div *ngIf="this.currentPage!='ConnectedPage'" id="Nav_Project">
-
-    <!-- <div class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index"
-      (click)="project_select($event,i)"
-      [style.color]="keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?'rgb(18, 61, 162)':'rgb(159, 163, 170)'"
-      [ngStyle]="{'border':keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?'2px solid rgb(18,64,162)':'2px solid rgb(159, 163, 170)'}">
-      M{{i+1}}
-    </div> -->
       <img class="Nav_ProjectItem" *ngFor="let item of KeyBoardManager.KeyBoardArray ;let i = index" 
       [src]="keyboardColorHintMode=='KeyBoardManager'&&KeyBoardManager.keyboardOfChoice ==i?ImgPath.getTheProjectIcon(i+1)[1]:ImgPath.getTheProjectIcon(i+1)[0]"
       (click)="project_select($event,i)">
-
-
   </div>
   <div *ngIf="this.currentPage!='ConnectedPage'" id="NavigationBar">
     <img [src]="currentPage=='Home_Nav'? ImgPath.Home_Nav[1]:ImgPath.Home_Nav[0]" (click)="setPageIndex('Home_Nav')"
@@ -708,7 +699,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           (click)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
           (contextmenu)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
           data-KB_Block="i" class="KeyBoard_Block" [attr.data-index]="i">
-          <img class="KeyBoardBindImg" alt="" [src]="getKeyBindingIcon(i)">
+          <img class="KeyBoardBindImg" alt="" [src]="getLightingPageIcon(i)">
         </div>
       </div>
       <section *ngIf="!Built_ineffect.Built_inSelected.hasSingleKeyLighting" 
@@ -756,13 +747,14 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         Color Palette
       </div>
       <div id="divider1" style="position: absolute;
-      top: 270px;
-      width: 243px;
+      top: 308px;
+      width: 216px;
+      margin-left: 16px;
       height: 1px;
       background: rgb(159, 163, 170);">
       </div>
       <div style="position: absolute;
-            top: 280px;
+            top: 320px;
             margin-left: 26px;
             color: rgb(18, 64, 162);
             font-weight: bold;">
@@ -770,14 +762,15 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
 
       <div id="divider2" style="position: absolute;
-      top: 394px;
-      width: 243px;
+      top: 445px;
+      width: 216px;
+      margin-left: 16px;
       height: 1px;
       background: rgb(159, 163, 170);">
       </div>
 
       <div style="position: absolute;
-      top: 406px;
+      top: 463px;
       margin-left: 26px;
       color: rgb(18, 64, 162);
       font-weight: bold;">
@@ -794,14 +787,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="coordinateCircle" style="margin-left: calc(50% - 5px);margin-top: calc(50% - 5px);">
         </div>
       </div>
-      <div id="DefaultColorList" style="    position: absolute;
-     background: rgb(255 0 0,0);
-     width: 192px;
-     height: 49px;
-     margin-left: 26px;
-     margin-top: 313px;
-     display: flex;
-     flex-wrap: wrap;">
+      <div id="DefaultColorList" class="ColorBoxSize" style="margin-left: 26px;margin-top: 355px;">
         <div *ngFor="let item of DefaultColorList;let i = index" class="DefaultColorItem"
           (click)="updateColorWheel($event)" id="colorBase{{i}}"
           [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
@@ -810,13 +796,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
      background-size: 100% 100%;" (click)="updateColorWheel($event,true)" id="ColorChart">
         </div>
 
-        <div id="CustomColorList" style="    position: absolute;
-     background: rgb(255 0 0,0);
-     width: 192px;
-     height: 49px;
-     margin-top: 123px;
-     display: flex;
-     flex-wrap: wrap;">
+        <div id="CustomColorList" class="ColorBoxSize" style="margin-top: 145px;">
           <div *ngFor="let item of CustomColorList;let i = index" class="DefaultColorItem"
             (click)="updateColorWheel($event)" (contextmenu)="updateCustomColorList(i)" id="colorBase{{i}}"
             [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
@@ -1701,9 +1681,9 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <section *ngIf="softwareSettingCurrentPage=='Help'" id="Help">
           <p style="margin-left: 36%;top: 16%;position: absolute;    font-weight: bold;">User Manual
           </p>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" (click)="getKeyBindingIcon(1)"> English
+          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" > English
           </div>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" (click)="getKeyBindingIcon(2)"> Deutsch
+          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" > Deutsch
           </div>
         </section>
       </section>

@@ -60,3 +60,12 @@
     top: 404px;
     align-items: center;
 }
+
+.ColorBoxSize {
+     position: absolute;
+     background: rgb(255 0 0,0);
+     width: 204px;
+     height: 49px;
+     display: flex;
+     flex-wrap: wrap;
+}

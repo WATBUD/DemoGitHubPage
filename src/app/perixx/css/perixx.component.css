@@ -137,7 +137,7 @@ background: rgb(237 238 240);
     position: absolute;
     height: 643px;
     width: 1px;
-    margin-top: 18%;
+    margin-top: 52px;
     background-color: #a2aa9f;
 }
 
@@ -265,6 +265,7 @@ input[type="range"]::-webkit-slider-thumb {
     font-weight: bold;
     margin-left: 18px;
     margin-top: 14%;
+    font-family: 'Inter-Bold';
 }
 
 .container {

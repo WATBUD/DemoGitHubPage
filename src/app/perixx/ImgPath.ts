@@ -128,6 +128,16 @@ export class ImgPathList{
         './image/Perixx_Project/Share/OptionUnchecked_White.png',
         './image/Perixx_Project/Share/OptionTicked_White.png',
     ]
+
+    macro_Gray_Checked=[
+        "./image/Perixx_Project/MacroPage/Off/Gray_Checked.png",
+        "./image/Perixx_Project/MacroPage/On/Gray_Checked.png"
+    ]
+    macro_Blue_Checked=[
+        "./image/Perixx_Project/MacroPage/Off/Blue_Checked.png",
+        "./image/Perixx_Project/MacroPage/On/Blue_Checked.png"
+    ]
+
     getTheProjectIcon(name="1"){
         var imagePath=[
             "./image/Perixx_Project/KeyIcon/Off/M"+name+".png",

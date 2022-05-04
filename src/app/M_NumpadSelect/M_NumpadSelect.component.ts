@@ -1,7 +1,6 @@
 import { Component ,OnInit ,Output,Input ,EventEmitter, SimpleChange, OnChanges, ViewEncapsulation, forwardRef,
 ChangeDetectorRef} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-//import { i18nManager } from '../numpad-keyboard/i18n';
 @Component({
     selector: 'app-M_NumpadSelect',
     templateUrl : './M_NumpadSelect.component.html',
@@ -36,7 +35,6 @@ export class M_NumpadSelectComponent implements OnInit,ControlValueAccessor{
     AppsettingData:any;
     closeAllSelectEvent:any;
     translatesubscribe:any;
-    //i18nManager=i18nManager.getInstance();
     // students:string[]=['xiaoming','xiaohong','xiaohei'];
     // student:string='xiaoming';
     private onChangeCallback: (_: any) => void;

@@ -10,7 +10,7 @@ z-index: 9999;" class="text-effect">
   <div class="spotlight"></div>
 </div> -->
 
-<!-- <div id="SnaplLineXY" style="
+<div id="SnaplLineXY" style="
     position: absolute;
     width: 100%;
     height: 100%;
@@ -22,12 +22,12 @@ z-index: 9999;" class="text-effect">
     top: 0px;
     z-index: 9999;
     pointer-events: none;">
-</div> -->
+</div>
 
 
 
 <div id="UpdateProgressVersion" data-identity="m_Rename">
-  Beta Version_1.38
+  Beta Version_1.39
 </div>
 <div *ngIf="this.currentPage=='Macro_Nav'" id="macroFileOptions" style="z-index: 1111;"
   [style.display]="macroRightClick?'block': 'none'" class="CenterAlignment CommonRightClickMenu"
@@ -198,6 +198,127 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
     </div>
   </div>
+  
+  <div *ngIf="softwareSettingPage" id="softwareSettingPage" class="CenterAlignment"
+    style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
+    <div id="ChildPageContent" style="    position: absolute;
+    width: 631px;
+    height: 454px;
+    background: rgb(45 47 52);">
+      <section id="toolbar"
+        style="width: 100%;height:7%;background-color: rgb(29, 52, 96);display: flex;flex-direction: row-reverse;">
+        <div id="ExitApplicationIcon" class="ToolbarOptions"
+          [style.background-color]="ExitMouseover=='Exit'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
+          (mouseover)="ExitMouseover='Exit'" (mouseleave)="ExitMouseover=''" (click)="softwareSettingPage=false">
+          <img style="position: absolute;bottom: 25%;" src="image/Perixx_Project/Share/ExitApplication.png">
+        </div>
+        <div id="MinimizeIcon" class="ToolbarOptions"
+          [style.background-color]="ExitMouseover=='Minimize'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
+          (mouseover)="ExitMouseover='Minimize'" (mouseleave)="ExitMouseover=''">
+          <img style="position: absolute;bottom: 30%;" src="image/Perixx_Project/Share/MinimizeIcon.png">
+        </div>
+      </section>
+      <div id="ChildPage" style="    position: relative;width: fit-content;
+            display: inline-flex;flex-direction: column;
+            height: 93%;vertical-align: top;
+            ">
+
+        <div (click)="softwareSettingCurrentPage='About';verticalAnimationLineValue=28;" id="About" style="padding-left: 37px;
+              margin-top: 31px;
+              display: flex;
+          flex-direction: row-reverse;">
+          About
+        </div>
+        <div (click)="softwareSettingCurrentPage='Update';verticalAnimationLineValue=86;" id="Update" style="margin-top: 40px;    display: flex;
+              flex-direction: row-reverse;">
+          Update
+        </div>
+
+        <div (click)="softwareSettingCurrentPage='Help';verticalAnimationLineValue=144;" id="Help" style="margin-top: 40px;    display: flex;
+              flex-direction: row-reverse;">
+          Help
+        </div>
+
+      </div>
+      <div id="VerticalAnimationLine" style="    width: 1px;
+      height: 26px;
+      background: rgb(255, 255, 255);
+      vertical-align: top;
+      display: inline-flex;
+      margin-left: 6px;
+      margin-top: 28px;
+      transition-property: margin-top;
+      transition-duration: 0.4s;" [style.marginTop.px]="verticalAnimationLineValue">
+
+      </div>
+      <section id="ChildPageArea" style="    width: fit-content;
+      height: 93%;
+      background: rgb(0 0 255);
+      display: inline-flex;">
+        <section *ngIf="softwareSettingCurrentPage=='About'" id="AboutArea">
+          <img id="SettingIcon" style="position: absolute;margin-left: 21%;
+          margin-top: 9%;" src="image/Perixx_Project/Settings/Logo.png">
+          <img id="SettingIcon" style="position: absolute;
+                      margin-top: 22%;
+                      margin-left: 31%;" src="image/Perixx_Project/Settings/Instagram.png"
+            (click)="linkToTheDesignatedWebsite('https://www.instagram.com/perixxofficial/?hl=en')">
+          <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
+                        margin-top: 22%;
+                        margin-left: 40%;"
+            (click)="linkToTheDesignatedWebsite('https://www.facebook.com/Perixx.Computer/')">
+
+          <a style="    position: absolute;
+          margin-top: 30%;
+          margin-left: 29%;
+          color: rgb(255 255 255);
+          text-decoration: unset;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
+          <div id="ParallelLine" style="position: absolute;
+          background: rgb(159,163,170);
+          width: 54%;
+          height: 1px;
+          margin-left: 80px;
+          margin-top: 210px;">
+          </div>
+          <div id="IntroductionText" style="    position: absolute;
+          width: 350px;
+          height: 148px;
+          word-break: break-word;
+          margin-left: 13%;
+          bottom: 10%;">
+            eeeeefdsjivjsdfvjnsdkfnsilhgiuerhfiuerhfiufhiusdfhiusdhiusdhfiusdfhiusdhfiusdhhifwoifowueoifsoijsoijvoicxjvoisjociwjdoifjdoijcoicoimcowjdoifjwdoifjsoijfoisdjvoivcxojojosifdjoijdfoijgoidjfdsicjsdijc
+            Sdkjvcsidvcsdcnsdoivncoisdv
+            Sdkjvnsdvndksdnvjksdnvjks
+          </div>
+
+
+        </section>
+
+        <section *ngIf="softwareSettingCurrentPage=='Update'" id="Update">
+          <div style="    position: absolute;
+          margin-left: 30%;
+          margin-top: 17%;
+          font-weight: bold;">Current Version: XXX
+          </div>
+          <div style="    position: absolute;
+          margin-left: 31%;
+          margin-top: 22%;
+          font-size: 14px;" class="LanguageBtn"> Check
+            New Version
+          </div>
+        </section>
+        <section *ngIf="softwareSettingCurrentPage=='Help'" id="Help">
+          <p style="margin-left: 36%;top: 16%;position: absolute;    font-weight: bold;">User Manual
+          </p>
+          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" > English
+          </div>
+          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" > Deutsch
+          </div>
+        </section>
+      </section>
+
+
+    </div>
+  </div>
 
   <div [style.display]="FWManager.updatingStatus!=''?'flex':'none'" id="updatingFirmwareStatus" class="CenterAlignment"
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
@@ -287,9 +408,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     align-items: center;
     position: absolute;
     left: 453px;
-    bottom: 29px;
-    font-family: 'Inter-Regular';
-    font-size: 14px;">
+    bottom: 29px;">
       <img style="margin-left: 0px;margin-right: 25px;"
         [src]="SettingManager.agreeToReceiveUpdatesFromPerixx?ImgPath.arrowTick_White[1]:ImgPath.arrowTick_White[0]"
         (click)="SettingManager.agreeToReceiveUpdatesFromPerixx=!SettingManager.agreeToReceiveUpdatesFromPerixx">
@@ -440,10 +559,10 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                 [(ngModel)]="KeyBoardManager.getTarget().lightData.brightness">
               <div [style.marginLeft.px]="KeyBoardManager.getTarget().lightData.brightness*272/100-20" style="text-align: center;
                 width: 7%;
+                font-family: 'Inter-Regular';
                 margin-top: 15px;
                 color: rgb(18, 64, 162);
-                margin-left: 252px;
-                color: rgb(18,64,162);">{{KeyBoardManager.getTarget().lightData.brightness}}%</div>
+                margin-left: 252px;">{{KeyBoardManager.getTarget().lightData.brightness}}%</div>
 
             </section>
 
@@ -648,7 +767,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </div>
       <div id="page_OptionsScope" style="margin-left: 6px;margin-top: 70px;">
         <div *ngFor="let item of Built_ineffect.lightListData ;let i = index" class="Lighting_OptionItem"
-          [style.marginTop.px]="item.PointEffectName=='Breathing Per Key'?'15':'0'"
+          [style.marginTop.px]="item.PointEffectName=='Breathing Per Key'?'31':'0'"
           (click)="Built_ineffect.switchBuilt_ineffect(i)"
           [style.background-color]="Built_ineffect.currentModeIndex==i?'#1240A2':'transparent'"
           (contextmenu)="lighting_RClick(i,$event)">
@@ -662,7 +781,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
                   width: 85%;
                   height: 1px;
                   background: rgb(159 163 170);
-                  top: 305px;
+                  top: 314px;
                   margin-left: 5%;">
         </div>
         <div id="Built_ineffectRMenu" [style.display]="operationMenuFlag?'block': 'none'"
@@ -787,6 +906,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div id="coordinateCircle" style="margin-left: calc(50% - 5px);margin-top: calc(50% - 5px);">
         </div>
       </div>
+
       <div id="DefaultColorList" class="ColorBoxSize" style="margin-left: 26px;margin-top: 355px;">
         <div *ngFor="let item of DefaultColorList;let i = index" class="DefaultColorItem"
           (click)="updateColorWheel($event)" id="colorBase{{i}}"
@@ -1494,7 +1614,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         <div [style.background-image]="KeyBoardStyle.getTarget().BGImage" class="KeyBoardGraphsStyle">
         </div>
         <div *ngFor="let item of KeyBoardStyle.getTarget().keyMapping ;let i = index"
-          [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'rgb(255, 0, 0)':'rgba(0, 0, 0,0)'"
+          [style.background-color]="KeyBoardManager.keyBoardTemp.theBindingCategoryIsMacro(i)?'#F5F5F7':'rgba(0, 0, 0,0)'"
           data-Macro_Block="5" class="KeyBoard_Block"
           [style.border-width]="KeyBoardManager.keyBoardTemp.recordAssignBtnIndex==i?'2px':'0px'"
           (click)="clickMacroInTheAreaOfTheKeyboard(i)" (contextmenu)="rightClickOnTheMacroBindKey(i)"
@@ -1524,8 +1644,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       </ng-container>
 
       <img *ngIf="MacroManager.getClass().hasFile();" 
-        style="position: absolute;margin-left: 7px;margin-top: 141px;"
-        [src]="MacroManager.tempMacroContent.selectAllDataFlag?ImgPath.arrowTick[1]:ImgPath.arrowTick[0]"
+        style="position: absolute;margin-left: 7px;margin-top: 142px;"
+        [src]="MacroManager.tempMacroContent.selectAllDataFlag?ImgPath.macro_Blue_Checked[1]:ImgPath.macro_Blue_Checked[0]"
         (click)="MacroManager.tempMacroContent.switchSelectAllFlag()">
 
       <div id="Key" style="color: rgb(29, 52, 96);position: absolute;
@@ -1537,7 +1657,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           top: 0px;    margin-left: 70px;
           margin-top: 139px;">
         Start Time
-
       </div>
       <div id="Duration" style="color: rgb(29, 52, 96);position: absolute;
          top: 0px;margin-left: 164px;
@@ -1550,7 +1669,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           [style.color]="MacroManager.tempMacroContent.indexPosition==i?'rgb(159, 163, 170)':'rgb(159, 163, 170)'"
           (click)="selectMacroSubContent($event,i);">
 
-            <img [src]="item.inTheSelectionList?ImgPath.arrowTick[1]:ImgPath.arrowTick[0]"
+            <img [src]="item.inTheSelectionList?ImgPath.macro_Gray_Checked[1]:ImgPath.macro_Gray_Checked[0]"
             (click)="MacroManager.tempMacroContent.selectAllDataFlag=false;">
     
 
@@ -1586,126 +1705,6 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   </section>
 
-  <div *ngIf="softwareSettingPage" id="softwareSettingPage" class="CenterAlignment"
-    style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
-    <div id="ChildPageContent" style="    position: absolute;
-    width: 631px;
-    height: 454px;
-    background: rgb(45 47 52);">
-      <section id="toolbar"
-        style="width: 100%;height:7%;background-color: rgb(29, 52, 96);display: flex;flex-direction: row-reverse;">
-        <div id="ExitApplicationIcon" class="ToolbarOptions"
-          [style.background-color]="ExitMouseover=='Exit'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
-          (mouseover)="ExitMouseover='Exit'" (mouseleave)="ExitMouseover=''" (click)="softwareSettingPage=false">
-          <img style="position: absolute;bottom: 25%;" src="image/Perixx_Project/Share/ExitApplication.png">
-        </div>
-        <div id="MinimizeIcon" class="ToolbarOptions"
-          [style.background-color]="ExitMouseover=='Minimize'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
-          (mouseover)="ExitMouseover='Minimize'" (mouseleave)="ExitMouseover=''">
-          <img style="position: absolute;bottom: 30%;" src="image/Perixx_Project/Share/MinimizeIcon.png">
-        </div>
-      </section>
-      <div id="ChildPage" style="    position: relative;width: fit-content;
-            display: inline-flex;flex-direction: column;
-            height: 93%;vertical-align: top;
-            ">
-
-        <div (click)="softwareSettingCurrentPage='About';verticalAnimationLineValue=28;" id="About" style="padding-left: 37px;
-              margin-top: 31px;
-              display: flex;
-          flex-direction: row-reverse;">
-          About
-        </div>
-        <div (click)="softwareSettingCurrentPage='Update';verticalAnimationLineValue=86;" id="Update" style="margin-top: 40px;    display: flex;
-              flex-direction: row-reverse;">
-          Update
-        </div>
-
-        <div (click)="softwareSettingCurrentPage='Help';verticalAnimationLineValue=144;" id="Help" style="margin-top: 40px;    display: flex;
-              flex-direction: row-reverse;">
-          Help
-        </div>
-
-      </div>
-      <div id="VerticalAnimationLine" style="    width: 1px;
-      height: 26px;
-      background: rgb(255, 255, 255);
-      vertical-align: top;
-      display: inline-flex;
-      margin-left: 6px;
-      margin-top: 28px;
-      transition-property: margin-top;
-      transition-duration: 0.4s;" [style.marginTop.px]="verticalAnimationLineValue">
-
-      </div>
-      <section id="ChildPageArea" style="    width: fit-content;
-      height: 93%;
-      background: rgb(0 0 255);
-      display: inline-flex;">
-        <section *ngIf="softwareSettingCurrentPage=='About'" id="AboutArea">
-          <img id="SettingIcon" style="position: absolute;margin-left: 21%;
-          margin-top: 9%;" src="image/Perixx_Project/Settings/Logo.png">
-          <img id="SettingIcon" style="position: absolute;
-                      margin-top: 22%;
-                      margin-left: 31%;" src="image/Perixx_Project/Settings/Instagram.png"
-            (click)="linkToTheDesignatedWebsite('https://www.instagram.com/perixxofficial/?hl=en')">
-          <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
-                        margin-top: 22%;
-                        margin-left: 40%;"
-            (click)="linkToTheDesignatedWebsite('https://www.facebook.com/Perixx.Computer/')">
-
-          <a style="    position: absolute;
-          margin-top: 30%;
-          margin-left: 29%;
-          color: rgb(255 255 255);
-          text-decoration: unset;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
-          <div id="ParallelLine" style="position: absolute;
-          background: rgb(159,163,170);
-          width: 54%;
-          height: 1px;
-          margin-left: 80px;
-          margin-top: 210px;">
-          </div>
-          <div id="IntroductionText" style="    position: absolute;
-          width: 350px;
-          height: 148px;
-          word-break: break-word;
-          margin-left: 13%;
-          bottom: 10%;">
-            eeeeefdsjivjsdfvjnsdkfnsilhgiuerhfiuerhfiufhiusdfhiusdhiusdhfiusdfhiusdhfiusdhhifwoifowueoifsoijsoijvoicxjvoisjociwjdoifjdoijcoicoimcowjdoifjwdoifjsoijfoisdjvoivcxojojosifdjoijdfoijgoidjfdsicjsdijc
-            Sdkjvcsidvcsdcnsdoivncoisdv
-            Sdkjvnsdvndksdnvjksdnvjks
-          </div>
-
-
-        </section>
-
-        <section *ngIf="softwareSettingCurrentPage=='Update'" id="Update">
-          <div style="    position: absolute;
-          margin-left: 30%;
-          margin-top: 17%;
-          font-weight: bold;">Current Version: XXX
-          </div>
-          <div style="    position: absolute;
-          margin-left: 31%;
-          margin-top: 22%;
-          font-size: 14px;" class="LanguageBtn"> Check
-            New Version
-          </div>
-        </section>
-        <section *ngIf="softwareSettingCurrentPage=='Help'" id="Help">
-          <p style="margin-left: 36%;top: 16%;position: absolute;    font-weight: bold;">User Manual
-          </p>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" > English
-          </div>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" > Deutsch
-          </div>
-        </section>
-      </section>
-
-
-    </div>
-  </div>
 
   <img (click)="softwareSettingPage=true" id="SWConfigIcon" 
   [src]="this.currentPage=='ConnectedPage'? ImgPath.SWConfig[0]:ImgPath.SWConfig[1]"

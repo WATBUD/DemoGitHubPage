@@ -249,7 +249,10 @@ export class PerixxComponent implements OnInit {
         setTimeout(() => {
           var Keyboard_NavList = document.querySelectorAll(".KeyBoard_Block");
           this.KeyBoardStyle.applyStyles(Keyboard_NavList);
-          var dataCCP = document.querySelector("[data-ColorWheel]");
+          var dataCCP = document.querySelector("[data-ColorWheel='5']");
+          
+          console.log('%c dataCCP', 'background: black; color: white', dataCCP);
+
           if (dataCCP != undefined) {
             dataCCP.removeEventListener("mousedown", this.HSLColorPickerFN[0]);
             dataCCP.removeEventListener("mousemove", this.HSLColorPickerFN[1]);
@@ -1018,6 +1021,7 @@ export class PerixxComponent implements OnInit {
     if(this.MacroManager.onRecord){
       this.MacroManager.allRecordKeys = [];
       this.MacroManager.tempMacroContent.resetDefaultData();
+      this.MacroManager.tempMacroContent.selectAllDataFlag=false;
       this.MacroManager.addMacroEvent();
     }
   }

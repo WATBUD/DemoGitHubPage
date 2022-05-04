@@ -79,25 +79,37 @@
 .MactoContentItem .KeyCodeText {
     width: 28px;
     margin-left: 9px;
-    color: rgb(159 163 170);
+    color: #2D2F34;
+    font-family: 'Inter-Regular';
+    font-size: 14px;
+    background: rgb(245 245 247);
+    border: 1px solid rgba(118, 118, 118, 0.3);
 }
 .MactoContentItem .StartTimeText {
     width: 71px;
-    margin-right: 14px;
-    margin-left: 3px;
-    color: rgb(159 163 170);
-    
+    margin-right: 17px;
+    margin-left: 8px;
+    color: #2D2F34;
+    font-family: 'Inter-Regular';
+    font-size: 14px;
+    background: rgb(245 245 247);
+    border: 1px solid rgba(118, 118, 118, 0.3);
+
 }
 .MactoContentItem .durationText {
     width: 21%;
-    color: #9fa3aa;
-    
+    color: #2D2F34;
+    font-family: 'Inter-Regular';
+    font-size: 14px;
+    background: rgb(245 245 247);
+    border: 1px solid rgba(118, 118, 118, 0.3);
 }
 .MactoContentItem input:focus {
     -webkit-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+
 }
 [data-identity="operationList"] {
     background: #707070;

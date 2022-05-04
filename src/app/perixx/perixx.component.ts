@@ -9,10 +9,9 @@ import { M_Light_CS } from './M_Light_Perixx';
 import { BoxSelectionArea } from './BoxSelectionArea';
 import { SettingManager } from './SettingManager';
 import { Built_ineffect } from './Built_ineffect';
-import { FirewareManager } from './FirewareManager';
 import { ColorModule } from '../../Module/TSImportManager';
 import { Electron_Service } from '../../Module/Electron_Service';
-import { DeviceService } from './DeviceService';
+import { DeviceService,FirewareManager } from './DeviceService';
 import { Observable,fromEvent  } from 'rxjs';
 declare var window: any;
 

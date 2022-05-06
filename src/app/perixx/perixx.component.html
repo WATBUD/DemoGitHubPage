@@ -817,7 +817,8 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
           [style.border-width]="Built_ineffect.getBlockValue(i).choosing&&Built_ineffect.Built_inSelected.hasSingleKeyLighting?'2px':'0px'"
           (click)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
           (contextmenu)="Built_ineffect.getBlockValue(i).choosing=!Built_ineffect.getBlockValue(i).choosing"
-          data-KB_Block="i" class="KeyBoard_Block" [attr.data-index]="i">
+          data-KB_Block="i" class="KeyBoard_Block" 
+          [attr.data-index]="i">
           <img class="KeyBoardBindImg" alt="" [src]="getLightingPageIcon(i)">
         </div>
       </div>

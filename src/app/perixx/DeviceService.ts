@@ -40,20 +40,20 @@ export class DeviceService{
     static instance=undefined;
     //private http:Http
     constructor() {
-        DeviceService.instance=this;
+        DeviceService.instance = this;
         try {
             this.dbServiceBackEnd = electron_Instance.getGlobal('AppProtocol').deviceService.nedbObj;
-            this.dbService= globalDB.getInstance();
+            this.dbService = globalDB.getInstance();
         }
         catch (error) {
-            console.log('%c _nodeRequire_err','background: red; color: white',error);
+            console.log('%c _nodeRequire_err', 'background: red; color: white', error);
         }
-        console.log('%c DeviceService_http','background: red; color: white');
-            // this.getAssignURL_json('https://gloriouscore.nyc3.digitaloceanspaces.com/Glorious_Core/Version.json').subscribe((data) => {
-            //     console.log('CheckForceUpgrade', data);
-            // },(error) => {
-            // console.error('getAssignURL_json_subscribe資料錯誤');
-            // })
+        console.log('%c DeviceService_http', 'background: red; color: white');
+        // this.getAssignURL_json('https://gloriouscore.nyc3.digitaloceanspaces.com/Glorious_Core/Version.json').subscribe((data) => {
+        //     console.log('CheckForceUpgrade', data);
+        // },(error) => {
+        // console.error('getAssignURL_json_subscribe資料錯誤');
+        // })
     }
     static getInstance() {
         if (this.instance) {

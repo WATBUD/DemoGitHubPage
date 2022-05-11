@@ -109,23 +109,39 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     <div class="CenterAlignment" style="height: 20%;width: 20%;">
       OnRecord...
     </div>
-    <!-- <img src="./image/Share/Loading.gif" alt="Loading.gif" style="height: 92PX;
-      width: 92PX;" /> -->
   </div>
+  <div [style.display]="onLodaing?'flex':'none'" id="LodaingInage" class="CenterAlignment"
+    style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
+    <div style="height: 38px;
+        color: rgb(45,47,52);
+        width: 304px;
+        position: absolute;
+        left: 18%;top: 86px;
+        font-family: 'Inter-regular';
+        font-size: 18px;
+          "> Loading Data
+      </div>
+      <img src="image/Perixx_Project/Share/White_Loading.gif" alt="White_Loading.gif" style="height: 73PX;
+        width: 73PX;" />
+  </div>
+
+
+
   <div [style.display]="askIfYouAreSureToReset?'flex':'none'" id="AskIfYouAreSureToReset" class="CenterAlignment"
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
-    <div style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+    <div class="AskWindowPosition">
+      <img src="image/Perixx_Project/Share/ExclamationMark.png" style="position: absolute;
+      top: 46px;
+left: 9%;">
       <div style="height: 38px;
           color: rgb(45,47,52);
           width: 304px;
           position: absolute;
-          left: 18%;
-          top: 46px;
+          left: 18%;top: 49px;
+          font-family: 'Inter-regular';
+          font-size: 18px;
             "> Are you sure to reset the settings of the current profile?
       </div>
-      <img src="image/Perixx_Project/Share/ExclamationMark.png" style="position: absolute;
-               top: 46px;
-        left: 9%;">
       <div class="ApplyBtn" style="    height: 38px;
             width: 153px;
             position: absolute;
@@ -143,26 +159,28 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   <div [style.display]="theScreenThatPopsUpWhenTheUpdateFails?'flex':'none'" id="theScreenThatPopsUpWhenTheUpdateFails"
     class="CenterAlignment" style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
-    <div style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
-      <img src="image/Perixx_Project/Share/UpdatesFailedIcon.png" style="position: absolute;top: 58px;left: 32px;">
+    <div class="AskWindowPosition">
+      <img src="image/Perixx_Project/Share/UpdatesFailedIcon.png" style="position: absolute;    top: 46px;
+      left: 9%;">
       <img src="image/Perixx_Project/Share/UpdatesFailedCrossX.png" style="position: absolute;top: 16px;right: 18px;"
         (click)="theScreenThatPopsUpWhenTheUpdateFails=false;">
 
       <div style="
       color: rgb(45,47,52);
       position: absolute;
-      left: 65px;
-      top: 58px;
+      left: 18%;
+    top: 49px;
       font-weight:bold;
       font-size:18px;"> Updates failed
       </div>
       <div style="color: rgb(45,47,52);
       position: absolute;
-      left: 65px;
-      top: 92px;
-      font-size: 14px;
+      left: 18%;
+    top: 79px;
+      font-size: 18px;
       width: 361px;
       line-height: 23px;
+      font-family: 'Inter-Regular';
         "> We couldn’t complete the updates. Please reconnect the
         keyboard to your computer and apply settings again.
       </div>
@@ -172,18 +190,18 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
   <div [style.display]="newUpdateDetected?'flex':'none'" id="newUpdateDetected" class="CenterAlignment"
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
-    <div style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+    <div class="AskWindowPosition">
+      <img src="image/Perixx_Project/Share/newUpdateDetected.png" style="position: absolute;
+      top: 46px;
+left: 9%;">
       <div style="height: 38px;
           color: rgb(45,47,52);
           width: 304px;
-          position: absolute;
-          left: 18%;
-          top: 46px;
-            "> Are you sure to reset the settings of the current profile?
+          position: absolute;left: 18%;top: 49px;"> 
+            <div style="font-family: 'Inter-Bold';font-size:18px;">Firmware</div>
+            <div style="margin-top: 5px;font-family: 'Inter-Regular';font-size:18px;">Find new firmware: XXXXXXX</div>
       </div>
-      <img src="image/Perixx_Project/Share/newUpdateDetected.png" style="position: absolute;
-               top: 46px;
-        left: 9%;">
+
       <div class="ApplyBtn" style="    height: 38px;
             width: 153px;
             position: absolute;
@@ -199,23 +217,27 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
     </div>
   </div>
   
-  <div *ngIf="softwareSettingPage" id="softwareSettingPage" class="CenterAlignment"
+  <div *ngIf="softwareSettingPage" id="softwareSettingPage" 
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
     <div id="ChildPageContent" style="    position: absolute;
     width: 631px;
-    height: 454px;
+    height: 527px;
+    left: 285px;
+    top: 72px;
     background: rgb(45 47 52);">
       <section id="toolbar"
-        style="width: 100%;height:7%;background-color: rgb(29, 52, 96);display: flex;flex-direction: row-reverse;">
+        style="width: 100%;height: 25px;background-color: rgb(29, 52, 96);display: flex;flex-direction: row-reverse;">
         <div id="ExitApplicationIcon" class="ToolbarOptions"
           [style.background-color]="ExitMouseover=='Exit'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
           (mouseover)="ExitMouseover='Exit'" (mouseleave)="ExitMouseover=''" (click)="softwareSettingPage=false">
-          <img style="position: absolute;bottom: 25%;" src="image/Perixx_Project/Share/ExitApplication.png">
+          <img style="position: absolute;margin-top: 8px;
+          margin-left: -6px;" src="image/Perixx_Project/Share/ExitApplication.png">
         </div>
         <div id="MinimizeIcon" class="ToolbarOptions"
           [style.background-color]="ExitMouseover=='Minimize'?'rgb(255, 128, 128)':'rgba(60, 60, 60, 0)'"
           (mouseover)="ExitMouseover='Minimize'" (mouseleave)="ExitMouseover=''">
-          <img style="position: absolute;bottom: 30%;" src="image/Perixx_Project/Share/MinimizeIcon.png">
+          <img style="position: absolute;margin-top: 17px;
+          margin-left: 5px;" src="image/Perixx_Project/Share/MinimizeIcon.png">
         </div>
       </section>
       <div id="ChildPage" style="    position: relative;width: fit-content;
@@ -225,16 +247,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
 
         <div (click)="softwareSettingCurrentPage='About';verticalAnimationLineValue=28;" id="About" style="padding-left: 37px;
               margin-top: 31px;
-              display: flex;
+              display: flex;font-family: 'Inter-Bold';
           flex-direction: row-reverse;">
           About
         </div>
-        <div (click)="softwareSettingCurrentPage='Update';verticalAnimationLineValue=86;" id="Update" style="margin-top: 40px;    display: flex;
+        <div (click)="softwareSettingCurrentPage='Update';verticalAnimationLineValue=86;" id="Update" style="margin-top: 40px;    display: flex;font-family: 'Inter-Bold';
               flex-direction: row-reverse;">
           Update
         </div>
 
-        <div (click)="softwareSettingCurrentPage='Help';verticalAnimationLineValue=144;" id="Help" style="margin-top: 40px;    display: flex;
+        <div (click)="softwareSettingCurrentPage='Help';verticalAnimationLineValue=144;" id="Help" style="margin-top: 40px;    display: flex;font-family: 'Inter-Bold';
               flex-direction: row-reverse;">
           Help
         </div>
@@ -256,63 +278,70 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
       background: rgb(0 0 255);
       display: inline-flex;">
         <section *ngIf="softwareSettingCurrentPage=='About'" id="AboutArea">
-          <img id="SettingIcon" style="position: absolute;margin-left: 21%;
-          margin-top: 9%;" src="image/Perixx_Project/Settings/Logo.png">
-          <img id="SettingIcon" style="position: absolute;
-                      margin-top: 22%;
-                      margin-left: 31%;" src="image/Perixx_Project/Settings/Instagram.png"
+          <img id="SettingIcon" style="position: absolute;margin-left: 27%;margin-top: 7.5%;" src="image/Perixx_Project/Settings/Logo.png">
+          <img id="SettingIcon" style="position: absolute;margin-top: 119px;margin-left: 362px;" src="image/Perixx_Project/Settings/Instagram.png"
             (click)="linkToTheDesignatedWebsite('https://www.instagram.com/perixxofficial/?hl=en')">
-          <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;
-                        margin-top: 22%;
-                        margin-left: 40%;"
+          <img id="SettingIcon" src="image/Perixx_Project/Settings/FBIcon.png" style="position: absolute;margin-top: 119px;
+          margin-left: 315px;"
             (click)="linkToTheDesignatedWebsite('https://www.facebook.com/Perixx.Computer/')">
 
-          <a style="    position: absolute;
+          <!-- <a style="    position: absolute;
           margin-top: 30%;
           margin-left: 29%;
           color: rgb(255 255 255);
-          text-decoration: unset;" href="https://perixx.com/" target="_blank">https://perixx.com/</a>
+          text-decoration: unset;" href="https://perixx.com/" target="_blank">https://perixx.com/</a> -->
           <div id="ParallelLine" style="position: absolute;
           background: rgb(159,163,170);
-          width: 54%;
-          height: 1px;
-          margin-left: 80px;
-          margin-top: 210px;">
+          width: 403px;height: 1px;margin-left: 88px;margin-top: 348px;">
           </div>
-          <div id="IntroductionText" style="    position: absolute;
-          width: 350px;
-          height: 148px;
-          word-break: break-word;
-          margin-left: 13%;
-          bottom: 10%;">
-            eeeeefdsjivjsdfvjnsdkfnsilhgiuerhfiuerhfiufhiusdfhiusdhiusdhfiusdfhiusdhfiusdhhifwoifowueoifsoijsoijvoicxjvoisjociwjdoifjdoijcoicoimcowjdoifjwdoifjsoijfoisdjvoivcxojojosifdjoijdfoijgoidjfdsicjsdijc
-            Sdkjvcsidvcsdcnsdoivncoisdv
-            Sdkjvnsdvndksdnvjksdnvjks
+          <div dataIntroductionText="" style="position: absolute;
+                                      width: 387px;
+                                       height: auto;
+                                       word-break: break-word;
+                                       margin-left: 18%;
+                                       margin-top: 365px;">
+            <div style="    font-family: 'Inter-Regular';
+                      font-size: 12px;
+                      transform: scale(0.83);
+                      margin-left: -31px;
+                      margin-top: -6px;"> Perixx is a trademark of Perixx Computer GmbH in Düsseldorf, Germany. Software
+              copyrights and patents were created by Perixx Computer GmbH.
+            </div>
           </div>
-
+          <div dataIntroductionText="" style="    position: absolute;
+                    width: auto;
+                    height: auto;
+                    word-break: break-word;
+                    margin-left: 18%;
+                    margin-top: 441px;">
+            <div style="    font-family: 'Inter-Regular';
+                    font-size: 12px;
+                    transform: scale(0.83);
+                    margin-left: -26px;
+                    margin-top: -31px;"> © Perixx, Powered by Perixx Computer GmbH. All rights reserved.
+            </div>
+          </div>
 
         </section>
 
         <section *ngIf="softwareSettingCurrentPage=='Update'" id="Update">
-          <div style="    position: absolute;
-          margin-left: 30%;
-          margin-top: 17%;
-          font-weight: bold;">Current Version: XXX
+          <div style="position: absolute;
+          margin-left: 29.6%;
+          margin-top: 6.2%;
+          font-family: 'Inter-Bold';">Current Version: XXX
           </div>
           <div style="    position: absolute;
-          margin-left: 31%;
-          margin-top: 22%;
+          margin-left: 30.6%;
+          margin-top: 13.2%;
           font-size: 14px;" class="LanguageBtn"> Check
             New Version
           </div>
         </section>
         <section *ngIf="softwareSettingCurrentPage=='Help'" id="Help">
-          <p style="margin-left: 36%;top: 16%;position: absolute;    font-weight: bold;">User Manual
+          <p style="    margin-left: 35.7%;
+          top: 9.2%;position: absolute;    font-weight: bold;">User Manual
           </p>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 28%;" > English
-          </div>
-          <div class="LanguageBtn" style="margin-left: 30%;top: 41%;" > Deutsch
-          </div>
+          <div class="LanguageBtn" style="margin-left: 31.4%;top: 20.5%;">Download</div>
         </section>
       </section>
 
@@ -323,22 +352,32 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   <div [style.display]="FWManager.updatingStatus!=''?'flex':'none'" id="updatingFirmwareStatus" class="CenterAlignment"
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
     <div [style.display]="FWManager.updatingStatus=='updating'?'flex':'none'"
-      style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+      class="AskWindowPosition">
       <div style="height: 38px;
           color: rgb(45,47,52);
           width: 304px;
           position: absolute;
-          left: 18%;
-          top: 48px;
+          top: 44px;
+          left: 18.1%;
             "> Firmware
+      </div>
+      <div style="height: 38px;
+      color: rgb(45,47,52);
+      width: auto;
+      position: absolute;
+      left: 18%;
+      top: 71px; font-family: 'Inter-Regular';
+        "> Please don't disconnect the Perixx keyboard
       </div>
       <div id="ProgressDivBackground" style="position:absolute;
          left: 18%;top: 98px;width: 340px;height: 10px;
          background: rgb(159 163 170);border-radius: 11px;">
         <div id="percentage" style="position: absolute;
-         right: -46px;
-         margin-top: -4px;
-         color: rgb(45,47,52);">{{FWManager.updatingPercentage}}%
+        margin-left: 343px;
+        margin-top: -2.6px;
+        color: rgb(45,47,52);
+        direction: rtl;
+        font-size: 12px;">{{FWManager.updatingPercentage}}%
         </div>
         <div id="ProgressBar" style="width: 0px;
           background:  rgb(45,47,52);
@@ -351,13 +390,16 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
               width: 304px;
               position: absolute;
               left: 18%;
-              top: 118px;
+              top: 118px; font-family: 'Inter-Regular';
                 "> Writing data to the processor…
       </div>
 
     </div>
     <div [style.display]="FWManager.updatingStatus=='updateCompleted'?'flex':'none'" id="UpdateCompleted"
-      style="position: absolute;height: 190px;width: 493px;background: rgb(245, 245, 247);top: 10%;left: 39%;">
+      class="AskWindowPosition">
+      <img src="image/Perixx_Project/Share/UpdateCompleted.png" style="position: absolute;
+      top: 46px;
+left: 9%;">
       <div style="color: rgb(45,47,52);
       position: absolute;left: 18%;top: 49px;font-size: 18px;font-weight: bold;">
         Message
@@ -367,9 +409,7 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
         The firmware has been updated successfully.
       </div>
 
-      <img src="image/Perixx_Project/Share/UpdateCompleted.png" style="position: absolute;
-                 top: 46px;
-          left: 9%;">
+
 
       <div class="ApplyBtn" style="    height: 38px;
               width: 153px;

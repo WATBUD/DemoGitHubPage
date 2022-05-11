@@ -179,6 +179,8 @@ background: rgb(237 238 240);
     align-items: center;
     color: #1240a2;
     border: 1px solid #1240a2;
+    font-family: 'Inter-regular';
+    font-size: 14px;
 }
 input[type=checkbox] {
     margin: 0px;
@@ -345,3 +347,20 @@ input[type="range"]::-webkit-slider-thumb {
     color: rgb(45, 47, 52);
     font-family: 'Inter-Bold';
   }
+
+
+
+/*#region Select*/
+
+.AskWindowPosition{
+    position: absolute;
+    height: 190px;
+    width: 493px;
+    background: rgb(245, 245, 247);
+    top: 18.2%;
+    left: 31.7%;
+}
+
+
+
+/*#endregion Select*/

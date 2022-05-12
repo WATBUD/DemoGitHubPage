@@ -113,12 +113,11 @@ height: 97%;width: 100%;background: #2D2F34;color: rgb(255, 255, 255);">
   <div [style.display]="onLodaing?'flex':'none'" id="LodaingInage" class="CenterAlignment"
     style="position: absolute;height: 100%;z-index: 1111;width: 100%;background: #0000008a;">
     <div style="height: 38px;
-        color: rgb(45,47,52);
-        width: 304px;
-        position: absolute;
-        left: 18%;top: 86px;
-        font-family: 'Inter-regular';
-        font-size: 18px;
+    color: rgb(255 255 255);
+    position: absolute;
+    top: 252px;
+    font-family: 'Inter-regular';
+    font-size: 18px;
           "> Loading Data
       </div>
       <img src="image/Perixx_Project/Share/White_Loading.gif" alt="White_Loading.gif" style="height: 73PX;
@@ -777,11 +776,20 @@ left: 9%;">
               (click)="SettingManager.agreeToReceiveUpdatesFromPerixx=!SettingManager.agreeToReceiveUpdatesFromPerixx">
             I agree to receive updates from Perixx.
           </div>
-          <div [style.color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'"
-            [style.border-color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'" class="ApplyBtn"
-            style="bottom: 71px;" (click)="FWManager.startUpdateFirmwareData();"> Upgrade
+
+          <div *ngIf="!FWManager.firmwareHasANewUpdate"
+          [style.color]="'rgb(18,64,162)'"
+          [style.border-color]="'rgb(18,64,162)'" 
+          class="ApplyBtn" style="bottom: 71px;" > Upgrade
           </div>
 
+          <div *ngIf="FWManager.firmwareHasANewUpdate"
+          [style.color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'"
+          [style.border-color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'" 
+          class="ApplyBtn PageApplyBtn"
+          style="bottom: 71px;" 
+          (click)="FWManager.startUpdateFirmwareData();"> Upgrade
+          </div>
 
 
 
@@ -897,7 +905,7 @@ left: 9%;">
 
 
 
-      <div class="ApplyBtn" style="bottom: 24px;" (click)="loadTemporaryKeyboardData()"> Apply
+      <div class="ApplyBtn PageApplyBtn" style="bottom: 24px;" (click)="loadTemporaryKeyboardData()"> Apply
       </div>
 
 
@@ -1051,7 +1059,7 @@ left: 9%;">
         </div>
       </div>
 
-      <div class="ApplyBtn" style="bottom: 74px;" (click)="loadTemporaryKeyboardData()"> Apply
+      <div class="ApplyBtn PageApplyBtn" style="bottom: 74px;" (click)="loadTemporaryKeyboardData()"> Apply
       </div>
 
     </div>
@@ -1249,42 +1257,42 @@ left: 9%;">
         </div>
         <div id="Modifier-Left" class="KeyBindClass">
           <div class="KeyBindClassWord">Modifier-Left</div>
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 0px;margin-right: 0px;" 
             [src]="currentTouchButtons=='ShiftLeft'? ImgPath.getThePicture('ShiftLeft')[1]:ImgPath.getThePicture('ShiftLeft')[0]"
             (mouseover)="currentTouchButtons='ShiftLeft'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('ShiftLeft')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: -7px;margin-right: 0px;" 
             [src]="currentTouchButtons=='ControlLeft'? ImgPath.getThePicture('ControlLeft')[1]:ImgPath.getThePicture('ControlLeft')[0]"
             (mouseover)="currentTouchButtons='ControlLeft'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('ControlLeft')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: -5px;margin-right: 0px;" 
             [src]="currentTouchButtons=='MetaLeft'? ImgPath.getThePicture('MetaLeft')[1]:ImgPath.getThePicture('MetaLeft')[0]"
             (mouseover)="currentTouchButtons='MetaLeft'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('MetaLeft')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 0px;margin-right: 0px;" 
             [src]="currentTouchButtons=='AltLeft'? ImgPath.getThePicture('AltLeft')[1]:ImgPath.getThePicture('AltLeft')[0]"
             (mouseover)="currentTouchButtons='AltLeft'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('AltLeft')">
         </div>
         <div id="Modifier-Right" class="KeyBindClass">
           <div class="KeyBindClassWord">Modifier-Right</div>
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 0px;margin-right: 0px;" 
             [src]="currentTouchButtons=='ShiftRight'? ImgPath.getThePicture('ShiftRight')[1]:ImgPath.getThePicture('ShiftRight')[0]"
             (mouseover)="currentTouchButtons='ShiftRight'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('ShiftRight')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 0px;margin-right: 0px;" 
             [src]="currentTouchButtons=='ControlRight'? ImgPath.getThePicture('ControlRight')[1]:ImgPath.getThePicture('ControlRight')[0]"
             (mouseover)="currentTouchButtons='ControlRight'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('ControlRight')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 0px;margin-right: 0px;" 
             [src]="currentTouchButtons=='ContextMenu'? ImgPath.getThePicture('ContextMenu')[1]:ImgPath.getThePicture('ContextMenu')[0]"
             (mouseover)="currentTouchButtons='ContextMenu'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('ContextMenu')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: -2px;margin-right: 0px;" 
             [src]="currentTouchButtons=='MetaRight'? ImgPath.getThePicture('MetaRight')[1]:ImgPath.getThePicture('MetaRight')[0]"
             (mouseover)="currentTouchButtons='MetaRight'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('MetaRight')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 0px;margin-right: 0px;" 
             [src]="currentTouchButtons=='AltRight'? ImgPath.getThePicture('AltRight')[1]:ImgPath.getThePicture('AltRight')[0]"
             (mouseover)="currentTouchButtons='AltRight'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('AltRight')">
@@ -1359,11 +1367,11 @@ left: 9%;">
             (mouseover)="currentTouchButtons='F12'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('F12')">
           <p></p>
-          <img class="KeyBindStyle" style="margin-left: 3px;"
+          <img class="KeyBindStyle" style="margin-left: 1px;"
             [src]="currentTouchButtons=='Enter'? ImgPath.getThePicture('Enter')[1]:ImgPath.getThePicture('Enter')[0]"
             (mouseover)="currentTouchButtons='Enter'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('Enter')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-right: -6px;"
             [src]="currentTouchButtons=='Escape'? ImgPath.getThePicture('Escape')[1]:ImgPath.getThePicture('Escape')[0]"
             (mouseover)="currentTouchButtons='Escape'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('Escape')">
@@ -1371,7 +1379,7 @@ left: 9%;">
             [src]="currentTouchButtons=='Backspace'? ImgPath.getThePicture('Backspace')[1]:ImgPath.getThePicture('Backspace')[0]"
             (mouseover)="currentTouchButtons='Backspace'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('Backspace')">
-          <img class="KeyBindStyle" style="margin-left: 2px;"
+          <img class="KeyBindStyle" style="margin-left: 0px;"
             [src]="currentTouchButtons=='Tab'? ImgPath.getThePicture('Tab')[1]:ImgPath.getThePicture('Tab')[0]"
             (mouseover)="currentTouchButtons='Tab'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('Tab')">
@@ -1390,16 +1398,16 @@ left: 9%;">
           <!-- <img class="KeyBindStyle" [src]="currentTouchButtons=='FunctionLock'? ImgPath.getThePicture('FunctionLock')[1]:ImgPath.getThePicture('FunctionLock')[0]"
             (mouseover)="currentTouchButtons='FunctionLock'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('FunctionLock')"> -->
-          <img class="KeyBindStyle" style="margin-left: 7px;"
+          <img class="KeyBindStyle" style="margin-left: 5px;"
             [src]="currentTouchButtons=='PrintScreen'? ImgPath.getThePicture('PrintScreen')[1]:ImgPath.getThePicture('PrintScreen')[0]"
             (mouseover)="currentTouchButtons='PrintScreen'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('PrintScreen')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 5px;"
             [src]="currentTouchButtons=='ScrollLock'? ImgPath.getThePicture('ScrollLock')[1]:ImgPath.getThePicture('ScrollLock')[0]"
             (mouseover)="currentTouchButtons='ScrollLock'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('ScrollLock')">
             <br>
-          <img class="KeyBindStyle" style="margin-left: 4px;"
+          <img class="KeyBindStyle" style="margin-left: 2px;"
             [src]="currentTouchButtons=='Pause'? ImgPath.getThePicture('Pause')[1]:ImgPath.getThePicture('Pause')[0]"
             (mouseover)="currentTouchButtons='Pause'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('Pause')">
@@ -1411,7 +1419,7 @@ left: 9%;">
             [src]="currentTouchButtons=='Home'? ImgPath.getThePicture('Home')[1]:ImgPath.getThePicture('Home')[0]"
             (mouseover)="currentTouchButtons='Home'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('Home')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 2px;"
             [src]="currentTouchButtons=='PageUp'? ImgPath.getThePicture('PageUp')[1]:ImgPath.getThePicture('PageUp')[0]"
             (mouseover)="currentTouchButtons='PageUp'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('PageUp')">
@@ -1423,7 +1431,7 @@ left: 9%;">
             [src]="currentTouchButtons=='End'? ImgPath.getThePicture('End')[1]:ImgPath.getThePicture('End')[0]"
             (mouseover)="currentTouchButtons='End'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('End')">
-          <img class="KeyBindStyle"
+          <img class="KeyBindStyle" style="margin-left: 1px;"
             [src]="currentTouchButtons=='PageDown'? ImgPath.getThePicture('PageDown')[1]:ImgPath.getThePicture('PageDown')[0]"
             (mouseover)="currentTouchButtons='PageDown'" (mouseleave)="currentTouchButtons=''"
             (click)="setKeyBindingData('PageDown')">
@@ -1730,11 +1738,11 @@ left: 9%;">
             [disabled]="item.inTheSelectionList ? false : true">
         </div>
       </div>
-      <div class="ApplyBtn"
+      <div class="ApplyBtn PageApplyBtn"
         style="position: absolute;bottom: 80px;z-index: 1111;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
         (click)="MacroManager.tempMacroContent.sortData();"> Refresh
       </div>
-      <div class="ApplyBtn"
+      <div class="ApplyBtn PageApplyBtn"
         style="position: absolute;bottom: 24px;z-index: 1111;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
         (click)="this.loadTemporaryMacroData()"> Apply
       </div>

@@ -43,7 +43,7 @@ export class PerixxComponent implements OnInit {
   selectedMacroCode = "";
   lastSelectedMacroListCategory = "Macro";//Profile //Macro
   slidingTimer;
-  onLodaing=true;
+  onLodaing=false;
   askIfYouAreSureToReset=false;
   theScreenThatPopsUpWhenTheUpdateFails=false;
   newUpdateDetected=false;

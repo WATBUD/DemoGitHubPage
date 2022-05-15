@@ -1,0 +1,76 @@
+#LecturerAndTeachingAssistantLineup{
+
+    height: auto;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    color: rgb(21, 57, 106);
+    justify-content: space-around;
+
+}
+.LecturerAndTeachingAssistantLineup_Item{
+height: 100%;
+    width: 22%;
+    display: flex;
+    color: rgb(21, 57, 106);
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.LecturerAndTeachingAssistantLineblock{
+    height: auto;
+    width: 100%;
+    display: flex;
+    color: rgb(21, 57, 106);
+    position: sticky;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SuitableObjectDescription{
+    width: 33%;
+    justify-content: center;
+    display: flex;
+    color: rgb(5,78,117);
+    height: 5vw;
+    align-items: center;
+}
+.CenterAlignment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.BackgroundCenter{
+    background-color: transparent;
+    background-image: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    max-width: 1600px;
+    margin: 0px auto;
+        padding: 0px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    word-break: break-word;
+}
+@media (min-width:0px) and (max-width: 1200px) {
+  .rwdtxt {
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 1200px) {
+  .rwdtxt {
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: column;
+  }
+}

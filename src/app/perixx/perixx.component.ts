@@ -170,10 +170,7 @@ export class PerixxComponent implements OnInit {
     this.MacroManager.createFolderFile();
     //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
     //this.setPageIndex('Macro_Nav');
-    //var ssss="/upload/prime/version.json";//Remove the primary domain Set the primary domain from the proxy.conf file
-    //var ssss="?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
-    var ssss = "https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
-    //var ssss="https://app.fusebox.fm/api/players/track/32XDRaOgO0/44/";
+    //var ssss = "https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
     // this.httpService.noOptionToGetURL(ssss).subscribe((res: any) => {
     //   console.log('%c noOptionToGetURL', 'color:rgb(255,75,255,1)', res)
 
@@ -208,6 +205,24 @@ export class PerixxComponent implements OnInit {
       });
     }
   }
+
+  enterTheSpecifiedKeyboard() {
+    this.onLodaing=true;
+    if(this.Electron_Service.inTheElectronFramework()){
+    this.setPageIndex('Home_Nav');
+    this.newUpdateDetected=true;
+    }
+    else{
+      this.setPageIndex('Home_Nav');
+      setTimeout(() => {
+        this.newUpdateDetected=true;
+        this.onLodaing=false;
+      }, 2000);
+    }
+
+  };
+  
+
 
   setPageIndex(pageName = "") {
     if (this.currentPage != pageName)
@@ -402,6 +417,8 @@ export class PerixxComponent implements OnInit {
         }
         this.MacroManager.importMacroClass(MacroObj.Db_data)
     }
+    this.onLodaing=false;
+
     // this.setPageIndex('KEYBOARDSETTINGS');
     // this.onLoading = false;
     // if (_nodeRequire_fs.existsSync(process.env.APPDATA + "\\Development_SupportDB")) {

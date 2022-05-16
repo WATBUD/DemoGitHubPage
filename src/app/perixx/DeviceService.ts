@@ -63,32 +63,21 @@ export class DeviceService{
         }
     }
 
-
-    getCurrentDevice(){
+    isThereADeviceBeingPluggedIn() {
         var target = this.pluginDeviceData;
-        //console.log('DeviceService.getCurrentDevice',target);
-        try { 
-            for (let index = 0; index < target.length; index++) {
-                //const element = target[index];&& 
-                if (target[index].devicename == this.nowDeviceName) {
-                    return target[index];
-                }
-            }
-            return this.currentDevice;
-        } catch (error) {
-            console.log('%c getCurrentDevice.Error', 'color:rgb(255,75,255,1)', error);
+        if(target.length<1){
+            return false;
         }
+        return true;
+    }
+    getCurrentDevice(){
+            return this.currentDevice;
        
     }
-    checkDeviceExists(CheckName) {
-        var target = this.pluginDeviceData;
-        console.log(' DeviceService.checkDeviceExists',target);
 
-        for (let index = 0; index < target.length; index++) {
-            if (target[index].devicename == CheckName) {
-                this.nowDeviceName=CheckName;
-                return true;
-            }
+    setCurrentDevice() {
+        if (this.pluginDeviceData.length>0) {
+            this.currentDevice=this.pluginDeviceData[0];
         }
     }
     getDevice() {

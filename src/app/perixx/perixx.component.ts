@@ -210,7 +210,11 @@ export class PerixxComponent implements OnInit {
     this.onLodaing=true;
     if(this.Electron_Service.inTheElectronFramework()){
     this.setPageIndex('Home_Nav');
-    this.newUpdateDetected=true;
+    setTimeout(() => {
+      this.onLodaing=false;
+      this.newUpdateDetected=true;  
+    }, 1000);
+
     }
     else{
       this.setPageIndex('Home_Nav');
@@ -219,7 +223,6 @@ export class PerixxComponent implements OnInit {
         this.onLodaing=false;
       }, 2000);
     }
-
   };
   
 
@@ -391,7 +394,8 @@ export class PerixxComponent implements OnInit {
   readDBDataFromServer() {
     var waitingSynchronization = 1;
     this.ReadAllDBPass = [];
-    var getDevice_data = this.DeviceService.pluginDeviceData;
+    //var getDevice_data = this.DeviceService.pluginDeviceData;
+    this.DeviceService.setCurrentDevice();
     console.log('readDBDataFromServer', this.dbService);
     var Built_ineffectDB_data = JSON.parse(JSON.stringify(this.dbService.AllDBtempData.getBuilt_ineffect))
     console.log('ReadDBDataFromServer_dbService.getBuilt_ineffect()', Built_ineffectDB_data);
@@ -417,7 +421,6 @@ export class PerixxComponent implements OnInit {
         }
         this.MacroManager.importMacroClass(MacroObj.Db_data)
     }
-    this.onLodaing=false;
 
     // this.setPageIndex('KEYBOARDSETTINGS');
     // this.onLoading = false;

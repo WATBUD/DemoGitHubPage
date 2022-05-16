@@ -10,7 +10,7 @@ z-index: 9999;" class="text-effect">
   <div class="spotlight"></div>
 </div> -->
 
-<div id="SnaplLineXY" style="
+<!-- <div id="SnaplLineXY" style="
     position: absolute;
     width: 100%;
     height: 100%;
@@ -22,7 +22,7 @@ z-index: 9999;" class="text-effect">
     top: 0px;
     z-index: 9999;
     pointer-events: none;">
-</div>
+</div> -->
 
 
 
@@ -429,9 +429,10 @@ left: 9%;">
     height: 17px;
     top: 86px;
     text-align: center;">
-      Connect a Perixx device to access the software.
+      <span *ngIf="!this.DeviceService.isThereADeviceBeingPluggedIn()">Connect a Perixx device to access the software.</span>
+      <span *ngIf="this.DeviceService.isThereADeviceBeingPluggedIn()"> {{this.DeviceService.getCurrentDevice().devicename}}</span>
     </div>
-    <div id="Enter_Home_Nav" style="position: absolute;
+    <div *ngIf="this.DeviceService.isThereADeviceBeingPluggedIn()" id="Enter_Home_Nav" style="position: absolute;
     left: 524px;
     top: 143px;
     width: 153px;

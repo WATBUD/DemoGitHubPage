@@ -9,7 +9,7 @@
 
 }
 .LecturerAndTeachingAssistantLineup_Item{
-height: 100%;
+    height: 100%;
     width: 22%;
     display: flex;
     color: rgb(21, 57, 106);
@@ -33,7 +33,7 @@ height: 100%;
     justify-content: center;
     display: flex;
     color: rgb(5,78,117);
-    height: 5vw;
+    height: auto;
     align-items: center;
 }
 .CenterAlignment {
@@ -52,25 +52,65 @@ height: 100%;
     background-position: center center;
     max-width: 1600px;
     margin: 0px auto;
-        padding: 0px;
+    padding: 0px;
 }
-body {
+
+
+@media (min-width:0px) and (max-width: 1200px) {
+  body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     word-break: break-word;
-}
-@media (min-width:0px) and (max-width: 1200px) {
-  .rwdtxt {
-    font-size: 1.5vw;
-    display: flex;
-    flex-direction: column;
+    font-size: 12px;
+  }
+  p{font-size:12px} 
+  .TitleRwdTxt{
+    font-weight: bold;
+    font-size:16px;
+    text-align: center;
+  }
+  .ProjectProductivityIntroduction{
+    font-size: 12px;
+    transform: scale(0.8);
+   }
+   .spacing_{
+    width: 100%;
+    margin-top: 20px;
+  }
+  .TheSizeOfTheContentTextBlock{
+    width: 90%;
+    font-size: 12px;
   }
 }
-@media (min-width: 1200px) {
-  .rwdtxt {
-    font-size: 1.5vw;
-    display: flex;
-    flex-direction: column;
+@media screen and (min-width: 1024px) and (max-width: 3920px){
+  .llUpNn {
+  padding: 0px;
+  }
+  body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  word-break: break-word;
+  font-size: 24px;
+  }
+  p{font-size:24px} 
+  .TitleRwdTxt{
+    font-weight: bold;
+    font-size:36px;
+    text-align: center;
+  }
+  .ProjectProductivityIntroduction{
+   font-size: 12px;
+   
+  }
+  .spacing_{
+    width: 100%;
+    margin-top: 40px;
+  }
+  .TheSizeOfTheContentTextBlock{
+    width: 90%;
+    font-size: 24px;
   }
 }
+

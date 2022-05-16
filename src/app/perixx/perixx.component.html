@@ -780,13 +780,11 @@ left: 9%;">
 
           <div *ngIf="!FWManager.firmwareHasANewUpdate"
           [style.color]="'rgb(18,64,162)'"
-          [style.border-color]="'rgb(18,64,162)'" 
+          [style.border-color]="'rgb(18,64,162)'"  
           class="ApplyBtn" style="bottom: 71px;" > Upgrade
           </div>
 
           <div *ngIf="FWManager.firmwareHasANewUpdate"
-          [style.color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'"
-          [style.border-color]="FWManager.firmwareHasANewUpdate?'rgb(18,64,162)':'rgb(159,163,170)'" 
           class="ApplyBtn PageApplyBtn"
           style="bottom: 71px;" 
           (click)="FWManager.startUpdateFirmwareData();"> Upgrade

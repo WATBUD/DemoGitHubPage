@@ -168,6 +168,7 @@ export class PerixxComponent implements OnInit {
       }
     });
     this.MacroManager.createFolderFile();
+    
     //["Keyboard_Nav","Macro_Nav","Home_Nav","Lighting_Nav","ConnectedPage"]
     //this.setPageIndex('Macro_Nav');
     //var ssss = "https://api.ipify.org/?format=json";//Remove the primary domain Set the primary domain from the proxy.conf file
@@ -214,7 +215,6 @@ export class PerixxComponent implements OnInit {
       this.onLodaing=false;
       this.newUpdateDetected=true;  
     }, 1000);
-
     }
     else{
       this.setPageIndex('Home_Nav');
@@ -350,6 +350,9 @@ export class PerixxComponent implements OnInit {
       console.log("ToServerFunctionName", Obj1);
       this.Electron_Service.RunSetFunction(Obj1).then((data:any) => {
       });
+    }
+    else{
+      this.DeviceService.pluginDeviceData.push(this.DeviceService.currentDevice);
     }
     console.log("project_select: ", event, index);
     this.keyboardColorHintMode = 'KeyBoardManager';

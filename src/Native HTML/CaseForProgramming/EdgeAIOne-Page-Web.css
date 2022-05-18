@@ -44,6 +44,19 @@
   height: auto;
 }
 
+
+
+
+.TrainingList_Item{
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: flex;
+  width: 32%;
+  height: auto;
+  /* font-size: 12px; */
+}
+
+
 .BackgroundCenter{
     background-color: transparent;
     background-image: none;
@@ -81,8 +94,11 @@
   height: 10%;
   align-items: center;
   margin-left: 45%;
-  font-size: 2.4vw;
-  top: 6.5%;color: white;
+  text-align: center;
+  font-size: 149%;
+  top: 6.5%;
+  color: rgb(255 255 255);
+  transform: scale(0.9);
 }
 
 .TrainingHoursList{
@@ -91,12 +107,14 @@
   width: 69%;
   height: 3.8%;
   align-items: center;
-  font-size: 2.4vw;
+  font-size: 149%;
   top: 4%;
   color: rgb(56 56 56);
   font-weight: bolder;
   margin-left: 18%;
 }
+
+
 
 .CourseInProgressList{
   position: absolute;
@@ -115,12 +133,16 @@
 
 
 
+/* *{
+  max-width: 1200px;
+} */
+
+.MaxBigImgWidth{
+  max-width: 1200px;
+}
 
 
-
-
-
-@media (min-width:0px) and (max-width: 1024px) {
+@media (min-width:0px) and (max-width: 1200px) {
   *{
     font-size: 12px;
   }
@@ -130,6 +152,7 @@
     font-family: sans-serif;
     word-break: break-word;
     font-size: 12px;
+    max-width: 100%;
   }
   /* p{font-size:12px}  */
   .TitleRwdTxt{
@@ -138,10 +161,6 @@
     font-size:16px;
     text-align: center;
   }
-  .ProjectProductivityIntroduction{
-    font-size: 12px;
-    transform: scale(0.8);
-   }
    .spacing_{
     width: 100%;
     margin-top: 20px;
@@ -167,20 +186,49 @@
     font-size: 2.5vw;
     transform: scale(0.7);
   }
+  .ProductivityIntroductionListItem{
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    width: 51%;
+    height: 34%;
+    position: absolute;
+   }
+   .ProductivityIntroductionListItem div{
+    transform: scale(0.6);
+   }
+  .ProductivityIntroductionList{
+    position: absolute;
+    transform: scale(0.7);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .TrainingHoursList_Detail{
+    position: absolute;
+    display: flex;
+    width: 75%;
+    height: 3.8%;
+    font-size: 2.3vw;
+    color: rgb(56 56 56);
+    margin-left: 17%;
+    flex-direction: column;
+    top: 11%;
+    transform: scale(0.9);
+  }
   
 }
-@media screen and (min-width: 1024px) and (max-width: 3920px){
+@media screen and (min-width: 1200px) and (max-width: 3920px){
   *{
     font-size: 18px;
-  }
-  .llUpNn {
-  padding: 0px;
   }
   body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   word-break: break-word;
+  max-width: 100%;
   }
   .TitleRwdTxt{
     width: 100%;
@@ -188,17 +236,13 @@
     font-size:36px;
     text-align: center;
   }
-  .ProjectProductivityIntroduction{
-   font-size: 12px;
-   
-  }
   .spacing_{
     width: 100%;
     margin-top: 40px;
   }
   .ContentArticleSize{
     width: 90%;
-    font-size: 24px;
+    font-size: 18px;
     max-width: 1100px;
   }
   .ContentTransformScale{
@@ -217,6 +261,36 @@
     margin-left: 17%;
     transform: scale(0.8);
   }
-  
+  .ProductivityIntroductionListItem{
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    width: 51%;
+    height: 34%;
+    position: absolute;
+   }
+   .ProductivityIntroductionListItem div{
+    transform: scale(0.6);
+   }
+  .ProductivityIntroductionList{
+    position: absolute;
+    transform: scale(1);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .TrainingHoursList_Detail{
+    position: absolute;
+    display: flex;
+    width: 75%;
+    height: 3.8%;
+    font-size: 2.3vw;
+    color: rgb(56 56 56);
+    margin-left: 17%;
+    flex-direction: column;
+    top: 11%;
+    transform: scale(0.9);
+  }
 }
 

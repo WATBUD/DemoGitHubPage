@@ -86,56 +86,19 @@
   display: flex;
   flex-direction: column;
 }
-.TrainingProgramList{
-  position: absolute;
-  justify-content: center;
-  display: flex;
-  width: 39%;
-  height: 10%;
-  align-items: center;
-  margin-left: 45%;
-  text-align: center;
-  font-size: 149%;
-  top: 6.5%;
-  color: rgb(255 255 255);
-  transform: scale(0.9);
-}
-
-.TrainingHoursList{
-  position: absolute;
-  display: flex;
-  width: 69%;
-  height: 3.8%;
-  align-items: center;
-  font-size: 149%;
-  top: 4%;
-  color: rgb(56 56 56);
-  font-weight: bolder;
-  margin-left: 18%;
-}
 
 
 
-.CourseInProgressList{
-  position: absolute;
-  display: flex;
-  width: 21%;
-  height: 3.8%;
-  align-items: center;
-  font-size: 2.5vw;
-  color: rgb(255 255 255);
-  font-weight: bolder;
-  margin-left: -64%;
-  transform: scale(0.6);
-  top: 72%;
-  text-align: center;
-}
+
+
 
 
 
 /* *{
   max-width: 1200px;
 } */
+
+
 
 .DesignatedRestrictedBlock{
   position: relative;
@@ -146,11 +109,72 @@
 }
 
 
-
+.MaxBigImgWidth{
+max-width: 1200px;
+}
 
 
 
 @media (min-width:0px) and (max-width: 1200px) {
+  .CourseInProgressList{
+    position: absolute;
+    display: flex;
+    width: 28.5%;
+    height: 3.8%;
+    align-items: center;
+    font-size: 153%;
+    color: rgb(255 255 255);
+    font-weight: bolder;
+    left: -4.7%;
+    transform: scale(0.4);
+    top: 72%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .TrainingProgramList{
+    position: absolute;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    width: 39%;
+    height: 10%;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 45%;
+    text-align: center;
+    font-size: 100%;
+    top: 6.5%;
+    color: rgb(255, 255, 255);
+    transform: scale(0.6777);
+  }
+  .TrainingHoursList{
+    position: absolute;
+    display: flex;
+    width:76%;
+    height: 3.8%;
+    align-items: center;
+    font-size: 39%;
+    top: 4%;
+    color: rgb(56 56 56);
+    font-weight: bolder;
+    margin-left: 18%;
+  }
+  
+  .TrainingHoursList_Detail{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 3.8%;
+    font-size: 100%;
+    color: rgb(56, 56, 56);
+    margin-left: 3%;
+    flex-direction: column;
+    top: 11%;
+    transform: scale(0.6777);
+    white-space: nowrap;
+  
+  }
   *{
     font-size: 12px;
   }
@@ -179,8 +203,9 @@
     max-width: 1100px;
   }
   .ContentTransformScale{
-    transform: scale(0.5);
-    font-size: 16px;
+    transform: scale(0.6);
+    font-size: 109%;
+    top: 21%;
     text-align: center;
   }
   .LearningRewardsTextTransform{
@@ -213,21 +238,66 @@
     align-items: center;
     text-align: center;
   }
+}
+@media screen and (min-width: 1200px) and (max-width: 3920px){
+  .CourseInProgressList{
+    position: absolute;
+    display: flex;
+    width: 28.5%;
+    height: 3.8%;
+    align-items: center;
+    font-size: 153%;
+    color: rgb(255 255 255);
+    font-weight: bolder;
+    left: -4.7%;
+    transform: scale(0.6);
+    top: 72%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .TrainingProgramList{
+    position: absolute;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    width: 39%;
+    height: 10%;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 45%;
+    text-align: center;
+    font-size: 149%;
+    top: 6.5%;
+    color: rgb(255, 255, 255);
+    transform: scale(0.6777);
+  }
+  .TrainingHoursList{
+    position: absolute;
+    display: flex;
+    width: 76%;
+    height: 3.8%;
+    align-items: center;
+    font-size: 149%;
+    top: 4%;
+    color: rgb(56 56 56);
+    font-weight: bolder;
+    margin-left: 18%;
+  }
+  
   .TrainingHoursList_Detail{
     position: absolute;
     display: flex;
-    width: 75%;
+    width: 100%;
     height: 3.8%;
-    font-size: 2.3vw;
-    color: rgb(56 56 56);
-    margin-left: 17%;
+    font-size: 176%;
+    color: rgb(56, 56, 56);
+    margin-left: 11%;
     flex-direction: column;
     top: 11%;
-    transform: scale(0.9);
+    transform: scale(0.8333);
+    white-space: nowrap;
   }
-  
-}
-@media screen and (min-width: 1200px) and (max-width: 3920px){
   *{
     font-size: 18px;
   }
@@ -255,7 +325,8 @@
   }
   .ContentTransformScale{
     transform: scale(0.6);
-    font-size: 32px;
+    top: 12%;
+    font-size: 204%;
     text-align: center;
   }
   .LearningRewardsTextTransform{
@@ -288,17 +359,5 @@
     align-items: center;
     text-align: center;
   }
-  .TrainingHoursList_Detail{
-    position: absolute;
-    display: flex;
-    width: 75%;
-    height: 3.8%;
-    font-size: 2.3vw;
-    color: rgb(56 56 56);
-    margin-left: 17%;
-    flex-direction: column;
-    top: 11%;
-    transform: scale(0.9);
-  }
-}
 
+}

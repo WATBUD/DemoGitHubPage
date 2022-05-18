@@ -44,16 +44,16 @@
     border-bottom: 1px solid;
 }
 .colorBase {
-    width: 1.2vw;
-    height: 1.2vw;
+    width: 23px;
+    height: 23px;
     transform: skewX(-30deg);
     border-color: white;
     border-style: solid;
 }
 .colorBaseList {
-    right: 6%;
-    width: 41%;
-    height: 8.05%;
+    right: 32.3px;
+    width: 268.547px;
+    height: 56.219px;
     position: absolute;
     display: flex;
     top: 404px;

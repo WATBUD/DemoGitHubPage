@@ -10,7 +10,7 @@ z-index: 9999;" class="text-effect">
   <div class="spotlight"></div>
 </div> -->
 
-<!-- <div id="SnaplLineXY" style="
+<div id="SnaplLineXY" style="
     position: absolute;
     width: 100%;
     height: 100%;
@@ -22,7 +22,7 @@ z-index: 9999;" class="text-effect">
     top: 0px;
     z-index: 9999;
     pointer-events: none;">
-</div> -->
+</div>
 
 
 
@@ -421,7 +421,6 @@ left: 9%;">
 
   <div *ngIf="this.currentPage=='ConnectedPage'"
     style="position: absolute;height: 100%;z-index: 1109;width: 100%;background: #0000008a;" id="Content">
-    <!-- <button type="button" style="position: absolute;left: 20vw;" class="ButtonStyle">Copy StyleText</button> -->
 
     <div id="Content" style="position: absolute;
     left: 403px;
@@ -872,16 +871,16 @@ left: 9%;">
       <section *ngIf="!Built_ineffect.Built_inSelected.hasSingleKeyLighting" 
       class="colorBaseList">
         <div style="position: absolute;
-            width: 100%;
-            margin-top: -52px;
-            color: rgb(18,64,162);
-            text-align: right;">
+        width: 100%;
+        top: -14px;
+        color: rgb(18,64,162);
+        text-align: right;">
           Dynamic Light Color Table
         </div>
         <div *ngFor="let item of Built_ineffect.Built_inSelected.colors ;let i = index" class="colorBase"
           id="colorBase{{i}}" [style.background-color]="this.ColorWheelModule.toCssRGBA(item)"
           [style.border-width]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==999?'2px':'0px'"
-          [style.height]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==999?'1.5vw':'1.2vw'">
+          [style.height]="Built_ineffect.Built_inSelected.colorCardSelectionLocation==999?'23px':'23px'">
         </div>
       </section>
       <!-- (click)="Built_ineffect.setColorCardSelectionLocation(i)" -->
@@ -893,10 +892,13 @@ left: 9%;">
         <input id="rangeUI" max="100" min="0" style="margin-top: 35px;width: 272px;" type="range"
           [(ngModel)]="KeyBoardManager.getTarget().lightData.brightness">
         <div
-        [style.marginLeft.px]="KeyBoardManager.getTarget().lightData.brightness*272/100-20" style="position: absolute;text-align: center;
-            width: 20%;
-            margin-top: 15px;
-            color: rgb(18,64,162);">{{KeyBoardManager.getTarget().lightData.brightness}}%</div>
+        [style.marginLeft.px]="KeyBoardManager.getTarget().lightData.brightness*272/100-20" style="    position: absolute;
+        text-align: center;
+        width: 20%;
+        margin-top: 15px;
+        color: rgb(18, 64, 162);
+        margin-left: 252px;
+        font-family: 'Inter-Regular';">{{KeyBoardManager.getTarget().lightData.brightness}}%</div>
       </section>
 
 

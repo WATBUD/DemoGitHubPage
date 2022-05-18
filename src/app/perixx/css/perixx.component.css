@@ -187,11 +187,21 @@ background: rgb(237 238 240);
     color: rgb(18, 64, 162);
     background: transparent;
     border: 1px solid rgb(18,64,162);
+    transform: scale(1);
 } 
 .PageApplyBtn:hover {
     color: rgb(248,248,248);
     background: rgb(29,52,96);
     border: 1px solid rgb(29,52,96);
+
+} 
+.PageApplyBtn:active {
+    color: rgb(248,248,248);
+    background: rgb(29,52,96);
+    border: 1px solid rgb(29,52,96);
+    transform: scale(0.97);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
+
 } 
 
 

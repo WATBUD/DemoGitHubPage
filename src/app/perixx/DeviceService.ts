@@ -29,7 +29,7 @@ export class DeviceService{
         "SN": '0x04F20x2159',
         "StateID": -1,
         "deviceData": {},
-        "devicename": "MODEL O WIRELESS",
+        "devicename": "Perixx Ergo Keyboard",
         "pid": ["0x2011", "0x2022"],
         "profile": [{}, {}, {}],
         "version_Wired": "",

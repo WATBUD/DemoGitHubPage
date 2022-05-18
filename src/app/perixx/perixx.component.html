@@ -89,7 +89,7 @@ border-bottom: 1px solid rgb(159 163 170);">
   height: 10px;
   width: 10px;
   right: 0.7%;
-  top: 7.5px;
+  top: 9px;
   background-repeat: no-repeat;
   background-position: center;"
     (click)="Electron_Service.specifyTheDesiredFunction('quitApplication')">
@@ -904,12 +904,13 @@ left: 9%;">
 
 
 
-      <div class="ApplyBtn PageApplyBtn" style="bottom: 24px;" (click)="loadTemporaryKeyboardData()"> Apply
+      <div class="ApplyBtn PageApplyBtn" style="bottom: 74px;" (click)="loadTemporaryKeyboardData()"> Apply
       </div>
 
 
     </div>
-    <div [style.display]="Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" class="RightPanal">
+    <div class="RightPanal">
+      <section [style.display]="Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" data-ColorPanal>
       <div id="AreaTitle">
         Color Palette
       </div>
@@ -935,7 +936,6 @@ left: 9%;">
       height: 1px;
       background: rgb(159, 163, 170);">
       </div>
-
       <div style="position: absolute;
       top: 463px;
       margin-left: 26px;
@@ -943,10 +943,6 @@ left: 9%;">
       font-weight: bold;">
         Custom
       </div>
-
-
-
-
       <div data-ColorWheel="5" style="width: 200px;
             height: 200px;
             margin-top: 58px;
@@ -954,7 +950,6 @@ left: 9%;">
         <div id="coordinateCircle" style="margin-left: calc(50% - 5px);margin-top: calc(50% - 5px);">
         </div>
       </div>
-
       <div id="DefaultColorList" class="ColorBoxSize" style="margin-left: 26px;margin-top: 355px;">
         <div *ngFor="let item of DefaultColorList;let i = index" class="DefaultColorItem"
           (click)="updateColorWheel($event)" id="colorBase{{i}}"
@@ -963,22 +958,14 @@ left: 9%;">
         <div class="DefaultColorItem" style="background-image: url(./image/Perixx_Project/Share/BlackColorChart.png);
      background-size: 100% 100%;" (click)="updateColorWheel($event,true)" id="ColorChart">
         </div>
-
         <div id="CustomColorList" class="ColorBoxSize" style="margin-top: 145px;">
           <div *ngFor="let item of CustomColorList;let i = index" class="DefaultColorItem"
             (click)="updateColorWheel($event)" (contextmenu)="updateCustomColorList(i)" id="colorBase{{i}}"
             [style.background-color]="this.ColorWheelModule.toCssRGB(item)">
           </div>
-
         </div>
-
       </div>
-
-
-
-
-
-
+    </section>
     </div>
   </section>
 
@@ -991,10 +978,10 @@ left: 9%;">
 
       <img src="image/Perixx_Project/Share/AddIcon.png" style="position: absolute;
       right: 4%;
-      margin-top: 39px;" (click)="keyboardRMenu('m_Create')">
+      margin-top: 37px;" (click)="keyboardRMenu('m_Create')">
       <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
             right:20%;
-            margin-top: 36px;">
+            margin-top: 35px;">
       <div id="SharedSelectList" style="margin-left: 0%;margin-top: 70px;">
         <div class="Shard_OptionItem" *ngFor="let item of KeyBoardLibray.KeyBoardArray;let i = index"
           (click)="keyboardLeftClick(i)" (contextmenu)="keyboardRightClick(i,$event)"
@@ -1631,7 +1618,7 @@ left: 9%;">
 
       <img src="image/Perixx_Project/Share/AddIcon.png" style="position: absolute;
       right: 7%;
-      margin-top: 15%;" (click)="MacroManager.createFolderFile()">
+      margin-top: 15.5%;" (click)="MacroManager.createFolderFile()">
       <img src="image/Perixx_Project/Share/ImportIcon.png" style="position: absolute;
             right:20%;
             margin-top: 15%;">
@@ -1643,13 +1630,15 @@ left: 9%;">
           [style.background-color]="selectedMacroCode==item.selectedMacroCode?'#1240A2':'transparent'"
           [style.color]="selectedMacroCode==item.selectedMacroCode?'#F5F5F7':'#9FA3AA'">
           <!-- <img [src]="KeyBoardManager.getTarget()==i? ImgPath.Macro_Linking[1]:ImgPath.Macro_Linking[0]"> -->
-          <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 70%;
-            position: absolute;
-            margin-left: 8%;" maxlength="15"
+          <input class="MacroFileName" [attr.data-mindex]="i" type="text" placeholder="" style="    width: 91%;
+          position: absolute;
+          margin-left: 2%;
+          visibility: hidden;" maxlength="15"
             [style.visibility]="selectedMacroCode==item.selectedMacroCode&&macroOnEdit?'visible': 'hidden'"
             [(ngModel)]="MacroManager.onEditMacroName" (blur)="renameMacroFile($event);macroOnEdit=false;"
             (keyup)="renameMacroFile($event);">
-          &nbsp;&nbsp;&nbsp;{{item.name}}
+            <div style="margin-left: 2%;" >{{item.name}}</div>
+
         </div>
 
       </div>
@@ -1738,11 +1727,11 @@ left: 9%;">
         </div>
       </div>
       <div class="ApplyBtn PageApplyBtn"
-        style="position: absolute;bottom: 80px;z-index: 1111;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
+        style="position: absolute;bottom: 80px;z-index: 1111;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;"
         (click)="MacroManager.tempMacroContent.sortData();"> Refresh
       </div>
       <div class="ApplyBtn PageApplyBtn"
-        style="position: absolute;bottom: 24px;z-index: 1111;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;color: rgb(18,64,162);border: 1px solid rgb(18,64,162);"
+        style="position: absolute;bottom: 24px;z-index: 1111;width: 153px;display: flex;height: 38px;margin-left: 40px;justify-content: center;align-items: center;"
         (click)="this.loadTemporaryMacroData()"> Apply
       </div>
 

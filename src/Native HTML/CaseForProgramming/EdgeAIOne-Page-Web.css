@@ -137,9 +137,17 @@
   max-width: 1200px;
 } */
 
-.MaxBigImgWidth{
+.DesignatedRestrictedBlock{
+  position: relative;
+  width: 100%;
   max-width: 1200px;
+  display: flex;
+  align-items: center;
 }
+
+
+
+
 
 
 @media (min-width:0px) and (max-width: 1200px) {

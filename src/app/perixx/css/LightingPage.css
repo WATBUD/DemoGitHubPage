@@ -17,13 +17,13 @@
 }
 .Lighting_OptionItem .lightingNameField {
     border: none;
-    background: transparent;
+    background: rgba(0, 0, 0, 0);
     display: block;
     width: 100%;
     margin-bottom: 6px;
     height: 20px;
-    color: #9fa3aa;
-    padding: 0px;
+    color: rgb(159, 163, 170);
+    padding: 2px 0px 2px 0px;
     margin-left: 8px;
 }
 .Lighting_OptionItem .lightingNameField:focus {
@@ -34,6 +34,7 @@
     margin-bottom: 6px;
     height: 20px;
     color: #F5F5F7;
+    padding: 2px 0px 2px 0px;
     padding: 0px;
 }
 .QuicklySelectBlockItem {
@@ -51,9 +52,9 @@
     border-style: solid;
 }
 .colorBaseList {
-    right: 32.3px;
-    width: 268.547px;
-    height: 56.219px;
+    right: 6%;
+    width: 41%;
+    height: 8.05%;
     position: absolute;
     display: flex;
     top: 404px;

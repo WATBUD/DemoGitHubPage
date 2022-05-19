@@ -45,18 +45,6 @@
 }
 
 
-
-
-.TrainingList_Item{
-    justify-content: center;
-    display: flex;
-    width: 30%;
-    height: auto;
-    font-size: 103%;
-    transform: scale(0.6777);
-}
-
-
 .BackgroundCenter{
     background-color: transparent;
     background-image: none;
@@ -116,6 +104,14 @@ max-width: 1200px;
 
 
 @media (min-width:0px) and (max-width: 1200px) {
+  .TrainingList_Item{
+    justify-content: center;
+    display: flex;
+    width: 30%;
+    height: auto;
+    font-size: 16px;
+    transform: scale(1);
+  }
   .CourseInProgressList{
     position: absolute;
     display: flex;
@@ -166,7 +162,7 @@ max-width: 1200px;
     display: flex;
     width: 100%;
     height: 3.8%;
-    font-size: 100%;
+    font-size: 16px;
     color: rgb(56, 56, 56);
     margin-left: 3%;
     flex-direction: column;
@@ -251,6 +247,14 @@ max-width: 1200px;
   }
 }
 @media screen and (min-width: 1200px) and (max-width: 3920px){
+  .TrainingList_Item{
+    justify-content: center;
+    display: flex;
+    width: 30%;
+    height: auto;
+    font-size: 24px;
+    transform: scale(1);
+  }
   .CourseInProgressList{
     position: absolute;
     display: flex;
@@ -301,7 +305,7 @@ max-width: 1200px;
     display: flex;
     width: 100%;
     height: 3.8%;
-    font-size: 176%;
+    font-size: 36px;
     color: rgb(56, 56, 56);
     margin-left: 11%;
     flex-direction: column;

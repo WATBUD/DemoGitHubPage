@@ -911,8 +911,10 @@ left: 9%;">
 
 
     </div>
-    <div class="RightPanal">
-      <section [style.display]="Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" data-ColorPanal>
+    <div [style.display]="!Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" class="fakeRightPanal">
+    </div>
+    <div [style.display]="Built_ineffect.Built_inSelected.hasSingleKeyLighting?'block': 'none'" class="RightPanal">
+      <section  data-ColorPanal>
       <div id="AreaTitle">
         Color Palette
       </div>

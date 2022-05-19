@@ -123,13 +123,19 @@
     background: rgb(237 238 240);
 }
 
+.fakeRightPanal{
+    position: absolute;
+    height: 100%;
+    width: 243px;
+    right: 0px;
+    background: rgb(237 238 240);
+}
 .RightPanal{
 position: absolute;
 height: 100%;
 width: 243px;
 right: 0px;
 background: rgb(237 238 240);
-
 }
 
 .RightPanal::before {

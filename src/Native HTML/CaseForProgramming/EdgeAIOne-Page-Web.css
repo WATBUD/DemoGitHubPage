@@ -48,12 +48,12 @@
 
 
 .TrainingList_Item{
-  -webkit-box-pack: center;
-  justify-content: center;
-  display: flex;
-  width: 32%;
-  height: auto;
-  /* font-size: 12px; */
+    justify-content: center;
+    display: flex;
+    width: 30%;
+    height: auto;
+    font-size: 103%;
+    transform: scale(0.6777);
 }
 
 
@@ -137,13 +137,13 @@ max-width: 1200px;
     -webkit-box-pack: center;
     justify-content: center;
     display: flex;
-    width: 39%;
+    width: 54%;
     height: 10%;
     -webkit-box-align: center;
     align-items: center;
     margin-left: 45%;
     text-align: center;
-    font-size: 100%;
+    font-size: 104%;
     top: 6.5%;
     color: rgb(255, 255, 255);
     transform: scale(0.6777);
@@ -208,16 +208,26 @@ max-width: 1200px;
     top: 21%;
     text-align: center;
   }
+   .LearningRewardsText_Left{
+    width: 24%;
+    justify-content: center;
+    display: flex;
+    color: white;
+    height: 100%;
+    font-size: 103%;
+    align-items: center;
+    transform: scale(0.6777);
+  }
   .LearningRewardsTextTransform{
     position: absolute;
     justify-content: center;
     display: flex;
     width: 88%;
     height: 70%;
+    font-size: 103%;
     align-items: center;
-    margin-left: 17%;
-    font-size: 2.5vw;
-    transform: scale(0.7);
+    margin-left: 19%;
+    transform: scale(0.6777);
   }
   .ProductivityIntroductionListItem{
     -webkit-box-pack: center;
@@ -229,6 +239,7 @@ max-width: 1200px;
    }
    .ProductivityIntroductionListItem div{
     transform: scale(0.6);
+    font-size: 12px;
    }
   .ProductivityIntroductionList{
     position: absolute;
@@ -261,13 +272,13 @@ max-width: 1200px;
     -webkit-box-pack: center;
     justify-content: center;
     display: flex;
-    width: 39%;
+    width: 54%;
     height: 10%;
     -webkit-box-align: center;
     align-items: center;
     margin-left: 45%;
     text-align: center;
-    font-size: 149%;
+    font-size: 234%;
     top: 6.5%;
     color: rgb(255, 255, 255);
     transform: scale(0.6777);
@@ -329,16 +340,27 @@ max-width: 1200px;
     font-size: 204%;
     text-align: center;
   }
+  .LearningRewardsText_Left{
+    width: 24%;
+    justify-content: center;
+    display: flex;
+    color: white;
+    height: 100%;
+    align-items: center;
+    font-size: 206%;
+    transform: scale(0.6777);
+  }
+
   .LearningRewardsTextTransform{
     position: absolute;
     justify-content: center;
     display: flex;
     width: 88%;
     height: 70%;
-    font-size: 2.5vw;
+    font-size: 206%;
     align-items: center;
     margin-left: 17%;
-    transform: scale(0.8);
+    transform: scale(0.6777);
   }
   .ProductivityIntroductionListItem{
     -webkit-box-pack: center;
@@ -350,6 +372,8 @@ max-width: 1200px;
    }
    .ProductivityIntroductionListItem div{
     transform: scale(0.6);
+    font-size: 24px;
+
    }
   .ProductivityIntroductionList{
     position: absolute;

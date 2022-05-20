@@ -40,8 +40,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: auto;
 }
 
 
@@ -101,16 +99,28 @@
 max-width: 1200px;
 }
 
+.whatCanBeLearned{
+  width: 30%;
+  justify-content: center;
+  display: flex;flex-direction: column;align-items: center;font-size: 24px;font-weight: bolder;
+}
+
+[data-figurewithword]{
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
 
 
 @media (min-width:0px) and (max-width: 1200px) {
   .TrainingList_Item{
     justify-content: center;
     display: flex;
-    width: 30%;
+    width: 45%;
     height: auto;
-    font-size: 16px;
-    transform: scale(1);
+    font-size: 12px;
+    transform: scale(0.8777);
+    font-weight: unset;
   }
   .CourseInProgressList{
     position: absolute;
@@ -193,6 +203,10 @@ max-width: 1200px;
     width: 100%;
     margin-top: 20px;
   }
+  .TitleAndTextDistance{
+    width: 100%;
+    margin-top: 40px;
+  }
   .ContentArticleSize{
     width: 90%;
     font-size: 12px;
@@ -250,10 +264,11 @@ max-width: 1200px;
   .TrainingList_Item{
     justify-content: center;
     display: flex;
-    width: 30%;
+    width: 45%;
     height: auto;
-    font-size: 24px;
+    font-size: 18px;
     transform: scale(1);
+    font-weight: unset;
   }
   .CourseInProgressList{
     position: absolute;
@@ -331,6 +346,10 @@ max-width: 1200px;
   }
   .spacing_{
     width: 100%;
+    margin-top: 85px;
+  }
+  .TitleAndTextDistance{
+    width: 100%;
     margin-top: 40px;
   }
   .ContentArticleSize{
@@ -375,8 +394,8 @@ max-width: 1200px;
     position: absolute;
    }
    .ProductivityIntroductionListItem div{
-    transform: scale(0.6);
-    font-size: 24px;
+    /* transform: scale(0.6); */
+    font-size: 18px;
 
    }
   .ProductivityIntroductionList{

@@ -1,0 +1,546 @@
+
+
+
+.LecturerAndTeachingAssistantLineblock{
+    height: auto;
+    width: 100%;
+    display: flex;
+    color: rgb(21, 57, 106);
+    position: sticky;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SuitableObjectDescription{
+    width: 33%;
+    justify-content: center;
+    display: flex;
+    color: rgb(5,78,117);
+    height: auto;
+    align-items: center;
+}
+
+
+
+
+.SuitableTargetItemText{
+color: rgb(0, 74, 114);font-weight: bolder;font-size: 24px;
+}
+
+
+
+
+.CenterAlignment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.BackgroundCenter{
+    background-color: transparent;
+    background-image: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    max-width: 1600px;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.CenterHorizontalContent{
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height:auto;
+  display: flex;
+}
+
+.CenterVerticalContent{
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+
+
+/* *{
+  max-width: 1200px;
+} */
+
+
+
+.DesignatedRestrictedBlock{
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+}
+
+
+.MaxBigImgWidth{
+max-width: 1200px;
+}
+
+
+
+
+@media (min-width:0px) and (max-width: 1200px) {
+  #CoursePrerequisites{
+    position: absolute;width: 87%;
+      justify-content: center;
+      display: flex;height: auto;align-items: center;
+      font-weight: 900;transform: scale(0.6);
+  }
+  .CourseInProgressTip{
+    position: absolute;
+    margin-top: 10%;
+    transform: scale(0.5777);
+    width: 163%;
+    font-size: 12px;
+  }
+  #CourseInProgressSpacing{
+    margin-top: 60px;
+  }
+
+  #LecturerAndTeachingAssistantLineup{
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+  }
+  .LecturerAndTeachingAssistantLineup_Item{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    color: rgb(21, 57, 106);
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+  .SuitableTargetItem{
+  flex-direction: column;
+  width: 100%;
+  }
+  .SuitableTargetNumber{
+    color: white;
+    background: rgb(10,94,131);
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+    margin-top: 10px;
+  }
+.SuitableTargetItemImg{
+    height: 40vw;
+}
+  #SuitableTargetArea{
+    margin-top: 23px;
+    flex-direction: column;
+  }
+  #whatCanBeLearnedArea{
+     width: 100%;height:auto;
+     align-items: center;
+     display: flex;color: rgb(21, 57, 106);
+     font-weight: bold;flex-direction: column;
+  }
+  .whatCanBeLearned{
+  width: 68%;
+  justify-content: center;
+  display: flex;flex-direction: column;align-items: center;font-size: 24px;font-weight: bolder;
+  }
+  [data-figurewithword]{
+    display: flex;
+    width: auto;
+    justify-content: center;
+  }
+  [data-figurewithword] span{
+    color: rgb(56, 56, 56);
+    position: absolute;
+    margin-top: 41.7%;
+    width: 33%;
+    text-align: center;
+  }
+  #FullyUnleashProjectProductivity{
+    width: 100%;
+    font-weight: bold;
+    font-size:12px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    margin-left: 3%;width: auto;
+    margin-bottom: 1%;
+  }
+  .TrainingList_Item{
+    justify-content: center;
+    display: flex;
+    height: auto;
+    font-size: 12px;
+    transform: scale(0.8777);
+    font-weight: unset;
+    color: rgb(56, 56, 56);;
+  }
+  .CourseInProgressList{
+    position: absolute;
+    display: flex;
+    width: 28.5%;
+    height: 3.8%;
+    align-items: center;
+    color: rgb(255 255 255);
+    font-weight: bolder;
+    left: -4.7%;
+    transform: scale(0.6);
+    top: 72%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .TrainingProgramList{
+    position: absolute;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    width: 54%;
+    height: 10%;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 45%;
+    text-align: center;
+    font-size: 104%;
+    top: 6.5%;
+    color: rgb(255, 255, 255);
+    transform: scale(0.6777);
+  }
+  .TrainingHoursList{
+    position: absolute;
+    display: flex;
+    width: 90%;
+    height: 3.8%;
+    align-items: center;
+    top: 4%;
+    color: rgb(56 56 56);
+    font-weight: bolder;
+    margin-left: 11%;
+    transform: scale(0.8);
+  }
+  
+  .TrainingHoursList_Detail{
+    position: absolute;
+    display: flex;
+    width: 20%;
+    height: 3.8%;
+    font-size: 12px;
+    color: rgb(56, 56, 56);
+    margin-left: 17%;
+    flex-direction: column;
+    top: 10%;
+    transform: scale(0.6777);
+    white-space: nowrap;
+    line-height: 19px;
+  }
+  /* p{font-size:12px}  */
+  .TitleRwdTxt{
+    width: 100%;
+    font-weight: bold;
+    font-size:16px;
+    text-align: center;
+  }
+   .spacing_{
+    width: 100%;
+    margin-top: 20px;
+  }
+  .TitleAndTextDistance{
+    width: 100%;
+    margin-top: 20px;
+  }
+  .ContentArticleSize{
+    width: 95%;
+    font-size: 12px;
+    max-width: 1100px;
+  }
+  .ContentTransformScale{
+    transform: scale(0.6);
+    font-size: 109%;
+    top: 21%;
+    text-align: center;
+  }
+   .LearningRewardsText_Left{
+    width: 24%;
+    justify-content: center;
+    display: flex;
+    color: white;
+    height: 100%;
+    font-size: 103%;
+    align-items: center;
+    transform: scale(0.6777);
+  }
+  .LearningRewardsTextTransform{
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    width: 88%;
+    height: 70%;
+    font-size: 103%;
+    align-items: center;
+    margin-left: 19%;
+    transform: scale(0.6777);
+  }
+  .ProductivityIntroductionListItem{
+width: 33%;
+    height: 100%;
+    white-space: nowrap;
+    transform: scale(0.5);
+    font-size: 12px;
+justify-content: center;
+    display: flex;
+   }
+  .ProductivityIntroductionList{
+    position: absolute;
+    transform: scale(0.7);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  *{
+    font-size: 12px;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    /* font-family: sans-serif;
+    word-break: break-word; */
+    font-size: 12px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #CoursePrerequisites{
+    position: absolute;width: 87%;
+      justify-content: center;
+      display: flex;height: auto;align-items: center;
+      font-weight: 900;
+  }
+  .CourseInProgressTip{
+    position: absolute;
+    margin-top: 10%;
+    transform: scale(0.5777);
+    width: 163%;
+    font-size: 36px;
+  }
+  #CourseInProgressSpacing{
+    margin-top: 180px;
+  }
+    #LecturerAndTeachingAssistantLineup{
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .LecturerAndTeachingAssistantLineup_Item{
+    height: 100%;
+    width: 22%;
+    display: flex;
+    color: rgb(21, 57, 106);
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+  .SuitableTargetItem{
+  flex-direction: column;
+  width: 33%;
+  }
+  .SuitableTargetNumber{
+    color: white;
+    background: rgb(10,94,131);
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+  }
+
+.SuitableTargetItemImg{
+    height: 18vw;
+}
+  #SuitableTargetArea{
+    margin-top: 23px;
+  }
+  #whatCanBeLearnedArea{
+     width: 100%;height:auto;
+     align-items: center;
+     display: flex;color: rgb(21, 57, 106);
+     font-weight: bold;
+     justify-content: space-evenly;
+  }
+  .whatCanBeLearned{
+  width: 30%;
+  justify-content: center;
+  display: flex;flex-direction: column;align-items: center;font-size: 24px;font-weight: bolder;
+  }
+  [data-figurewithword]{
+    display: flex;
+    width: auto;
+    justify-content: center;
+  }
+  [data-figurewithword] span{
+  color: rgb(56, 56, 56);position: absolute;margin-top: 16.7%;width: 13%;text-align: center;
+  }
+  #FullyUnleashProjectProductivity{
+        width: 100%;
+    font-weight: bold;
+    font-size:34px;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 3%;width: auto;
+    margin-bottom: 1%;
+  }
+  .TrainingList_Item{
+    justify-content: center;
+    display: flex;
+    height: auto;
+    font-size: 18px;
+    transform: scale(1);
+    font-weight: unset;
+    color: rgb(56, 56, 56);
+  }
+  .CourseInProgressList{
+    position: absolute;
+    display: flex;
+    width: 28.5%;
+    height: 3.8%;
+    align-items: center;
+    font-size: 200%;
+    color: rgb(255 255 255);
+    font-weight: bolder;
+    left: -4.7%;
+    transform: scale(0.6);
+    top: 72%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .TrainingProgramList{
+    position: absolute;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    width: 54%;
+    height: 10%;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 45%;
+    text-align: center;
+    font-size: 234%;
+    top: 6.5%;
+    color: rgb(255, 255, 255);
+    transform: scale(0.6777);
+  }
+  .TrainingHoursList{
+    position: absolute;
+    display: flex;
+    width: 86%;
+    height: 3.8%;
+    align-items: center;
+    font-size: 28px;
+    top: 4%;
+    color: rgb(56 56 56);
+    font-weight: bolder;
+    margin-left: 18%;
+  }
+  
+  .TrainingHoursList_Detail{
+    position: absolute;
+    display: flex;
+    height: 3.8%;
+    font-size: 20px;
+    color: rgb(56, 56, 56);
+    margin-left: 18%;
+    flex-direction: column;
+    top: 10%;
+    transform: scale(1);
+    white-space: nowrap;
+    line-height: 45px;
+  }
+  .TitleRwdTxt{
+    width: 100%;
+    font-weight: bold;
+    font-size:36px;
+    text-align: center;
+  }
+  .spacing_{
+    width: 100%;
+    margin-top: 85px;
+  }
+  .TitleAndTextDistance{
+    width: 100%;
+    margin-top: 40px;
+  }
+  .ContentArticleSize{
+    width: 90%;
+    font-size: 18px;
+    max-width: 1100px;
+  }
+  .ContentTransformScale{
+    transform: scale(0.6);
+    top: 12%;
+    font-size: 204%;
+    text-align: center;
+  }
+  .LearningRewardsText_Left{
+    width: 24%;
+    justify-content: center;
+    display: flex;
+    color: white;
+    height: 100%;
+    align-items: center;
+    font-size: 206%;
+    transform: scale(0.6777);
+  }
+
+  .LearningRewardsTextTransform{
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    width: 88%;
+    height: 70%;
+    font-size: 206%;
+    align-items: center;
+    margin-left: 17%;
+    transform: scale(0.6777);
+  }
+  .ProductivityIntroductionListItem{
+justify-content: center;
+    display: flex;
+    width: 33%;
+    height: 100%;
+    white-space: nowrap;
+    /* transform: scale(0.6); */
+    font-size: 18px;
+   }
+  .ProductivityIntroductionList{
+    position: absolute;
+    transform: scale(1);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  } 
+  *{
+    font-size: 18px;
+  }
+  body {
+  margin: 0;
+  padding: 0;
+  /* font-family: sans-serif;
+  word-break: break-word; */
+  max-width: 100%;
+  overflow-x: hidden;
+  }
+}

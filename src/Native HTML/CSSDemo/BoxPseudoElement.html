@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .box {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: blue;
+        margin-left: 500px;
+    }
+    .box::before {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: red;
+        content: "Hello world!";
+        top: 0;
+        left: -150px;
+    }
+    .box::after {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: red;
+        content: "23323";
+        top: 0;
+        left: 150px;
+    }
+</style>
+
+<head>
+    <DIV class="box">BoxPseudoElement</DIV>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

@@ -41,13 +41,13 @@ body {
 		border-radius: 50%;
 		border: $size solid hsla(random(360), 100%, 50%, 1);
 		// background: red;
-		margin-left: -$size/2;
-		margin-top: -$size/2;
+		margin-left: calc(-1 * $size / 2);
+		margin-top: calc(-1 * $size / 2);
 		-webkit-filter: grayscale(1);
 		filter: grayscale(1);
 		transform: rotate($rotate) translate3d(0,0,-1500px) scale(0);
 		animation: anim#{$i} $time infinite linear;
-		animation-delay: $i * -($time/$total);
+		animation-delay: $i * calc($time / $total);
 		opacity: 0;
 	}
 	

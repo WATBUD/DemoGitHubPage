@@ -1,10 +1,13 @@
 {
   "name": "angular-demo",
   "version": "0.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "ng": "ng",
-    "serve": "ng serve",
-    "start": "ng serve --proxy-config ./proxy.conf.json",
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
